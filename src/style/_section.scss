@@ -1,0 +1,17 @@
+section {
+    display: block;
+    // align-items: center;
+    background-image: url(./images/section-bg.webp);
+    background-size: cover;
+    background-position: center;
+    width: auto;
+    min-height: calc(100vh - 56px);
+    padding: 2em;
+    h2{
+        margin-top: 30vh;
+        font-size: 80px;
+        color: rgb(255, 255, 255);
+        text-shadow: 5px 5px 5px  rgba(0,0,0,0.3);
+    }
+
+}

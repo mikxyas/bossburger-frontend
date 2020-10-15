@@ -1,0 +1,63 @@
+header{
+    position: fixed;
+    background-color: white;
+    z-index: 9999;
+    height: $nav-height;
+    width: 100%;
+    display: flex;
+    border-bottom: 1px solid rgba(0,0,0,0.08);   
+
+    align-items: center; 
+    ul{
+
+        display: flex;
+        list-style: none;
+        padding: .5em;
+        width: 100%;
+        background-color: white;
+        li{
+            margin-left: .8em;
+            
+        }
+        &.signup-nav{
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-end;
+        }
+        
+    }
+    
+}
+.content-nav{
+    display: flex;
+    width: 100%;
+    padding: .3em;
+    li{
+        Button{
+            span{
+                text{
+                    margin-top: -2.5em;
+                }
+            }
+        }
+    }
+}
+.brand-pic{
+    visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // background-image: url(./images/boss.png);
+    height: 50px;
+    // margin-left: 10em;
+}
+.icon-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    
+}
+.menu-icon{
+    visibility: hidden;
+}

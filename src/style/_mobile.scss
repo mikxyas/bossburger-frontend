@@ -1,0 +1,111 @@
+// widescreen 
+@include mediaXL {
+
+
+}
+@include mediaLg{
+    main{
+        &#grid-section{
+            grid-template-columns: 1fr;
+        }
+    }   
+}
+@include mediaMd{
+    &.offer-cont{
+        width: 100%;
+
+    }
+    &.offer-grid{
+        grid-template-columns: 1fr;
+    }
+    &.offer-display{
+        visibility: hidden;
+    }
+    &.banner{
+        background-size: 1000px 430px;
+    }
+    &.brand-pic{
+        visibility: visible;
+    }
+    &.ad-grid{
+        grid-template-columns: 1fr;
+    }
+    header{
+        
+       div {
+           display: flex;
+           width: 100%;
+           height: 0px;
+           align-items: center;
+           justify-content: center;
+           
+        &.c-nav-cont{
+           position: absolute;
+            ul{
+                // width: 100%;
+                display: flex;
+                width: 100%;
+                align-items: center;
+                justify-content: space-between;
+                margin-top: calc(200vh - 6.4em);
+                li{
+                    Button{
+                        span{
+                            text{
+                                margin-top: 0em;
+                            }
+                        }
+                    }
+                 }
+            }
+        }
+       }
+
+    }
+
+   &.menu-icon{
+       visibility: visible;
+   }
+   section{
+        min-height: calc(70vh - 70px);
+        display: block;
+        padding: .4em;
+        h2{
+            margin-top: 13vh;
+            font-size: 56px;
+        }
+   }
+}
+
+@include mediaSm{
+    &.offer-card{
+        width: 300px;
+    }
+    &.banner{
+        background-size: 525px 350px;
+    }
+    header{
+        ul{
+            &.content-nav{
+                background-color: white;
+            }
+        }
+    }
+    section{
+       
+        h2{
+            margin-top: 10vh;
+            font-size: 45px;
+        }
+        & .btn-group{
+            display: flex;
+            justify-content: center;
+            // align-items: center;
+            margin-top: 13vh;
+            // background-color: white;
+        }   
+    }
+    &.brand-pic{
+        margin-left: 1em;
+    }
+}
