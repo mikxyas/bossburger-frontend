@@ -63,19 +63,21 @@
             }
         }
        }
-
+       
     }
 
    &.menu-icon{
        visibility: visible;
    }
    section{
-        min-height: calc(70vh - 70px);
+        min-height: calc(80vh - 70px);
         display: block;
         padding: .4em;
+        padding-top: 4em;
+
         h2{
-            margin-top: 13vh;
             font-size: 56px;
+            margin-bottom: .4em;
         }
    }
 }
