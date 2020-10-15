@@ -10,7 +10,7 @@ function App() {
     <Provider store={store}>
       <body>
         <Navbar/>
-        <div style={{marginTop:"56px"}}>
+        <div className='main-container'>
           <Main/>
         </div>
       </body>

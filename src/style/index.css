@@ -279,6 +279,10 @@ section h2 {
           box-sizing: border-box;
 }
 
+.main-container {
+  margin-top: 56px;
+}
+
 body {
   height: 100%;
   margin: 0;
@@ -490,6 +494,9 @@ div .btn-group {
 }
 
 @media screen and (max-width: 768px) {
+  .main-container {
+    margin-top: 0;
+  }
   .offer-cont {
     width: 100%;
   }

@@ -11,6 +11,9 @@
     }   
 }
 @include mediaMd{
+    &.main-container{
+        margin-top: 0;
+    }
     &.offer-cont{
         width: 100%;
 
