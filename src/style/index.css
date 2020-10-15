@@ -88,7 +88,6 @@ header ul.signup-nav {
 
 section {
   display: block;
-  position: absolute;
   background-image: url(./images/section-bg.webp);
   background-size: cover;
   background-position: center;
