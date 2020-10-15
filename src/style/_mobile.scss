@@ -71,13 +71,10 @@
    }
    section{
         min-height: calc(80vh - 70px);
-        display: block;
+        // display: block;
         padding: .4em;
-        padding-top: 4em;
-
         h2{
             font-size: 56px;
-            margin-bottom: .4em;
         }
    }
 }

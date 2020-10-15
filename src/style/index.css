@@ -88,6 +88,7 @@ header ul.signup-nav {
 
 section {
   display: block;
+  position: absolute;
   background-image: url(./images/section-bg.webp);
   background-size: cover;
   background-position: center;
@@ -554,13 +555,10 @@ div .btn-group {
   }
   section {
     min-height: calc(80vh - 70px);
-    display: block;
     padding: .4em;
-    padding-top: 4em;
   }
   section h2 {
     font-size: 56px;
-    margin-bottom: .4em;
   }
 }
 
