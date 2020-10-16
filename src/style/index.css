@@ -538,6 +538,7 @@ div .btn-group {
     display: -ms-flexbox;
     display: flex;
     width: 100%;
+    margin-top: -56px;
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
