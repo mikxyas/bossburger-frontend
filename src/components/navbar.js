@@ -1,28 +1,53 @@
 import React, { Component } from 'react'
 import '../style/index.css'
-import LocalMallIcon from '@material-ui/icons/LocalMall';
-import HomeIcon from '@material-ui/icons/Home';
 import MotorcycleIcon from '@material-ui/icons/Motorcycle';
 import EventIcon from '@material-ui/icons/Event';
 import MonitizationOnIcon from '@material-ui/icons/MonetizationOn';
 import CardGiftCardIcon from '@material-ui/icons/CardGiftcard';
 import ShoppingCartRoundedIcon from '@material-ui/icons/ShoppingCartRounded'
-import PersonAddIcon from '@material-ui/icons/PersonAdd'
-import MenuIcon from '@material-ui/icons/Menu'
+import PersonAddIcon from '@material-ui/icons/PersonAdd';
+import GpsFixedIcon from '@material-ui/icons/GpsFixed';
 import { Link } from 'react-router-dom'
-import { Button } from '@material-ui/core';
-import IconButton from '@material-ui/core/IconButton'
+import { Button,ButtonGroup, Container } from '@material-ui/core';
+import Dialog from '@material-ui/core/Dialog';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
+import CloseIcon from '@material-ui/icons/Close';
+import Slide from '@material-ui/core/Slide';
+import Input from '@material-ui/core/Input'
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+    return <Slide direction="up" ref={ref} {...props} />;
+  });
 
 export default class Navbar extends Component {
+    constructor(props){
+        super(props)
+        this.state = {
+            open: false,
+        }
+    }
+    handleClickOpen = () => {
+        this.setState({
+            open:true
+        })
+      };
+    
+    handleClose = () => {
+        this.setState({
+            open:false
+        })
+      };
+
     render() {
         return (
                <header>
                    <div className='c-nav-cont'>
                     <ul className='content-nav'>
                         <li>
-                            <Link to='/order'>
-                                <Button><span className='icon-btn'><MotorcycleIcon fontSize='large' className='menu-icon'/><text>Order</text></span></Button>
-                            </Link>
+                            <Button onClick={() => this.handleClickOpen()}><span className='icon-btn'><MotorcycleIcon fontSize='large' className='menu-icon'/><text>Order</text></span></Button>
                         </li>
                         <li>
                             <Link to='/offers'>
@@ -35,13 +60,15 @@ export default class Navbar extends Component {
                             </Link>
                         </li>
                         <li>
-                        <Button><span className='icon-btn'><CardGiftCardIcon fontSize='large' className='menu-icon'/><text>Giveaways</text></span></Button>
+                            <Link to='/giveaways'>
+                                <Button><span className='icon-btn'><CardGiftCardIcon fontSize='large' className='menu-icon'/><text>Giveaways</text></span></Button>
+                            </Link>
                         </li>
                     </ul>
                    </div>
                     <Link to='/'>
                         <div className='brand-pic'>
-                            <IconButton><HomeIcon/></IconButton>
+                            {/* <IconButton><HomeIcon/></IconButton> */}
                         </div>
                     </Link>
                     <ul className='signup-nav'>
@@ -56,6 +83,39 @@ export default class Navbar extends Component {
                                 </Button>
                             </li>
                    </ul>
+                   <Dialog
+                        fullScreen
+                        TransitionComponent={Transition}
+                        open={this.state.open}
+                        onClose={this.handleClose}
+                        aria-labelledby="responsive-dialog-title"
+                        style={{marginTop:'56px'}}
+                    >
+                        <AppBar style={{position:"relative", display:"flex", justifyContent:"center", alignItems:"start"}}>
+                            <Toolbar>
+                                <IconButton edge="start" color="inherit" onClick={this.handleClose} aria-label="close">
+                                <CloseIcon />
+                                </IconButton>
+                                <Typography variant="h6" >
+                                    Configure your order
+                                </Typography>
+                            </Toolbar>
+                        </AppBar>
+                        <Container style={{display:"flex",alignItems:"center",justifyContent:"center",padding:'1em',height:'calc(100vh - 150px)', flexDirection:'column'}}>
+                            <Input  placeholder='Name'/>
+                            <Input style={{marginTop:'1em'}} type='number' placeholder='Phone number'/>
+                            <Input style={{marginTop:'1em'}} placeholder='Describe your location'/>
+                            <Button style={{marginTop:"1em"}} variant='contained' color='secondary' >Get my location <GpsFixedIcon/></Button>
+                            {/* <div style={{display:"flex",alignItems:"center",justifyContent:"center", marginTop:'1em'}}> */}
+                                {/* <ButtonGroup style={{marginTop:'2em'}}> */}
+                                    <Link to='/order'>
+                                        <Button style={{marginTop:'1em'}} onClick={this.handleClose} color='primary' variant='contained'>Order Pickup</Button>
+                                        <Button style={{marginLeft:'1em', marginTop:'1em'}} onClick={this.handleClose} color='primary' variant='contained'>Order Delivery</Button>
+                                    </Link>
+                                {/* </ButtonGroup> */}
+                            {/* </div> */}
+                        </Container>
+                    </Dialog>
                </header>
 
         )

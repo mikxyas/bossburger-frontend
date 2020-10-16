@@ -43,7 +43,7 @@ export class Menu extends React.Component {
     };
     render(){
     return (
-      <Fragment >
+      <Fragment>
         <Container style={{paddingBottom:'3em',overflow:"hidden"}}>
           <MenuTab/>
           {/* {this.state.isLoaded ? */}

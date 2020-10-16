@@ -9,6 +9,7 @@ import Cart from './pages/Cart'
 import Contact from './pages/Contact';
 import Dashboard from './pages/Dashboard'
 import Offers from './pages/Offers'
+import Giveaway from './pages/Giveaway'
 
 const Main = () => {
     return(
@@ -17,6 +18,7 @@ const Main = () => {
       <Route exact path='/events' component={Events}></Route>
       <Route exact path='/order' component={Menu}></Route>
       <Route exact path='/offers' component={Offers}></Route>
+      <Route exact path='/giveaways' component={Giveaway}></Route>
       <Route exact path='/contact' component={Contact}></Route>
       <Route exact path='/about' component={About}></Route>
       <Route exact path='/cart' component={Cart}></Route>

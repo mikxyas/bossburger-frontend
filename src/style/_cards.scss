@@ -121,6 +121,10 @@
     justify-content: center;
     height:calc(100vh - 56px);
     width: 100vw;
-    background-image: url(./images/mon.jpg);
+    background-image: url(./images/kuriftu.jpg);
     background-size: cover;
+    h2,h3{
+        color:white;
+        margin-top: 0em;
+    }
 }

@@ -53,17 +53,12 @@ header ul.signup-nav {
 }
 
 .brand-pic {
-  visibility: hidden;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  height: 50px;
+  display: block;
+  background-image: url(./images/bk-big.png);
+  height: 60px;
+  width: 60px;
+  margin-left: 20vw;
+  margin-top: .5em;
 }
 
 .icon-btn {
@@ -270,8 +265,13 @@ section h2 {
           justify-content: center;
   height: calc(100vh - 56px);
   width: 100vw;
-  background-image: url(./images/mon.jpg);
+  background-image: url(./images/kuriftu.jpg);
   background-size: cover;
+}
+
+.EventCover h2, .EventCover h3 {
+  color: white;
+  margin-top: 0em;
 }
 
 * {
@@ -494,8 +494,8 @@ div .btn-group {
 }
 
 @media screen and (max-width: 768px) {
-  .main-container {
-    margin-top: 0;
+  .Event-desc h2 {
+    font-size: 40px;
   }
   .offer-cont {
     width: 100%;
@@ -512,10 +512,14 @@ div .btn-group {
   }
   .brand-pic {
     visibility: visible;
+    margin-left: 1em;
   }
   .ad-grid {
     -ms-grid-columns: 1fr;
         grid-template-columns: 1fr;
+  }
+  header {
+    position: fixed;
   }
   header div {
     display: -webkit-box;
@@ -531,7 +535,7 @@ div .btn-group {
             justify-content: center;
   }
   header div.c-nav-cont {
-    position: absolute;
+    position: fixed;
   }
   header div.c-nav-cont ul {
     display: -webkit-box;
@@ -562,6 +566,9 @@ div .btn-group {
 }
 
 @media screen and (max-width: 500px) {
+  .Event-desc h2 {
+    font-size: 38px;
+  }
   .offer-card {
     width: 300px;
   }

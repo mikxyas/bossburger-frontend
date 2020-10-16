@@ -7,9 +7,15 @@ export default class Events extends Component {
     render() {
         return (
           <div className='EventCover'>
-            <h2  style={{color:"black"}}> 
-              !!Instead of this wallpaper, their will be a wallpaper about the current event!!
-            </h2>
+            <div className="Event-desc" style={{padding:"1em",textAlign:"center",background:"rgba(0,0,0,0.4)"}}>
+              <h2 className='lg-heading'> 
+                Meskel Getaway Challenge
+              </h2>
+              <h3 className='sub-header'>Get a chance to win two tickets to a world class resort</h3>
+              <p style={{color:'white'}}>
+                Winner will be selected randomly from people who order from our website
+              </p>
+            </div>
           </div>
         )
     }

@@ -11,8 +11,13 @@
     }   
 }
 @include mediaMd{
-    &.main-container{
-        margin-top: 0;
+    // &.main-container{
+    //     margin-top: 0;
+    // }
+    &.Event-desc{
+        h2{
+            font-size: 40px;
+        }
     }
     &.offer-cont{
         width: 100%;
@@ -29,12 +34,13 @@
     }
     &.brand-pic{
         visibility: visible;
+        margin-left: 1em;
     }
     &.ad-grid{
         grid-template-columns: 1fr;
     }
     header{
-        
+        position: fixed;
        div {
            display: flex;
            width: 100%;
@@ -43,7 +49,7 @@
            justify-content: center;
            
         &.c-nav-cont{
-           position: absolute;
+           position: fixed;
             ul{
                 // width: 100%;
                 display: flex;
@@ -80,6 +86,11 @@
 }
 
 @include mediaSm{
+    &.Event-desc{
+        h2{
+            font-size: 38px;
+        }
+    }
     &.offer-card{
         width: 300px;
     }
