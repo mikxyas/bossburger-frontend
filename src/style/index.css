@@ -532,13 +532,13 @@ div .btn-group {
   }
   header div.c-nav-cont {
     position: fixed;
+    margin-top: -56px;
   }
   header div.c-nav-cont ul {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     width: 100%;
-    margin-top: -56px;
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;

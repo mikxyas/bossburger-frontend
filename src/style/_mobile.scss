@@ -48,11 +48,12 @@
            
         &.c-nav-cont{
            position: fixed;
+           margin-top: -56px;
+
             ul{
                 // width: 100%;
                 display: flex;
                 width: 100%;
-                margin-top: -56px;
                 align-items: center;
                 justify-content: space-between;
                 margin-top: calc(200vh - 6.4em);
