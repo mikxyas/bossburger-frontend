@@ -109,7 +109,7 @@ section h2 {
   margin-top: .5em;
   margin-bottom: .5em;
   border-radius: 8px;
-  background-image: url("./images/banner-bg.webp");
+  background-image: url("./images/banner-bg.jpg");
   background-position: center;
   padding: 1em;
 }
@@ -128,7 +128,7 @@ section h2 {
       -ms-flex-pack: end;
           justify-content: flex-end;
   margin-top: .5em;
-  background-image: url("./images/card-bg.webp");
+  background-image: url("./images/card-bg.jpg");
   background-size: cover;
   background-position: center;
 }
@@ -499,10 +499,6 @@ div .btn-group {
   }
   .offer-cont {
     width: 100%;
-  }
-  .offer-grid {
-    -ms-grid-columns: 1fr;
-        grid-template-columns: 1fr;
   }
   .offer-display {
     visibility: hidden;

@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import '../style/index.css'
-import MotorcycleIcon from '@material-ui/icons/Motorcycle';
+import LocalOfferIcon from '@material-ui/icons/LocalOffer';
 import EventIcon from '@material-ui/icons/Event';
-import MonitizationOnIcon from '@material-ui/icons/MonetizationOn';
 import CardGiftCardIcon from '@material-ui/icons/CardGiftcard';
 import ShoppingCartRoundedIcon from '@material-ui/icons/ShoppingCartRounded'
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
@@ -17,6 +16,8 @@ import Typography from '@material-ui/core/Typography';
 import CloseIcon from '@material-ui/icons/Close';
 import Slide from '@material-ui/core/Slide';
 import Input from '@material-ui/core/Input'
+import FastfoodIcon from '@material-ui/icons/Fastfood';
+
 
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
@@ -47,11 +48,11 @@ export default class Navbar extends Component {
                    <div className='c-nav-cont'>
                     <ul className='content-nav'>
                         <li>
-                            <Button onClick={() => this.handleClickOpen()}><span className='icon-btn'><MotorcycleIcon fontSize='large' className='menu-icon'/><text>Order</text></span></Button>
+                            <Button onClick={() => this.handleClickOpen()}><span className='icon-btn'><FastfoodIcon fontSize='large' className='menu-icon'/><text>Order</text></span></Button>
                         </li>
                         <li>
                             <Link to='/offers'>
-                                <Button><span className='icon-btn'><MonitizationOnIcon  fontSize='large' className='menu-icon'/><text>Offers</text></span></Button>
+                                <Button><span className='icon-btn'><LocalOfferIcon  fontSize='large' className='menu-icon'/><text>Offers</text></span></Button>
                             </Link>
                         </li>
                         <li>
@@ -101,10 +102,10 @@ export default class Navbar extends Component {
                                 </Typography>
                             </Toolbar>
                         </AppBar>
-                        <Container style={{display:"flex",alignItems:"center",justifyContent:"center",padding:'1em',height:'calc(100vh - 150px)', flexDirection:'column'}}>
-                            <Input  placeholder='Name'/>
-                            <Input style={{marginTop:'1em'}} type='number' placeholder='Phone number'/>
-                            <Input style={{marginTop:'1em'}} placeholder='Describe your location'/>
+                        <Container style={{display:"flex",alignItems:"center",justifyContent:"start",padding:'1em',height:'calc(100vh - 150px)', flexDirection:'column'}}>
+                            <Input style={{marginTop:'2em'}}  placeholder='Name'/>
+                            <Input style={{marginTop:'2em'}} type='number' placeholder='Phone number'/>
+                            <Input style={{marginTop:'2em'}} placeholder='Describe your location'/>
                             <Button style={{marginTop:"1em"}} variant='contained' color='secondary' >Get my location <GpsFixedIcon/></Button>
                             {/* <div style={{display:"flex",alignItems:"center",justifyContent:"center", marginTop:'1em'}}> */}
                                 {/* <ButtonGroup style={{marginTop:'2em'}}> */}

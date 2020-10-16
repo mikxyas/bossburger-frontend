@@ -46,14 +46,14 @@ export default function MenuCard(props) {
       <div className='menu-item-card'>
         <div className='menu-head'>
           <h3 className='menu-header'>
-            Plain Patty
+            {props.itemName}
           </h3>
           <h3 className='item-price'>
-            200ETB
+            {props.itemPrice}
           </h3>
         </div>
         <div className='card-image'>
-          <img src='./burger3.png'/>
+          <img src={props.img}/>
         </div>
         <IconButton>
         <StarIcon style={{color:'orange'}}/><StarIcon style={{color:'orange'}}/><StarIcon style={{color:'orange'}}/><StarIcon style={{color:'orange'}}/><StarIcon/>
