@@ -534,6 +534,7 @@ div .btn-group {
     position: fixed;
   }
   header div.c-nav-cont ul {
+    bottom: 0;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
