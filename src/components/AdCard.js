@@ -3,7 +3,7 @@ import { Button } from '@material-ui/core'
 import {makeStyles, useTheme} from '@material-ui/core/styles'
 const useStyles = makeStyles((theme) => ({
     root: {
-        borderRadius:'69px'
+        borderRadius:'69px',
     }
 })) 
 

@@ -14,7 +14,7 @@ export default function Banner () {
         return (
             <div className='banner'>
                 <div>
-                <Button className={classes.root} color='primary' variant='contained' color='primary'>Order now</Button>
+                <Button className={classes.root} color='primary' variant='contained' color='primary'>Learn more</Button>
                 </div>
             </div>
         )

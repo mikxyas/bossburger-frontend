@@ -1,5 +1,6 @@
 import React from 'react';
 import Navbar from './components/navbar';
+import BottomNav from './components/BottomNav';
 import Main from './routes'
 
 import {Provider} from 'react-redux';
@@ -10,6 +11,9 @@ function App() {
     <Provider store={store}>
       <body>
         <Navbar/>
+        <div className='bottom-nav'>
+          <BottomNav/>
+        </div>
         <div className='main-container'>
           <Main/>
         </div>

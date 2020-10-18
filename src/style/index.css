@@ -81,9 +81,22 @@ header ul.signup-nav {
   visibility: hidden;
 }
 
+.bottom-nav {
+  position: fixed;
+  width: 100%;
+  margin-top: calc(100vh - 56px);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  visibility: hidden;
+}
+
 section {
   display: block;
-  background-image: url(./images/section-bg.webp);
+  background-image: url(./images/section-bg.jpg);
   background-size: cover;
   background-position: center;
   width: auto;
@@ -131,6 +144,10 @@ section h2 {
   background-image: url("./images/card-bg.jpg");
   background-size: cover;
   background-position: center;
+}
+
+.adCard Button {
+  z-index: 0;
 }
 
 .menu-item-card {
@@ -269,9 +286,15 @@ section h2 {
   background-size: cover;
 }
 
-.EventCover h2, .EventCover h3 {
-  color: white;
-  margin-top: 0em;
+.Event-desc {
+  text-align: center;
+  padding: 2em;
+  border-radius: 20px;
+  background: linear-gradient(45deg, #ec6464c7 10%, #da0303a4 90%);
+}
+
+.Event-desc h2, .Event-desc h3 {
+  color: #ece7e7;
 }
 
 * {
@@ -281,6 +304,14 @@ section h2 {
 
 .main-container {
   margin-top: 56px;
+}
+
+.bottom-nav {
+  z-index: 9999;
+}
+
+.brand-logo {
+  margin-right: 2em;
 }
 
 body {
@@ -494,6 +525,18 @@ div .btn-group {
 }
 
 @media screen and (max-width: 768px) {
+  .brand-logo {
+    width: 100px;
+    height: 60px;
+    margin-right: 0em;
+  }
+  #toolbar Button.cont-nav {
+    visibility: hidden;
+    position: absolute;
+  }
+  .bottom-nav {
+    visibility: visible;
+  }
   .Event-desc h2 {
     font-size: 40px;
   }
@@ -513,42 +556,6 @@ div .btn-group {
   .ad-grid {
     -ms-grid-columns: 1fr;
         grid-template-columns: 1fr;
-  }
-  header {
-    position: fixed;
-  }
-  header div {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    width: 100%;
-    height: 0px;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-  }
-  header div.c-nav-cont {
-    position: fixed;
-  }
-  header div.c-nav-cont ul {
-    bottom: 0;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    width: 100%;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
-    margin-top: calc(200vh - 6.4em);
-  }
-  header div.c-nav-cont ul li Button span text {
-    margin-top: 0em;
   }
   .menu-icon {
     visibility: visible;

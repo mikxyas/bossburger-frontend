@@ -61,3 +61,14 @@ header{
 .menu-icon{
     visibility: hidden;
 }
+
+.bottom-nav{
+    position: fixed;
+    width: 100%;
+    margin-top: calc(100vh - 56px);
+    display: flex;
+    // align-items: center;
+    justify-content: center;
+    visibility: hidden;
+
+}

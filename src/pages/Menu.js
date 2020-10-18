@@ -2,7 +2,8 @@ import React, {useEffect,useState, Component, Fragment } from 'react'
 import {Button, Container} from '@material-ui/core'
 import MenuCard from '../components/MenuCard'
 import Grid from '@material-ui/core/Grid';
-import FastfoodIcon from '@material-ui/icons/Fastfood';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import fastFoodIcon from '@material-ui/icons/Fastfood'
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import {getMenuItems} from '../actions/MenuItems';
@@ -10,6 +11,8 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import axios from 'axios'
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+import Fab from '@material-ui/core/Fab';
+import Loading from '../components/Loading'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -17,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
     background: 'linear-gradient(45deg, #3f1313 15%, #bb0404 90%)'
 
   },
+  
 }))
 
 export class Menu extends React.Component {
@@ -83,33 +87,33 @@ export class Menu extends React.Component {
     return (
       // Fragment was here
       <div style={{overflow:"hidden"}}>
-        {/* <Container style={{paddingBottom:'3em',overflow:"hidden"}}> */}
         <div style={{display:"flex", alignItems:"center", justifyContent:"center"}}>
-                <Tabs
-                  p={{ xs: 2, sm: 3, md: 4 }}
-                  value={this.state.value}
-                  indicatorColor="primary"
-                  textColor="primary"
-                  onChange={this.handleChange}
-                  aria-label="disabled tabs example"
-                >
-                  <Tab onClick={this.FetchBurgers} label="Burgers"/>
-                  <Tab onClick={this.FetchExtras} label="Extras"/>
-                  <Tab onClick={this.FetchBeverages} label="Beverages"/>
-                  <Tab onClick={this.FetchFries} label="Fries"/>
-                </Tabs>
-              </div>
-          {this.state.isLoaded ?
+          <Tabs
+            p={{ xs: 2, sm: 3, md: 4 }}
+            value={this.state.value}
+            indicatorColor="primary"
+            textColor="primary"
+            onChange={this.handleChange}
+            aria-label="disabled tabs example"
+          >
+            <Tab onClick={this.FetchBurgers} label="Burgers"/>
+            <Tab onClick={this.FetchExtras} label="Extras"/>
+            <Tab onClick={this.FetchBeverages} label="Beverages"/>
+            <Tab onClick={this.FetchFries} label="Fries"/>
+          </Tabs>
+        </div>
+        {this.state.isLoaded ?
           <Grid justify='center' align='center' container spacing={2} style={{padding:"2em",overflowY:"hidden"}}>
-          {this.state.items.map(item => (
-            <Grid key={item.name} md={4} sm={8} xs={12}>
-              <MenuCard itemPrice={item.price + 'ETB'} img={item.img + '.png'} itemName={item.name}/>
-            </Grid>
-             ))} 
+            {this.state.items.map(item => (
+              <Grid key={item.name} md={4} sm={8} xs={12}>
+                <MenuCard itemPrice={item.price + 'ETB'} img={item.img + '.png'} itemName={item.name}/>
+              </Grid>
+              ))} 
           </Grid>
-           :<div style={{height:'80vh', display:"flex", justifyContent:"center", alignItems:"center"}}><FastfoodIcon color='secondary' fontSize='large'/></div> 
+          :<div style={{display:"flex",height:"80vh", alignItems:"center",justifyContent:"center"}}>
+            <Loading load={this.state.isLoaded}/> 
+          </div>
          } 
-          {/* </Container>    */}
         </div>
           
       

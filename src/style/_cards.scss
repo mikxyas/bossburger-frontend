@@ -21,6 +21,9 @@
     background-image: url('./images/card-bg.jpg');
     background-size: cover;
     background-position: center;
+    Button{
+        z-index: 0;
+    }
 }
 
 .menu-item-card{
@@ -119,12 +122,19 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
     height:calc(100vh - 56px);
     width: 100vw;
     background-image: url(./images/kuriftu.jpg);
     background-size: cover;
-    h2,h3{
-        color:white;
-        margin-top: 0em;
-    }
+   
 }
+.Event-desc{
+    text-align: center;
+    padding: 2em;
+    border-radius: 20px;
+    background: linear-gradient(45deg, #ec6464c7 10%, #da0303a4 90%);
+    h2, h3{
+        color: rgb(236, 231, 231);
+        }
+    }

@@ -11,9 +11,24 @@
     }   
 }
 @include mediaMd{
-    // &.main-container{
-    //     margin-top: 0;
-    // }
+    .brand-logo{
+        
+        width: 100px;
+        height: 60px;
+        margin-right: 0em;
+    }
+    #toolbar{
+        Button{
+            &.cont-nav{
+                visibility: hidden;
+                position: absolute;
+            }
+            
+        }
+    }
+    &.bottom-nav{
+        visibility: visible;
+    }
     &.Event-desc{
         h2{
             font-size: 40px;
@@ -37,39 +52,38 @@
     &.ad-grid{
         grid-template-columns: 1fr;
     }
-    header{
-        position: fixed;
-       div {
-           display: flex;
-           width: 100%;
-           height: 0px;
-           align-items: center;
-           justify-content: center;
+    // header{
+    //     position: fixed;
+    //    div {
+    //        display: flex;
+    //        width: 100%;
+    //        height: 0px;
+    //        align-items: center;
+    //        justify-content: center;
            
-        &.c-nav-cont{
-           position: fixed;
-            ul{
-                bottom: 0;
-                // width: 100%;
-                display: flex;
-                width: 100%;
-                align-items: center;
-                justify-content: space-between;
-                margin-top: calc(200vh - 6.4em);
-                li{
-                    Button{
-                        span{
-                            text{
-                                margin-top: 0em;
-                            }
-                        }
-                    }
-                 }
-            }
-        }
-       }
+    //     &.c-nav-cont{
+    //        position: fixed;
+    //         ul{
+    //             // width: 100%;
+    //             display: flex;
+    //             width: 100%;
+    //             align-items: center;
+    //             justify-content: space-between;
+    //             margin-top: calc(200vh - 6.4em);
+    //             li{
+    //                 Button{
+    //                     span{
+    //                         text{
+    //                             margin-top: 0em;
+    //                         }
+    //                     }
+    //                 }
+    //              }
+    //         }
+        // }
+    //    }
        
-    }
+    // }
 
    &.menu-icon{
        visibility: visible;
@@ -104,7 +118,6 @@
         }
     }
     section{
-       
         h2{
             margin-top: 10vh;
             font-size: 45px;

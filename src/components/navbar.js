@@ -16,8 +16,9 @@ import Typography from '@material-ui/core/Typography';
 import CloseIcon from '@material-ui/icons/Close';
 import Slide from '@material-ui/core/Slide';
 import Input from '@material-ui/core/Input'
-import FastfoodIcon from '@material-ui/icons/Fastfood';
+import MenuAppBar from './AppBar'
 
+import MenuIcon from '@material-ui/icons/Menu';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
@@ -28,23 +29,38 @@ export default class Navbar extends Component {
         super(props)
         this.state = {
             open: false,
+            openSignup: false,
         }
     }
+    // Order verification dialog
     handleClickOpen = () => {
         this.setState({
-            open:true
-        })
+            open:true        
+    })
       };
-    
     handleClose = () => {
         this.setState({
             open:false
         })
       };
 
+      //signup dialog handling
+      handleSignupClickOpen = () => {
+        this.setState({
+            openSignup:true
+        })
+      };
+      handleSignupClose = () => {
+        this.setState({
+            openSignup:false
+        })
+      };
+
     render() {
         return (
-               <header>
+            <>
+            <MenuAppBar/>
+               {/* <header>
                    <div className='c-nav-cont'>
                     <ul className='content-nav'>
                         <li>
@@ -69,12 +85,12 @@ export default class Navbar extends Component {
                    </div>
                     <Link to='/'>
                         <div className='brand-pic'>
-                            {/* <IconButton><HomeIcon/></IconButton> */}
+                             <IconButton><HomeIcon/></IconButton> 
                         </div>
                     </Link>
                     <ul className='signup-nav'>
                             <li>
-                                <Button startIcon variant='contained' color='primary'>
+                                <Button startIcon variant='contained' onClick={() => this.handleSignupClickOpen()} color='primary'>
                                 <PersonAddIcon/>Sign up
                                 </Button>
                             </li>
@@ -84,7 +100,11 @@ export default class Navbar extends Component {
                                 </Button>
                             </li>
                    </ul>
-                   <Dialog
+
+               </header> */}
+
+               <div>
+                <Dialog
                         fullScreen
                         TransitionComponent={Transition}
                         open={this.state.open}
@@ -117,8 +137,39 @@ export default class Navbar extends Component {
                             {/* </div> */}
                         </Container>
                     </Dialog>
-               </header>
 
+                    {/* signup dialog */}
+
+                    <Dialog
+                        fullScreen
+                        TransitionComponent={Transition}
+                        open={this.state.openSignup}
+                        onClose={this.handleSignupClose}
+                        aria-labelledby="responsive-dialog-title"
+                        style={{marginTop:'56px'}}
+                    >
+                        <AppBar style={{position:"relative", display:"flex", justifyContent:"center", alignItems:"start"}}>
+                            <Toolbar>
+                                <IconButton edge="start" color="inherit" onClick={this.handleSignupClose} aria-label="close">
+                                <CloseIcon />
+                                </IconButton>
+                                <Typography variant="h6" >
+                                    Signup
+                                </Typography>
+                            </Toolbar>
+                        </AppBar>
+                        <Container style={{display:"flex",alignItems:"center",justifyContent:"start",padding:'1em',height:'calc(100vh - 150px)', flexDirection:'column'}}>
+                            <Input aria-label='Name' style={{marginTop:'2em'}}  placeholder='Name'/>
+                            <Input aria-label='Email' style={{marginTop:'2em'}}  placeholder='Email' type='email'/>
+                            <Input style={{marginTop:'2em'}} type='number' placeholder='Phone number'/>
+                            <Input style={{marginTop:'2em'}} placeholder='Describe the location you would order from'/>
+                            <Button style={{marginTop:"1em"}} variant='contained' color='secondary' >Get my location <GpsFixedIcon/></Button>
+                            <Button style={{marginTop:'1em'}} onClick={this.handleClose} color='primary' variant='contained'>Sign up</Button>
+                                    
+                        </Container>
+                    </Dialog>
+                </div>
+</>
         )
         
     }

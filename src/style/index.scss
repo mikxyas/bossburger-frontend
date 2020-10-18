@@ -8,9 +8,20 @@
 * {
      box-sizing: border-box;
  }
+
+
 .main-container{
     margin-top:56px;
 }
+
+.bottom-nav{
+    z-index: 9999;
+}
+
+.brand-logo{
+    margin-right: 2em;
+}
+
  body {
     height: 100%;
     margin: 0;

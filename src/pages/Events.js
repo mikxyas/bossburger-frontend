@@ -7,7 +7,7 @@ export default class Events extends Component {
     render() {
         return (
           <div className='EventCover'>
-            <div className="Event-desc" style={{padding:"1em",textAlign:"center",background:"rgba(0,0,0,0.4)"}}>
+            <div className="Event-desc">
               <h2 className='lg-heading'> 
                 Meskel Getaway Challenge
               </h2>
