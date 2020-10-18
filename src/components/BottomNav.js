@@ -30,7 +30,7 @@ export default function BottomNav() {
 
   return (
     <BottomNavigation   value={value} onChange={handleChange} className={classes.root}>
-        <BottomNavigationAction label="Home" value="" icon={<HomeIcon />} />
+        {/* <BottomNavigationAction label="Home" value="" icon={<HomeIcon />} /> */}
         <BottomNavigationAction label="Order" value="order" icon={<FastfoodIcon />} />
         <BottomNavigationAction label="Offers" value="offers" icon={<LocalOfferIcon />} />
         <BottomNavigationAction label="Events" value="events" icon={<EventIcon />} />
