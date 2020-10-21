@@ -2,18 +2,16 @@ import React, {useEffect,useState, Component, Fragment } from 'react'
 import {Button, Container} from '@material-ui/core'
 import MenuCard from '../components/MenuCard'
 import Grid from '@material-ui/core/Grid';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import fastFoodIcon from '@material-ui/icons/Fastfood'
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import {getMenuItems} from '../actions/MenuItems';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import axios from 'axios'
+import BurgerIcon from '@material-ui/icons/Fastfood'
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Fab from '@material-ui/core/Fab';
-import Loading from '../components/Loading'
-
+import Loading from '../components/Loading';
+import {useSelector} from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
   gradient: {
@@ -24,62 +22,44 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 export class Menu extends React.Component {
+  static propTypes = {
+    MenuItems:PropTypes.array.isRequired
+  }
     constructor(props){
       super(props);
       this.state = {
         value: 0,
         isLoaded: false,
         items: [],
-        itemToFetch: 'burgers'
+        itemToFetch: 'burgers',
+        SelectedMenuItems: this.props.Burgers,
       }
-
-    //   this.FetchItems = this.FetchItems.bind(this);
-    //   this.FetchExtras = this.FetchExtras.bind(this);
-    //   this.FetchFries = this.FetchFries.bind(this);
-    //   this.FetchBeverages = this.FetchBeverages.bind(this);
+    }
+    InitialFetch = () => {
+      setTimeout(function(){
+        this.setState({SelectedMenuItems:this.props.Burgers,isLoaded:true})
+        console.log(this.state.SelectedMenuItems)
+      }.bind(this),5000)
     }
     FetchBurgers = () => {
-      axios.get('https://bossburger.herokuapp.com/burgers/')
-      .then((response) => {
-        this.setState({items:response.data, isLoaded:true})
-        console.log(response.data)
-      }).catch(function(error) {
-        console.log(error)})
-        this.render()
-
-    }
-    FetchExtras = () => {
-      axios.get('https://bossburger.herokuapp.com/extras/')
-      .then((response) => {
-        this.setState({items:response.data,isLoaded:true})
-      }).catch(function(error) {
-        console.log(error)})
-        this.render()
-    }
-    FetchBeverages = () => {
-      axios.get('https://bossburger.herokuapp.com/beverages/')
-      .then((response) => {
-        this.setState({items:response.data,isLoaded:true})
-      }).catch(function(error) {
-        console.log(error)})
-        this.render()
+      this.setState({SelectedMenuItems: this.props.Burgers})
     }
     FetchFries = () => {
-      axios.get('https://bossburger.herokuapp.com/fries/')
-      .then((response) => {
-        this.setState({items:response.data,isLoaded:true})
-      }).catch(function(error) {
-        console.log(error)})
-        this.render()
-
+      this.setState({SelectedMenuItems: this.props.Fries})
     }
-    static propTypes = {
-      MenuItems:PropTypes.array.isRequired
+    FetchExtras = () => {
+      this.setState({SelectedMenuItems: this.props.Extras})
+    }
+    FetchBeverages = () => {
+      this.setState({SelectedMenuItems: this.props.Beverages})
     }
     componentDidMount(){
-      this.FetchBurgers()
       this.props.getMenuItems();
+      this.InitialFetch()
     }
+    handleMenu = (event, newItem) => {
+      this.setState({SelectedMenuItems: this.props.newItem})
+    } 
     handleChange = (event, newValue) => {
       this.setState({value: newValue});
     };
@@ -96,15 +76,15 @@ export class Menu extends React.Component {
             onChange={this.handleChange}
             aria-label="disabled tabs example"
           >
-            <Tab onClick={this.FetchBurgers} label="Burgers"/>
-            <Tab onClick={this.FetchExtras} label="Extras"/>
-            <Tab onClick={this.FetchBeverages} label="Beverages"/>
-            <Tab onClick={this.FetchFries} label="Fries"/>
+            <Tab onClick={() => this.FetchBurgers()} label="Burgers"/>
+            <Tab onClick={() => this.FetchExtras()} label="Extras"/>
+            <Tab onClick={() => this.FetchBeverages()} label="Beverages"/>
+            <Tab onClick={() => this.FetchFries()} label="Fries"/>
           </Tabs>
         </div>
-        {this.state.isLoaded ?
+        {this.props.itemsLoaded ?
           <Grid justify='center' align='center' container spacing={2} style={{padding:"2em",overflowY:"hidden"}}>
-            {this.state.items.map(item => (
+            {this.state.SelectedMenuItems.map(item => (
               <Grid key={item.name} md={4} sm={8} xs={12}>
                 <MenuCard itemPrice={item.price + 'ETB'} img={item.img + '.png'} itemName={item.name}/>
               </Grid>
@@ -122,7 +102,11 @@ export class Menu extends React.Component {
 }
 
 const mapStateToProps = state =>({
-  MenuItems: state.MenuItems.MenuItems
+  itemsLoaded: state.MenuItems.itemsLoaded,
+  Burgers: state.MenuItems.MenuItems.filter(item => item.food_type == 'BRG'),
+  Extras: state.MenuItems.MenuItems.filter(item => item.food_type == 'EXT'),
+  Fries: state.MenuItems.MenuItems.filter(item => item.food_type == 'FRI'),
+  Beverages: state.MenuItems.MenuItems.filter(item => item.food_type == 'BVG'),
 })
 
-export default connect(mapStateToProps, {getMenuItems})(Menu);
+export default connect(mapStateToProps, { getMenuItems })(Menu);
