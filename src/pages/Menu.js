@@ -39,7 +39,7 @@ export class Menu extends React.Component {
       setTimeout(function(){
         this.setState({SelectedMenuItems:this.props.Burgers,isLoaded:true})
         console.log(this.state.SelectedMenuItems)
-      }.bind(this),5000)
+      }.bind(this),3000)
     }
     FetchBurgers = () => {
       this.setState({SelectedMenuItems: this.props.Burgers})
@@ -54,9 +54,9 @@ export class Menu extends React.Component {
       this.setState({SelectedMenuItems: this.props.Beverages})
     }
     componentDidMount(){
-      this.props.getMenuItems();
       this.InitialFetch()
-    }
+      this.props.getMenuItems()
+  }
     handleMenu = (event, newItem) => {
       this.setState({SelectedMenuItems: this.props.newItem})
     } 

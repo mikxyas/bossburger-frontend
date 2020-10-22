@@ -302,6 +302,10 @@ section h2 {
           box-sizing: border-box;
 }
 
+.cont-nav {
+  padding: 0em;
+}
+
 .main-container {
   margin-top: 56px;
 }
@@ -525,10 +529,9 @@ div .btn-group {
 }
 
 @media screen and (max-width: 768px) {
-  .brand-logo {
-    width: 100px;
-    height: 60px;
-    margin-right: 0em;
+  #brand-pic {
+    margin-left: 0;
+    margin-right: 0;
   }
   #toolbar Button.cont-nav {
     visibility: hidden;
@@ -570,6 +573,9 @@ div .btn-group {
 }
 
 @media screen and (max-width: 500px) {
+  #brand-pic {
+    margin-top: 1.15em;
+  }
   .Event-desc h2 {
     font-size: 38px;
   }

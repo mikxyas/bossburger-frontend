@@ -11,11 +11,9 @@
     }   
 }
 @include mediaMd{
-    .brand-logo{
-        
-        width: 100px;
-        height: 60px;
-        margin-right: 0em;
+    #brand-pic{
+        margin-left: 0;
+        margin-right: 0;
     }
     #toolbar{
         Button{
@@ -99,6 +97,9 @@
 }
 
 @include mediaSm{
+    #brand-pic{
+        margin-top: 1.15em;
+    }
     &.Event-desc{
         h2{
             font-size: 38px;

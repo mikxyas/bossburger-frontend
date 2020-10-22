@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -7,7 +7,9 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import { Link } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 
+import RegisterDialog from '../components/RegisterDialog';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -16,8 +18,6 @@ const useStyles = makeStyles((theme) => ({
   toolBar: {
     width:'100%',
     color:'#1f1f1f',
-    backgroundColor:'white',
-
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -27,33 +27,46 @@ const useStyles = makeStyles((theme) => ({
     borderRadius:'20px'
   },
   appbar: {
-    backgroundColor:'rbga(0,0,0,0.8)',
+    backgroundColor:'white',
+  },
+  brandlogo: {
+    marginLeft:'auto',
+    marginRight:'auto',
+    marginTop:'.5em',
+    width:'100px',
+    height:'100px',
+    cursor:'pointer'
   }
 }));
 
 export default function MenuAppBar() {
   const classes = useStyles();
-
+  const [link, setlink] = React.useState('');
+  // const [value, setValue] = React.useState('');
+  const history = useHistory();
+  const handleChange = (e) => {
+    history.push(`/${e.currentTarget.value}`);
+    setlink(e.currentTarget.value)
+    console.log(link)
+  };
+  const handleBrand = (e) => {
+    history.push(`/`);
+    setlink('home')
+  };
   return (
     <div className={classes.root}>
-      <AppBar className={classes.appbar} position="fixed">
-        <Toolbar id='toolbar' className={classes.toolBar}>
-          <Link to='/'>
-            <img className='brand-logo' width='100' height='65' src='./logo.jpg'/>
-          </Link>
-          <Link to='/order'>
-            <Button className='cont-nav'>Order</Button>
-          </Link>
-          <Link to='/offers'>
-            <Button className='cont-nav'>Offers</Button>
-          </Link>
-          <Link to='/events'>
-            <Button className='cont-nav'>Events</Button>
-          </Link>
-          <Link to='/giveaways'>
-            <Button className='cont-nav'>giveaways</Button>
-          </Link>
-          <Button variant='contained' color='primary' className={classes.login}>Login</Button>
+      <AppBar className={classes.appbar}  position="fixed">
+        <Toolbar id='toolbar'  className={classes.toolBar}>
+            <Button onClick={handleChange} value='order'  className='cont-nav'>Order</Button>
+            <Button onClick={handleChange} value='offers' className='cont-nav'>Offers</Button>
+            <Button onClick={handleChange} value='events' className='cont-nav'>Events</Button>
+            <Button onClick={handleChange} value='giveaways' className='cont-nav'>giveaways</Button>
+            <img onClick={handleBrand} value='home' id='brand-pic' className={classes.brandlogo} src='./bblogo.png'/>
+            <div className={classes.login}>
+              <RegisterDialog/>
+
+            </div>
+
         </Toolbar>
       </AppBar>
     </div>

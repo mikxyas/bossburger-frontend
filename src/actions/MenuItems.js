@@ -8,8 +8,7 @@ export const getMenuItems = () => dispatch =>{
     .then(res => {
         dispatch({
             type: GET_MENU_ITEMS,
-            payload: res.data,
-            
+            payload: res.data,     
         });
     }).catch(err => console.log(err));
 }
