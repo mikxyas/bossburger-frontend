@@ -54,8 +54,10 @@ export class Menu extends React.Component {
       this.setState({SelectedMenuItems: this.props.Beverages})
     }
     componentDidMount(){
-      this.InitialFetch()
       this.props.getMenuItems()
+      this.InitialFetch()
+      this.InitialFetch()
+
   }
     handleMenu = (event, newItem) => {
       this.setState({SelectedMenuItems: this.props.newItem})
