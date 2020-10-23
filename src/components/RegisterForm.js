@@ -1,7 +1,10 @@
 import * as React from 'react';
 import { Formik, Form, Field } from 'formik';
-import { Button, Paper, LinearProgress } from '@material-ui/core';
+import { Button, Paper, LinearProgress, Divider } from '@material-ui/core';
 import { TextField } from 'formik-material-ui';
+// import NavigationIcon from '@material-ui/icons/Navigation';
+// import Fab from '@material-ui/core/Fab';
+
 
 export default function RegisterForm() {
   return (
@@ -66,20 +69,27 @@ export default function RegisterForm() {
                 label="Password"
                 name="password"
                 required
-                style={{marginBottom:'2em'}}
+                style={{marginBottom:'0em'}}
 
             />
+            <br />
+            {/* <Fab variant="extended">
+            <NavigationIcon />
+              Navigate
+            </Fab> */}
             {isSubmitting && <LinearProgress />}
             <br />
+            <div style={{display:'flex', width:'100%',justifyContent:'flex-end'}}>
+
             <Button
                 variant="contained"
                 color="primary"
                 disabled={isSubmitting}
                 onClick={submitForm}
-                style={{marginLeft:'8em'}}
             >
-                Sign up
+                Next
             </Button>
+            </div>
             </Form>
         )}
         </Formik>
