@@ -32,9 +32,9 @@ const useStyles = makeStyles((theme) => ({
   brandlogo: {
     marginLeft:'auto',
     marginRight:'auto',
-    marginTop:'.5em',
+    marginTop:'-.5em',
     width:'100px',
-    height:'100px',
+    height:'50px',
     cursor:'pointer'
   }
 }));
