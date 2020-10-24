@@ -35,11 +35,12 @@ export class Menu extends React.Component {
         SelectedMenuItems: this.props.Burgers,
       }
     }
-    InitialFetch = () => {
+    InitialFetch() {
+      this.props.getMenuItems()
       setTimeout(function(){
-        this.setState({SelectedMenuItems:this.props.Burgers,isLoaded:true})
+      this.setState({SelectedMenuItems:this.props.Burgers,isLoaded:true})
         console.log(this.state.SelectedMenuItems)
-      }.bind(this),3000)
+      }.bind(this),4000)
     }
     FetchBurgers = () => {
       this.setState({SelectedMenuItems: this.props.Burgers})
@@ -53,8 +54,8 @@ export class Menu extends React.Component {
     FetchBeverages = () => {
       this.setState({SelectedMenuItems: this.props.Beverages})
     }
+
    componentDidMount(){
-      this.props.getMenuItems()
       this.InitialFetch()
 
   }
