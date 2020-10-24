@@ -573,9 +573,6 @@ div .btn-group {
 }
 
 @media screen and (max-width: 500px) {
-  #brand-pic {
-    margin-top: 1.15em;
-  }
   .Event-desc h2 {
     font-size: 38px;
   }
