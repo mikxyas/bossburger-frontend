@@ -1,98 +1,54 @@
-import * as React from 'react';
-import { Formik, Form, Field } from 'formik';
-import { Button, Paper, LinearProgress, Divider } from '@material-ui/core';
-import { TextField } from 'formik-material-ui';
-// import NavigationIcon from '@material-ui/icons/Navigation';
-// import Fab from '@material-ui/core/Fab';
+import React, { Component } from 'react';
+import UserDetails from './RegisterForms/UserDetails';
+import UserAddress from './RegisterForms/UserAddress';
+import UserVerf from './RegisterForms/UserVerf';
 
-
-export default function RegisterForm() {
-  return (
-      <Paper raised>
-        <Formik
-        initialValues={{
-            email: '',
-            password: '',
+export default class RegisterForm extends Component {
+        state = {
+            step: 1,
+            phoneNumber:'',
             username:'',
-            phoneNumber:''
-        }}
-        // validate={values => {
-        //     const errors: Partial<Values> = {};
-        //     if (!values.email) {
-        //     errors.email = 'Required';
-        //     } else if (
-        //     !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
-        //     ) {
-        //     errors.email = 'Invalid email address';
-        //     }
-        //     return errors;
-        // }}
-        onSubmit={(values, { setSubmitting }) => {
-            setTimeout(() => {
-            setSubmitting(false);
-            alert(JSON.stringify(values, null, 2));
-            }, 500);
-        }}
-        >
-        {({ submitForm, isSubmitting }) => (
-            <Form style={{width:"fit-content",paddingLeft:'2em',paddingRight:'2em',paddingTop:'1em',paddingBottom:'1em'}}>
-            {/* <Field
-                component={TextField}
-                name="email"
-                type="email"
-                label="Email"
-            />
-            <br /> */}
-            <Field
-                component={TextField}
-                type="phone number"
-                label="Phone number"
-                name="phoneNumber"
-                required
-                style={{marginBottom:'.5em'}}
+            password:'',
+            defaultAddress:'',
+            verf_code:'',
+        }
+       
+   
+    nextStep = () => {
+        const { step } = this.state;
+        this.setState({
+            step: step + 1
+        })
+    }
 
-            />
-            <br />
-            <Field
-                component={TextField}
-                type="username"
-                label="Username"
-                name="username"
-                required
-                style={{marginBottom:'.5em'}}
+    prevStep = () => {
+        const { step } = this.state;
+        this.setState({
+            step: step - 1
+        })
+    }
 
-            />
-            <br />
-            <Field
-                component={TextField}
-                type="password"
-                label="Password"
-                name="password"
-                required
-                style={{marginBottom:'0em'}}
-
-            />
-            <br />
-            {/* <Fab variant="extended">
-            <NavigationIcon />
-              Navigate
-            </Fab> */}
-            {isSubmitting && <LinearProgress />}
-            <br />
-            <div style={{display:'flex', width:'100%',justifyContent:'flex-end'}}>
-
-            <Button
-                variant="contained"
-                color="primary"
-                disabled={isSubmitting}
-                onClick={submitForm}
-            >
-                Next
-            </Button>
-            </div>
-            </Form>
-        )}
-        </Formik>
-        </Paper>
-  );
+    handleChange =  e => {
+        this.setState({[e.target.name]: e.target.value})
+        console.log(e.target.name)
+    }
+    render() {
+        const { step } = this.state;
+        const {password, verf_code, username, phoneNumber, defaultAddress} = this.state;
+        const values = { password, verf_code, username, phoneNumber, defaultAddress} 
+        switch(step) {
+            case 1:
+                return(
+                    <UserDetails nextStep={this.nextStep} handleChange={this.handleChange} values={values}/>
+                )
+            case 2:
+                return(
+                    <UserAddress nextStep={this.nextStep} prevStep={this.prevStep} handleChange={this.handleChange} values={values}/>
+                )
+            case 3:
+                return(
+                    <UserVerf nextStep={this.nextStep} prevStep={this.prevStep} handleChange={this.handleChange} values={values}/>
+                )
+        }
+    }
 }

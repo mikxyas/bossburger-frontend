@@ -8,7 +8,6 @@ import Typography from '@material-ui/core/Typography';
 import CloseIcon from '@material-ui/icons/Close';
 import Slide from '@material-ui/core/Slide';
 import RegisterForm from './RegisterForm';
-
 const useStyles = makeStyles((theme) => ({
   appBar: {
     position: 'relative',
@@ -54,7 +53,7 @@ export default function RegisterDialog() {
       <Button variant="contained" color="primary" onClick={handleClickOpen}>
         Sign up
       </Button>
-      <Dialog open={open} onClose={handleClose} TransitionComponent={Transition}>
+      <Dialog open={true} onClose={handleClose} TransitionComponent={Transition}>
           {/* <Toolbar className={classes.toobar}>
             
             <Typography variant="h6" className={classes.title}>
@@ -67,7 +66,7 @@ export default function RegisterDialog() {
           </IconButton>
         </div>
           
-        <div style={{display:'flex', alignItmes:'center', justifyContent:'center'}}>
+        <div style={{display:'flex',flexDirection:'column',padding:'2em', alignItmes:'center', justifyContent:'center'}}>
           <RegisterForm/>
         </div>
       </Dialog>

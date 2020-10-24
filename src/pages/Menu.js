@@ -55,6 +55,8 @@ export class Menu extends React.Component {
     }
    componentDidMount(){
       this.props.getMenuItems()
+      this.InitialFetch()
+
   }
     handleMenu = (event, newItem) => {
       this.setState({SelectedMenuItems: this.props.newItem})
@@ -63,7 +65,6 @@ export class Menu extends React.Component {
       this.setState({value: newValue});
     };
     render(){
-      this.InitialFetch()
     return (
       // Fragment was here
       <div style={{overflow:"hidden"}}>
