@@ -13,11 +13,14 @@ import RegisterDialog from '../components/RegisterDialog';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1
+    flexGrow: 1,
+    background:'yellow',
+    height:'fit-content'
   },
   toolBar: {
     width:'100%',
     color:'#1f1f1f',
+    marginTop:'0',
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -27,7 +30,11 @@ const useStyles = makeStyles((theme) => ({
     borderRadius:'20px'
   },
   appbar: {
-    backgroundColor:'white',
+    background:'rgba(255,255,255,0.8)',
+    padding:'0em',
+    height:'fit-content',
+    border:'none',
+    backdropFilter: 'saturate(180%) blur(20px)'
   },
   brandlogo: {
     marginLeft:'auto',

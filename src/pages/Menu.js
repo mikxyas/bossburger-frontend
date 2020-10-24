@@ -84,7 +84,7 @@ export class Menu extends React.Component {
             <Tab onClick={() => this.FetchFries()} label="Fries"/>
           </Tabs>
         </div>
-        {this.props.itemsLoaded ?
+        {this.state.isLoaded ?
           <Grid justify='center' align='center' container spacing={2} style={{padding:"2em",overflowY:"hidden"}}>
             {this.state.SelectedMenuItems.map(item => (
               <Grid key={item.name} md={4} sm={8} xs={12}>

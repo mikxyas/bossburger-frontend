@@ -65,7 +65,9 @@
 }
 
 @include mediaSm{
-    
+    &.main-container{
+        margin-top: 56px;
+    }
     &.Event-desc{
         h2{
             font-size: 38px;

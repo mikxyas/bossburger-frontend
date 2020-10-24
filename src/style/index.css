@@ -307,7 +307,7 @@ section h2 {
 }
 
 .main-container {
-  margin-top: 56px;
+  margin-top: 64px;
 }
 
 .bottom-nav {
@@ -573,6 +573,9 @@ div .btn-group {
 }
 
 @media screen and (max-width: 500px) {
+  .main-container {
+    margin-top: 56px;
+  }
   .Event-desc h2 {
     font-size: 38px;
   }
