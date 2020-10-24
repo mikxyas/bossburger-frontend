@@ -53,13 +53,8 @@ export default function RegisterDialog() {
       <Button variant="contained" color="primary" onClick={handleClickOpen}>
         Sign up
       </Button>
-      <Dialog open={true} onClose={handleClose} TransitionComponent={Transition}>
-          {/* <Toolbar className={classes.toobar}>
-            
-            <Typography variant="h6" className={classes.title}>
-              Sign up
-            </Typography>
-          </Toolbar> */}
+      <Dialog open={open} onClose={handleClose} TransitionComponent={Transition}>
+          
         <div style={{display:'flex', width:'100%',justifyContent:'flex-end',marginBottom:'.5em'}}>
         <IconButton className={classes.closeIcon} edge="start" color="inherit" onClick={handleClose} aria-label="close">
               <CloseIcon />
