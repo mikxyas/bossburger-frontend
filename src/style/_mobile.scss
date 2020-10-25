@@ -65,9 +65,9 @@
 }
 
 @include mediaSm{
-    &.main-container{
-        margin-top: 56px;
-    }
+    // &.main-container{
+    //     margin-top: 64px;
+    // }
     &.Event-desc{
         h2{
             font-size: 38px;
@@ -99,7 +99,7 @@
             // background-color: white;
         }   
     }
-    &.brand-pic{
-        margin-left: 1em;
+    #toolbar{
+        padding:.6em;
     }
 }

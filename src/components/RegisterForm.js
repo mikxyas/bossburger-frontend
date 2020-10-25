@@ -9,8 +9,12 @@ export default class RegisterForm extends Component {
             phoneNumber:'',
             username:'',
             password:'',
-            defaultAddress:'',
+            defaultAddressName:'',
+            addressCord:{lat:'', long:''},
+            defaultAddressDesc:'',
             verf_code:'',
+            is_verf:false,
+
         }
        
    
@@ -30,12 +34,11 @@ export default class RegisterForm extends Component {
 
     handleChange =  e => {
         this.setState({[e.target.name]: e.target.value})
-        console.log(e.target.name)
     }
     render() {
         const { step } = this.state;
-        const {password, verf_code, username, phoneNumber, defaultAddress} = this.state;
-        const values = { password, verf_code, username, phoneNumber, defaultAddress} 
+        const {password, verf_code, username, phoneNumber, defaultAddress,is_verf, addressCord} = this.state;
+        const values = { password, verf_code, username, phoneNumber, defaultAddress, is_verf, addressCord} 
         switch(step) {
             case 1:
                 return(

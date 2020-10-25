@@ -25,8 +25,8 @@ export default class UserVerf extends Component {
                     <TextField
                         name='verf_code'
                         label="Enter verification code here"
-                        onChange={this.props.handleChange}
-                        defaultvalue={values.verf_code}
+                        onChange={handleChange}
+                        value={values.verf_code}
                     />
                     <br />
                     <div style={{display:'flex', justifyContent:'space-between'}}>

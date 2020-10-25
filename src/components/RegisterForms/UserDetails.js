@@ -18,23 +18,23 @@ export default class UserDetails extends Component {
                         hintText = "Enter your phone number"
                         label="Phone number"
                         onChange={handleChange}
-                        defaultvalue={values.phoneNumber}
+                        value={values.phoneNumber}
                     />
                     <br />
                     <TextField
                         name='username'
                         hintText = "Enter your username"
                         label="Username"
-                        // onChange={}
-                        defaultValue={values.username}
+                        onChange={handleChange}
+                        value={values.username}
                     />
                     <br />
                     <TextField
                         name='password'
                         hintText = "Enter your password"
                         label="Password"
-                        // onChange={handleChange}
-                        defaultValue={values.password}
+                        onChange={handleChange}
+                        value={values.password}
                     />
                     <br />
                     <Button style={{marginLeft:'auto'}} endIcon color='primary' variant='text' onClick={this.continue}>

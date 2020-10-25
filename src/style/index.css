@@ -573,9 +573,6 @@ div .btn-group {
 }
 
 @media screen and (max-width: 500px) {
-  .main-container {
-    margin-top: 56px;
-  }
   .Event-desc h2 {
     font-size: 38px;
   }
@@ -601,8 +598,8 @@ div .btn-group {
             justify-content: center;
     margin-top: 13vh;
   }
-  .brand-pic {
-    margin-left: 1em;
+  #toolbar {
+    padding: .6em;
   }
 }
 /*# sourceMappingURL=index.css.map */

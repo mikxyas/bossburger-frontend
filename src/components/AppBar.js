@@ -34,7 +34,8 @@ const useStyles = makeStyles((theme) => ({
     padding:'0em',
     height:'fit-content',
     border:'none',
-    backdropFilter: 'saturate(180%) blur(20px)'
+    backdropFilter: 'saturate(180%) blur(20px)',
+    boxShadow:'none'
   },
   brandlogo: {
     marginLeft:'auto',
@@ -71,9 +72,7 @@ export default function MenuAppBar() {
             <img onClick={handleBrand} value='home' id='brand-pic' className={classes.brandlogo} src='./bblogo.png'/>
             <div className={classes.login}>
               <RegisterDialog/>
-
             </div>
-
         </Toolbar>
       </AppBar>
     </div>
