@@ -17,6 +17,9 @@ class Geolocation extends React.Component {
             buttonClicked:false,
             trueChecked:false,
             falseChecked:false,
+            lat:'',
+            long:'',
+            neighbourhood:''
         }
         this.fetchLocName = this.fetchLocName.bind(this);
 
@@ -28,16 +31,33 @@ class Geolocation extends React.Component {
         this.setState({trueChecked: false, falseChecked:true})
     }
     fetchLocName = (props) => {
-        var cords = encodeURIComponent(this.props.coords.latitude + ',' + this.props.coords.longitude)
-        var url = `https://api.opencagedata.com/geocode/v1/json?key=2a607809622a49d0a5697c3d524f8973&q=${cords}&pretty=1&no_annotations=1`
+        var cords = this.formatDegrees(this.props.coords.latitude, false) + ',' + this.formatDegrees(this.props.coords.longitude, true)
+        console.log(cords)
+        var url = `https://api.opencagedata.com/geocode/v1/json?key=2a607809622a49d0a5697c3d524f8973&q=${cords}`
         axios.get(url)
         .then(res => {
             var county = res.data.results[0].components.county
+            var neighbourhood = res.data.results[0].components.neighbourhood
+            if(neighbourhood === undefined){
+                this.setState({userAddress:county})
+            }else{
+                this.setState({userAddress:neighbourhood})
+            }
             console.log(res.data)
-            this.setState({userAddress:county,buttonClicked:true})
+            this.setState({buttonClicked:true})
         }).catch(err => console.log(err));
     }
-    
+    getDirection = (degrees, isLongitude) =>
+    degrees > 0 ? (isLongitude ? "E" : "N") : isLongitude ? "W" : "S";
+
+    formatDegrees = (degrees, isLongitude) =>
+    `${0 | degrees}° ${
+        0 | (((degrees < 0 ? (degrees = -degrees) : degrees) % 1) * 60)
+    }' ${0 | (((degrees * 60) % 1) * 60)}" ${this.getDirection(
+        degrees,
+        isLongitude,
+    )}`;
+
 
     render() {
         const { values, handleChange } = this.props;
@@ -52,8 +72,8 @@ class Geolocation extends React.Component {
                         <div>
                     Are you around {this.state.userAddress}? 
                     <br/>
-                    With cordinates of  lat: {this.props.coords.latitude} long: {this.props.coords.longitude}
-                    <br/>
+                    {/* With cordinates of  lat: {this.state.lat} long: {this.state.long} */}
+                    {/* <br/> */}
                     <Checkbox
                         checked={this.state.trueChecked}
                         onChange={this.handleChecktrue}
@@ -81,7 +101,7 @@ class Geolocation extends React.Component {
 }
 export default geolocated({
     positionOptions: {
-        enableHighAccuracy: true,
+        enableHighAccuracy: false,
     },
     userDecisionTimeout: 5000,
 })(Geolocation);
