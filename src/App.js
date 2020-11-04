@@ -5,8 +5,16 @@ import Main from './routes'
 
 import {Provider} from 'react-redux';
 import store from './store';
+import {loadUser} from './actions/auth';
 
-function App() {
+class App extends React.Component{
+  
+  componentDidMount(){
+    store.dispatch(loadUser())
+    // store.dispatch(showSuccessSnackbar("Success!"));
+
+  }
+  render(){  
   return (
     <Provider store={store}>
       <body>
@@ -20,6 +28,7 @@ function App() {
       </body>
     </Provider>
   );
+}
 }
 
 export default App;

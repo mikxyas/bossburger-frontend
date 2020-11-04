@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Loading() {
+export default function Loading(props) {
   const classes = useStyles();
   const [loading, setLoading] = React.useState(true);
   const [success, setSuccess] = React.useState(false);
@@ -76,7 +76,7 @@ export default function Loading() {
           className={buttonClassname}
           onClick={handleButtonClick}
         >
-          {success ? <CheckIcon /> : <FastFoodIcon/>}
+          {success ? <CheckIcon /> :props.LoaderIcon}
         </Fab>
         {loading && <CircularProgress color='primary' size={68} className={classes.fabProgress} />}
       </div>

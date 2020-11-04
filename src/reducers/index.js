@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
-import UserInfo from './UserInfo'
 import MenuItems from './MenuItems'
+import auth from './auth'
+import cart from './cart'
 
 export default combineReducers({
     MenuItems,
-    UserInfo,
+    auth,
+    cart
 });

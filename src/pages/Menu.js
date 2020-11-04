@@ -1,10 +1,10 @@
 import React, {useEffect,useState, Component, Fragment } from 'react'
 import {Button, Container} from '@material-ui/core'
-import MenuCard from '../components/MenuCard'
 import Grid from '@material-ui/core/Grid';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import {getMenuItems} from '../actions/MenuItems';
+import {addtoCart, receiveItems} from '../actions/cart'
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import BurgerIcon from '@material-ui/icons/Fastfood'
 import Tabs from '@material-ui/core/Tabs';
@@ -12,6 +12,10 @@ import Tab from '@material-ui/core/Tab';
 import Fab from '@material-ui/core/Fab';
 import Loading from '../components/Loading';
 import {useSelector} from 'react-redux';
+import FastFoodIcon from '@material-ui/icons/Fastfood';
+import IconButton from '@material-ui/core/IconButton';
+import StarIcon from '@material-ui/icons/Star'
+
 
 const useStyles = makeStyles((theme) => ({
   gradient: {
@@ -23,7 +27,8 @@ const useStyles = makeStyles((theme) => ({
 
 export class Menu extends React.Component {
   static propTypes = {
-    MenuItems:PropTypes.array.isRequired
+    MenuItems:PropTypes.array.isRequired,
+    itemLoading: PropTypes.bool
   }
     constructor(props){
       super(props);
@@ -84,18 +89,42 @@ export class Menu extends React.Component {
             <Tab onClick={() => this.FetchFries()} label="Fries"/>
           </Tabs>
         </div>
-        {this.state.isLoaded ?
+        {/* {this.state.itemLoading ?
+        <div style={{display:"flex",height:"80vh", alignItems:"center",justifyContent:"center"}}>
+        <Loading LoaderIcon={<FastFoodIcon/>} load={this.state.isLoaded}/> 
+      </div> */}
+          
+          
           <Grid justify='center' align='center' container spacing={2} style={{padding:"2em",overflowY:"hidden"}}>
             {this.state.SelectedMenuItems.map(item => (
               <Grid key={item.name} md={4} sm={8} xs={12}>
-                <MenuCard itemPrice={item.price + 'ETB'} img={item.img + '.png'} itemName={item.name}/>
+                <div className='menu-item-card'>
+                  <div className='menu-head'>
+                    <h3 className='menu-header'>
+                      {item.name}
+                    </h3>
+                    <h3 className='item-price'>
+                      {item.price}
+                    </h3>
+                  </div>
+                  <div className='card-image'>
+                    <img src={item.img + '.png'} />
+                  </div>
+                  <IconButton>
+                  <StarIcon style={{color:'orange'}}/><StarIcon style={{color:'orange'}}/><StarIcon style={{color:'orange'}}/><StarIcon style={{color:'orange'}}/><StarIcon/>
+                  </IconButton>
+                  {/* <ButtonGroup> */}
+                  <div className='btn-group'>
+                  <Button style={{borderRadius:'20px'}} variant='contained' color='primary'>Order</Button>
+                  <Button style={{borderRadius:'20px'}}  onClick={() => this.props.addtoCart(item)}  variant='contained'>Add to Cart</Button>
+                  </div>
+                  {/* </ButtonGroup> */}
+                </div>
+    
               </Grid>
               ))} 
           </Grid>
-          :<div style={{display:"flex",height:"80vh", alignItems:"center",justifyContent:"center"}}>
-            <Loading load={this.state.isLoaded}/> 
-          </div>
-         } 
+         
         </div>
           
       
@@ -104,11 +133,11 @@ export class Menu extends React.Component {
 }
 
 const mapStateToProps = state =>({
-  itemsLoaded: state.MenuItems.itemsLoaded,
+  itemsLoading: state.MenuItems.itemsLoading,
   Burgers: state.MenuItems.MenuItems.filter(item => item.food_type == 'BRG'),
   Extras: state.MenuItems.MenuItems.filter(item => item.food_type == 'EXT'),
   Fries: state.MenuItems.MenuItems.filter(item => item.food_type == 'FRI'),
   Beverages: state.MenuItems.MenuItems.filter(item => item.food_type == 'BVG'),
 })
 
-export default connect(mapStateToProps, { getMenuItems })(Menu);
+export default connect(mapStateToProps, { getMenuItems, addtoCart, receiveItems })(Menu);

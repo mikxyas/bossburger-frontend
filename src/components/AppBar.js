@@ -2,14 +2,20 @@ import React, {useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 import { Link } from 'react-router-dom'
 import { useHistory } from 'react-router-dom'
-
-import RegisterDialog from '../components/RegisterDialog';
+import SigninDialog from './SigninDialog';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import AccountCircleIcon from '@material-ui/icons/AccountBoxSharp';
+import IconButton from '@material-ui/core/IconButton';
+import {logout} from '../actions/auth'
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import Drawer from '@material-ui/core/Drawer'
+import CartDrawer from './CartDrawer'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,9 +33,10 @@ const useStyles = makeStyles((theme) => ({
   },
   login: {
     marginLeft:'auto',
-    borderRadius:'20px'
+    borderRadius:'20px',
   },
   appbar: {
+    zIndex:'3',
     background:'rgba(255,255,255,0.8)',
     padding:'0em',
     height:'fit-content',
@@ -47,20 +54,27 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function MenuAppBar() {
+function MenuAppBar(props) {
   const classes = useStyles();
   const [link, setlink] = React.useState('');
+  const [open, setOpen] = React.useState(false)
   // const [value, setValue] = React.useState('');
   const history = useHistory();
   const handleChange = (e) => {
     history.push(`/${e.currentTarget.value}`);
     setlink(e.currentTarget.value)
-    console.log(link)
+    // console.log(link)
   };
   const handleBrand = (e) => {
     history.push(`/`);
     setlink('home')
   };
+  const handleClick = (e) => {
+    setOpen(e.currentTarget)
+  }
+  const handleClose = () => {
+    setOpen(null)
+  }
   return (
     <div className={classes.root}>
       <AppBar className={classes.appbar}  position="fixed">
@@ -70,11 +84,50 @@ export default function MenuAppBar() {
             <Button onClick={handleChange} value='events' className='cont-nav'>Events</Button>
             <Button onClick={handleChange} value='giveaways' className='cont-nav'>giveaways</Button>
             <img onClick={handleBrand} value='home' id='brand-pic' className={classes.brandlogo} src='./bblogo.png'/>
-            <div className={classes.login}>
-              <RegisterDialog/>
+            
+            {props.user != null
+            ?
+           
+              <div className={classes.login}>
+              <div style={{marginRight:'.7em'}}>           
+            <Button variant='outlined' iconStart aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+              <AccountCircleIcon/>
+              {props.user.name}
+            </Button>
+            <Menu
+              id="simple-menu"
+              anchorEl={open}
+              keepMounted
+              open={Boolean(open)}
+              onClose={handleClose}
+            >
+              <MenuItem onClick={handleClose}>Orders</MenuItem>
+              <MenuItem onClick={handleClose}>Locations</MenuItem>
+              <MenuItem onClick={() => props.logout()}>Logout</MenuItem>
+            </Menu>
+              </div>
             </div>
+            :
+            
+            <div style={{marginRight:'.7em'}} className={classes.login}>
+              <SigninDialog/>
+            </div>
+            }
+
+              <CartDrawer/>
+
         </Toolbar>
       </AppBar>
     </div>
   );
 }
+
+
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+  user: state.auth.user,
+  isLoading: state.auth.isLoading,
+  cart: state.cart
+});
+
+export default connect(mapStateToProps, {logout})(MenuAppBar);

@@ -10,7 +10,7 @@ import Contact from './pages/Contact';
 import Dashboard from './pages/Dashboard'
 import Offers from './pages/Offers'
 import Giveaway from './pages/Giveaway'
-import RegisterForm from './components/RegisterForm';
+import Register from './pages/Register'
 
 const Main = () => {
     return(
@@ -24,7 +24,7 @@ const Main = () => {
       <Route exact path='/about' component={About}></Route>
       <Route exact path='/cart' component={Cart}></Route>
       <Route exact path='/dashboard' component={Dashboard}></Route>
-      <Route exact path='/register' component={RegisterForm}></Route>
+      <Route exact path='/register' component={Register}></Route>
     </Switch>
     )  
 }
