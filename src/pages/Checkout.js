@@ -2,9 +2,11 @@ import Typography  from '@material-ui/core/Typography'
 import Paper from '@material-ui/core/Paper'
 import React, { Component } from 'react'
 import {connect} from 'react-redux';
-import CheckIcon from '@material-ui/icons/CheckCircle'
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
 import PropTypes from 'prop-types'
-import { List, ListItemAvatar,Button, TextField, IconButton, ListItemSecondaryAction } from '@material-ui/core';
+import { List,Button, TextField, IconButton, ListItemSecondaryAction } from '@material-ui/core';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -22,6 +24,7 @@ import {addAmountof, decreaseAmountof, deleteItem} from '../actions/cart'
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import {placeOrder} from '../actions/order'
+import {toggleLocationDialog} from '../actions/locations'
 
 class Checkout extends Component {
     static propTypes = {
@@ -34,13 +37,15 @@ class Checkout extends Component {
         decreaseAmountof:PropTypes.func.isRequired,
         placeOrder:PropTypes.func.isRequired,
         deleteItem:PropTypes.func.isRequired,
+        toggleLocationDialog:PropTypes.func.isRequired,
         TotalPrice:PropTypes.number.isRequired,
+        locLength:PropTypes.number.isRequired,
       }
     constructor(props){
         super(props)
         this.state = {
             collapse:true,
-            activeListItem:null,
+            activeListItem:'',
             customer_phone:'',
             order_type:'DVY',
             loc_price:0,
@@ -90,7 +95,6 @@ class Checkout extends Component {
         this.setState({
             customer_phone:e.target.value
         })
-        console.log(this.state.customer_phone)
     }
     render() {
         return (
@@ -113,7 +117,10 @@ class Checkout extends Component {
                     </div>
                 </Paper>
                 {this.state.order_type === 'DVY'
-                ?<Paper style={{padding:"1em", marginTop:'1em',paddingBottom:'0em',width:'350px'}}>
+                ?<>
+                    {this.props.locLength > 0
+                ?<>
+                <Paper style={{padding:"1em", marginTop:'1em',paddingBottom:'0em',width:'350px'}}>
                     <Typography align='center'>
                         Select your delivery location
                     </Typography>
@@ -167,8 +174,30 @@ class Checkout extends Component {
                 :null
              }   
             </Paper>
-            :null   
+               
+                </>
+            :<Card style={{width:'350px', marginTop:'1em'}}>
+            <CardContent>
+                <Typography align='center' variant="h5" component="h2">
+                Looks like you don't have any locations set
+                </Typography>
+                {/* <Typography className={classes.pos} color="textSecondary">
+                
+                </Typography> */}
+                <Typography align='center' variant="body2" component="p">
+                Create a location now
+                <br />
+                </Typography>
+            </CardContent>
+            <CardActions>
+                <Button onClick={()=> this.props.toggleLocationDialog()} fullWidth variant='contained' color='primary'>Create Now</Button>
+            </CardActions>
+        </Card>
+    }
+                </>
+                :null
                 }
+                
                 
                 <Divider/>
                 <Paper style={{padding:"1em", marginTop:'1em',width:'350px'}}>
@@ -207,6 +236,10 @@ class Checkout extends Component {
                 <Typography align='center' style={{padding:'.3em'}}>
                     Food Price: {this.props.TotalPrice}
                     <br/>
+                    {this.state.activeListItem >= 1
+                    ?<>Delivery Price: {this.props.locations[this.state.activeListItem].locPrice} <br/> Total Price: {this.props.locations[this.state.activeListItem].locPrice + this.props.TotalPrice}</>
+                    :null
+                    }
                 </Typography>
                 </Paper>
                 <Button onClick={() => this.SubmitOrder()} style={{width:'335px', marginTop:'1em', marginBottom:'75px'}} variant='contained' color='primary'>
@@ -225,6 +258,7 @@ const mapStateToProps = state =>({
     AddedToCart:state.cart.AddedToCart,
     Amount:state.cart.Amount,
     TotalPrice: state.cart.TotalPrice,
+    locLength: state.locations.locLength
 })
       
-export default connect(mapStateToProps, {addAmountof, decreaseAmountof, deleteItem, placeOrder})(Checkout);
+export default connect(mapStateToProps, {addAmountof, decreaseAmountof, deleteItem, placeOrder, toggleLocationDialog})(Checkout);

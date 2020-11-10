@@ -18,9 +18,11 @@ export const loadLoc = () => (dispatch, getState) => {
         .get('https://bossburgeraddis.herokuapp.com/api/locations', tokenConfig(getState))
         .then((res) => {
             const sortedbyId = convertArrayToObject(res.data, 'id')
+            const length = res.data.length
             dispatch({
                 type: LOCATION_LOADED,
-                payload: sortedbyId
+                payload: sortedbyId,
+                length:length
             });
         })
         .catch((err) => {

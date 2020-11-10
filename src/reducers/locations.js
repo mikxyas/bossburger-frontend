@@ -9,9 +9,10 @@ import {LOCATION_LOADED,
     SET_DIALOG_STATE} from '../actions/types'
 
 const initialState = {
-    locations:null,
+    locations:{},
     locLoaded:false,
     openLocationDialog: false,
+    locLength:0,
 }
 
 export default function (state=initialState, action){
@@ -20,7 +21,8 @@ export default function (state=initialState, action){
             return {
                 ...state,
                 locLoaded:true,
-                locations:{ ...action.payload}
+                locations:{ ...action.payload},
+                locLength:action.length
             }
         case LOCATION_CREATED:
             return {
@@ -29,7 +31,9 @@ export default function (state=initialState, action){
                 locations:{
                 ...state.locations,
                 ...action.payload
-                }
+                },
+                locLength: state.locLength +1,
+                openLocationDialog:false
             }
         case TOGGLE_LOCATION_DIALOG:
             if(state.openLocationDialog === false){
@@ -47,7 +51,8 @@ export default function (state=initialState, action){
             return {
                 ...state,
                 locLoaded:false,
-                locations:null
+                locations:{},
+                locLength:0
             }
         case DELETE_LOC:
             delete state.locations[action.id]
@@ -55,7 +60,9 @@ export default function (state=initialState, action){
                 ...state,
                 locations:{
                     ...state.locations
-                }
+                },
+                locLength: state.locLength  - 1
+
             }
         default:
             return state

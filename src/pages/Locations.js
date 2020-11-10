@@ -16,7 +16,8 @@ import {toggleLocationDialog, deleteLoc} from '../actions/locations'
 
 class Locations extends Component {
     static propTypes = {
-        Locations:PropTypes.array.isRequired,
+        Locations:PropTypes.object.isRequired,
+        locLength:PropTypes.number.isRequired,
         isLoaded: PropTypes.bool.isRequired,
         isAuthenticated: PropTypes.bool.isRequired,
         toggleLocationDialog: PropTypes.func.isRequired,
@@ -29,7 +30,7 @@ class Locations extends Component {
             {this.props.isAuthenticated 
                 ?<div style={{padding:'1em', display:'flex', justifyContent:'center'}}>
                 
-                {this.props.Locations != null
+                {this.props.locLength > 0
                 ?<Grid container spacing={3} justify='center'>
                     <Grid item sm={12}>
                         <Button onClick={()=> this.props.toggleLocationDialog()} variant='contained' endIcon color='primary'>Add Location<AddIcon/></Button>
@@ -100,7 +101,8 @@ class Locations extends Component {
 const mapStateToProps = state => ({
     Locations: state.locations.locations,
     isLoaded: state.locations.locLoaded,
-    isAuthenticated: state.auth.isAuthenticated
+    isAuthenticated: state.auth.isAuthenticated,
+    locLength: state.locations.locLength
 })
 
 export default connect(mapStateToProps, {toggleLocationDialog, deleteLoc})(Locations)
