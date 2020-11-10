@@ -5,9 +5,6 @@ import Button from '@material-ui/core/Button';
 import {Link} from 'react-router-dom';
 import { geolocated } from 'react-geolocated';
 import axios from 'axios'
-import Progress from '@material-ui/core/CircularProgress'
-import SendLoc from './SendLoc';
-import {connect} from 'react-redux'
 import LocDialog from './LocDialogInner'
 
 class LocationDialog extends Component {
