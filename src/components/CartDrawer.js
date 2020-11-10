@@ -1,6 +1,5 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {deleteItem} from '../actions/cart';
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import Button from '@material-ui/core/Button';
@@ -18,11 +17,20 @@ import { ListItemAvatar } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import {Link} from 'react-router-dom'
+import AddIcon from '@material-ui/icons/Add'
+import RemoveIcon from '@material-ui/icons/Remove'
+import RemoveCartIcon from '@material-ui/icons/RemoveShoppingCart'
+import {addAmountof, decreaseAmountof, deleteItem} from '../actions/cart'
 
 
 class CartDrawer extends React.Component {
     static propTypes = {
         cart:PropTypes.object,
+        Amount:PropTypes.object,
+        addAmountof:PropTypes.func.isRequired,
+        decreaseAmountof:PropTypes.func.isRequired,
+        deleteItem:PropTypes.func.isRequired,
       }
     constructor(props){
         super(props);
@@ -74,9 +82,14 @@ class CartDrawer extends React.Component {
                             src={this.props.cart[item].img}
                         />
                         </ListItemAvatar>
-                        <ListItemText  primary={this.props.cart[item].name + ' (' + this.props.cart[item].price + 'ETB'+')'} />
+                        <ListItemText  primary={this.props.cart[item].name} secondary={this.props.cart[item].price * this.props.Amount[item] + 'ETB' + ' | Amount ' + this.props.Amount[item]} />
                         <ListItemSecondaryAction>
-                        <IconButton onClick={() => this.props.deleteItem(this.props.cart[item].id)}><CloseIcon/></IconButton>
+                        {this.props.Amount[item] === 1
+                            ?<IconButton onClick={() => this.props.deleteItem(item, this.props.cart[item].price)}><RemoveCartIcon/></IconButton>
+                            :<IconButton onClick={() => this.props.decreaseAmountof(item)}><RemoveIcon/></IconButton>
+                        }
+                        <IconButton onClick={() => this.props.addAmountof(item)}><AddIcon/></IconButton>
+
                         </ListItemSecondaryAction>
                     </ListItem>
                     <Divider />
@@ -84,7 +97,9 @@ class CartDrawer extends React.Component {
                     
                     ))}
                     <div style={{padding:'.5em'}}>
-                        <Button variant='contained' fullWidth color='primary'>Checkout</Button>
+                        <Link to='/checkout'>
+                            <Button variant='contained' onClick={this.CloseDrawer} fullWidth color='primary'>Checkout</Button>
+                        </Link>
                     </div>
                 </List>
                     }
@@ -96,7 +111,8 @@ class CartDrawer extends React.Component {
     }
 
 const mapStateToProps = state =>({
-    cart: state.cart
+    cart: state.cart.cart,
+    Amount: state.cart.Amount
 })
       
-export default connect(mapStateToProps, {deleteItem})(CartDrawer);
+export default connect(mapStateToProps, {deleteItem, addAmountof, decreaseAmountof})(CartDrawer);

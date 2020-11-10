@@ -7,7 +7,7 @@ import Slide from '@material-ui/core/Slide';
 import Divider from '@material-ui/core/Divider'
 import {Link, Redirect} from 'react-router-dom'
 import { connect } from 'react-redux'
-import { login } from '../actions/auth';
+import { login, toggleSignupDialog } from '../actions/auth';
 import PropTypes from 'prop-types';
 
 
@@ -52,7 +52,9 @@ class SigninDialog extends  React.Component{
   }
   static propTypes = {
     login: PropTypes.func.isRequired,
-    isAuthenticated: PropTypes.bool,
+    toggleSignupDialog: PropTypes.func.isRequired,
+    isAuthenticated: PropTypes.bool.isRequired,
+    openSigninDialog: PropTypes.bool.isRequired
 };
   handleSubmit = () => {
     // e.preventDefault()
@@ -68,15 +70,16 @@ class SigninDialog extends  React.Component{
     })
   }
   handleDialog = () => {
-    if(this.state.open == false){
-      this.setState({
-        open:true
-      })
-    }else{
-      this.setState({
-        open:false
-      })
-    }
+    this.props.toggleSignupDialog()
+    // if(this.state.open == false){
+    //   this.setState({
+    //     open:true
+    //   })
+    // }else{
+    //   this.setState({
+    //     open:false
+    //   })
+    // }
     
   }
   
@@ -86,7 +89,7 @@ class SigninDialog extends  React.Component{
       <Button variant="contained" color="primary" onClick={() => this.handleDialog()}>
         Sign in
       </Button>
-      <Dialog open={this.state.open} onClose={this.handleDialog} TransitionComponent={Transition}>
+      <Dialog open={this.props.openSigninDialog} onClose={this.handleDialog} TransitionComponent={Transition}>
         <div style={{display:'flex',flexDirection:'column',padding:'2em', alignItmes:'center', justifyContent:'center'}}>
         {/* <IconButton style={{marginLeft:'auto'}} edge="start" color="inherit" onClick={handleClose} aria-label="close">
               <CloseIcon />
@@ -111,9 +114,11 @@ class SigninDialog extends  React.Component{
 
 const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
+  openSigninDialog: state.auth.openSigninDialog,
+
 });
 
-export default connect(mapStateToProps, { login })(SigninDialog);
+export default connect(mapStateToProps, { login, toggleSignupDialog })(SigninDialog);
 
 
   

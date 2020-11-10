@@ -101,8 +101,12 @@ function MenuAppBar(props) {
               open={Boolean(open)}
               onClose={handleClose}
             >
-              <MenuItem onClick={handleClose}>Orders</MenuItem>
-              <MenuItem onClick={handleClose}>Locations</MenuItem>
+              <Link to='/orders'>
+                <MenuItem onClick={handleClose}>Orders</MenuItem>
+              </Link>
+              <Link to='/locations'>
+                <MenuItem onClick={handleClose}>Locations</MenuItem>
+              </Link>
               <MenuItem onClick={() => props.logout()}>Logout</MenuItem>
             </Menu>
               </div>
@@ -127,7 +131,7 @@ const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
   user: state.auth.user,
   isLoading: state.auth.isLoading,
-  cart: state.cart
+  cart: state.cart.cart
 });
 
 export default connect(mapStateToProps, {logout})(MenuAppBar);

@@ -7,6 +7,8 @@ import {
     LOGOUT_SUCCESS,
     REGISTER_SUCCESS,
     REGISTER_FAIL,
+    TOGGLE_SIGNIN_DIALOG,
+    SET_DIALOG_STATE
   } from '../actions/types';
   
 
@@ -14,7 +16,9 @@ const initialState = {
     token: localStorage.getItem('token'),
     user: null,
     isAuthenticated:null,
-    isLoading: false
+    isLoading: false,
+    openSigninDialog: false,
+    UserLocation:null
 }
 
 export default function (state=initialState, action) {
@@ -52,6 +56,23 @@ export default function (state=initialState, action) {
                 isAuthenticated: false,
                 isLoading: false,
             };
+        case TOGGLE_SIGNIN_DIALOG:
+            if(state.openSigninDialog === false){
+                return{
+                    ...state,
+                    openSigninDialog:true
+                }
+            }else{
+                return{
+                    ...state,
+                    openSigninDialog:false
+                }
+            }
+            case SET_DIALOG_STATE:
+                return{
+                    ...state,
+                    openSigninDialog:action.payload
+                }
             default:
               return state;
             }    

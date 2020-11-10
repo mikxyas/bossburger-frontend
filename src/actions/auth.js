@@ -1,5 +1,15 @@
-import {LOGIN_SUCCESS, AUTH_ERROR,USER_LOADING,LOGOUT_SUCCESS, USER_LOADED,LOGIN_FAIL, REGISTER_FAIL,REGISTER_SUCCESS} from './types';
+import {LOGIN_SUCCESS,
+        TOGGLE_SIGNIN_DIALOG,
+        AUTH_ERROR,
+        USER_LOADING,
+        LOGOUT_SUCCESS, 
+        USER_LOADED,
+        LOGIN_FAIL, 
+        SET_DIALOG_STATE,
+        REGISTER_FAIL,
+        REGISTER_SUCCESS} from './types';
 import axios from 'axios'
+import {loadLoc} from './locations'
 
 export const loadUser = () => (dispatch, getState) => {
     dispatch({type: USER_LOADING});
@@ -19,6 +29,8 @@ export const loadUser = () => (dispatch, getState) => {
                 type: AUTH_ERROR,
             })
         })
+    
+    
 }
 
 export const register = ({email, name, password, phone_number}) => (dispatch) => {
@@ -58,6 +70,7 @@ export const login = ({email, password}) => (dispatch) => {
                 type: LOGIN_SUCCESS,
                 payload: res.data
             });
+            window.location.reload()
         })
         .catch((err) => {
             // dispatch(returnErrors(err.response.data, err.response.status));
@@ -99,3 +112,16 @@ export const logout = () => (dispatch, getState) => {
   
     return config;
   };
+
+  export const toggleSignupDialog = () => {
+      return{
+            type: TOGGLE_SIGNIN_DIALOG
+      }
+  }
+
+  export const setDialogState = (dialogState) => {
+    return{
+        type: SET_DIALOG_STATE,
+        payload:dialogState
+    }
+  }

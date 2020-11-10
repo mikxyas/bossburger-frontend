@@ -1,20 +1,19 @@
-import React, {useEffect,useState, Component, Fragment } from 'react'
-import {Button, Container} from '@material-ui/core'
+import React from 'react'
+import {Button} from '@material-ui/core'
 import Grid from '@material-ui/core/Grid';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import {toggleSignupDialog} from '../actions/auth'
 import {getMenuItems} from '../actions/MenuItems';
-import {addtoCart, receiveItems} from '../actions/cart'
+import {addtoCart, deleteItem} from '../actions/cart'
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import BurgerIcon from '@material-ui/icons/Fastfood'
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Fab from '@material-ui/core/Fab';
-import Loading from '../components/Loading';
-import {useSelector} from 'react-redux';
 import FastFoodIcon from '@material-ui/icons/Fastfood';
 import IconButton from '@material-ui/core/IconButton';
 import StarIcon from '@material-ui/icons/Star'
+import { Link } from 'react-router-dom';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -25,10 +24,11 @@ const useStyles = makeStyles((theme) => ({
   
 }))
 
-export class Menu extends React.Component {
+class Menu extends React.Component {
   static propTypes = {
     MenuItems:PropTypes.array.isRequired,
-    itemLoading: PropTypes.bool
+    itemLoading: PropTypes.bool.isRequired,
+    isAuthenticated: PropTypes.bool.isRequired,
   }
     constructor(props){
       super(props);
@@ -62,8 +62,7 @@ export class Menu extends React.Component {
 
    componentDidMount(){
       this.InitialFetch()
-
-  }
+    }
     handleMenu = (event, newItem) => {
       this.setState({SelectedMenuItems: this.props.newItem})
     } 
@@ -104,7 +103,7 @@ export class Menu extends React.Component {
                       {item.name}
                     </h3>
                     <h3 className='item-price'>
-                      {item.price}
+                      {item.price} ETB
                     </h3>
                   </div>
                   <div className='card-image'>
@@ -115,8 +114,16 @@ export class Menu extends React.Component {
                   </IconButton>
                   {/* <ButtonGroup> */}
                   <div className='btn-group'>
-                  <Button style={{borderRadius:'20px'}} variant='contained' color='primary'>Order</Button>
-                  <Button style={{borderRadius:'20px'}}  onClick={() => this.props.addtoCart(item)}  variant='contained'>Add to Cart</Button>
+                    {this.props.isAuthenticated
+                    ?<Link to='/checkout'>
+                      <Button style={{borderRadius:'20px'}} onClick={() => this.props.addtoCart(item)}  variant='contained' color='primary'>Order</Button>
+                    </Link> 
+                    :  <Button onClick={() => this.props.toggleSignupDialog()} style={{borderRadius:'20px'}} variant='contained' color='primary'>Order</Button>
+                    }
+                    {this.props.cart[item.id]
+                    ?<Button style={{borderRadius:'20px'}}  onClick={() => this.props.deleteItem(item.id, item.price)}  variant='contained'>Remove From Cart</Button>
+                    :<Button style={{borderRadius:'20px'}}  onClick={() => this.props.addtoCart(item)}  variant='contained'>Add to Cart</Button>
+                    }
                   </div>
                   {/* </ButtonGroup> */}
                 </div>
@@ -133,11 +140,13 @@ export class Menu extends React.Component {
 }
 
 const mapStateToProps = state =>({
+  isAuthenticated: state.auth.isAuthenticated,
   itemsLoading: state.MenuItems.itemsLoading,
   Burgers: state.MenuItems.MenuItems.filter(item => item.food_type == 'BRG'),
   Extras: state.MenuItems.MenuItems.filter(item => item.food_type == 'EXT'),
   Fries: state.MenuItems.MenuItems.filter(item => item.food_type == 'FRI'),
   Beverages: state.MenuItems.MenuItems.filter(item => item.food_type == 'BVG'),
+  cart: state.cart.cart
 })
 
-export default connect(mapStateToProps, { getMenuItems, addtoCart, receiveItems })(Menu);
+export default connect(mapStateToProps, { getMenuItems, addtoCart, toggleSignupDialog,deleteItem })(Menu);
