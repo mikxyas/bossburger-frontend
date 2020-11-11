@@ -5,6 +5,7 @@ import {loadOrders} from '../actions/order';
 import PropTypes from 'prop-types'
 import DoneIcon from '@material-ui/icons/CheckCircle';
 
+
 class Orders extends Component {
     static propTypes = {
         locations:PropTypes.object.isRequired,

@@ -13,6 +13,8 @@ import Chip from '@material-ui/core/Chip';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import {toggleLocationDialog, deleteLoc} from '../actions/locations'
+import LocationDialog from '../components/LocationDialog'
+
 
 class Locations extends Component {
     static propTypes = {
@@ -27,6 +29,7 @@ class Locations extends Component {
     render() {
         return (
             <>
+            <LocationDialog/>
             {this.props.isAuthenticated 
                 ?<div style={{padding:'1em', display:'flex', justifyContent:'center'}}>
                 

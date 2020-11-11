@@ -26,6 +26,8 @@ import Select from '@material-ui/core/Select';
 import {placeOrder} from '../actions/order'
 import {toggleLocationDialog} from '../actions/locations'
 import { Redirect } from 'react-router-dom';
+import LocationDialog from '../components/LocationDialog'
+
 
 class Checkout extends Component {
     static propTypes = {
@@ -104,6 +106,8 @@ class Checkout extends Component {
             return <Redirect to='/orders'/>
         }
         return (
+            <>
+            <LocationDialog/>
             <div style={{padding:"2em", display:'flex', justifyContent:'center', flexDirection:'column',alignItems:'center'}}>
                 <Paper style={{padding:"1em", paddingBottom:'.3em',width:'350px'}}>
                     <Typography align='center'>
@@ -252,7 +256,7 @@ class Checkout extends Component {
                     Submit Order
                 </Button>
             </div>
-
+            </>
         )
     }
 }

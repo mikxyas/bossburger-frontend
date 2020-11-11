@@ -41,7 +41,7 @@ class LocationDialog extends Component {
       }
 
 
-    fetchLocName = (props) => {
+    fetchLocName = () => {
         const DistanceInKM = parseInt(this.distanceInKmBetweenEarthCoordinates(8.9974982, 38.7847816, this.props.coords.latitude, this.props.coords.longitude))
         var cords = this.formatDegrees(this.props.coords.latitude, false) + ',' + this.formatDegrees(this.props.coords.longitude, true)
         var url = `https://api.opencagedata.com/geocode/v1/json?key=2a607809622a49d0a5697c3d524f8973&q=${cords}`
@@ -112,10 +112,10 @@ class LocationDialog extends Component {
     }
     render() {
         return (
-              <LocDialog nhood={this.state.neighborhood} loc={this.state} handleChange={this.handleChange} fetchLocName={this.fetchLocName} /> 
+              <LocDialog nhood={this.state.neighborhood} loc={this.state} handleChange={this.handleChange} fetchLocName={() => this.fetchLocName()} /> 
             
         )
     }
 }
 
-export default geolocated({ positionOptions: { enableHighAccuracy: false,},userDecisionTimeout: 5000,})(LocationDialog)
+export default geolocated({ positionOptions: { enableHighAccuracy: true,},userDecisionTimeout: 5000,})(LocationDialog)

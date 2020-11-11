@@ -75,6 +75,7 @@ export const login = ({email, password}) => (dispatch) => {
         })
         .catch((err) => {
             console.log(err.response.data)
+            
             const error = err.response.data
             dispatch({
                 type:OPEN_SNACKBAR,
