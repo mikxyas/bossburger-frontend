@@ -90,16 +90,16 @@ class SigninDialog extends  React.Component{
         Sign in
       </Button>
       <Dialog open={this.props.openSigninDialog} onClose={this.handleDialog} TransitionComponent={Transition}>
-        <div style={{display:'flex',flexDirection:'column',padding:'2em', alignItmes:'center', justifyContent:'center'}}>
+        <div style={{padding:'2em'}}>
         {/* <IconButton style={{marginLeft:'auto'}} edge="start" color="inherit" onClick={handleClose} aria-label="close">
               <CloseIcon />
             </IconButton> */}
-              <TextField type='email' name='email' onChange={this.handleChange} label="Email"/>
+              <TextField  type='email' name='email' onChange={this.handleChange} label="Email"/>
               <br/>
               <TextField label="Password" name='password' onChange={this.handleChange} type='password'/>
               <br/>
               <br/>
-              <Button onClick={() => this.handleSubmit()} variant='contained' color='primary'>Sign In</Button>
+              <Button onClick={() => this.handleSubmit()} fullWidth variant='contained' color='primary'>Sign In</Button>
               <Divider style={{margin:'1em'}} variant='middle'/>
               {/* <p style={{textAlign:'center'}}>Or</p> */}
               <Link style={{width:"100%"}} to='/register'>

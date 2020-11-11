@@ -14,7 +14,7 @@ import FastfoodIcon from '@material-ui/icons/Fastfood';
 const useStyles = makeStyles({
   root: {
     width: "100%",
-    height:'67.9px'
+    height:'60px'
   },
 });
 

@@ -84,7 +84,7 @@ header ul.signup-nav {
 .bottom-nav {
   position: fixed;
   width: 100%;
-  margin-top: calc(100vh - 67px);
+  margin-top: calc(100vh - 60px);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

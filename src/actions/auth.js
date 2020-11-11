@@ -7,6 +7,7 @@ import {LOGIN_SUCCESS,
         LOGIN_FAIL, 
         SET_DIALOG_STATE,
         REGISTER_FAIL,
+        OPEN_SNACKBAR,
         REGISTER_SUCCESS} from './types';
 import axios from 'axios'
 import {loadLoc} from './locations'
@@ -73,6 +74,12 @@ export const login = ({email, password}) => (dispatch) => {
             window.location.reload()
         })
         .catch((err) => {
+            console.log(err.response.data)
+            const error = err.response.data
+            dispatch({
+                type:OPEN_SNACKBAR,
+                payload:JSON.stringify(error.password)
+            })
             // dispatch(returnErrors(err.response.data, err.response.status));
             dispatch({
                 type: LOGIN_FAIL

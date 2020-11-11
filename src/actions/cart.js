@@ -1,17 +1,25 @@
-import {ADD_TO_CART, RECEIVE_ITEMS,ADD_AMOUNT,DECREASE_AMOUNT, DELETE_CART_ITEM} from './types';
+import {ADD_TO_CART, OPEN_SNACKBAR,RECEIVE_ITEMS,ADD_AMOUNT,DECREASE_AMOUNT, DELETE_CART_ITEM} from './types';
 
-export const addtoCart = (item) => {
-    return {
+export const addtoCart = (item) => (dispatch) => {
+    dispatch({
         type: ADD_TO_CART,
         ...item
-    }
+    })
+    dispatch({
+        type: OPEN_SNACKBAR,
+        payload:`Added ${item.name} to cart`,
+    })
 }
-export const deleteItem = (itemId, price) => {
-    return {
+export const deleteItem = (itemId, price) => (dispatch) =>{
+    dispatch({
         type: DELETE_CART_ITEM,
         id: itemId,
         price:price
-    }
+    })
+    dispatch({
+        type: OPEN_SNACKBAR,
+        payload:'Removed item from cart',
+    })
 }
 export const receiveItems = (items) => {
     return {
