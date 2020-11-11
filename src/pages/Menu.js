@@ -14,7 +14,18 @@ import FastFoodIcon from '@material-ui/icons/Fastfood';
 import IconButton from '@material-ui/core/IconButton';
 import StarIcon from '@material-ui/icons/Star'
 import { Link } from 'react-router-dom';
-
+import Card from '@material-ui/core/Card';
+import Paper from '@material-ui/core/Paper';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import Typography from '@material-ui/core/Typography';
+import ReactStars from "react-rating-stars-component";
+import EmptyStar from '@material-ui/icons/StarOutlined';
+import FullStar from '@material-ui/icons/Star';
+import HalfStar from '@material-ui/icons/StarHalf';
+import UserIcon from '@material-ui/icons/AccountCircle';
 
 const useStyles = makeStyles((theme) => ({
   gradient: {
@@ -97,36 +108,52 @@ class Menu extends React.Component {
           <Grid justify='center' align='center' container spacing={2} style={{padding:"2em",overflowY:"hidden"}}>
             {this.state.SelectedMenuItems.map(item => (
               <Grid key={item.name} md={4} sm={8} xs={12}>
-                <div className='menu-item-card'>
-                  <div className='menu-head'>
-                    <h3 className='menu-header'>
-                      {item.name}
-                    </h3>
-                    <h3 className='item-price'>
-                      {item.price} ETB
-                    </h3>
-                  </div>
-                  <div className='card-image'>
-                    <img src={item.img + '.png'} />
-                  </div>
-                  <IconButton>
-                  <StarIcon style={{color:'orange'}}/><StarIcon style={{color:'orange'}}/><StarIcon style={{color:'orange'}}/><StarIcon style={{color:'orange'}}/><StarIcon/>
-                  </IconButton>
-                  {/* <ButtonGroup> */}
-                  <div className='btn-group'>
-                    {this.props.isAuthenticated
+                <Card  style={{borderRadius:'20px',width:'350px', marginBottom:'1em'}}>
+                  <CardContent>
+                    <Paper elevation={2} style={{borderRadius:'20px',padding:'.5em',backdropFilter: 'saturate(180%) blur(20px)',background:'rgba(255,255,255,0.4)'}}>
+                    <Typography variant="h5" component="h2">
+                          {item.name}
+                        </Typography> 
+                        <Typography variant="body2" color="textPrimary" component="h5">
+                          {item.price} Birr
+                        </Typography>
+                        <div style={{display:'flex', alignItems:'center',justifyContent:'center'}}>
+                        <ReactStars
+                          count={5}
+                          value={4.5}
+                          // onChange={ratingChanged}
+                          style={{margin:'auto'}}
+                          size={30}
+                          isHalf={true}
+                          emptyIcon={<EmptyStar/>}
+                          halfIcon={<HalfStar/>}
+                          fullIcon={<FullStar/>}
+                          activeColor="#ffd700"
+                        />10<UserIcon/>
+                        </div>
+                    </Paper>  
+                    </CardContent>
+                    <CardMedia
+                      component="img"
+                      alt={item.name}
+                      height="250"
+                      width='200'
+                      image={item.img}
+                      title={item.name}
+                    />
+                  <CardActions>
+                  {this.props.isAuthenticated
                     ?<Link to='/checkout'>
                       <Button style={{borderRadius:'20px'}} onClick={() => this.props.addtoCart(item)}  variant='contained' color='primary'>Order</Button>
                     </Link> 
                     :  <Button onClick={() => this.props.toggleSignupDialog()} style={{borderRadius:'20px'}} variant='contained' color='primary'>Order</Button>
                     }
                     {this.props.cart[item.id]
-                    ?<Button style={{borderRadius:'20px'}}  onClick={() => this.props.deleteItem(item.id, item.price)}  variant='contained'>Remove From Cart</Button>
-                    :<Button style={{borderRadius:'20px'}}  onClick={() => this.props.addtoCart(item)}  variant='contained'>Add to Cart</Button>
+                    ?<Button style={{borderRadius:'20px', marginLeft:'auto'}}  onClick={() => this.props.deleteItem(item.id, item.price)}  color='secondary' variant='contained'>Remove From Cart</Button>
+                    :<Button style={{borderRadius:'20px', marginLeft:'auto'}} color='secondary'  onClick={() => this.props.addtoCart(item)}  variant='contained'>Add to Cart</Button>
                     }
-                  </div>
-                  {/* </ButtonGroup> */}
-                </div>
+                  </CardActions>
+                </Card>
     
               </Grid>
               ))} 

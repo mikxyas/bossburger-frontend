@@ -1,4 +1,4 @@
-import {ADD_TO_CART,DELETE_CART_ITEM,ADD_AMOUNT,DECREASE_AMOUNT, RECEIVE_ITEMS} from '../actions/types';
+import {ADD_TO_CART,DELETE_CART_ITEM,PLACE_ORDER,ADD_AMOUNT,DECREASE_AMOUNT, RECEIVE_ITEMS} from '../actions/types';
 
 const initialValue = {
     cart:{},
@@ -9,6 +9,14 @@ const initialValue = {
 
 export default function (state = initialValue, action){
     switch(action.type){
+        case PLACE_ORDER:
+            return{
+                ...state,
+                cart:{},
+                Amount:{},
+                TotalPrice:0,
+                AddedToCart:false
+            }
         case ADD_TO_CART:
             return {
                 ...state,

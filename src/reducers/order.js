@@ -1,7 +1,8 @@
 import {PLACE_ORDER, ORDER_ERROR, ORDER_LOADED} from '../actions/types'
 
 const initialState = { 
-    orders:{}
+    orders:{},
+    orderPlaced: false
  }
 
 export default function(state=initialState, action){
@@ -9,6 +10,7 @@ export default function(state=initialState, action){
         case PLACE_ORDER:
             return{
                 ...state,
+                orderPlaced:true
             }
         case ORDER_LOADED:
             return{

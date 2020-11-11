@@ -25,6 +25,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import {placeOrder} from '../actions/order'
 import {toggleLocationDialog} from '../actions/locations'
+import { Redirect } from 'react-router-dom';
 
 class Checkout extends Component {
     static propTypes = {
@@ -32,6 +33,7 @@ class Checkout extends Component {
         Amount:PropTypes.object.isRequired,
         locLoaded:PropTypes.bool.isRequired,
         AddedToCart:PropTypes.bool.isRequired,
+        orderPlaced:PropTypes.bool.isRequired,
         cart:PropTypes.object.isRequired,
         addAmountof:PropTypes.func.isRequired,
         decreaseAmountof:PropTypes.func.isRequired,
@@ -49,6 +51,7 @@ class Checkout extends Component {
             customer_phone:'',
             order_type:'DVY',
             loc_price:0,
+            food_price:this.props.TotalPrice
         }
     }
     SubmitOrder = () => {
@@ -62,7 +65,7 @@ class Checkout extends Component {
             customer_phone:this.state.customer_phone,
             order_type:this.state.order_type,
             time_of_delivery: "09:18:24",
-            food_price: this.props.TotalPrice,
+            Food_price: this.props.TotalPrice,
             delivery_price:this.state.loc_price
         }
         this.props.placeOrder(order)
@@ -97,6 +100,9 @@ class Checkout extends Component {
         })
     }
     render() {
+        if (this.props.orderPlaced){
+            return <Redirect to='/orders'/>
+        }
         return (
             <div style={{padding:"2em", display:'flex', justifyContent:'center', flexDirection:'column',alignItems:'center'}}>
                 <Paper style={{padding:"1em", paddingBottom:'.3em',width:'350px'}}>
@@ -258,7 +264,8 @@ const mapStateToProps = state =>({
     AddedToCart:state.cart.AddedToCart,
     Amount:state.cart.Amount,
     TotalPrice: state.cart.TotalPrice,
-    locLength: state.locations.locLength
+    locLength: state.locations.locLength,
+    orderPlaced: state.order.orderPlaced,
 })
       
 export default connect(mapStateToProps, {addAmountof, decreaseAmountof, deleteItem, placeOrder, toggleLocationDialog})(Checkout);

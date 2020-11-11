@@ -2,7 +2,6 @@ import {PLACE_ORDER, ORDER_ERROR, ORDER_LOADED} from './types';
 import {tokenConfig} from './auth'
 import axios from 'axios'
 import {convertArrayToObject} from './locations'
-
 export const placeOrder = (order) => (dispatch,getState) =>{
     const body = order
     axios
