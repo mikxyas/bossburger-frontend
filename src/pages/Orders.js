@@ -19,18 +19,18 @@ class Orders extends Component {
             <div style={{display:'flex', height:'calc(100vh - 70px)', width:'100%',flexDirection:'column', padding:'.5em',alignItems:'center'}}>
                     {Object.keys(this.props.orders).map(id => (
                         <>
-                        {this.props.orders[id].delivered != false
+                        {this.props.orders[id].delivered == false
                             ?<Paper key={id} style={{padding:'1em', width:'350px', marginTop:'1em'}}>
                             <Typography align='center' variant="h5" component="h2">Your order is being delivered!</Typography>
                             <Typography align='center'>Total Price {this.props.orders[id].Food_price + this.props.orders[id].delivery_price}</Typography>
                             <Typography align='center'>Please prepare the right amount of money to pay.</Typography>
                         </Paper>
-                        :
-                            <Paper key={id} style={{padding:'1em', width:'350px', marginTop:'1em', backgroundColor:'rgba(0,0,0,0.08)'}}>
-                                <Typography align='center' variant="h5" component="h2">Your order was delivered </Typography>
-                                <Typography align='center'>{this.props.orders[id].Food_price + this.props.orders[id].delivery_price} Birr was paid</Typography>
-                                <Typography align='center'>Thank you for choosing us!</Typography>
-                            </Paper>                        
+                        :null
+                            // <Paper key={id} style={{padding:'1em', width:'350px', marginTop:'1em', backgroundColor:'rgba(0,0,0,0.08)'}}>
+                            //     <Typography align='center' variant="h5" component="h2">Your order was delivered </Typography>
+                            //     <Typography align='center'>{this.props.orders[id].Food_price + this.props.orders[id].delivery_price} Birr was paid</Typography>
+                            //     <Typography align='center'>Thank you for choosing us!</Typography>
+                            // </Paper>                        
 
                         }
                         
