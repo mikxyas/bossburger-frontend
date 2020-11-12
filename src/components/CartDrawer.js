@@ -22,7 +22,7 @@ import AddIcon from '@material-ui/icons/Add'
 import RemoveIcon from '@material-ui/icons/Remove'
 import RemoveCartIcon from '@material-ui/icons/RemoveShoppingCart'
 import {addAmountof, decreaseAmountof, deleteItem} from '../actions/cart'
-
+import {toggleSignupDialog} from '../actions/auth';
 
 class CartDrawer extends React.Component {
     static propTypes = {
@@ -30,7 +30,9 @@ class CartDrawer extends React.Component {
         Amount:PropTypes.object,
         addAmountof:PropTypes.func.isRequired,
         decreaseAmountof:PropTypes.func.isRequired,
+        toggleSignupDialog:PropTypes.func.isRequired,
         deleteItem:PropTypes.func.isRequired,
+        isAuthenticated: PropTypes.bool.isRequired
       }
     constructor(props){
         super(props);
@@ -48,13 +50,16 @@ class CartDrawer extends React.Component {
             openDrawer:false
         })
     }
+    toggleAndClose = () => {
+        this.props.toggleSignupDialog()
+        this.CloseDrawer()
+    }
     render() {
         console.log(Object.keys(this.props.cart))
         return (
 
             <React.Fragment >
             <IconButton  onClick={this.OpenDrawer}>
-            
                 <Badge badgeContent={Object.keys(this.props.cart).length} color="secondary">
                 <ShoppingCartIcon/>
                 </Badge>
@@ -97,9 +102,15 @@ class CartDrawer extends React.Component {
                     
                     ))}
                     <div style={{padding:'.5em'}}>
-                        <Link to='/checkout'>
-                            <Button variant='contained' onClick={this.CloseDrawer} fullWidth color='primary'>Checkout</Button>
-                        </Link>
+                        {this.props.isAuthenticated
+                        ?
+                            <Link to='/checkout'>
+                                <Button variant='contained' onClick={this.CloseDrawer} fullWidth color='primary'>Checkout</Button>
+                            </Link>
+                        
+                        :<Button variant='contained' onClick={this.toggleAndClose} fullWidth color='primary'>Checkout</Button>
+                        
+                        }
                     </div>
                 </List>
                     }
@@ -112,7 +123,8 @@ class CartDrawer extends React.Component {
 
 const mapStateToProps = state =>({
     cart: state.cart.cart,
-    Amount: state.cart.Amount
+    Amount: state.cart.Amount,
+    isAuthenticated: state.auth.isAuthenticated
 })
       
-export default connect(mapStateToProps, {deleteItem, addAmountof, decreaseAmountof})(CartDrawer);
+export default connect(mapStateToProps, {deleteItem, addAmountof, toggleSignupDialog,decreaseAmountof})(CartDrawer);

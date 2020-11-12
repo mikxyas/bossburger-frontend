@@ -7,7 +7,7 @@ export const addtoCart = (item) => (dispatch) => {
     })
     dispatch({
         type: OPEN_SNACKBAR,
-        payload:`Added ${item.name} to cart`,
+        payload:{message:`Added ${item.name} to cart`},
     })
 }
 export const deleteItem = (itemId, price) => (dispatch) =>{
@@ -18,7 +18,7 @@ export const deleteItem = (itemId, price) => (dispatch) =>{
     })
     dispatch({
         type: OPEN_SNACKBAR,
-        payload:'Removed item from cart',
+        payload:{message:'Removed item from cart'},
     })
 }
 export const receiveItems = (items) => {

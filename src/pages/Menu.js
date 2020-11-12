@@ -23,9 +23,9 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import ReactStars from "react-rating-stars-component";
 import EmptyStar from '@material-ui/icons/StarOutlined';
-import FullStar from '@material-ui/icons/Star';
+import FullStar from '@material-ui/icons/Grade';
 import HalfStar from '@material-ui/icons/StarHalf';
-import UserIcon from '@material-ui/icons/AccountCircle';
+import UserIcon from '@material-ui/icons/People';
 
 const useStyles = makeStyles((theme) => ({
   gradient: {
@@ -108,13 +108,13 @@ class Menu extends React.Component {
           <Grid justify='center' align='center' container spacing={2} style={{padding:"2em",overflowY:"hidden"}}>
             {this.state.SelectedMenuItems.map(item => (
               <Grid key={item.name} md={4} sm={8} xs={12}>
-                <Card  style={{borderRadius:'20px',width:'350px', marginBottom:'1em'}}>
+                <Card  style={{borderRadius:'20px',width:'300px', marginBottom:'1em'}}>
                   <CardContent>
                     <Paper elevation={2} style={{borderRadius:'20px',padding:'.5em',backdropFilter: 'saturate(180%) blur(20px)',background:'rgba(255,255,255,0.4)'}}>
                     <Typography variant="h5" component="h2">
                           {item.name}
                         </Typography> 
-                        <Typography variant="body2" color="textPrimary" component="h5">
+                        <Typography variant="h7" color="textPrimary" component="p">
                           {item.price} Birr
                         </Typography>
                         <div style={{display:'flex', alignItems:'center',justifyContent:'center'}}>
@@ -123,34 +123,39 @@ class Menu extends React.Component {
                           value={4.5}
                           // onChange={ratingChanged}
                           style={{margin:'auto'}}
-                          size={30}
+                          size={27}
                           isHalf={true}
                           emptyIcon={<EmptyStar/>}
                           halfIcon={<HalfStar/>}
                           fullIcon={<FullStar/>}
                           activeColor="#ffd700"
-                        />10<UserIcon/>
+                        /> <Typography>4.5</Typography>
                         </div>
                     </Paper>  
                     </CardContent>
                     <CardMedia
                       component="img"
                       alt={item.name}
-                      height="250"
-                      width='200'
+                      height="178px"
+                      style={{width:'178px'}}
                       image={item.img}
                       title={item.name}
                     />
                   <CardActions>
-                  {this.props.isAuthenticated
+                  
+                    {this.props.cart[item.id]
+                    ?<>
+                    <Button style={{borderRadius:'20px', margin:'auto'}}  onClick={() => this.props.deleteItem(item.id, item.price)}  color='secondary' variant='contained'>Remove From Cart</Button>
+                    </>
+                    :<>
+                    {this.props.isAuthenticated
                     ?<Link to='/checkout'>
                       <Button style={{borderRadius:'20px'}} onClick={() => this.props.addtoCart(item)}  variant='contained' color='primary'>Order</Button>
                     </Link> 
                     :  <Button onClick={() => this.props.toggleSignupDialog()} style={{borderRadius:'20px'}} variant='contained' color='primary'>Order</Button>
                     }
-                    {this.props.cart[item.id]
-                    ?<Button style={{borderRadius:'20px', marginLeft:'auto'}}  onClick={() => this.props.deleteItem(item.id, item.price)}  color='secondary' variant='contained'>Remove From Cart</Button>
-                    :<Button style={{borderRadius:'20px', marginLeft:'auto'}} color='secondary'  onClick={() => this.props.addtoCart(item)}  variant='contained'>Add to Cart</Button>
+                    <Button style={{borderRadius:'20px', marginLeft:'auto'}} color='secondary'  onClick={() => this.props.addtoCart(item)}  variant='contained'>Add to Cart</Button>
+                    </>
                     }
                   </CardActions>
                 </Card>

@@ -20,6 +20,7 @@ class Navbar extends Component {
         this.state = {
             open: false,
             openSignup: false,
+            message:'',
         }
     }
     // Order verification dialog
@@ -45,7 +46,22 @@ class Navbar extends Component {
             openSignup:false
         })
       };
-
+      componentDidUpdate(prevProps) {
+        const { message } = this.props;
+        if (message !== prevProps.message) {
+          if (message.name) this.setState({message: `Name: ${message.name.join()}`});
+          if (message.email) this.setState({message: `Email: ${message.email.join()}`}) 
+          if (message.message) this.setState({message: `${message.message}`})
+          if (message.non_field_errors) this.setState({message:message.non_field_errors.join() }) 
+          if (message.username) this.setState({message: message.username.join()});
+        }
+    
+        // if (message !== prevProps.message) {
+        //   if (message.deleteLead) alert.success(message.deleteLead);
+        //   if (message.addLead) alert.success(message.addLead);
+        //   if (message.passwordNotMatch) alert.error(message.passwordNotMatch);
+        // }
+      }
     render() {
         return (
             <>
@@ -57,7 +73,7 @@ class Navbar extends Component {
                     open={this.props.openSnackbar}
                     autoHideDuration={3000}
                     onClose={this.props.CloseSnack}
-                    message={this.props.message}
+                    message={this.state.message}
                     action={
                     <React.Fragment>
                         <IconButton onClick={this.props.CloseSnack} size="small" aria-label="close" color="inherit" >

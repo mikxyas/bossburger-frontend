@@ -54,6 +54,10 @@ export const register = ({email, name, password, phone_number}) => (dispatch) =>
             dispatch({
                 type: REGISTER_FAIL
             });
+            dispatch({
+                type:OPEN_SNACKBAR,
+                payload:err.response.data
+            })
         });
 };
 
@@ -79,7 +83,7 @@ export const login = ({email, password}) => (dispatch) => {
             const error = err.response.data
             dispatch({
                 type:OPEN_SNACKBAR,
-                payload:JSON.stringify(error.password)
+                payload:error
             })
             // dispatch(returnErrors(err.response.data, err.response.status));
             dispatch({
@@ -121,10 +125,10 @@ export const logout = () => (dispatch, getState) => {
     return config;
   };
 
-  export const toggleSignupDialog = () => {
-      return{
+  export const toggleSignupDialog = () => (dispatch) => {
+      dispatch({
             type: TOGGLE_SIGNIN_DIALOG
-      }
+      })
   }
 
   export const setDialogState = (dialogState) => {
