@@ -18,7 +18,8 @@ const initialState = {
     isAuthenticated:null,
     isLoading: false,
     openSigninDialog: false,
-    UserLocation:null
+    UserLocation:null,
+    isAdmin:false
 }
 
 export default function (state=initialState, action) {
@@ -34,6 +35,7 @@ export default function (state=initialState, action) {
                 user: action.payload,
                 isAuthenticated: true,
                 isLoading: false,
+                isAdmin:action.payload.is_admin
             }
         case LOGIN_SUCCESS:
         case REGISTER_SUCCESS:

@@ -1,4 +1,4 @@
-import {LOCATION_LOADED,TOGGLE_LOCATION_DIALOG, DELETE_LOC,LOADING_LOCATION, LOCATION_ERROR, LOCATION_CREATED} from './types'
+import {LOCATION_LOADED,TOGGLE_LOCATION_DIALOG,ADMIN_LOCATION_LOADED, DELETE_LOC,LOADING_LOCATION, LOCATION_ERROR, LOCATION_CREATED} from './types'
 import {tokenConfig} from './auth';
 import axios from 'axios'
 
@@ -21,6 +21,27 @@ export const loadLoc = () => (dispatch, getState) => {
             const length = res.data.length
             dispatch({
                 type: LOCATION_LOADED,
+                payload: sortedbyId,
+                length:length
+            });
+        })
+        .catch((err) => {
+            // dispatch(returnErrors(err.response.data, err.response.status))
+            console.log(err)
+            dispatch({
+                type: LOCATION_ERROR,
+            })
+        })
+}
+
+export const loadAdminLoc = () => (dispatch, getState) => {
+    axios
+        .get('https://bossburgeraddis.herokuapp.com/api/admin/locations', tokenConfig(getState))
+        .then((res) => {
+            const sortedbyId = convertArrayToObject(res.data, 'id')
+            const length = res.data.length
+            dispatch({
+                type: ADMIN_LOCATION_LOADED,
                 payload: sortedbyId,
                 length:length
             });

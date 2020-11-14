@@ -5,11 +5,13 @@ import {LOCATION_LOADED,
     LOCATION_ERROR, 
     LOCATION_CREATED,
     LOGIN_SUCCESS,
+    ADMIN_LOCATION_LOADED,
     DELETE_LOC,
     SET_DIALOG_STATE} from '../actions/types'
 
 const initialState = {
     locations:{},
+    Adminlocations:{},
     locLoaded:false,
     openLocationDialog: false,
     locLength:0,
@@ -23,6 +25,11 @@ export default function (state=initialState, action){
                 locLoaded:true,
                 locations:{ ...action.payload},
                 locLength:action.length
+            }
+        case ADMIN_LOCATION_LOADED:
+            return {
+                ...state,
+                Adminlocations:{...action.payload}
             }
         case LOCATION_CREATED:
             return {

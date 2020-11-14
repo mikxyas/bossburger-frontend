@@ -9,7 +9,7 @@ import SigninDialog from './SigninDialog';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import AccountCircleIcon from '@material-ui/icons/AccountBoxSharp';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import IconButton from '@material-ui/core/IconButton';
 import {logout} from '../actions/auth'
 import Menu from '@material-ui/core/Menu';
@@ -90,8 +90,8 @@ function MenuAppBar(props) {
            
               <div className={classes.login}>
               <div style={{marginRight:'.7em'}}>           
-            <Button variant='outlined' iconStart aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
-              <AccountCircleIcon/>
+            <Button variant='outlined' startIcon={<AccountCircleIcon/>} aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+              
               {props.user.name}
             </Button>
             <Menu

@@ -43,7 +43,10 @@ class LocationDialog extends Component {
 
     fetchLocName = () => {
         const DistanceInKM = parseInt(this.distanceInKmBetweenEarthCoordinates(8.9974982, 38.7847816, this.props.coords.latitude, this.props.coords.longitude))
-        var cords = this.formatDegrees(this.props.coords.latitude, false) + ',' + this.formatDegrees(this.props.coords.longitude, true)
+        var latitude = this.formatDegrees(this.props.coords.latitude, false)
+        var longitude = this.formatDegrees(this.props.coords.longitude, true)
+        var cords = latitude + ',' + longitude
+        console.log(cords)
         var url = `https://api.opencagedata.com/geocode/v1/json?key=2a607809622a49d0a5697c3d524f8973&q=${cords}`
         if(DistanceInKM <= 3 && DistanceInKM > 0){
             this.setState({

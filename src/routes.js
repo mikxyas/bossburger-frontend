@@ -13,6 +13,7 @@ import Giveaway from './pages/Giveaway'
 import Register from './pages/Register'
 import Checkout from './pages/Checkout'
 import Orders from './pages/Orders'
+import Boss from './pages/Boss';
 
 const Main = () => {
     return(
@@ -29,6 +30,7 @@ const Main = () => {
       <Route exact path='/register' component={Register}></Route>
       <Route exact path='/checkout' component={Checkout}></Route>
       <Route exact path='/orders' component={Orders}></Route>
+      <Route exact path='/boss' component={Boss}></Route>
     </Switch>
     )  
 }

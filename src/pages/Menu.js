@@ -107,8 +107,8 @@ class Menu extends React.Component {
           
           <Grid justify='center' align='center' container spacing={2} style={{padding:"2em",overflowY:"hidden"}}>
             {this.state.SelectedMenuItems.map(item => (
-              <Grid key={item.name} md={4} sm={8} xs={12}>
-                <Card  style={{borderRadius:'20px',width:'300px', marginBottom:'1em'}}>
+              <Grid item key={item.name} md={4} sm={8} xs={12}>
+                <Card variant='outlined' style={{borderRadius:'20px',width:'300px', marginBottom:'1em'}}>
                   <CardContent>
                     <Paper elevation={2} style={{borderRadius:'20px',padding:'.5em',backdropFilter: 'saturate(180%) blur(20px)',background:'rgba(255,255,255,0.4)'}}>
                     <Typography variant="h5" component="h2">
