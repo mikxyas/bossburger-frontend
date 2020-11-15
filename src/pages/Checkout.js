@@ -95,6 +95,11 @@ class Checkout extends Component {
         this.setState({
             order_type: e.target.value
         })
+        if(e.target.value === 'PCK'){
+            this.setState({
+                delivery_price:0
+            })
+        }
     } 
     handlePhone = (e) => {
         this.setState({
@@ -246,7 +251,7 @@ class Checkout extends Component {
                 <Typography align='center' style={{padding:'.3em'}}>
                     Food Price: {this.props.TotalPrice}
                     <br/>
-                    {this.state.activeListItem >= 1
+                    {this.state.activeListItem >= 1 && this.state.order_type === 'DVY'
                     ?<>Delivery Price: {this.props.locations[this.state.activeListItem].locPrice} <br/> Total Price: {this.props.locations[this.state.activeListItem].locPrice + this.props.TotalPrice}</>
                     :null
                     }

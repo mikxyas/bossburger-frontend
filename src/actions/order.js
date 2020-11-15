@@ -1,7 +1,17 @@
 import {PLACE_ORDER,UPDATED_ORDER, ORDER_ERROR, OPEN_SNACKBAR,ORDER_LOADED,LOADED_ADMIN_ORDERS} from './types';
 import {tokenConfig} from './auth'
 import axios from 'axios'
-import {convertArrayToObject} from './locations'
+// import {convertArrayToObject} from './locations'
+
+export const convertArrayToObject = (array, key) => {
+    const initialValue = {};
+    return array.reduce((obj, item) => {
+      return {
+        ...obj,
+        [item[key]]: item,
+      };
+    }, initialValue);
+  };
 export const placeOrder = (order) => (dispatch,getState) =>{
     const body = order
     axios
@@ -23,6 +33,7 @@ export const placeOrder = (order) => (dispatch,getState) =>{
 
 export const updateOrder = (order) => (dispatch,getState) =>{
     order.delivered = true
+    order.time_of_delivery = Date.now()
     const body = order
     axios
         .put(`https://bossburgeraddis.herokuapp.com/api/admin/order/${order.id}/`, body, tokenConfig(getState))
@@ -37,7 +48,7 @@ export const updateOrder = (order) => (dispatch,getState) =>{
             })
         })
             .catch((err) => {
-            console.log(err)
+            console.log(err.response.data)
             // dispatch(returnErrors(err.response.data, err.response.status));
             dispatch({
                 type: ORDER_ERROR

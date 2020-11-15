@@ -8,9 +8,30 @@ import {LOGIN_SUCCESS,
         SET_DIALOG_STATE,
         REGISTER_FAIL,
         OPEN_SNACKBAR,
+        ALL_USERS_LOADED,
         REGISTER_SUCCESS} from './types';
 import axios from 'axios'
-import {loadLoc} from './locations'
+import {convertArrayToObject} from './locations'
+
+export const loadAllUser = () => (dispatch, getState) => {
+    axios
+        .get('https://bossburgeraddis.herokuapp.com/api/admin/auth/users', tokenConfig(getState))
+        .then((res) => {
+            const sortedbyId = convertArrayToObject(res.data, 'id')
+            dispatch({
+                type: ALL_USERS_LOADED,
+                payload: sortedbyId
+            });
+        })
+        .catch((err) => {
+            console.log(err.response.data)
+            dispatch({
+                type: AUTH_ERROR,
+            })
+        })
+    
+    
+}
 
 export const loadUser = () => (dispatch, getState) => {
     dispatch({type: USER_LOADING});

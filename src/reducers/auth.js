@@ -8,7 +8,8 @@ import {
     REGISTER_SUCCESS,
     REGISTER_FAIL,
     TOGGLE_SIGNIN_DIALOG,
-    SET_DIALOG_STATE
+    SET_DIALOG_STATE,
+    ALL_USERS_LOADED
   } from '../actions/types';
   
 
@@ -19,11 +20,19 @@ const initialState = {
     isLoading: false,
     openSigninDialog: false,
     UserLocation:null,
-    isAdmin:false
+    isAdmin:false,
+    AllUsers:{}
 }
 
 export default function (state=initialState, action) {
     switch(action.type) {
+        case ALL_USERS_LOADED:
+            return{
+                ...state,
+                AllUsers:{
+                    ...action.payload
+                }
+            }
         case USER_LOADING:
             return{
                 ...state,

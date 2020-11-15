@@ -3,25 +3,33 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types'
 import {loadOrdersForAdmin, updateOrder} from '../actions/order'
 import {loadAdminLoc} from '../actions/locations'
+import {loadAllUser} from '../actions/auth'
 import {Badge, Button, Chip, Divider, ListItemText, Paper, Typography} from '@material-ui/core'
 import UserIcon from '@material-ui/icons/AccountCircle'
 import {getMenuItems} from '../actions/MenuItems'
 import OpenInNewIcon from '@material-ui/icons/OpenInNew';
 import QueryBuilderIcon from '@material-ui/icons/QueryBuilder';
+import Collapse from '@material-ui/core/Collapse'
+import DownIcon from '@material-ui/icons/ArrowDropDown'
+import UpIcon from '@material-ui/icons/ArrowDropUp'
+
 
 class Boss extends Component {
   constructor(props){
     super(props);
     this.state={
-      currentDate: Date()
+      collapse: null,
+      LocCollapse: null
     }
   }
     static propTypes = {
         isAdmin: PropTypes.bool.isRequired,
-        orders: PropTypes.object.isRequired,
-        locations: PropTypes.object.isRequired,
+        // orders: PropTypes.object.isRequired,
+        // AllUsers: PropTypes.object.isRequired,
+        // locations: PropTypes.object.isRequired,
         loadOrdersFromAdmin: PropTypes.func.isRequired,
         loadAdminLoc: PropTypes.func.isRequired,
+        loadAllUser: PropTypes.func.isRequired,
         getMenuItems: PropTypes.func.isRequired,
         MenuItems: PropTypes.array.isRequired
     }
@@ -83,11 +91,33 @@ class Boss extends Component {
         }
       return time;
     }
+    handleCollapse = (id) => {
+      if(this.state.collapse != id){
+        this.setState({
+            collapse:id,
+        })
+    }else{
+        this.setState({
+            collapse:null
+        })
+    } 
+    }
+    handleLocCollapse = (id) => {
+      if(this.state.LocCollapse != id){
+        this.setState({
+            LocCollapse:id,
+        })
+    }else{
+        this.setState({
+            LocCollapse:null
+        })
+    } 
+    }
     componentDidMount = async() => {
       try{
         await this.props.loadAdminLoc()
         await this.props.loadOrdersForAdmin()
-        
+        await this.props.loadAllUser()
         await this.props.getMenuItems()
       }
       catch(error){
@@ -102,26 +132,60 @@ class Boss extends Component {
               {Object.keys(this.props.orders).map(id => (
                   <Paper key={id} style={{width:'350px',marginBottom:'1em', padding:'1em'}}>
                     <Chip style={{marginLeft:'100px'}} icon={<QueryBuilderIcon/>} label={this.timeSince(this.props.orders[id].time_of_order)}/>
-                    <div style={{display:'flex', marginBottom:'.5em',justifyContent:'space-between', alignItems:'center'}}>
-                      <div>
-                      <Typography variant='h6'>User Phone</Typography>
-                      <Typography variant='h7'>{this.props.orders[id].customer_phone}</Typography>
+                    <Collapse in={this.state.collapse === id} collapsedHeight={58}>
+                      <div style={{display:'flex', marginBottom:'.5em',justifyContent:'space-between', alignItems:'center'}}>
+                        <div>
+                        <Typography variant='h6'>{this.props.AllUsers[this.props.orders[id].customer].name}</Typography>
+                        <Typography variant='h7'>{this.props.orders[id].customer_phone}</Typography>
+                        </div>
+                        <Button variant='outlined' onClick={() => this.handleCollapse(id)} endIcon={this.state.collapse?<UpIcon/> :<DownIcon/>}>Details</Button>
                       </div>
-                      <Button variant='outlined' endIcon={<UserIcon/>}>About User</Button>
-                    </div>
+                      <Paper variant='outlined' style={{padding:'0.5em', margin:'0.5em'}}>
+                        <div style={{display:'flex', marginTop:'.5em',marginBottom:'.5em',justifyContent:'center',flexDirection:'column', alignItems:'center'}}>
+                          <Typography variant='subtitle2' style={{alignSelf:'flex-start', display:'flex', justifyContent:'space-between', width:'100%'}}><span>Customer Name</span> {this.props.AllUsers[this.props.orders[id].customer].name}</Typography>
+                          <Typography variant='subtitle2' style={{alignSelf:'flex-start', display:'flex', justifyContent:'space-between', width:'100%'}}><span>Email</span> {this.props.AllUsers[this.props.orders[id].customer].email}</Typography>
+                          <Divider style={{margin:'.5em'}}/>
+                          <Typography variant='subtitle2' style={{alignSelf:'flex-start',  display:'flex', justifyContent:'space-between', width:'100%'}}><span>Phone Registered</span> {this.props.AllUsers[this.props.orders[id].customer].phone_number}</Typography>
+                          <Typography variant='subtitle2' style={{alignSelf:'flex-start',  display:'flex', justifyContent:'space-between', width:'100%'}}><span>Phone Given</span> {this.props.orders[id].customer_phone}</Typography>
+                        
+                        </div>
+                    </Paper>
+                    </Collapse>
+                    
                     <Divider/>
+                    
                     {this.props.orders[id].order_type === 'DVY'
-                    ?<div style={{display:'flex', marginBottom:'.5em',justifyContent:'space-between', alignItems:'center'}}>
-                    <div>
-                      <Typography variant='h6'>{this.props.locations[this.props.orders[id].customer_location].neighborhood}</Typography>
-                      <Typography variant='h7'>{this.props.locations[this.props.orders[id].customer_location].locDistance + 'Km |' + this.props.orders[id].delivery_price + 'Birr' }</Typography>
-                    </div>
-                    {/* <ListItemText   secondary={}/> */}
-                    <a target='__blank__' href={`https://www.google.com/maps/search/?api=1&query=${this.props.locations[this.props.orders[id].customer_location].latitude},${this.props.locations[this.props.orders[id].customer_location].longitude}`}>
-                    <Button variant='outlined' endIcon={<OpenInNewIcon/>}>Get Link </Button>
-                    </a>
-                  </div>
+                    ?<>
+                    <Collapse in={this.state.LocCollapse === id} collapsedHeight={58}>
+                      <div style={{display:'flex', marginBottom:'.5em',justifyContent:'space-between', alignItems:'center'}}>
+                        <div>
+                          <Typography variant='h6'>{this.props.locations[this.props.orders[id].customer_location].neighborhood}</Typography>
+                          <Typography variant='h7'>{this.props.locations[this.props.orders[id].customer_location].locDistance + 'Km |' + this.props.orders[id].delivery_price + 'Birr' }</Typography>
+                        </div>
+                        {/* <ListItemText   secondary={}/> */}
+                        {/* <a target='__blank__' href={`https://www.google.com/maps/search/?api=1&query=${this.props.locations[this.props.orders[id].customer_location].latitude},${this.props.locations[this.props.orders[id].customer_location].longitude}`}> */}
+                      <Button variant='outlined' onClick={() => this.handleLocCollapse(id)} endIcon={this.state.LocCollapse?<UpIcon/> :<DownIcon/>}>Details</Button>
+                        {/* </a> */}
+                      </div>
+                      <Paper variant='outlined' style={{padding:'0.5em', margin:'0.5em'}}>
+                        <div style={{display:'flex', marginTop:'.5em',marginBottom:'.5em',justifyContent:'center',flexDirection:'column', alignItems:'center'}}>
+                          <Typography variant='subtitle2' style={{alignSelf:'flex-start', display:'flex', justifyContent:'space-between', width:'100%'}}><span>Location Name</span> {this.props.locations[this.props.orders[id].customer_location].neighborhood}</Typography>
+                          <Typography variant='subtitle2' style={{alignSelf:'flex-start', display:'flex', justifyContent:'space-between', width:'100%'}}><span>User Assigned Name</span> {this.props.locations[this.props.orders[id].customer_location].locName}</Typography>
+                          <Typography variant='subtitle2' style={{alignSelf:'flex-start', display:'flex', justifyContent:'space-between', width:'100%'}}><span>Location Description</span> {this.props.locations[this.props.orders[id].customer_location].locDesc}</Typography>
+                          <Divider style={{margin:'.5em'}}/>
+                          <Typography variant='subtitle2' style={{alignSelf:'flex-start', display:'flex', justifyContent:'space-between', width:'100%'}}><span>Location Distance</span> {this.props.locations[this.props.orders[id].customer_location].locDistance + 'KM'}</Typography>
+                          <Typography variant='subtitle2' style={{alignSelf:'flex-start', display:'flex', justifyContent:'space-between', width:'100%'}}><span>Location Price</span> {this.props.locations[this.props.orders[id].customer_location].locPrice + 'Birr'}</Typography>
+                          <Divider style={{margin:'.5em'}}/>
+                          <Typography variant='subtitle2' style={{alignSelf:'flex-start', display:'flex', justifyContent:'space-between',alignItems:'center', width:'100%'}}><span>Google Maps Link</span> 
+                          <a target='__blank__' href={`https://www.google.com/maps/search/?api=1&query=${this.props.locations[this.props.orders[id].customer_location].latitude},${this.props.locations[this.props.orders[id].customer_location].longitude}`}>
+                            <Button variant='outlined' endIcon={<OpenInNewIcon/>}>Map</Button>
+                          </a>
+                          </Typography>
 
+                        </div>
+                    </Paper>
+                    </Collapse>
+                    </>
                     :<Typography align='center'>Order type is Pickup</Typography>
                     }
                     
@@ -164,6 +228,7 @@ const mapStateToProps = state => ({
     orders: state.order.AllOrders,
     locations: state.locations.Adminlocations,
     MenuItems: state.MenuItems.MenuItems,
-    itemsLoaded: state.MenuItems.itemsLoaded
+    itemsLoaded: state.MenuItems.itemsLoaded,
+    AllUsers: state.auth.AllUsers
 })
-export default connect(mapStateToProps, {loadOrdersForAdmin, getMenuItems,loadAdminLoc, updateOrder})(Boss)
+export default connect(mapStateToProps, {loadOrdersForAdmin, loadAllUser,getMenuItems,loadAdminLoc, updateOrder})(Boss)

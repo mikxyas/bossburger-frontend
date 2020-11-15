@@ -8,13 +8,6 @@ const initialState = {
 
 export default function(state=initialState, action){
     switch(action.type){
-        case LOADED_ADMIN_ORDERS:
-            return{
-                ...state,
-                AllOrders:{
-                    ...action.payload
-                }
-            }
         case UPDATED_ORDER:
             delete state.AllOrders[action.payload]
             return{
@@ -30,7 +23,15 @@ export default function(state=initialState, action){
             }
         case ORDER_LOADED:
             return{
+                ...state,
                 orders:{
+                    ...action.payload
+                }
+            }
+        case LOADED_ADMIN_ORDERS:
+            return{
+                ...state,
+                AllOrders:{
                     ...action.payload
                 }
             }

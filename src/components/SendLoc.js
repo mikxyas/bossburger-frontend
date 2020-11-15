@@ -11,7 +11,7 @@ class SendLoc extends Component {
     render() {
         return (
             <div>
-                <Button onClick={() => this.props.createLoc(this.props.loc)} variant='contained' color='primary'>Create Location</Button>
+                <Button fullWidth onClick={() => this.props.createLoc(this.props.loc)} variant='contained' color='primary'>Create Location</Button>
             </div>
         )
     }
