@@ -68,7 +68,7 @@ class Checkout extends Component {
             quantities: {...this.props.Amount},
             customer_phone:this.state.customer_phone,
             order_type:this.state.order_type,
-            time_of_delivery: "09:18:24",
+            time_delivered: new Date(),
             Food_price: this.props.TotalPrice,
             delivery_price:this.state.loc_price
         }
