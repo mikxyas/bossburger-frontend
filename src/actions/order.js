@@ -23,7 +23,7 @@ export const placeOrder = (order) => (dispatch,getState) =>{
             });
         })
             .catch((err) => {
-            console.log(err)
+            // console.log(err.response.data)
             // dispatch(returnErrors(err.response.data, err.response.status));
             dispatch({
                 type: ORDER_ERROR
@@ -33,10 +33,10 @@ export const placeOrder = (order) => (dispatch,getState) =>{
 
 export const updateOrder = (order) => (dispatch,getState) =>{
     order.delivered = true
-    order.time_of_delivery = Date.now()
+    order.time_delivered = new Date()
     const body = order
     axios
-        .put(`https://bossburgeraddis.herokuapp.com/api/admin/order/${order.id}/`, body, tokenConfig(getState))
+        .put(`https://bossburgeraddis.herokuapp.com/api/admin/orders/${order.id}/`, body, tokenConfig(getState))
         .then((res) => {
             dispatch({
                 type: UPDATED_ORDER,
@@ -78,7 +78,7 @@ export const loadOrders = () => (dispatch, getState) => {
 
 export const loadOrdersForAdmin = () => (dispatch, getState) => {
     axios
-        .get('https://bossburgeraddis.herokuapp.com/api/admin/order', tokenConfig(getState))
+        .get('https://bossburgeraddis.herokuapp.com/api/admin/orders', tokenConfig(getState))
         .then((res) => {
             const sortedbyId = convertArrayToObject(res.data, 'id')
             dispatch({

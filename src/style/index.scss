@@ -29,7 +29,7 @@
     height: 100%;
     margin: 0;
     font-family: Roboto, sans-serif;
-    background: rgb(253, 252, 252);
+    background-color: #ffffff;
     color: $textColor;
     overflow-x: hidden;
     width: 100%;
@@ -63,6 +63,77 @@ h2, h3, h5{
         padding: 0.2rem 1rem;
     }
 }
+
+.v-header{
+    position: relative;
+    height:calc(100vh - 64px);
+    
+    color:#fff;
+    z-index: 1;
+  }
+  
+  .container{
+    height: 70vh;
+    max-width:100%;
+    display:flex;
+    align-items:center;
+    justify-content: flex-end;
+    padding-left:1rem;
+    padding-right:0rem;
+    margin:auto;
+    text-align:center;
+  }
+  
+.fullscreen-video-wrap img{
+    clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 25% 100%, 0% 50%);
+    // padding:2em;
+    // position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+  }
+  
+.hero-brand{
+    margin-top: -7em;
+    height:400px;
+    width:650px;
+    backdrop-filter: saturate(110%) blur(0px);
+    background-image:url(./images/bblogo.png) ;
+  }
+  .header-overlay{
+    height:100%;
+    position: absolute;
+    top:0;
+    left:0;
+    width:100%;
+    z-index:1;
+    // background: rgba(63, 5, 5, 0.719);
+    // backdrop-filter: saturate(110%) blur(0px);
+  }
+.hero-subtitle{
+    color:rgba(0,0,0,0.8);
+}
+.header-content{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    z-index:2;
+  }
+  
+  .header-content h1{
+    font-size:50px;
+    margin-bottom:0;
+  }
+  
+  .header-content p{
+    font-size:1.5rem;
+    display:block;
+    padding-bottom:2rem;
+  }
+  
 
 a {
     cursor: pointer;

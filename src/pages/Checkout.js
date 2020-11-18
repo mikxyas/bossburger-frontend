@@ -44,6 +44,7 @@ class Checkout extends Component {
         toggleLocationDialog:PropTypes.func.isRequired,
         TotalPrice:PropTypes.number.isRequired,
         locLength:PropTypes.number.isRequired,
+        user:PropTypes.object.isRequired
       }
     constructor(props){
         super(props)
@@ -62,6 +63,7 @@ class Checkout extends Component {
         })
         const order = {
             customer_location: parseInt(this.state.activeListItem),
+            // customer:this.props.user.id,
             order: [...orderId],
             quantities: {...this.props.Amount},
             customer_phone:this.state.customer_phone,
@@ -71,7 +73,7 @@ class Checkout extends Component {
             delivery_price:this.state.loc_price
         }
         this.props.placeOrder(order)
-        // console.log(JSON.stringify(order))
+        console.log(order)
     }
     handleCollapse = () => {
         if(this.state.collapse === true){
@@ -275,6 +277,7 @@ const mapStateToProps = state =>({
     TotalPrice: state.cart.TotalPrice,
     locLength: state.locations.locLength,
     orderPlaced: state.order.orderPlaced,
+    user: state.auth.user
 })
       
 export default connect(mapStateToProps, {addAmountof, decreaseAmountof, deleteItem, placeOrder, toggleLocationDialog})(Checkout);

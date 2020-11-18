@@ -40,8 +40,8 @@ const useStyles = makeStyles((theme) => ({
     background:'rgba(255,255,255,0.8)',
     padding:'0em',
     height:'fit-content',
-    border:'none',
     backdropFilter: 'saturate(180%) blur(20px)',
+    bottomBorder:'solid 1px rgba(0,0,0,0.14)',
     boxShadow:'none'
   },
   brandlogo: {

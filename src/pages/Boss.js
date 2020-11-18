@@ -24,14 +24,14 @@ class Boss extends Component {
   }
     static propTypes = {
         isAdmin: PropTypes.bool.isRequired,
-        // orders: PropTypes.object.isRequired,
+        orders: PropTypes.object.isRequired,
         // AllUsers: PropTypes.object.isRequired,
         // locations: PropTypes.object.isRequired,
-        loadOrdersFromAdmin: PropTypes.func.isRequired,
-        loadAdminLoc: PropTypes.func.isRequired,
-        loadAllUser: PropTypes.func.isRequired,
-        getMenuItems: PropTypes.func.isRequired,
-        MenuItems: PropTypes.array.isRequired
+        // loadOrdersFromAdmin: PropTypes.func.isRequired,
+        // loadAdminLoc: PropTypes.func.isRequired,
+        // loadAllUser: PropTypes.func.isRequired,
+        // getMenuItems: PropTypes.func.isRequired,
+        // MenuItems: PropTypes.array.isRequired
     }
     parseDate(input) {
       var parts = input.match(/(\d+)/g);
@@ -115,10 +115,7 @@ class Boss extends Component {
     }
     componentDidMount = async() => {
       try{
-        await this.props.loadAdminLoc()
         await this.props.loadOrdersForAdmin()
-        await this.props.loadAllUser()
-        await this.props.getMenuItems()
       }
       catch(error){
         console.log(error)
@@ -135,17 +132,17 @@ class Boss extends Component {
                     <Collapse in={this.state.collapse === id} collapsedHeight={58}>
                       <div style={{display:'flex', marginBottom:'.5em',justifyContent:'space-between', alignItems:'center'}}>
                         <div>
-                        <Typography variant='h6'>{this.props.AllUsers[this.props.orders[id].customer].name}</Typography>
+                        <Typography variant='h6'>{this.props.orders[id].customer[0].name}</Typography>
                         <Typography variant='h7'>{this.props.orders[id].customer_phone}</Typography>
                         </div>
                         <Button variant='outlined' onClick={() => this.handleCollapse(id)} endIcon={this.state.collapse?<UpIcon/> :<DownIcon/>}>Details</Button>
                       </div>
                       <Paper variant='outlined' style={{padding:'0.5em', margin:'0.5em'}}>
                         <div style={{display:'flex', marginTop:'.5em',marginBottom:'.5em',justifyContent:'center',flexDirection:'column', alignItems:'center'}}>
-                          <Typography variant='subtitle2' style={{alignSelf:'flex-start', display:'flex', justifyContent:'space-between', width:'100%'}}><span>Customer Name</span> {this.props.AllUsers[this.props.orders[id].customer].name}</Typography>
-                          <Typography variant='subtitle2' style={{alignSelf:'flex-start', display:'flex', justifyContent:'space-between', width:'100%'}}><span>Email</span> {this.props.AllUsers[this.props.orders[id].customer].email}</Typography>
+                          <Typography variant='subtitle2' style={{alignSelf:'flex-start', display:'flex', justifyContent:'space-between', width:'100%'}}><span>Customer Name</span> {this.props.orders[id].customer[0].name}</Typography>
+                          <Typography variant='subtitle2' style={{alignSelf:'flex-start', display:'flex', justifyContent:'space-between', width:'100%'}}><span>Email</span> {this.props.orders[id].customer[0].email}</Typography>
                           <Divider style={{margin:'.5em'}}/>
-                          <Typography variant='subtitle2' style={{alignSelf:'flex-start',  display:'flex', justifyContent:'space-between', width:'100%'}}><span>Phone Registered</span> {this.props.AllUsers[this.props.orders[id].customer].phone_number}</Typography>
+                          <Typography variant='subtitle2' style={{alignSelf:'flex-start',  display:'flex', justifyContent:'space-between', width:'100%'}}><span>Phone Registered</span> {this.props.orders[id].customer[0].phone_number}</Typography>
                           <Typography variant='subtitle2' style={{alignSelf:'flex-start',  display:'flex', justifyContent:'space-between', width:'100%'}}><span>Phone Given</span> {this.props.orders[id].customer_phone}</Typography>
                         
                         </div>
@@ -159,8 +156,8 @@ class Boss extends Component {
                     <Collapse in={this.state.LocCollapse === id} collapsedHeight={58}>
                       <div style={{display:'flex', marginBottom:'.5em',justifyContent:'space-between', alignItems:'center'}}>
                         <div>
-                          <Typography variant='h6'>{this.props.locations[this.props.orders[id].customer_location].neighborhood}</Typography>
-                          <Typography variant='h7'>{this.props.locations[this.props.orders[id].customer_location].locDistance + 'Km |' + this.props.orders[id].delivery_price + 'Birr' }</Typography>
+                          <Typography variant='h6'>{this.props.orders[id].customer_location[0].neighborhood}</Typography>
+                          <Typography variant='h7'>{this.props.orders[id].customer_location[0].locDistance + 'Km |' + this.props.orders[id].delivery_price + 'Birr' }</Typography>
                         </div>
                         {/* <ListItemText   secondary={}/> */}
                         {/* <a target='__blank__' href={`https://www.google.com/maps/search/?api=1&query=${this.props.locations[this.props.orders[id].customer_location].latitude},${this.props.locations[this.props.orders[id].customer_location].longitude}`}> */}
@@ -169,15 +166,15 @@ class Boss extends Component {
                       </div>
                       <Paper variant='outlined' style={{padding:'0.5em', margin:'0.5em'}}>
                         <div style={{display:'flex', marginTop:'.5em',marginBottom:'.5em',justifyContent:'center',flexDirection:'column', alignItems:'center'}}>
-                          <Typography variant='subtitle2' style={{alignSelf:'flex-start', display:'flex', justifyContent:'space-between', width:'100%'}}><span>Location Name</span> {this.props.locations[this.props.orders[id].customer_location].neighborhood}</Typography>
-                          <Typography variant='subtitle2' style={{alignSelf:'flex-start', display:'flex', justifyContent:'space-between', width:'100%'}}><span>User Assigned Name</span> {this.props.locations[this.props.orders[id].customer_location].locName}</Typography>
-                          <Typography variant='subtitle2' style={{alignSelf:'flex-start', display:'flex', justifyContent:'space-between', width:'100%'}}><span>Location Description</span> {this.props.locations[this.props.orders[id].customer_location].locDesc}</Typography>
+                          <Typography variant='subtitle2' style={{alignSelf:'flex-start', display:'flex', justifyContent:'space-between', width:'100%'}}><span>Location Name</span> {this.props.orders[id].customer_location[0].neighborhood}</Typography>
+                          <Typography variant='subtitle2' style={{alignSelf:'flex-start', display:'flex', justifyContent:'space-between', width:'100%'}}><span>User Assigned Name</span> {this.props.orders[id].customer_location[0].locName}</Typography>
+                          <Typography variant='subtitle2' style={{alignSelf:'flex-start', display:'flex', justifyContent:'space-between', width:'100%'}}><span>Location Description</span> {this.props.orders[id].customer_location[0].locDesc}</Typography>
                           <Divider style={{margin:'.5em'}}/>
-                          <Typography variant='subtitle2' style={{alignSelf:'flex-start', display:'flex', justifyContent:'space-between', width:'100%'}}><span>Location Distance</span> {this.props.locations[this.props.orders[id].customer_location].locDistance + 'KM'}</Typography>
-                          <Typography variant='subtitle2' style={{alignSelf:'flex-start', display:'flex', justifyContent:'space-between', width:'100%'}}><span>Location Price</span> {this.props.locations[this.props.orders[id].customer_location].locPrice + 'Birr'}</Typography>
+                          <Typography variant='subtitle2' style={{alignSelf:'flex-start', display:'flex', justifyContent:'space-between', width:'100%'}}><span>Location Distance</span> {this.props.orders[id].customer_location[0].locDistance + 'KM'}</Typography>
+                          <Typography variant='subtitle2' style={{alignSelf:'flex-start', display:'flex', justifyContent:'space-between', width:'100%'}}><span>Location Price</span> {this.props.orders[id].customer_location[0].locPrice + 'Birr'}</Typography>
                           <Divider style={{margin:'.5em'}}/>
                           <Typography variant='subtitle2' style={{alignSelf:'flex-start', display:'flex', justifyContent:'space-between',alignItems:'center', width:'100%'}}><span>Google Maps Link</span> 
-                          <a target='__blank__' href={`https://www.google.com/maps/search/?api=1&query=${this.props.locations[this.props.orders[id].customer_location].latitude},${this.props.locations[this.props.orders[id].customer_location].longitude}`}>
+                          <a target='__blank__' href={`https://www.google.com/maps/search/?api=1&query=${this.props.orders[id].customer_location[0].latitude},${this.props.orders[id].customer_location[0].longitude}`}>
                             <Button variant='outlined' endIcon={<OpenInNewIcon/>}>Map</Button>
                           </a>
                           </Typography>
@@ -193,9 +190,9 @@ class Boss extends Component {
                     {/* Order Section */}
                     <Paper variant='outlined' style={{padding:'0.5em', margin:'0.5em'}}>
                       <div style={{display:'flex', marginTop:'.5em',marginBottom:'.5em',justifyContent:'center',flexDirection:'column', alignItems:'center'}}>
-                      {this.props.orders[id].order.map(order => (
+                      {Object.keys(this.props.orders[id].order).map(item => (
                           <>
-                          <Typography variant='subtitle2' style={{alignSelf:'start',display:'flex',justifyContent:'space-between',width:'100%'}}>{this.props.MenuItems[order].name} <span>{  ' X '+this.props.orders[id].quantities[order]}</span></Typography>
+                          <Typography variant='subtitle2' style={{alignSelf:'start',display:'flex',justifyContent:'space-between',width:'100%'}}>{this.props.orders[id].order[item].name} <span>{  ' X '+this.props.orders[id].quantities[this.props.orders[id].order[item].id]}</span></Typography>
                           </>
                         ))}
                         <Divider style={{margin:'.5em'}}/>
@@ -226,9 +223,6 @@ class Boss extends Component {
 const mapStateToProps = state => ({
     isAdmin: state.auth.isAdmin,
     orders: state.order.AllOrders,
-    locations: state.locations.Adminlocations,
-    MenuItems: state.MenuItems.MenuItems,
     itemsLoaded: state.MenuItems.itemsLoaded,
-    AllUsers: state.auth.AllUsers
 })
-export default connect(mapStateToProps, {loadOrdersForAdmin, loadAllUser,getMenuItems,loadAdminLoc, updateOrder})(Boss)
+export default connect(mapStateToProps, {loadOrdersForAdmin, updateOrder})(Boss)
