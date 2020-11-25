@@ -3,13 +3,13 @@ import { makeStyles } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import { useHistory } from 'react-router-dom'
-import MoreVertIcon from '@material-ui/icons/MoreVert';
 import LocalOfferIcon from '@material-ui/icons/LocalOffer';
-import HomeIcon from '@material-ui/icons/Home';
+// import HomeIcon from '@material-ui/icons/Men';
 import EventIcon from '@material-ui/icons/Event';
-import CardGiftCardIcon from '@material-ui/icons/CardGiftcard';
+import MoreIcon from '@material-ui/icons/MoreVert';
 import FastfoodIcon from '@material-ui/icons/Fastfood';
-
+import MenuBookIcon from '@material-ui/icons/MenuBook';
+import BtmNavMoreBtn from './BtmNavMoreBtn'
 
 const useStyles = makeStyles({
   root: {
@@ -31,11 +31,12 @@ export default function BottomNav() {
 
   return (
     <BottomNavigation  showLabels value={value} onChange={handleChange} className={classes.root}>
-        {/* <BottomNavigationAction label="Home" value="" icon={<HomeIcon />} /> */}
-        <BottomNavigationAction  label={<span style={{fontSize:'18px'}}>Order</span>} value="order" icon={<FastfoodIcon fontSize='medium'/>} />
-        <BottomNavigationAction label={<span style={{fontSize:'18px'}}>Offers</span>} value="offers" icon={<LocalOfferIcon fontSize='medium'/>} />
+        <BottomNavigationAction label={<span style={{fontSize:'18px'}}>Menu</span>} value="menu" icon={<MenuBookIcon />} />
+        <BottomNavigationAction  label={<span style={{fontSize:'18px'}}>Delivery</span>} value="order" icon={<FastfoodIcon fontSize='medium'/>} />
+        {/* <BottomNavigationAction label={<span style={{fontSize:'18px'}}>Offers</span>} value="offers" icon={<LocalOfferIcon fontSize='medium'/>} /> */}
         <BottomNavigationAction label={<span style={{fontSize:'18px'}}>Events</span>} value="events" icon={<EventIcon fontSize='medium'/>} />
-        <BottomNavigationAction label={<span style={{fontSize:'18px'}}>Giveaways</span>} value="giveaways" icon={<CardGiftCardIcon fontSize='medium'/>} />
+        {/* <BottomNavigationAction label={<span style={{fontSize:'18px'}}>More</span>} value="giveaways" icon={<MoreIcon fontSize='medium'/>} /> */}
+        <BtmNavMoreBtn/>
         {/* <BottomNavigationAction label="More" value="giveaways" icon={<MoreVertIcon />} /> */}
     </BottomNavigation>
   );

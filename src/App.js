@@ -26,6 +26,7 @@ class App extends React.Component{
         <div className='main-container'>
           <Main/>
         </div>
+        <div style={{marginBottom:'5em'}}></div>
       </body>
     </Provider>
   );

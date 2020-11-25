@@ -50,6 +50,7 @@ class Navbar extends Component {
         const { message } = this.props;
         if (message !== prevProps.message) {
           if (message.name) this.setState({message: `Name: ${message.name.join()}`});
+          if (message.customer_phone) this.setState({message: `Phone number: ${message.customer_phone.join()}`});
           if (message.email) this.setState({message: `Email: ${message.email.join()}`}) 
           if (message.message) this.setState({message: `${message.message}`})
           if (message.non_field_errors) this.setState({message:message.non_field_errors.join() }) 

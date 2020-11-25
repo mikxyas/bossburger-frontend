@@ -79,10 +79,12 @@ function MenuAppBar(props) {
     <div className={classes.root}>
       <AppBar className={classes.appbar}  position="fixed">
         <Toolbar id='toolbar'  className={classes.toolBar}>
-            <Button onClick={handleChange} value='order'  className='cont-nav'>Order</Button>
-            <Button onClick={handleChange} value='offers' className='cont-nav'>Offers</Button>
+            <Button onClick={handleChange} value='menu'  className='cont-nav'>Menu</Button>
+            <Button onClick={handleChange} value='order'  className='cont-nav'>Delivery</Button>
             <Button onClick={handleChange} value='events' className='cont-nav'>Events</Button>
-            <Button onClick={handleChange} value='giveaways' className='cont-nav'>giveaways</Button>
+            <Button onClick={handleChange} value='jobs' className='cont-nav'>Jobs</Button>
+            <Button onClick={handleChange} value='services' className='cont-nav'>Services</Button>
+            <Button onClick={handleChange} value='contact' className='cont-nav'>Contact Us</Button>
             <img onClick={handleBrand} value='home' id='brand-pic' className={classes.brandlogo} src='./bblogo.png'/>
             
             {props.user != null

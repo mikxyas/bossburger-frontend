@@ -11,6 +11,9 @@
     }   
 }
 @include mediaMd{
+    &.clipped-header{
+        margin-top: -8em;
+    }
     &.hero-subtitle{
         color:rgba(250, 249, 249, 0.8)
     }
@@ -56,7 +59,9 @@
         width: 100%;
 
     }
-    
+    &.event-content{
+        margin-top:calc(69px);
+    }
     &.offer-display{
         visibility: hidden;
     }
@@ -82,10 +87,28 @@
             font-size: 56px;
         }
    }
+   &.event-content{
+    margin-top:3em;
+}
 }
 
 @include mediaSm{
-    
+    &.event-header-image{
+        width: 400px;
+        height: 250px;
+    }
+    &.event-content-title{
+        font-size: 40px !important;
+    }
+    &.event-content{
+        margin-top:1em;
+    }
+    // &.event-header{
+    //     height: 20vh;
+    // }
+    &.event-header-title{
+        font-size: 30px !important;
+    }
     &.v-header{
         height:55vh;
     }

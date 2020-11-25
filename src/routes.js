@@ -14,6 +14,9 @@ import Register from './pages/Register'
 import Checkout from './pages/Checkout'
 import Orders from './pages/Orders'
 import Boss from './pages/Boss';
+import JobOffers from './pages/JobOffers';
+import MenuFood from './pages/MenuFood';
+import Services from './pages/Services'
 
 const Main = () => {
     return(
@@ -31,6 +34,9 @@ const Main = () => {
       <Route exact path='/checkout' component={Checkout}></Route>
       <Route exact path='/orders' component={Orders}></Route>
       <Route exact path='/boss' component={Boss}></Route>
+      <Route exact path='/jobs' component={JobOffers}></Route>
+      <Route exact path='/menu' component={MenuFood}></Route>
+      <Route exact path='/services' component={Services}></Route>
     </Switch>
     )  
 }

@@ -23,7 +23,11 @@ export const placeOrder = (order) => (dispatch,getState) =>{
             });
         })
             .catch((err) => {
-            // console.log(err.response.data)
+                dispatch({
+                    type: OPEN_SNACKBAR,
+                    payload:err.response.data
+                })
+            console.log(err.response.data)
             // dispatch(returnErrors(err.response.data, err.response.status));
             dispatch({
                 type: ORDER_ERROR

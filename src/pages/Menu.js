@@ -1,18 +1,15 @@
 import React from 'react'
-import {Button} from '@material-ui/core'
+import {AppBar, Button, Box} from '@material-ui/core'
 import Grid from '@material-ui/core/Grid';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import {toggleSignupDialog} from '../actions/auth'
-import {getMenuItems} from '../actions/MenuItems';
+import {getMenuItems, makeAvailable,makeunAvailable,toggleAddMenuItem, deleteMenuItem} from '../actions/MenuItems';
 import {addtoCart, deleteItem} from '../actions/cart'
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import Fab from '@material-ui/core/Fab';
-import FastFoodIcon from '@material-ui/icons/Fastfood';
-import IconButton from '@material-ui/core/IconButton';
-import StarIcon from '@material-ui/icons/Star'
+import AddMenuItem from '../components/AddMenuItem'
 import { Link } from 'react-router-dom';
 import Card from '@material-ui/core/Card';
 import Paper from '@material-ui/core/Paper';
@@ -26,6 +23,8 @@ import EmptyStar from '@material-ui/icons/StarOutlined';
 import FullStar from '@material-ui/icons/Grade';
 import HalfStar from '@material-ui/icons/StarHalf';
 import UserIcon from '@material-ui/icons/People';
+import { Image } from 'cloudinary-react';
+import AddIcon from '@material-ui/icons/Add'
 
 const useStyles = makeStyles((theme) => ({
   gradient: {
@@ -40,6 +39,7 @@ class Menu extends React.Component {
     MenuItems:PropTypes.array.isRequired,
     itemLoading: PropTypes.bool.isRequired,
     isAuthenticated: PropTypes.bool.isRequired,
+    isAdmin: PropTypes.bool.isRequired
   }
     constructor(props){
       super(props);
@@ -82,8 +82,8 @@ class Menu extends React.Component {
     };
     render(){
     return (
-      // Fragment was here
       <div style={{overflow:"hidden"}}>
+        <AddMenuItem/>
         <div style={{display:"flex", alignItems:"center", justifyContent:"center"}}>
           <Tabs
             p={{ xs: 2, sm: 3, md: 4 }}
@@ -91,7 +91,6 @@ class Menu extends React.Component {
             indicatorColor="primary"
             textColor="primary"
             onChange={this.handleChange}
-            aria-label="disabled tabs example"
           >
             <Tab onClick={() => this.FetchBurgers()} label="Burgers"/>
             <Tab onClick={() => this.FetchExtras()} label="Extras"/>
@@ -103,16 +102,24 @@ class Menu extends React.Component {
         <div style={{display:"flex",height:"80vh", alignItems:"center",justifyContent:"center"}}>
         <Loading LoaderIcon={<FastFoodIcon/>} load={this.state.isLoaded}/> 
       </div> */}
-          
-          
+      
+          {this.props.isAdmin
+          ?<Button endIcon={<AddIcon/>} onClick={() => this.props.toggleAddMenuItem()} style={{marginTop:'1em', marginLeft:'1em'}} variant='contained' color='primary'>Add Menu Item</Button>
+          :null
+          }
           <Grid justify='center' align='center' container spacing={2} style={{padding:"2em",overflowY:"hidden"}}>
             {this.state.SelectedMenuItems.map(item => (
-              <Grid item key={item.name} md={4} sm={8} xs={12}>
-                <Card variant='outlined' style={{borderRadius:'20px',width:'300px', marginBottom:'1em'}}>
+              <Grid item key={item.id} md={4} sm={8} xs={12}>
+                <Card variant='outlined' style={{borderRadius:'5px',width:'300px', marginBottom:'0em'}}>
                   <CardContent>
-                    <Paper elevation={2} style={{borderRadius:'20px',padding:'.5em',backdropFilter: 'saturate(180%) blur(20px)',background:'rgba(255,255,255,0.4)'}}>
+                    {item.available
+                    ?null
+                    :<Typography>This item is not available</Typography>
+
+                    }
+                    <Paper elevation={2} style={{borderRadius:'5px',padding:'1em',background:'rgba(255,255,255,0.4)'}}>
                     <Typography variant="h5" component="h2">
-                          {item.name}
+                          <Box fontSize='25'>{item.name}</Box>
                         </Typography> 
                         <Typography variant="h7" color="textPrimary" component="p">
                           {item.price} Birr
@@ -133,14 +140,19 @@ class Menu extends React.Component {
                         </div>
                     </Paper>  
                     </CardContent>
-                    <CardMedia
-                      component="img"
-                      alt={item.name}
-                      height="178px"
-                      style={{width:'178px'}}
-                      image={item.img}
-                      title={item.name}
-                    />
+                    {item.food_type === 'BRG'
+                      ?<Image cloudName='mikiyas' height='178' widht='178' publicId={item.img} secure="true"/>
+                      
+                    //   <CardMedia
+                    //   component="img"
+                    //   alt={item.name}
+                    //   height="178px"
+                    //   style={{width:'178px'}}
+                    //   image={item.food_pic}
+                    //   title={item.name}
+                    // />
+                    :null
+                  }
                   <CardActions>
                   
                     {this.props.cart[item.id]
@@ -150,16 +162,27 @@ class Menu extends React.Component {
                     :<>
                     {this.props.isAuthenticated
                     ?<Link to='/checkout'>
-                      <Button style={{borderRadius:'20px'}} onClick={() => this.props.addtoCart(item)}  variant='contained' color='primary'>Order</Button>
+                      <Button disabled={!item.available} style={{borderRadius:'20px'}} onClick={() => this.props.addtoCart(item)}  variant='contained' color='primary'>Order</Button>
                     </Link> 
-                    :  <Button onClick={() => this.props.toggleSignupDialog()} style={{borderRadius:'20px'}} variant='contained' color='primary'>Order</Button>
+                    :  <Button disabled={!item.available} onClick={() => this.props.toggleSignupDialog()} style={{borderRadius:'20px'}} variant='contained' color='primary'>Order</Button>
                     }
-                    <Button style={{borderRadius:'20px', marginLeft:'auto'}} color='secondary'  onClick={() => this.props.addtoCart(item)}  variant='contained'>Add to Cart</Button>
+                    <Button disabled={!item.available} style={{borderRadius:'20px', marginLeft:'auto'}} color='secondary'  onClick={() => this.props.addtoCart(item)}  variant='contained'>Add to Cart</Button>
                     </>
                     }
                   </CardActions>
                 </Card>
-    
+                {this.props.isAdmin
+                    ?<Paper style={{width:'300px', display:'flex',padding:'.5em',justifyContent:'space-between',borderRadius:'0px 0px 20px 20px'}}>
+                        <Button style={{borderRadius:'20px'}} onClick={() => this.props.deleteMenuItem(item)} variant='outlined' size='small'  color='secondary'>Delete</Button>
+                        {item.available 
+                        ?<Button style={{borderRadius:'20px'}}  size='small' variant='outlined' onClick={() => this.props.makeunAvailable(item)} >Make Unavailable</Button>
+                        :<Button style={{borderRadius:'20px'}}  size='small' variant='outlined' onClick={() => this.props.makeAvailable(item)}>Make Available</Button>
+
+                        }
+                        
+                    </Paper>
+                    :null
+                }
               </Grid>
               ))} 
           </Grid>
@@ -172,6 +195,7 @@ class Menu extends React.Component {
 }
 
 const mapStateToProps = state =>({
+  isAdmin:state.auth.isAdmin,
   isAuthenticated: state.auth.isAuthenticated,
   itemsLoading: state.MenuItems.itemsLoading,
   Burgers: state.MenuItems.MenuItems.filter(item => item.food_type == 'BRG'),
@@ -181,4 +205,4 @@ const mapStateToProps = state =>({
   cart: state.cart.cart
 })
 
-export default connect(mapStateToProps, { getMenuItems, addtoCart, toggleSignupDialog,deleteItem })(Menu);
+export default connect(mapStateToProps, { getMenuItems, makeAvailable,makeunAvailable, addtoCart, deleteMenuItem,toggleAddMenuItem,toggleSignupDialog,deleteItem })(Menu);
