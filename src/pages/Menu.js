@@ -81,24 +81,22 @@ class Menu extends React.Component {
     handleChange = (event, newValue) => {
       this.setState({value: newValue});
     };
-    // handleNewRating = newRating => (item) => {
-    //   console.log(newRating)
-    //   if(item.rating != null){
-    //     item.rating.append(this.props.user.id, newRating)
-    //   }else{
-    //     const userid = this.props.user.id
-    //     item.rating.userid = newRating
-        
-    //   }
-    //   const MenuItem  = JSON.stringify(item)
-    //   this.props.rateItem(MenuItem)
-
-    // }
-    // handleRating = newRating => (item) => {
-    //   console.log(newRating)
-    //   item.rating[this.props.userId] = newRating
-    //   const MenuItem  = JSON.stringify(item)
-    //   this.props.rateItem(MenuItem)
+    
+    // handleRating = item => (newRating) => {
+      // console.log(newRating)
+      // if(item.rating == null){
+      //  const userId = this.props.user.id 
+      // //  item.rating = {}
+      //  const item.rating = {
+      //    [this.props.user.id]: newRating
+      //  }
+        // item.rating.append(toString(userId), toString(newRating))
+      //  `${item.rating.userId}` = JSON.stringify(newRating) 
+      // }
+      // Object.keys.item.rating.map(user=>{})
+      // item.rating[this.props.userId] = newRating
+      // const MenuItem  = JSON.stringify(item)
+      // this.props.rateItem(MenuItem)
     // }
     render(){
     return (
@@ -181,10 +179,7 @@ class Menu extends React.Component {
                           emptyIcon={<EmptyStar/>}
                           halfIcon={<HalfStar/>}
                           fullIcon={<FullStar/>}
-                          onChange={item.rating == null
-                            ?this.handleNewRating(item)
-                            : this.handleRating(item)
-                          }
+                          onChange={this.handleRating(item)}
                           activeColor="#ffd700"
                         /> <Typography>4.5</Typography>
                         </>

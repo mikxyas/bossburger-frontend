@@ -56,7 +56,10 @@ class HomePage extends React.Component{
           
       <div className="header-overlay"></div>
       <div className="header-content text-md-center">
-        <div className='hero-brand'></div>
+        {/* <div className='hero-brand'> */}
+        <Image  cloudName='mikiyas' className='hero-brand' publicId='bblogo_tapaum' height='350' width='635'  secure="true"/>
+
+        {/* </div> */}
         {/* <img className='hero-brand' src='./boss-trns.png'/>  */}
         <Typography variant='h5' className='hero-subtitle'>
           <Box fontWeight={500}> You've had the rest come try the best</Box>

@@ -576,12 +576,9 @@ h2.sm-heading, h3.sm-heading, h5.sm-heading {
 }
 
 .hero-brand {
-  margin-top: -5em;
-  height: 350px;
+  margin-top: -1em;
+  height: 300px;
   width: 635px;
-  -webkit-backdrop-filter: saturate(110%) blur(0px);
-          backdrop-filter: saturate(110%) blur(0px);
-  background-image: url(./images/bblogo.png);
 }
 
 .header-overlay {
@@ -849,9 +846,6 @@ div .btn-group {
     margin-top: -3em;
     height: 230px;
     width: 420px;
-    -webkit-backdrop-filter: saturate(110%) blur(0px);
-            backdrop-filter: saturate(110%) blur(0px);
-    background-image: url(./images/boss-trns.png);
     background-position: center;
     background-size: cover;
   }
@@ -929,9 +923,6 @@ div .btn-group {
     margin-top: -3em;
     height: 150px;
     width: 300px;
-    -webkit-backdrop-filter: saturate(110%) blur(0px);
-            backdrop-filter: saturate(110%) blur(0px);
-    background-image: url(./images/boss-trns.png);
     background-position: center;
     background-size: contain;
   }

@@ -1,5 +1,6 @@
 import axios from 'axios';
-import {GET_MENU_ITEMS,MENUITEM_AVAILABLE,MENUITEM_UNAVAILABLE,TOGGLE_ADD_MENUITEM,OPEN_SNACKBAR,MENUITEM_DELETED,MENUITEM_CREATED, GETTING_MENUITEMS, MENUITEMS_FAILED} from './types';
+import {GET_MENU_ITEMS,ITEM_RATED,
+    MENUITEM_AVAILABLE,MENUITEM_UNAVAILABLE,TOGGLE_ADD_MENUITEM,OPEN_SNACKBAR,MENUITEM_DELETED,MENUITEM_CREATED, GETTING_MENUITEMS, MENUITEMS_FAILED} from './types';
 import {tokenConfig} from './auth'
 import { Menu } from '@material-ui/core';
 
@@ -93,7 +94,7 @@ export const makeunAvailable = (MenuItem) => (dispatch,getState) =>{
 }
 
 export const rateItem = (MenuItem) => (dispatch,getState) =>{
-    const id = MenuItem.rating
+    const id = MenuItem.id
     axios
         .put(`https://bossburgeraddis.herokuapp.com/api/menu/${id}/`, MenuItem,tokenConfig(getState))
         .then((res) => {
@@ -103,12 +104,12 @@ export const rateItem = (MenuItem) => (dispatch,getState) =>{
             //     }
             // };
             dispatch({
-                type: MENUITEM_UNAVAILABLE,
+                type: ITEM_RATED,
                 // payload: id,
             });
             dispatch({
                 type: OPEN_SNACKBAR,
-                payload:{message: "Menu item made Available"}
+                payload:{message: "Menu Item Rated"}
             })
         })
             .catch((err) => {
