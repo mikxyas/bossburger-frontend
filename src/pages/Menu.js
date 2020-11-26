@@ -81,23 +81,22 @@ class Menu extends React.Component {
     handleChange = (event, newValue) => {
       this.setState({value: newValue});
     };
-    
-    // handleRating = item => (newRating) => {
-      // console.log(newRating)
-      // if(item.rating == null){
-      //  const userId = this.props.user.id 
-      // //  item.rating = {}
-      //  const item.rating = {
-      //    [this.props.user.id]: newRating
-      //  }
-        // item.rating.append(toString(userId), toString(newRating))
-      //  `${item.rating.userId}` = JSON.stringify(newRating) 
-      // }
-      // Object.keys.item.rating.map(user=>{})
-      // item.rating[this.props.userId] = newRating
-      // const MenuItem  = JSON.stringify(item)
-      // this.props.rateItem(MenuItem)
-    // }
+    round (value, step) {
+      console.log(value)
+      step || (step = 1.0);
+      var inv = 1.0 / step;
+      console.log(Math.round(value * inv) / inv) 
+      return Math.round(value * inv) / inv;
+  }
+    handleRating = item => (newRating) => {
+      if(item.rating == null){
+        item.rating = new Object()
+      }
+      // var userId = this.props.user.id
+      item.rating[this.props.user.id] = newRating
+      this.props.rateItem(item)
+      // console.log(Object.keys(item.rating).length)
+    }
     render(){
     return (
       <div style={{overflow:"hidden"}}>
@@ -126,7 +125,15 @@ class Menu extends React.Component {
           :null
           }
           <Grid justify='center' align='center' container spacing={2} style={{padding:"2em",overflowY:"hidden"}}>
-            {this.state.SelectedMenuItems.map(item => (
+            {this.state.SelectedMenuItems.map(item => {
+              if(item.rating != null){
+                var rating = 0
+                var sum = 0
+                rating = Object.keys(item.rating).map(userID=> {
+                  return sum += item.rating[userID] 
+                })
+              }
+              return(
               <Grid item key={item.id} md={4} sm={8} xs={12} style={{margin:'auto'}}>
                 <Card variant='outlined' style={{borderRadius:'5px',width:'300px', marginBottom:'0em'}}>
                   <CardContent>
@@ -142,19 +149,17 @@ class Menu extends React.Component {
                         <Typography variant="h7" color="textPrimary" component="p">
                           {item.price} Birr
                         </Typography>
-                        {/* <div style={{display:'flex', alignItems:'center',justifyContent:'center'}}>
                         {this.props.user == null
-                        ?<>
+                        ?
+                        <div style={{display:'flex', flexDirection:'column',alignItems:'center',justifyContent:'center'}}>
                          <ReactStars
                           count={5}
-                          value={item.rating == null 
-                          ?0
-                          :4.5
-                        }
+                          value={item.rating == null ?0 :this.round(sum/Object.keys(item.rating).length, 0.5)}
+
                           // onChange={ratingChanged}
                           style={{margin:'auto'}}
                           size={27}
-                          isHalf={true}
+                          // isHalf={true}
                           emptyIcon={<EmptyStar/>}
                           halfIcon={<HalfStar/>}
                           fullIcon={<FullStar/>}
@@ -164,14 +169,15 @@ class Menu extends React.Component {
                           //   :this.handleRating(item)
                           // }
                           activeColor="#ffd700"
-                        /> <Typography>4.5</Typography>
-                        </>
-                          :<><ReactStars
+                        />
+                        <Typography style={{marginTop:'-.5em' ,fontSize:'12px'}}> ({item.rating == null ?<>0</> :<>{Object.keys(item.rating).length}</>} Ratings)</Typography>
+
+                        </div>
+                          :
+                        <div style={{display:'flex', alignItems:'center',flexDirection:'column',justifyContent:'center'}}>
+                          <ReactStars
                           count={5}
-                          value={item.rating == null 
-                          ?0
-                          :4.5
-                        }
+                          value={item.rating == null ?0 :this.round(sum/Object.keys(item.rating).length, 0.5)}
                           // onChange={ratingChanged}
                           style={{margin:'auto'}}
                           size={27}
@@ -181,10 +187,10 @@ class Menu extends React.Component {
                           fullIcon={<FullStar/>}
                           onChange={this.handleRating(item)}
                           activeColor="#ffd700"
-                        /> <Typography>4.5</Typography>
-                        </>
+                        /> 
+                        <Typography style={{marginTop:'-.5em',fontSize:'12px'}}> ({item.rating == null ?<>0</> :<>{Object.keys(item.rating).length}</>} Ratings)</Typography>
+                        </div>
                         }
-                        </div> */}
                     </Paper>  
                     </CardContent>
                     {item.food_type === 'BRG'
@@ -231,7 +237,7 @@ class Menu extends React.Component {
                     :null
                 }
               </Grid>
-              ))} 
+              )})} 
           </Grid>
          
         </div>
