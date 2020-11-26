@@ -193,8 +193,8 @@ class Menu extends React.Component {
                     </Paper>  
                     </CardContent>
                     {item.food_type === 'BRG'
-                      // ?<Image cloudName='mikiyas' height='178' width='178' publicId={item.img} secure="true"/>
-                        ?<h1>hi</h1>
+                      ?<Image cloudName='mikiyas' height='178' width='178' publicId={item.img} secure="true"/>
+                        // ?<h1>hi</h1>
                     //   <CardMedia
                     //   component="img"
                     //   alt={item.name}
