@@ -15,6 +15,9 @@ class Orders extends Component {
         this.props.loadOrders()
     }
     render() {
+        if(this.props.orderPlaced){
+            return window.location.reload()
+        }
         return (
             <>
             <div style={{display:'flex', height:'calc(100vh - 70px)', width:'100%',flexDirection:'column', padding:'.5em',alignItems:'center'}}>
@@ -46,6 +49,7 @@ class Orders extends Component {
 
 const mapStateToProps = state => ({
     orders: state.order.orders,
-    locations:state.locations.locations
+    locations:state.locations.locations,
+    orderPlaced: state.order.orderPlaced
 })
 export default connect(mapStateToProps, {loadOrders})(Orders)

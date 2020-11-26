@@ -54,7 +54,7 @@ class Checkout extends Component {
             customer_phone:'',
             order_type:'DVY',
             loc_price:0,
-            food_price:this.props.TotalPrice
+            food_price:this.props.TotalPrice,
         }
     }
     SubmitOrder = () => {
@@ -74,6 +74,9 @@ class Checkout extends Component {
         }
         this.props.placeOrder(order)
         console.log(order)
+        // if (this.props.orderPlaced){
+        //     return <Redirect to='/orders'/>
+        // }
     }
     handleCollapse = () => {
         if(this.state.collapse === true){
@@ -99,7 +102,8 @@ class Checkout extends Component {
         })
         if(e.target.value === 'PCK'){
             this.setState({
-                delivery_price:0
+                delivery_price:0,
+                activeListItem:34
             })
         }
     } 
@@ -109,7 +113,7 @@ class Checkout extends Component {
         })
     }
     render() {
-        if (this.props.orderPlaced){
+        if(this.props.orderPlaced){
             return <Redirect to='/orders'/>
         }
         return (

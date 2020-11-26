@@ -1,6 +1,7 @@
 import axios from 'axios';
 import {GET_MENU_ITEMS,MENUITEM_AVAILABLE,MENUITEM_UNAVAILABLE,TOGGLE_ADD_MENUITEM,OPEN_SNACKBAR,MENUITEM_DELETED,MENUITEM_CREATED, GETTING_MENUITEMS, MENUITEMS_FAILED} from './types';
 import {tokenConfig} from './auth'
+import { Menu } from '@material-ui/core';
 
 export const deleteMenuItem = (MenuItem) => (dispatch,getState) =>{
     const id = MenuItem.id
@@ -64,6 +65,35 @@ export const makeAvailable = (MenuItem) => (dispatch,getState) =>{
 export const makeunAvailable = (MenuItem) => (dispatch,getState) =>{
     MenuItem.available = false
     const id = MenuItem.id
+    axios
+        .put(`https://bossburgeraddis.herokuapp.com/api/menu/${id}/`, MenuItem,tokenConfig(getState))
+        .then((res) => {
+            // const cool = {
+            //     [res.data.id]:{
+            //         ...res.data
+            //     }
+            // };
+            dispatch({
+                type: MENUITEM_UNAVAILABLE,
+                // payload: id,
+            });
+            dispatch({
+                type: OPEN_SNACKBAR,
+                payload:{message: "Menu item made Available"}
+            })
+        })
+            .catch((err) => {
+            console.log(err)
+            // dispatch(returnErrors(err.response.data, err.response.status));
+            dispatch({
+                type: MENUITEMS_FAILED
+            });
+        });
+
+}
+
+export const rateItem = (MenuItem) => (dispatch,getState) =>{
+    const id = MenuItem.rating
     axios
         .put(`https://bossburgeraddis.herokuapp.com/api/menu/${id}/`, MenuItem,tokenConfig(getState))
         .then((res) => {

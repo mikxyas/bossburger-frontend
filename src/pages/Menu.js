@@ -4,7 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import {toggleSignupDialog} from '../actions/auth'
-import {getMenuItems, makeAvailable,makeunAvailable,toggleAddMenuItem, deleteMenuItem} from '../actions/MenuItems';
+import {getMenuItems, rateItem,makeAvailable,makeunAvailable,toggleAddMenuItem, deleteMenuItem} from '../actions/MenuItems';
 import {addtoCart, deleteItem} from '../actions/cart'
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
@@ -39,7 +39,8 @@ class Menu extends React.Component {
     MenuItems:PropTypes.array.isRequired,
     itemLoading: PropTypes.bool.isRequired,
     isAuthenticated: PropTypes.bool.isRequired,
-    isAdmin: PropTypes.bool.isRequired
+    isAdmin: PropTypes.bool.isRequired,
+    user: PropTypes.object.isRequired
   }
     constructor(props){
       super(props);
@@ -80,6 +81,25 @@ class Menu extends React.Component {
     handleChange = (event, newValue) => {
       this.setState({value: newValue});
     };
+    // handleNewRating = newRating => (item) => {
+    //   console.log(newRating)
+    //   if(item.rating != null){
+    //     item.rating.append(this.props.user.id, newRating)
+    //   }else{
+    //     const userid = this.props.user.id
+    //     item.rating.userid = newRating
+        
+    //   }
+    //   const MenuItem  = JSON.stringify(item)
+    //   this.props.rateItem(MenuItem)
+
+    // }
+    // handleRating = newRating => (item) => {
+    //   console.log(newRating)
+    //   item.rating[this.props.userId] = newRating
+    //   const MenuItem  = JSON.stringify(item)
+    //   this.props.rateItem(MenuItem)
+    // }
     render(){
     return (
       <div style={{overflow:"hidden"}}>
@@ -124,10 +144,15 @@ class Menu extends React.Component {
                         <Typography variant="h7" color="textPrimary" component="p">
                           {item.price} Birr
                         </Typography>
-                        <div style={{display:'flex', alignItems:'center',justifyContent:'center'}}>
-                        <ReactStars
+                        {/* <div style={{display:'flex', alignItems:'center',justifyContent:'center'}}>
+                        {this.props.user == null
+                        ?<>
+                         <ReactStars
                           count={5}
-                          value={4.5}
+                          value={item.rating == null 
+                          ?0
+                          :4.5
+                        }
                           // onChange={ratingChanged}
                           style={{margin:'auto'}}
                           size={27}
@@ -135,14 +160,41 @@ class Menu extends React.Component {
                           emptyIcon={<EmptyStar/>}
                           halfIcon={<HalfStar/>}
                           fullIcon={<FullStar/>}
+                          onClick={() => this.props.toggleSignupDialog()}
+                          // onChange={item.rating == null
+                          //   ?this.handleNewRating(item)
+                          //   :this.handleRating(item)
+                          // }
                           activeColor="#ffd700"
                         /> <Typography>4.5</Typography>
-                        </div>
+                        </>
+                          :<><ReactStars
+                          count={5}
+                          value={item.rating == null 
+                          ?0
+                          :4.5
+                        }
+                          // onChange={ratingChanged}
+                          style={{margin:'auto'}}
+                          size={27}
+                          isHalf={true}
+                          emptyIcon={<EmptyStar/>}
+                          halfIcon={<HalfStar/>}
+                          fullIcon={<FullStar/>}
+                          onChange={item.rating == null
+                            ?this.handleNewRating(item)
+                            : this.handleRating(item)
+                          }
+                          activeColor="#ffd700"
+                        /> <Typography>4.5</Typography>
+                        </>
+                        }
+                        </div> */}
                     </Paper>  
                     </CardContent>
                     {item.food_type === 'BRG'
-                      ?<Image cloudName='mikiyas' height='178' width='178' publicId={item.img} secure="true"/>
-                        
+                      // ?<Image cloudName='mikiyas' height='178' width='178' publicId={item.img} secure="true"/>
+                        ?<h1>hi</h1>
                     //   <CardMedia
                     //   component="img"
                     //   alt={item.name}
@@ -196,6 +248,7 @@ class Menu extends React.Component {
 
 const mapStateToProps = state =>({
   isAdmin:state.auth.isAdmin,
+  user:state.auth.user,
   isAuthenticated: state.auth.isAuthenticated,
   itemsLoading: state.MenuItems.itemsLoading,
   Burgers: state.MenuItems.MenuItems.filter(item => item.food_type == 'BRG'),
@@ -205,4 +258,4 @@ const mapStateToProps = state =>({
   cart: state.cart.cart
 })
 
-export default connect(mapStateToProps, { getMenuItems, makeAvailable,makeunAvailable, addtoCart, deleteMenuItem,toggleAddMenuItem,toggleSignupDialog,deleteItem })(Menu);
+export default connect(mapStateToProps, { getMenuItems, rateItem,makeAvailable,makeunAvailable, addtoCart, deleteMenuItem,toggleAddMenuItem,toggleSignupDialog,deleteItem })(Menu);
