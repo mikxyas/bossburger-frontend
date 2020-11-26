@@ -23,6 +23,8 @@ import RemoveIcon from '@material-ui/icons/Remove'
 import RemoveCartIcon from '@material-ui/icons/RemoveShoppingCart'
 import {addAmountof, decreaseAmountof, deleteItem} from '../actions/cart'
 import {toggleSignupDialog} from '../actions/auth';
+import {Image} from 'cloudinary-react'
+
 
 class CartDrawer extends React.Component {
     static propTypes = {
@@ -82,10 +84,12 @@ class CartDrawer extends React.Component {
                     <>
                     <ListItem key={key} button>
                         <ListItemAvatar>
-                        <Avatar
+                        {/* <Avatar
                             alt={`Price:${this.props.cart[item].price}`}
                             src={this.props.cart[item].img}
-                        />
+                        /> */}
+                    <Image cloudName='mikiyas' height='69' width='69'  publicId={this.props.cart[item].img} secure="true"/>
+                        
                         </ListItemAvatar>
                         <ListItemText  primary={this.props.cart[item].name} secondary={this.props.cart[item].price * this.props.Amount[item] + 'ETB' + ' | Amount ' + this.props.Amount[item]} />
                         <ListItemSecondaryAction>

@@ -115,7 +115,7 @@ class Boss extends Component {
     }
     componentDidMount = async() => {
       try{
-        await this.props.loadOrdersForAdmin()
+        this.props.loadOrdersForAdmin()
       }
       catch(error){
         console.log(error)
