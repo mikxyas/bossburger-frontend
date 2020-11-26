@@ -109,7 +109,7 @@ class Menu extends React.Component {
           }
           <Grid justify='center' align='center' container spacing={2} style={{padding:"2em",overflowY:"hidden"}}>
             {this.state.SelectedMenuItems.map(item => (
-              <Grid item key={item.id} md={4} sm={8} xs={12}>
+              <Grid item key={item.id} md={4} sm={8} xs={12} style={{margin:'auto'}}>
                 <Card variant='outlined' style={{borderRadius:'5px',width:'300px', marginBottom:'0em'}}>
                   <CardContent>
                     {item.available
@@ -141,8 +141,8 @@ class Menu extends React.Component {
                     </Paper>  
                     </CardContent>
                     {item.food_type === 'BRG'
-                      ?<Image cloudName='mikiyas' height='178' widht='178' publicId={item.img} secure="true"/>
-                      
+                      ?<Image cloudName='mikiyas' height='178' width='178' publicId={item.img} secure="true"/>
+                        
                     //   <CardMedia
                     //   component="img"
                     //   alt={item.name}

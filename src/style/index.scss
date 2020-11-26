@@ -116,6 +116,7 @@ h2, h3, h5{
     // margin-top: 30vh;
 }
 
+
 .codepen-card {
     position: relative;
     display: flex;
@@ -231,7 +232,7 @@ h2, h3, h5{
     background:url('./images/bossburgerhero-bg.gif');
     background-position: center;
     background-size: cover;
-    background-attachment: fixed;
+    // background-attachment: fixed;
 
     padding-right:0rem;
     margin:auto;
@@ -262,9 +263,9 @@ h2, h3, h5{
     top:0;
     left:0;
     width:100%;
-    backdrop-filter: saturate(180%) blur(4px);
+    backdrop-filter: saturate(120%) blur(4px);
     z-index:1;
-    background: rgba(63, 63, 63, 0.555);
+    background: rgba(53, 53, 53, 0.555);
     // backdrop-filter: saturate(110%) blur(0px);
   }
 .hero-subtitle{
@@ -416,6 +417,18 @@ div .btn-group{
     align-items: stretch;
     justify-content: space-between;
     // background-color: red;
+}
+
+.carousel{
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    overflow-x: auto;
+}
+
+.c-img{
+    height:500px;
+    width:500px !important;
 }
 
 @import 'mobile';

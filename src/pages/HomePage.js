@@ -21,6 +21,8 @@ import {loadEvents, viewEvent} from '../actions/events'
 import {connect} from 'react-redux'
 import {Image} from 'cloudinary-react'
 import EventViewer from '../components/EventViewer'
+import HomePageCarousel from '../components/HomepageCarousel'
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 
 class HomePage extends React.Component{
@@ -84,17 +86,22 @@ class HomePage extends React.Component{
         <img  src='./bossburgerhero-bg.gif'/>
       </div>  */}
     </header> 
+    <div style={{padding:'.5em'}}>
+      <Typography align='center' variant='h6'>The Best...</Typography>
+    <HomePageCarousel/>
+      
+    </div>
 
     <Container style={{paddingTop:'1.5em',overflow:'hidden'}}>
-      <Typography align='center' variant='h5'>Events</Typography>
-        <Grid spacing={2} container justify='center' style={{marginLeft:'2em'}}>
+      <Typography align='center' variant='h4'>Events</Typography>
+        <Grid spacing={2} container alignItems='center' justify='center' style={{padding:'1em'}}>
             {Object.keys(this.props.events).map(item => {
               return(
-              <Grid item key={item}>
+              <Grid item md={4} sm={8} xs={12}  key={item}>
               <Card onClick={() => this.props.viewEvent(item)} className='codepen-card'>
                 <CardActionArea>
                     {/* <img className="codepen-card-image" src="https://instagram.fadd1-1.fna.fbcdn.net/v/t51.2885-15/e35/c0.160.1280.1280a/s320x320/123495909_381318276556811_4479592698820581644_n.jpg?_nc_ht=instagram.fadd1-1.fna.fbcdn.net&_nc_cat=111&_nc_ohc=jO0XwjbeYZkAX8nDqzN&tp=16&oh=22febfb99f65c3e0bad61e8cea9c512a&oe=5FE02BAF" alt=""/> */}
-                    <Image cloudName='mikiyas' height='160' width='100%' publicId={this.props.events[item].img} secure="true"/>
+                    <Image className='codepen-card-image' cloudName='mikiyas' height='160' width='100%' publicId={this.props.events[item].img}  secure="true"/>
 
                 </CardActionArea>
                 <Typography className='codepen-title'>

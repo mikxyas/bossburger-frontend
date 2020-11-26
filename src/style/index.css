@@ -561,7 +561,6 @@ h2.sm-heading, h3.sm-heading, h5.sm-heading {
   background: url("./images/bossburgerhero-bg.gif");
   background-position: center;
   background-size: cover;
-  background-attachment: fixed;
   padding-right: 0rem;
   margin: auto;
   text-align: center;
@@ -591,10 +590,10 @@ h2.sm-heading, h3.sm-heading, h5.sm-heading {
   top: 0;
   left: 0;
   width: 100%;
-  -webkit-backdrop-filter: saturate(180%) blur(4px);
-          backdrop-filter: saturate(180%) blur(4px);
+  -webkit-backdrop-filter: saturate(120%) blur(4px);
+          backdrop-filter: saturate(120%) blur(4px);
   z-index: 1;
-  background: rgba(63, 63, 63, 0.555);
+  background: rgba(53, 53, 53, 0.555);
 }
 
 .hero-subtitle {
@@ -803,6 +802,24 @@ div .btn-group {
           justify-content: space-between;
 }
 
+.carousel {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  overflow-x: auto;
+}
+
+.c-img {
+  height: 500px;
+  width: 500px !important;
+}
+
 @media screen and (min-width: 769px) and (max-width: 1170px) {
   main#grid-section {
     -ms-grid-columns: 1fr;
@@ -888,12 +905,16 @@ div .btn-group {
 }
 
 @media screen and (max-width: 500px) {
+  .c-img {
+    height: 500px;
+    width: 100vw !important;
+  }
   .event-header-image {
     width: 400px;
     height: 250px;
   }
   .event-content-title {
-    font-size: 40px !important;
+    font-size: 35px !important;
   }
   .event-content {
     margin-top: 1em;

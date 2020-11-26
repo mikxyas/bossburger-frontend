@@ -42,10 +42,10 @@ class Events extends Component {
             </>
             :null  
           }
-          <Grid container style={{marginLeft:'2em'}}>
+          <Grid container spacing={2} style={{marginLeft:'2em'}}>
             {Object.keys(this.props.events).map(item => {
               return(
-              <Grid item key={item}>
+              <Grid item key={item} md={4} sm={8} xs={12}>
               <Card onClick={() => this.props.viewEvent(item)} className='codepen-card'>
                 <CardActionArea>
                     {/* <img className="codepen-card-image" src="https://instagram.fadd1-1.fna.fbcdn.net/v/t51.2885-15/e35/c0.160.1280.1280a/s320x320/123495909_381318276556811_4479592698820581644_n.jpg?_nc_ht=instagram.fadd1-1.fna.fbcdn.net&_nc_cat=111&_nc_ohc=jO0XwjbeYZkAX8nDqzN&tp=16&oh=22febfb99f65c3e0bad61e8cea9c512a&oe=5FE02BAF" alt=""/> */}
