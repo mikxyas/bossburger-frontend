@@ -163,7 +163,7 @@ class Menu extends React.Component {
                           emptyIcon={<EmptyStar/>}
                           halfIcon={<HalfStar/>}
                           fullIcon={<FullStar/>}
-                          onClick={() => this.props.toggleSignupDialog()}
+                          onChange={() => this.props.toggleSignupDialog()}
                           // onChange={item.rating == null
                           //   ?this.handleNewRating(item)
                           //   :this.handleRating(item)
