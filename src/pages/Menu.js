@@ -1,5 +1,5 @@
 import React from 'react'
-import {AppBar, Button, Box} from '@material-ui/core'
+import {AppBar, Chip,Button, Box} from '@material-ui/core'
 import Grid from '@material-ui/core/Grid';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -23,8 +23,13 @@ import EmptyStar from '@material-ui/icons/StarOutlined';
 import FullStar from '@material-ui/icons/Grade';
 import HalfStar from '@material-ui/icons/StarHalf';
 import UserIcon from '@material-ui/icons/People';
-import { Image } from 'cloudinary-react';
+import { Image, Transformation } from 'cloudinary-react';
 import AddIcon from '@material-ui/icons/Add'
+import InfoIcon from '@material-ui/icons/InfoOutlined';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+
 
 const useStyles = makeStyles((theme) => ({
   gradient: {
@@ -133,20 +138,23 @@ class Menu extends React.Component {
                   return sum += item.rating[userID] 
                 })
               }
+              let textStyle = {
+                color:'black'
+              }
+              if(item.available == false){
+                textStyle = {
+                  color:'grey'
+                }
+              }
               return(
               <Grid item key={item.id} md={4} sm={8} xs={12} style={{margin:'auto'}}>
                 <Card variant='outlined' style={{borderRadius:'5px',width:'300px', marginBottom:'0em'}}>
                   <CardContent>
-                    {item.available
-                    ?null
-                    :<Typography>This item is not available</Typography>
-
-                    }
                     <Paper elevation={2} style={{borderRadius:'5px',padding:'1em',background:'rgba(255,255,255,0.4)'}}>
-                    <Typography variant="h5" component="h2">
+                    <Typography style={textStyle} variant="h5" component="h2">
                           <Box fontSize='25'>{item.name}</Box>
                         </Typography> 
-                        <Typography variant="h7" color="textPrimary" component="p">
+                        <Typography style={textStyle} variant="h7" color="textPrimary" component="p">
                           {item.price} Birr
                         </Typography>
                         {this.props.user == null
@@ -168,7 +176,7 @@ class Menu extends React.Component {
                           //   ?this.handleNewRating(item)
                           //   :this.handleRating(item)
                           // }
-                          activeColor="#ffd700"
+                          activeColor={item.available == true ?"#ffd700": '#9e9e9e'}
                         />
                         <Typography style={{marginTop:'-.5em' ,fontSize:'12px'}}> ({item.rating == null ?<>0</> :<>{Object.keys(item.rating).length}</>} Ratings)</Typography>
 
@@ -186,15 +194,18 @@ class Menu extends React.Component {
                           halfIcon={<HalfStar/>}
                           fullIcon={<FullStar/>}
                           onChange={this.handleRating(item)}
-                          activeColor="#ffd700"
+                          activeColor={item.available == true ?"#ffd700": '#9e9e9e'}
                         /> 
                         <Typography style={{marginTop:'-.5em',fontSize:'12px'}}> ({item.rating == null ?<>0</> :<>{Object.keys(item.rating).length}</>} Ratings)</Typography>
                         </div>
                         }
-                    </Paper>  
+                    </Paper> 
                     </CardContent>
                     {item.food_type === 'BRG'
-                      ?<Image cloudName='mikiyas' height='178' width='178' publicId={item.img} secure="true"/>
+                      ?<>{item.available == true
+                        ?<Image loading="lazy" cloudName='mikiyas' height='178' width='178' publicId={item.img} secure="true"/>
+                        :<Image loading="lazy" cloudName='mikiyas' height='178' width='178' publicId={item.img} secure="true"><Transformation effect="grayscale" /></Image>
+                      }</>
                         // ?<h1>hi</h1>
                     //   <CardMedia
                     //   component="img"
@@ -206,6 +217,19 @@ class Menu extends React.Component {
                     // />
                     :null
                   }
+                  {item.available
+                          ?null
+                          :<>
+                          <Chip
+                            // style={{marginTop:'-1em'}}
+                            icon={<InfoIcon />}
+                            color='secondary'
+                            variant='outlined'
+                            label="This Item is Unavailable"
+                          />
+                          </>
+
+                          } 
                   <CardActions>
                   
                     {this.props.cart[item.id]

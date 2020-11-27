@@ -35,9 +35,12 @@ export const deleteMenuItem = (MenuItem) => (dispatch,getState) =>{
 
 export const makeAvailable = (MenuItem) => (dispatch,getState) =>{
     MenuItem.available = true
+    MenuItem.food_pic = null
     const id = MenuItem.id
+
+    const body = JSON.stringify(MenuItem)
     axios
-        .put(`https://bossburgeraddis.herokuapp.com/api/menu/${id}/`, MenuItem,tokenConfig(getState))
+        .put(`https://bossburgeraddis.herokuapp.com/api/menu/${id}/`, body,tokenConfig(getState))
         .then((res) => {
             // const cool = {
             //     [res.data.id]:{
@@ -65,9 +68,12 @@ export const makeAvailable = (MenuItem) => (dispatch,getState) =>{
 
 export const makeunAvailable = (MenuItem) => (dispatch,getState) =>{
     MenuItem.available = false
+    MenuItem.food_pic = null
     const id = MenuItem.id
+    const body = JSON.stringify(MenuItem)
+    console.log(body)
     axios
-        .put(`https://bossburgeraddis.herokuapp.com/api/menu/${id}/`, MenuItem,tokenConfig(getState))
+        .put(`https://bossburgeraddis.herokuapp.com/api/menu/${id}/`, body,tokenConfig(getState))
         .then((res) => {
             // const cool = {
             //     [res.data.id]:{
@@ -80,11 +86,11 @@ export const makeunAvailable = (MenuItem) => (dispatch,getState) =>{
             });
             dispatch({
                 type: OPEN_SNACKBAR,
-                payload:{message: "Menu item made Available"}
+                payload:{message: "Menu item set to Unavailable"}
             })
         })
             .catch((err) => {
-            console.log(err)
+            console.log(err.response.data)
             // dispatch(returnErrors(err.response.data, err.response.status));
             dispatch({
                 type: MENUITEMS_FAILED
