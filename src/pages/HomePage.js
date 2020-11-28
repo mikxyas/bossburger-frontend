@@ -19,10 +19,11 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import {loadEvents, viewEvent} from '../actions/events'
 import {connect} from 'react-redux'
-import {Image} from 'cloudinary-react'
+import {Image, Transformation} from 'cloudinary-react'
 import EventViewer from '../components/EventViewer'
 import HomePageCarousel from '../components/HomepageCarousel'
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import Video from 'cloudinary-react/lib/components/Video';
 
 
 class HomePage extends React.Component{
@@ -50,85 +51,32 @@ class HomePage extends React.Component{
   render(){
   return (
     <>
-          <EventViewer/>
-
-     <header className='v-header container'>
+      <EventViewer/>
+      <section className='hero-section'>
+        <div className='hero-section-content'>
+          <Typography align='center' variant='h2'>
+            <Box className='hero-section-title'>Boss Burger.</Box>
+          </Typography>
+          <Typography align='center' variant='p'>
+            <Box className='hero-section-subtitle'>You've had the rest, come try the best!</Box>
+          </Typography>
+          <Button endIcon={<ChevronRightIcon/>} size='small' style={{margin:'.5em'}} color='secondary'>Try the best</Button>
+          <div className='hero-section-grid'>
+            {/* <img src='https://instagram.fadd1-1.fna.fbcdn.net/v/t51.2885-15/e35/c59.0.1122.1122a/s480x480/97237411_248415766235891_5659653975019641466_n.jpg?_nc_ht=instagram.fadd1-1.fna.fbcdn.net&_nc_cat=111&_nc_ohc=idrsKOxco2gAX_YEahg&tp=1&oh=c877491441a7ade3d65bf08f13c6f7fc&oe=5FEC9883' className='hero-section-grid-img-short-2'/> */}
+            <Image  cloudName='mikiyas' className='hero-section-grid-img-short-2' publicId='97237411_248415766235891_5659653975019641466_n_sxwi4c' secure="true"/>
+            {/* <img src='./c-item2.jpg' className='hero-section-grid-img-long'/> */}
+            <Image  cloudName='mikiyas' className='hero-section-grid-img-long' publicId='c-item2_qewdgb'   secure="true"/>
+            {/* <img src='./c-item-3.jpg' className='hero-section-grid-img-short-1'/> */}
+            <Image cloudName='mikiyas' className='hero-section-grid-img-short-1' publicId='c-item-3_i2lzp6' secure="true"> 
+              <Transformation gravity="center" />
+             </Image>
           
-      <div className="header-overlay"></div>
-      <div className="header-content text-md-center">
-        {/* <div className='hero-brand'> */}
-        <Image  cloudName='mikiyas' className='hero-brand' publicId='bblogo_tapaum' height='350' width='635'  secure="true"/>
-
-        {/* </div> */}
-        {/* <img className='hero-brand' src='./boss-trns.png'/>  */}
-        <Typography variant='h5' className='hero-subtitle'>
-          <Box fontWeight={500}> You've had the rest come try the best</Box>
-        </Typography>
-        <br/>
-        <div> 
-          <ButtonGroup>
-            <Link  style={{color:'white'}} to='/services'>
-              <Button variant='outlined' color='inherit'>Services</Button>          
-            </Link>
-            <Button href='https://www.google.com/maps/place/BOSS+BURGER/@8.9975752,38.7849085,15z/data=!4m2!3m1!1s0x0:0x1717740e78fc081d?sa=X&ved=2ahUKEwiGgbOZvp7tAhUJGVkFHcriBsoQ_BIwFXoECBgQBQ' target='__blank__' endIcon={<OpenInNewIcon/>} color='inherit'>Location</Button>
-            <Link style={{color:'white'}} to='/contact'>
-            <Button variant='outlined' color='inherit'>Contact</Button>
-
-            </Link>
-          </ButtonGroup>
+          </div>
         </div>
-        {/* <h1>Boss Burger</h1>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id temporibus perferendis necessitatibus numquam amet impedit explicabo? Debitis quasi ullam aperiam!</p>
-        <a class="btn">Find Out More</a> */}
-      </div>
-      {/* <div style={{display:'flex',justifySelf:'startz, marginTop:'1em'}}>
-          <Avatar alt="Remy Sharp" src="./f-logo.png" />
-          <Avatar alt="Remy Sharp" style={{marginLeft:'.5em'}} src="./insta-logo.webp" />
-        </div> */}
-      {/* <div className='fullscreen-video-wrap'>
-        <img  src='./bossburgerhero-bg.gif'/>
-      </div>  */}
-    </header> 
-    <div style={{padding:'.5em'}}>
-      <Typography align='center' variant='h6'>The Best...</Typography>
-    <HomePageCarousel/>
-      
-    </div>
-
-    <Container style={{paddingTop:'1.5em',overflow:'hidden'}}>
-      <Typography align='center' variant='h4'>Events</Typography>
-        <Grid spacing={2} container alignItems='center' justify='center' style={{padding:'1em'}}>
-            {Object.keys(this.props.events).map(item => {
-              return(
-              <Grid item md={4} sm={8} xs={12}  key={item}>
-              <Card onClick={() => this.props.viewEvent(item)} className='codepen-card'>
-                <CardActionArea>
-                    {/* <img className="codepen-card-image" src="https://instagram.fadd1-1.fna.fbcdn.net/v/t51.2885-15/e35/c0.160.1280.1280a/s320x320/123495909_381318276556811_4479592698820581644_n.jpg?_nc_ht=instagram.fadd1-1.fna.fbcdn.net&_nc_cat=111&_nc_ohc=jO0XwjbeYZkAX8nDqzN&tp=16&oh=22febfb99f65c3e0bad61e8cea9c512a&oe=5FE02BAF" alt=""/> */}
-                    <Image className='codepen-card-image' cloudName='mikiyas' height='160' width='100%' publicId={this.props.events[item].img}  secure="true"/>
-
-                </CardActionArea>
-                <Typography className='codepen-title'>
-                  <Box fontSize={18} fontWeight={600}>
-                    {this.props.events[item].title.length > 19
-                    ?<>{this.props.events[item].title.substring(0, 19) + '...'}</>
-                    :<>{this.props.events[item].title}</>
-                    }
-                    </Box>
-                </Typography>
-                <Typography className='codepen-desc' variant='caption'>
-                  <Box >
-                    {this.props.events[item].desc.length > 59
-                      ?<>{this.props.events[item].desc.substring(0, 59) + '...'}</>
-                      :<>{this.props.events[item].desc}</>
-                    }
-                  </Box>
-                </Typography>
-              </Card>
-                    </Grid>
-          )})}
-          </Grid>
-    </Container>
-    
+      </section>
+      {/* <section>
+        hello
+      </section> */}
     </>
     
   );
@@ -139,3 +87,35 @@ const mapStateToProps = state => ({
   events: state.events.events,
 })
 export default connect(mapStateToProps, {loadEvents, viewEvent})(HomePage);
+
+// Iterate over events 
+{/* <Grid spacing={2} container alignItems='center' justify='center' style={{padding:'1em'}}>
+{Object.keys(this.props.events).map(item => {
+  return(
+  <Grid item md={4} sm={8} xs={12}  key={item}>
+  <Card onClick={() => this.props.viewEvent(item)} className='codepen-card'>
+    <CardActionArea>
+         <img className="codepen-card-image" src="https://instagram.fadd1-1.fna.fbcdn.net/v/t51.2885-15/e35/c0.160.1280.1280a/s320x320/123495909_381318276556811_4479592698820581644_n.jpg?_nc_ht=instagram.fadd1-1.fna.fbcdn.net&_nc_cat=111&_nc_ohc=jO0XwjbeYZkAX8nDqzN&tp=16&oh=22febfb99f65c3e0bad61e8cea9c512a&oe=5FE02BAF" alt=""/> 
+        <Image className='codepen-card-image' cloudName='mikiyas' height='160' width='100%' publicId={this.props.events[item].img}  secure="true"/>
+
+    </CardActionArea>
+    <Typography className='codepen-title'>
+      <Box fontSize={18} fontWeight={600}>
+        {this.props.events[item].title.length > 19
+        ?<>{this.props.events[item].title.substring(0, 19) + '...'}</>
+        :<>{this.props.events[item].title}</>
+        }
+        </Box>
+    </Typography>
+    <Typography className='codepen-desc' variant='caption'>
+      <Box >
+        {this.props.events[item].desc.length > 59
+          ?<>{this.props.events[item].desc.substring(0, 59) + '...'}</>
+          :<>{this.props.events[item].desc}</>
+        }
+      </Box>
+    </Typography>
+  </Card>
+        </Grid>
+)})}
+</Grid> */}

@@ -1,17 +1,76 @@
-// section {
-//     display: block;
-//     // align-items: center;
-//     background-image: url(./images/section-bg.jpg);
-//     background-size: cover;
-//     background-position: center;
-//     width: auto;
-//     min-height: calc(100vh - 56px);
-//     padding: 2em;
-//     h2{
-//         margin-top: 30vh;
-//         font-size: 80px;
-//         color: rgb(255, 255, 255);
-//         text-shadow: 5px 5px 5px  rgba(0,0,0,0.3);
-//     }
+section {
+    background-color: white;
+    height: calc(100vh - 100px);
+    margin-bottom: .8em;
+    &.hero-section{
+        background-color: #111111;
+        height: calc(100vh - 64px);
+        display: flex;
+        // align-items: center;
+        justify-content: center;
+    
+    }
+    
+}
+.hero-section-content{
+    // background-color: red;
+    padding: 1em;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 95%;
+}
+.hero-section-title{
+    letter-spacing: 5px;
+    font-size: 56px;
+    font-family: Roboto, sans-serif;
+    font-weight: 500;
+    color: #fbfbfb;
+    margin-top: .4em;
 
-// }
+}
+.hero-section-subtitle{
+    font-size: 20px;
+    color: #fbfbfb;
+    letter-spacing: 1px;
+}
+.hero-section-grid{
+    display: grid;
+    margin-top: .5em;
+    width: 60%;
+    height: 100%;
+    // align-content: center;
+    grid-gap:.5em;
+    grid-template-areas: 
+    'herosectiongridimgshort1 herosectiongridimglong'
+    'herosectiongridimgshort2 herosectiongridimglong'
+    ;
+    grid-template-columns: repeat(2, 1fr);
+    
+}
+.hero-section-grid-img-short-1{
+    // position: relative;
+    height: 100%;
+    grid-area: herosectiongridimgshort1;
+    width: 100%;
+    // border-radius: 40px;
+    border-radius: 12px;
+}
+.hero-section-grid-img-short-2{
+    // position: relative;
+    height: 100%;
+    width: 100%;
+    grid-area: herosectiongridimgshort2;
+    // margin-top: 3em;
+    width: 100%;
+    border-radius: 12px;
+}
+.hero-section-grid-img-long {
+    // height: 20em;
+    // position: absolute;
+    grid-area: herosectiongridimglong;
+    border-radius: 12px;
+    width: 100%;
+    height: 100%;
+}

@@ -37,6 +37,7 @@ const useStyles = makeStyles((theme) => ({
   },
   appbar: {
     zIndex:'3',
+    top:'0px',
     background:'rgba(255,255,255,0.8)',
     padding:'0em',
     height:'fit-content',

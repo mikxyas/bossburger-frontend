@@ -11,27 +11,9 @@
     }   
 }
 @include mediaMd{
-    &.clipped-header{
-        margin-top: -8em;
+    &.hero-section-content{
+        height: 80%;
     }
-    &.hero-subtitle{
-        color:rgba(250, 249, 249, 0.8)
-    }
-    &.v-header{
-        height:65vh;
-        justify-content: center;
-    }
-    &.fullscreen-video-wrap img{
-        position: absolute;
-        clip-path: none;
-    }
-    &.hero-brand{
-        margin-top: -3em;
-        height:230px;
-        width:420px;
-        background-position:center ;
-        background-size: cover;
-      }
     #brand-pic{
         margin-left: 0;
         margin-right: 0;
@@ -77,21 +59,28 @@
    &.menu-icon{
        visibility: visible;
    }
-   section{
-        min-height: calc(80vh - 70px);
-        // display: block;
-        padding: .4em;
-        h2{
-            font-size: 56px;
-        }
-   }
    &.event-content{
     margin-top:3em;
 }
 }
 
 @include mediaSm{
-    
+    section{
+        &.hero-section{
+            height: calc(100vh - 128px);
+        }
+    }
+    &.hero-section-content{
+        width: 100%;
+    }
+    &.hero-section-grid{
+        width: 80%;
+    }
+    &.hero-section-title{
+        font-size: 43px;
+        margin-top: 1.5em;
+        letter-spacing: 7px;
+    }
     &.c-img{
         height: 500px;
         width: 100vw !important;
@@ -112,16 +101,7 @@
     &.event-header-title{
         font-size: 30px !important;
     }
-    &.v-header{
-        height:55vh;
-    }
-    &.hero-brand{
-        margin-top: -3em;
-        height:150px;
-        width:300px;
-        background-position: center;
-        background-size: contain;
-    }
+    
     &.Event-desc{
         h2{
             font-size: 38px;
@@ -132,26 +112,6 @@
     }
     &.banner{
         background-size: 525px 350px;
-    }
-    header{
-        ul{
-            &.content-nav{
-                background-color: white;
-            }
-        }
-    }
-    section{
-        h2{
-            margin-top: 10vh;
-            font-size: 45px;
-        }
-        & .btn-group{
-            display: flex;
-            justify-content: center;
-            // align-items: center;
-            margin-top: 13vh;
-            // background-color: white;
-        }   
     }
     #toolbar{
         padding:.6em;
