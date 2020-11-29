@@ -101,6 +101,7 @@ export const makeunAvailable = (MenuItem) => (dispatch,getState) =>{
 
 export const rateItem = (MenuItem) => (dispatch,getState) =>{
     const id = MenuItem.id
+    MenuItem.food_pic = null
     axios
         .put(`https://bossburgeraddis.herokuapp.com/api/menu/${id}/`, MenuItem,tokenConfig(getState))
         .then((res) => {
@@ -119,7 +120,7 @@ export const rateItem = (MenuItem) => (dispatch,getState) =>{
             })
         })
             .catch((err) => {
-            console.log(err)
+            console.log(err.response.data)
             // dispatch(returnErrors(err.response.data, err.response.status));
             dispatch({
                 type: MENUITEMS_FAILED

@@ -3,6 +3,7 @@ import {Button, Avatar,Grid,Container,Collapse, Paper,Divider,IconButton, Typogr
 import {Link} from 'react-router-dom'
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import DownIcon from '@material-ui/icons/ArrowDownward';
+import GpsIcon from '@material-ui/icons/LocationOn'
 import UpIcon from '@material-ui/icons/ArrowUpward';
 // import OpenInBrowserIcon from '@material-ui/icons/tab'
 import Section from '../components/Section'
@@ -77,8 +78,15 @@ class HomePage extends React.Component{
           </div>
         </div>
       </section>
-      {/* <section>
-        hello
+      {/* <section className='location-section'>
+      <Typography align='center' variant='h2'>
+            <Box className='hero-section-title'>Urael</Box>
+          </Typography>
+          <Button>Google Maps</Button>
+          <Typography align='center' variant='p'>
+            <Box style={{marginTop:'.2em'}} className='hero-section-subtitle'>Open 24/7</Box>
+          </Typography>
+            <Button endIcon={<ChevronRightIcon/>} style={{color:'#fbfbfb'}}>Contact us</Button>
       </section> */}
     </>
     
