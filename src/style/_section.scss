@@ -9,14 +9,12 @@ section {
         align-items: center;
         justify-content: center;
     }
-    &.location-section{
-        background-color: #111111;
-        height: 28vh;
-        // padding: .5em;
+    &.comment-section{
+        background-color: #1e1e1e;  
         display: flex;
         align-items: center;
         justify-content: center;
-        flex-direction: column;
+        flex-direction: column;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
     }
     
 }
@@ -86,4 +84,30 @@ section {
 .hero-section-mobile-image{
     display: none;
     // position: absolute;
+}
+.comment-section-title{
+    letter-spacing: 5px;
+    font-size: 35px;
+    font-family: Roboto, sans-serif;
+    font-weight: 500;
+    color: #f0efef;
+    margin: 1em;
+    // margin-top: .4em;
+   
+}
+.comment-section-img-cont{
+    // margin-top: 2em;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow-x:visible;
+    width: 100vw;
+    white-space: nowrap;
+    overflow-y:hidden;
+}
+.comment-section-img{
+    border-radius: 12px;
+    height:auto;
+    width:350px;
+    margin-left: 10px;
 }

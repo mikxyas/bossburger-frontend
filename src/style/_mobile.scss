@@ -11,6 +11,15 @@
     }   
 }
 @include mediaMd{
+    &.comment-section-img-cont{
+        justify-content: flex-start;
+    }
+    &.comment-section-img{
+        width: 300px;
+    }
+    &.comment-section-title{
+        font-size: 25px;
+    }
     &.hero-section-content{
         height: 80%;
     }
@@ -65,6 +74,16 @@
 }
 
 @include mediaSm{
+    &.comment-section-img-cont{
+        justify-content: flex-start;
+    }
+    &.comment-section-img{
+        width: 250px;
+        height: 150px;
+    }
+    &.comment-section-title{
+        font-size: 20px;
+    }
     section{
         &.hero-section{
             height: calc(100vh - 128px);

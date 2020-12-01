@@ -77,9 +77,8 @@ section.hero-section {
           justify-content: center;
 }
 
-section.location-section {
-  background-color: #111111;
-  height: 28vh;
+section.comment-section {
+  background-color: #1e1e1e;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -171,6 +170,38 @@ section.location-section {
 
 .hero-section-mobile-image {
   display: none;
+}
+
+.comment-section-title {
+  letter-spacing: 5px;
+  font-size: 35px;
+  font-family: Roboto, sans-serif;
+  font-weight: 500;
+  color: #f0efef;
+  margin: 1em;
+}
+
+.comment-section-img-cont {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  overflow-x: visible;
+  width: 100vw;
+  white-space: nowrap;
+  overflow-y: hidden;
+}
+
+.comment-section-img {
+  border-radius: 12px;
+  height: auto;
+  width: 350px;
+  margin-left: 10px;
 }
 
 .codepen-card {
@@ -457,6 +488,17 @@ a {
 }
 
 @media screen and (max-width: 768px) {
+  .comment-section-img-cont {
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+  }
+  .comment-section-img {
+    width: 300px;
+  }
+  .comment-section-title {
+    font-size: 25px;
+  }
   .hero-section-content {
     height: 80%;
   }
@@ -503,6 +545,18 @@ a {
 }
 
 @media screen and (max-width: 500px) {
+  .comment-section-img-cont {
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+  }
+  .comment-section-img {
+    width: 250px;
+    height: 150px;
+  }
+  .comment-section-title {
+    font-size: 20px;
+  }
   section.hero-section {
     height: calc(100vh - 128px);
   }

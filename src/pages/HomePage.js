@@ -78,16 +78,40 @@ class HomePage extends React.Component{
           </div>
         </div>
       </section>
-      {/* <section className='location-section'>
+      <section className='comment-section'>
+        <div className='comment-section-img-cont'>
+          <div>
+            <Image className='comment-section-img' cloudName='mikiyas' publicId='rating-2_ou1gd5'  secure="true"/>
+          </div>
+          <div>
+            <Image className='comment-section-img' cloudName='mikiyas' publicId='rating-5_ke5gub'  secure="true"/>
+          </div>
+          <div>
+            <Image className='comment-section-img' cloudName='mikiyas' publicId='rating-4_hme45j'  secure="true"/>
+          </div>
+          {/* <Grid md={4} sm={8} xs={12}  item>
+          <Image className='comment-section-img' cloudName='mikiyas' publicId='rating-3_zn8v5l'  secure="true"/>
+          </Grid>
+          <Grid md={4} sm={8} xs={12}  item>
+            <Image className='comment-section-img' cloudName='mikiyas' publicId='rating-6_vzzj8j'  secure="true"/>
+          </Grid> */}
+        </div>
+       
+      <div className='comment-section-img-cont'>
+      <div>
+            <Image className='comment-section-img' cloudName='mikiyas' publicId='rating-6_vzzj8j'  secure="true"/>
+          </div>
+          <div>
+            <Image className='comment-section-img' cloudName='mikiyas' publicId='rating-3_zn8v5l'  secure="true"/>
+          </div>
+          <div>
+            <Image className='comment-section-img' cloudName='mikiyas' publicId='rating-7_mgcfkq'  secure="true"/>
+          </div>
+      </div>  
       <Typography align='center' variant='h2'>
-            <Box className='hero-section-title'>Urael</Box>
-          </Typography>
-          <Button>Google Maps</Button>
-          <Typography align='center' variant='p'>
-            <Box style={{marginTop:'.2em'}} className='hero-section-subtitle'>Open 24/7</Box>
-          </Typography>
-            <Button endIcon={<ChevronRightIcon/>} style={{color:'#fbfbfb'}}>Contact us</Button>
-      </section> */}
+          <Box className='comment-section-title'>Don't just take our word for it, when we say we are the best </Box>
+        </Typography>
+      </section>
     </>
     
   );
