@@ -61,7 +61,10 @@ class HomePage extends React.Component{
           <Typography align='center' variant='p'>
             <Box className='hero-section-subtitle'>You've had the rest, come try the best!</Box>
           </Typography>
+          <Link to='/order'>
           <Button endIcon={<ChevronRightIcon/>} size='small' style={{margin:'.5em'}} color='secondary'>Try the best</Button>
+
+          </Link>
           
             <Image className='hero-section-mobile-image' cloudName='mikiyas' publicId='c-item2_qewdgb'  secure="true"/>
 
@@ -79,6 +82,9 @@ class HomePage extends React.Component{
         </div>
       </section>
       <section className='comment-section'>
+        <Typography align='center' variant='h2'>
+          <Box className='comment-section-title'>We are the best. Don't just take our words for it</Box>
+        </Typography>
         <div className='comment-section-img-cont'>
           <div>
             <Image className='comment-section-img' cloudName='mikiyas' publicId='rating-2_ou1gd5'  secure="true"/>
@@ -108,9 +114,7 @@ class HomePage extends React.Component{
             <Image className='comment-section-img' cloudName='mikiyas' publicId='rating-7_mgcfkq'  secure="true"/>
           </div>
       </div>  
-      <Typography align='center' variant='h2'>
-          <Box className='comment-section-title'>Don't just take our word for it, when we say we are the best </Box>
-        </Typography>
+      
       </section>
     </>
     

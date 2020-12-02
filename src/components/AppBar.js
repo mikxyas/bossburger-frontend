@@ -11,39 +11,52 @@ import PropTypes from 'prop-types';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import IconButton from '@material-ui/core/IconButton';
-import {logout} from '../actions/auth'
+import {logout} from '../actions/auth';
+import {ChangeLink} from '../actions/ui'
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Drawer from '@material-ui/core/Drawer'
 import CartDrawer from './CartDrawer'
 
+
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    background:'yellow',
     height:'fit-content'
   },
-  toolBar: {
-    width:'100%',
-    color:'#1f1f1f',
+  tab: {
+    // width:'100%',
+    color:'#111111',
     marginTop:'0',
+    display:"flex", 
+    alignItems:'center',
+  },
+  toolBar: {
+    padding:'0em',
+   margin:'0'
   },
   menuButton: {
     marginRight: theme.spacing(2),
   },
+  
   login: {
     marginLeft:'auto',
-    borderRadius:'20px',
+    marginRight:'.5em',
+    // borderRadius:'20px',
+    width:'fit-content',
+    alignItems:'center'
   },
   appbar: {
     zIndex:'3',
-    top:'0px',
+    // flexDirection:'',
     background:'rgba(255,255,255,0.8)',
     padding:'0em',
-    height:'fit-content',
+    // height:'48px',
     backdropFilter: 'saturate(180%) blur(20px)',
-    bottomBorder:'solid 1px rgba(0,0,0,0.14)',
-    boxShadow:'none'
   },
   brandlogo: {
     marginLeft:'auto',
@@ -61,10 +74,10 @@ function MenuAppBar(props) {
   const [open, setOpen] = React.useState(false)
   // const [value, setValue] = React.useState('');
   const history = useHistory();
-  const handleChange = (e) => {
-    history.push(`/${e.currentTarget.value}`);
-    setlink(e.currentTarget.value)
-    // console.log(link)
+  const handleLinks = (event, newValue) => {
+    setlink(newValue)
+    props.ChangeLink(newValue)
+    history.push(`/${newValue}`);
   };
   const handleBrand = (e) => {
     history.push(`/`);
@@ -78,21 +91,36 @@ function MenuAppBar(props) {
   }
   return (
     <div className={classes.root}>
-      <AppBar className={classes.appbar}  position="fixed">
-        <Toolbar id='toolbar'  className={classes.toolBar}>
-            <Button onClick={handleChange} value='menu'  className='cont-nav'>Menu</Button>
+      <AppBar elevation={2} className={classes.appbar}  position="fixed">
+        <Toolbar id='toolbar' className={classes.toolBar}>
+        
+        <Tabs
+        className={classes.tab}
+        onChange={handleLinks} 
+        value={props.activeLink}
+        indicatorColor='white'
+        >
+          
+          <Tab value='' label={<img  id='brand-pic' className={classes.brandlogo} src='./bblogo.png'/>}  />
+          <Tab  className='cont-nav' value='menu' label="Menu"  />
+          <Tab  value='order' className='cont-nav' label="Order"  />
+          <Tab  value='events' className='cont-nav' label="Events"  />
+          <Tab  value='jobs' className='cont-nav' label="Jobs"  />
+          <Tab  value='services' className='cont-nav' label="Services"  />
+          <Tab  value='contact' className='cont-nav' label="Contacts"  />            
+            {/* <Button onClick={handleChange} value='menu'  className='cont-nav'>Menu</Button>
             <Button onClick={handleChange} value='order'  className='cont-nav'>Delivery</Button>
             <Button onClick={handleChange} value='events' className='cont-nav'>Events</Button>
             <Button onClick={handleChange} value='jobs' className='cont-nav'>Jobs</Button>
             <Button onClick={handleChange} value='services' className='cont-nav'>Services</Button>
-            <Button onClick={handleChange} value='contact' className='cont-nav'>Contact Us</Button>
-            <img onClick={handleBrand} value='home' id='brand-pic' className={classes.brandlogo} src='./bblogo.png'/>
-            
+            <Button onClick={handleChange} value='contact' className='cont-nav'>Contact Us</Button> */}
+          </Tabs>
+        
             {props.user != null
             ?
            
               <div className={classes.login}>
-              <div style={{marginRight:'.7em'}}>           
+                      
             <Button variant='outlined' startIcon={<AccountCircleIcon/>} aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
               
               {props.user.name}
@@ -113,17 +141,17 @@ function MenuAppBar(props) {
               <MenuItem onClick={() => props.logout()}>Logout</MenuItem>
             </Menu>
               </div>
-            </div>
             :
             
-            <div style={{marginRight:'.7em'}} className={classes.login}>
+            <div className={classes.login}>
               <SigninDialog/>
             </div>
             }
-
+            <div style={{marginRight:'.5em'}}>
               <CartDrawer/>
-
+            </div>
         </Toolbar>
+
       </AppBar>
     </div>
   );
@@ -132,9 +160,10 @@ function MenuAppBar(props) {
 
 const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
+  activeLink:state.ui.link,
   user: state.auth.user,
   isLoading: state.auth.isLoading,
   cart: state.cart.cart
 });
 
-export default connect(mapStateToProps, {logout})(MenuAppBar);
+export default connect(mapStateToProps, {logout, ChangeLink})(MenuAppBar);

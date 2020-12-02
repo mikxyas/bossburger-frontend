@@ -10,6 +10,8 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 import FastfoodIcon from '@material-ui/icons/Fastfood';
 import MenuBookIcon from '@material-ui/icons/MenuBook';
 import BtmNavMoreBtn from './BtmNavMoreBtn'
+import {connect} from 'react-redux'
+import {ChangeLink} from '../actions/ui'
 
 const useStyles = makeStyles({
   root: {
@@ -18,19 +20,20 @@ const useStyles = makeStyles({
   },
 });
 
-export default function BottomNav() {
+ function BottomNav(props) {
   const classes = useStyles();
   const [value, setValue] = React.useState('');
   const [link, setlink] = React.useState('');
   const history = useHistory();
   const handleChange = (event, newValue) => {
     setValue(newValue);
+    props.ChangeLink(newValue)
     history.push(`/${newValue}`);
     setlink(newValue)
   };
 
   return (
-    <BottomNavigation  showLabels value={value} onChange={handleChange} className={classes.root}>
+    <BottomNavigation  showLabels color='secondary' value={props.activeLink} onChange={handleChange} className={classes.root}>
         <BottomNavigationAction label={<span style={{fontSize:'18px'}}>Menu</span>} value="menu" icon={<MenuBookIcon />} />
         <BottomNavigationAction  label={<span style={{fontSize:'18px'}}>Delivery</span>} value="order" icon={<FastfoodIcon fontSize='medium'/>} />
         {/* <BottomNavigationAction label={<span style={{fontSize:'18px'}}>Offers</span>} value="offers" icon={<LocalOfferIcon fontSize='medium'/>} /> */}
@@ -41,3 +44,8 @@ export default function BottomNav() {
     </BottomNavigation>
   );
 }
+
+const mapStateToProps = state => ({
+  activeLink: state.ui.link
+})
+export default connect(mapStateToProps, {ChangeLink})(BottomNav)

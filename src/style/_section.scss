@@ -10,7 +10,7 @@ section {
         justify-content: center;
     }
     &.comment-section{
-        background-color: #1e1e1e;  
+        background-color: #111111;  
         display: flex;
         align-items: center;
         justify-content: center;
@@ -102,6 +102,7 @@ section {
     align-items:center;
     overflow-x:visible;
     width: 100vw;
+    height: 200px;
     white-space: nowrap;
     overflow-y:hidden;
 }

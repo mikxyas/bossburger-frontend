@@ -78,7 +78,7 @@ section.hero-section {
 }
 
 section.comment-section {
-  background-color: #1e1e1e;
+  background-color: #111111;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -193,6 +193,7 @@ section.comment-section {
           align-items: center;
   overflow-x: visible;
   width: 100vw;
+  height: 200px;
   white-space: nowrap;
   overflow-y: hidden;
 }
@@ -310,10 +311,11 @@ section.comment-section {
 
 .cont-nav {
   padding: 0em;
+  background-color: rgba(235, 235, 235, 0.74);
 }
 
 .main-container {
-  margin-top: 64px;
+  margin-top: 74px;
 }
 
 .bottom-nav {
@@ -480,6 +482,23 @@ a {
   width: 500px !important;
 }
 
+.menu-tab {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-backdrop-filter: saturate(180%) blur(10px);
+          backdrop-filter: saturate(180%) blur(10px);
+  background: rgba(235, 235, 235, 0.74) !important;
+  margin-top: 63px;
+  z-index: 2 !important;
+}
+
 @media screen and (min-width: 769px) and (max-width: 1170px) {
   main#grid-section {
     -ms-grid-columns: 1fr;
@@ -492,6 +511,7 @@ a {
     -webkit-box-pack: start;
         -ms-flex-pack: start;
             justify-content: flex-start;
+    height: 160px;
   }
   .comment-section-img {
     width: 300px;
@@ -535,6 +555,9 @@ a {
   .ad-grid {
     -ms-grid-columns: 1fr;
         grid-template-columns: 1fr;
+  }
+  .menu-tab {
+    margin-top: 74px;
   }
   .menu-icon {
     visibility: visible;

@@ -47,7 +47,7 @@ class SigninDialog extends  React.Component{
       email:'',
       password:''
     }
-    this.handleChange = this.handleChange.bind(this)
+    this.handleSigninFormChange = this.handleSigninFormChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
   static propTypes = {
@@ -64,7 +64,7 @@ class SigninDialog extends  React.Component{
     }
     this.props.login(userCred)
   }
-  handleChange = (e) => {
+  handleSigninFormChange = (e) => {
     this.setState({
       [e.target.name]:e.target.value
     })
@@ -94,9 +94,9 @@ class SigninDialog extends  React.Component{
         {/* <IconButton style={{marginLeft:'auto'}} edge="start" color="inherit" onClick={handleClose} aria-label="close">
               <CloseIcon />
             </IconButton> */}
-              <TextField  type='email' name='email' onChange={this.handleChange} label="Email"/>
+              <TextField  type='email' name='email' onChange={this.handleSigninFormChange} label="Email"/>
               <br/>
-              <TextField label="Password" name='password' onChange={this.handleChange} type='password'/>
+              <TextField label="Password" name='password' onChange={this.handleSigninFormChange} type='password'/>
               <br/>
               <br/>
               <Button onClick={() => this.handleSubmit()} fullWidth variant='contained' color='primary'>Sign In</Button>

@@ -1,5 +1,5 @@
 import React from 'react'
-import {AppBar, Chip,Button, Box} from '@material-ui/core'
+import {AppBar, Chip,Button, Box, Toolbar, Avatar} from '@material-ui/core'
 import Grid from '@material-ui/core/Grid';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -106,7 +106,9 @@ class Menu extends React.Component {
     return (
       <div style={{overflow:"hidden"}}>
         <AddMenuItem/>
-        <div style={{display:"flex", alignItems:"center", justifyContent:"center"}}>
+        <div style={{display:"flex",alignItems:"center", justifyContent:"center"}}>
+          <AppBar className='menu-tab'  elevation={1} position='fixed'>
+
           <Tabs
             p={{ xs: 2, sm: 3, md: 4 }}
             value={this.state.value}
@@ -114,12 +116,15 @@ class Menu extends React.Component {
             textColor="primary"
             onChange={this.handleChange}
           >
-            <Tab onClick={() => this.FetchBurgers()} label="Burgers"/>
-            <Tab onClick={() => this.FetchExtras()} label="Extras"/>
-            <Tab onClick={() => this.FetchBeverages()} label="Beverages"/>
-            <Tab onClick={() => this.FetchFries()} label="Fries"/>
+            <Tab icon={<Avatar src='https://www.pngitem.com/pimgs/m/517-5172212_transparent-burger-emoji-iphone-hd-png-download.png'/>} onClick={() => this.FetchBurgers()} label="Burgers"/>
+            
+            <Tab  icon={<Avatar src='https://cdn.emojidex.com/emoji/seal/ketchup.png?1453371291'/>}  onClick={() => this.FetchExtras()} label="Extras"/>
+            <Tab  icon={<Avatar src='https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/160/apple/81/tropical-drink_1f379.png'/>} onClick={() => this.FetchBeverages()} label="Beverages"/>
+            <Tab  icon={<Avatar src='https://i.pinimg.com/736x/0d/9d/71/0d9d71defc5df17911a035a7341add42.jpg'/>} onClick={() => this.FetchFries()} label="Fries"/>
           </Tabs>
+          </AppBar>
         </div>
+        <div style={{marginBottom:'5em'}}/>
         {/* {this.state.itemLoading ?
         <div style={{display:"flex",height:"80vh", alignItems:"center",justifyContent:"center"}}>
         <Loading LoaderIcon={<FastFoodIcon/>} load={this.state.isLoaded}/> 

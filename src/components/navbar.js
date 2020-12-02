@@ -69,7 +69,7 @@ class Navbar extends Component {
             <Snackbar
                     anchorOrigin={{
                     vertical: 'top',
-                    horizontal: 'right',
+                    horizontal: 'left',
                     }}
                     open={this.props.openSnackbar}
                     autoHideDuration={3000}

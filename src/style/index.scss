@@ -11,10 +11,11 @@
  }
 .cont-nav{
     padding: 0em;
+    background-color: rgba(235, 235, 235, 0.74);
 }
 
 .main-container{
-    margin-top:64px;
+    margin-top:74px;
 }
 
 .bottom-nav{
@@ -143,6 +144,16 @@ a {
 .c-img{
     height:500px;
     width:500px !important;
+}
+.menu-tab{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: saturate(180%) blur(10px);
+    background: rgba(235, 235, 235, 0.74) !important;
+    margin-top:63px;
+    z-index: 2 !important;
+ 
 }
 
 @import 'mobile';

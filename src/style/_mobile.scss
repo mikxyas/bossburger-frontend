@@ -13,6 +13,7 @@
 @include mediaMd{
     &.comment-section-img-cont{
         justify-content: flex-start;
+        height: 160px;
     }
     &.comment-section-img{
         width: 300px;
@@ -64,7 +65,9 @@
     &.ad-grid{
         grid-template-columns: 1fr;
     }
-
+    &.menu-tab{
+        margin-top: 74px;
+    }
    &.menu-icon{
        visibility: visible;
    }
