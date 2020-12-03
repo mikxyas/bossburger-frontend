@@ -79,6 +79,7 @@
 @include mediaSm{
     &.comment-section-img-cont{
         justify-content: flex-start;
+        margin-bottom: 10px;
     }
     &.comment-section-img{
         width: 250px;

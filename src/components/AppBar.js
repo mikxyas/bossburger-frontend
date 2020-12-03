@@ -50,14 +50,7 @@ const useStyles = makeStyles((theme) => ({
     width:'fit-content',
     alignItems:'center'
   },
-  appbar: {
-    zIndex:'3',
-    // flexDirection:'',
-    background:'rgba(255,255,255,0.8)',
-    padding:'0em',
-    // height:'48px',
-    backdropFilter: 'saturate(180%) blur(20px)',
-  },
+
   brandlogo: {
     marginLeft:'auto',
     marginRight:'auto',
@@ -91,7 +84,7 @@ function MenuAppBar(props) {
   }
   return (
     <div className={classes.root}>
-      <AppBar elevation={2} className={classes.appbar}  position="fixed">
+      <AppBar elevation={2} className='appbar-nav'  position="fixed">
         <Toolbar id='toolbar' className={classes.toolBar}>
         
         <Tabs

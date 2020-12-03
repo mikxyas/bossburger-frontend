@@ -134,7 +134,7 @@ class Menu extends React.Component {
           ?<Button endIcon={<AddIcon/>} onClick={() => this.props.toggleAddMenuItem()} style={{marginTop:'1em', marginLeft:'1em'}} variant='contained' color='primary'>Add Menu Item</Button>
           :null
           }
-          <Grid justify='center' align='center' container spacing={2} style={{padding:"2em",overflowY:"hidden"}}>
+          <Grid  container spacing={2} style={{display:'flex',justifyContent:'center',alignItems:'center',padding:"2em",overflowY:"hidden"}}>
             {this.state.SelectedMenuItems.map(item => {
               if(item.rating != null){
                 var rating = 0
@@ -152,10 +152,17 @@ class Menu extends React.Component {
                 }
               }
               return(
-              <Grid item key={item.id} md={4} sm={8} xs={12} style={{margin:'auto'}}>
+              <Grid item key={item.id} md={3} sm={8} xs={12} >
                 <Card variant='outlined' style={{borderRadius:'5px',width:'300px', marginBottom:'0em'}}>
                   <CardContent>
-                    <Paper elevation={2} style={{borderRadius:'5px',padding:'1em',background:'rgba(255,255,255,0.4)'}}>
+                  {item.food_type === 'BRG'
+                      ?<div style={{display:"flex", justifyContent:'center'}}>{item.available === true
+                        ?<Image loading="lazy" cloudName='mikiyas' height='178' width='178' publicId={item.img} secure="true"/>
+                        :<Image loading="lazy" cloudName='mikiyas' height='178' width='178' publicId={item.img} secure="true"><Transformation effect="grayscale" /></Image>
+                      }</div>
+                    :null
+                  }
+                    {/* <Paper elevation={2} style={{borderRadius:'5px',padding:'1em',background:'rgba(255,255,255,0.4)'}}> */}
                     <Typography style={textStyle} variant="h5" component="h2">
                           <Box fontSize='25'>{item.name}</Box>
                         </Typography> 
@@ -164,14 +171,14 @@ class Menu extends React.Component {
                         </Typography>
                         {this.props.user == null
                         ?
-                        <div style={{display:'flex', flexDirection:'column',alignItems:'center',justifyContent:'center'}}>
+                        <div style={{display:'flex',alignItems:'center'}}>
                          <ReactStars
                           count={5}
                           value={item.rating == null ?0 :this.round(sum/Object.keys(item.rating).length, 0.5)}
 
                           // onChange={ratingChanged}
                           style={{margin:'auto'}}
-                          size={27}
+                          size={21}
                           // isHalf={true}
                           emptyIcon={<EmptyStar/>}
                           halfIcon={<HalfStar/>}
@@ -183,17 +190,17 @@ class Menu extends React.Component {
                           // }
                           activeColor={item.available == true ?"#ffd700": '#9e9e9e'}
                         />
-                        <Typography style={{marginTop:'-.5em' ,fontSize:'12px'}}> ({item.rating == null ?<>0</> :<>{Object.keys(item.rating).length}</>} Ratings)</Typography>
+                        <Typography  style={{ color:'rgb(100, 100, 100)',marginLeft:'.3em',fontSize:'13px'}}> {item.rating == null ?<>0</> :<>{Math.round(sum/Object.keys(item.rating).length * 100) / 100 + ' (' + Object.keys(item.rating).length + ')'}</>}</Typography>
 
                         </div>
                           :
-                        <div style={{display:'flex', alignItems:'center',flexDirection:'column',justifyContent:'center'}}>
+                        <div style={{display:'flex', alignItems:'center'}}>
                           <ReactStars
                           count={5}
                           value={item.rating == null ?0 :this.round(sum/Object.keys(item.rating).length, 0.5)}
                           // onChange={ratingChanged}
                           style={{margin:'auto'}}
-                          size={27}
+                          size={21}
                           isHalf={true}
                           emptyIcon={<EmptyStar/>}
                           halfIcon={<HalfStar/>}
@@ -201,30 +208,16 @@ class Menu extends React.Component {
                           onChange={this.handleRating(item)}
                           activeColor={item.available == true ?"#ffd700": '#9e9e9e'}
                         /> 
-                        <Typography style={{marginTop:'-.5em',fontSize:'12px'}}> ({item.rating == null ?<>0</> :<>{Object.keys(item.rating).length}</>} Ratings)</Typography>
+                        <Typography style={{color:'rgb(100, 100, 100)',marginLeft:'.3em',fontSize:'12px'}}> {item.rating == null ?<>0</> :<>{Math.round(sum/Object.keys(item.rating).length * 100) / 100 + ' (' + Object.keys(item.rating).length + ')'}</>}</Typography>
+                        
                         </div>
                         }
-                    </Paper> 
+                    {/* </Paper>  */}
                     </CardContent>
-                    {item.food_type === 'BRG'
-                      ?<>{item.available == true
-                        ?<Image loading="lazy" cloudName='mikiyas' height='178' width='178' publicId={item.img} secure="true"/>
-                        :<Image loading="lazy" cloudName='mikiyas' height='178' width='178' publicId={item.img} secure="true"><Transformation effect="grayscale" /></Image>
-                      }</>
-                        // ?<h1>hi</h1>
-                    //   <CardMedia
-                    //   component="img"
-                    //   alt={item.name}
-                    //   height="178px"
-                    //   style={{width:'178px'}}
-                    //   image={item.food_pic}
-                    //   title={item.name}
-                    // />
-                    :null
-                  }
+                    
                   {item.available
                           ?null
-                          :<>
+                          :<div style={{marginLeft:'.5em'}}>
                           <Chip
                             // style={{marginTop:'-1em'}}
                             icon={<InfoIcon />}
@@ -232,36 +225,34 @@ class Menu extends React.Component {
                             variant='outlined'
                             label="This Item is Unavailable"
                           />
-                          </>
+                          </div>
 
                           } 
-                  <CardActions>
+                  <CardActions style={{marginTop:'-.8em'}}>
                   
                     {this.props.cart[item.id]
                     ?<>
-                    <Button style={{borderRadius:'20px', margin:'auto'}}  onClick={() => this.props.deleteItem(item.id, item.price)}  color='secondary' variant='contained'>Remove From Cart</Button>
+                    <Button style={{margin:'auto'}}  onClick={() => this.props.deleteItem(item.id, item.price)}  >Remove From Cart</Button>
                     </>
                     :<>
                     {this.props.isAuthenticated
                     ?<Link to='/checkout'>
-                      <Button disabled={!item.available} style={{borderRadius:'20px'}} onClick={() => this.props.addtoCart(item)}  variant='contained' color='primary'>Order</Button>
+                      <Button disabled={!item.available}  onClick={() => this.props.addtoCart(item)}  color='primary'>Order</Button>
                     </Link> 
-                    :  <Button disabled={!item.available} onClick={() => this.props.toggleSignupDialog()} style={{borderRadius:'20px'}} variant='contained' color='primary'>Order</Button>
+                    :  <Button disabled={!item.available} onClick={() => this.props.toggleSignupDialog()} color='primary'>Order</Button>
                     }
-                    <Button disabled={!item.available} style={{borderRadius:'20px', marginLeft:'auto'}} color='secondary'  onClick={() => this.props.addtoCart(item)}  variant='contained'>Add to Cart</Button>
+                    <Button disabled={!item.available}  onClick={() => this.props.addtoCart(item)} color='primary'>Add to Cart</Button>
                     </>
                     }
                   </CardActions>
                 </Card>
                 {this.props.isAdmin
-                    ?<Paper style={{width:'300px', display:'flex',padding:'.5em',justifyContent:'space-between',borderRadius:'0px 0px 20px 20px'}}>
-                        <Button style={{borderRadius:'20px'}} onClick={() => this.props.deleteMenuItem(item)} variant='outlined' size='small'  color='secondary'>Delete</Button>
+                    ?<Paper variant='outlined' style={{width:'300px', display:'flex',padding:'.5em',justifyContent:'space-between', borderTop:'none'}}>
                         {item.available 
-                        ?<Button style={{borderRadius:'20px'}}  size='small' variant='outlined' onClick={() => this.props.makeunAvailable(item)} >Make Unavailable</Button>
-                        :<Button style={{borderRadius:'20px'}}  size='small' variant='outlined' onClick={() => this.props.makeAvailable(item)}>Make Available</Button>
-
+                        ?<Button size='small' variant='outlined' onClick={() => this.props.makeunAvailable(item)} >Make Unavailable</Button>
+                        :<Button size='small' variant='outlined' onClick={() => this.props.makeAvailable(item)}>Make Available</Button>
                         }
-                        
+                        <Button onClick={() => this.props.deleteMenuItem(item)} variant='outlined' size='small'  color='secondary'>Delete</Button>
                     </Paper>
                     :null
                 }

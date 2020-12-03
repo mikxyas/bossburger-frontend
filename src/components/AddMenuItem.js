@@ -58,7 +58,7 @@ function AddEvent(props) {
         <AppBar className='event-header' position='relative'>
           <Toolbar className={classes.toolbar}>
             <Typography  variant="h5" className='event-header-title'>
-                <Box color='white' fontWeight={600}>Add Event</Box>
+                <Box color='white' fontWeight={600}>Add Menu Item</Box>
             </Typography>
             <IconButton edge="start" color="inherit" onClick={props.toggleAddMenuItem} aria-label="close">
               <CloseIcon />

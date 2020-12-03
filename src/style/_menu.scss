@@ -1,4 +1,11 @@
-
+.appbar-nav{
+    z-index:3;
+    // flexDirection:'',
+    background:rgba(255,255,255,0.8) !important;
+    padding:0em;
+    // height:'48px',
+    backdrop-filter: saturate(180%) blur(20px) !important;
+}
 .content-nav{
     display: flex;
     width: 100%;
@@ -43,4 +50,15 @@
     align-items: center;
     justify-content: space-between !important;
     visibility: hidden;
+}
+
+.menu-tab{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: saturate(180%) blur(10px);
+    background: rgba(236, 231, 231, 0.8) !important;
+    margin-top:63px;
+    z-index: 2 !important;
+ 
 }
