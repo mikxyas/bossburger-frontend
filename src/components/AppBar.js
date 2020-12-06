@@ -94,7 +94,7 @@ function MenuAppBar(props) {
         indicatorColor='white'
         >
           
-          <Tab value='' label={<img  id='brand-pic' className={classes.brandlogo} src='./bblogo.png'/>}  />
+          <Tab value='' label='Home'  />
           <Tab  className='cont-nav' value='menu' label="Menu"  />
           <Tab  value='order' className='cont-nav' label="Order"  />
           <Tab  value='events' className='cont-nav' label="Events"  />

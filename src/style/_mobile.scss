@@ -11,6 +11,19 @@
     }   
 }
 @include mediaMd{
+    &.social-card-cont{
+        flex-direction: column;
+    }
+    &.social-card{
+        margin-left: 0em;
+        margin-top: .5em;
+    }
+    &.menu-food-cont{
+        flex-direction: column;
+    }
+    &.menu-img{
+        width: 90%;
+    }
     &.comment-section-img-cont{
         justify-content: flex-start;
         height: 160px;
@@ -77,6 +90,36 @@
 }
 
 @include mediaSm{
+    section{
+        &.contact-section{
+            justify-content: flex-start;
+        }
+        &.job-section{
+            justify-content: flex-start;
+        }
+    }
+    &.contact-section-title{
+        margin-top: .5em;
+    }
+    &.job-section-title{
+        margin-top: .5em;
+    }
+    &.job-section-desc{
+        width: 87vw;
+    }
+    &.services-section-title{
+        font-size: 35px;
+    }
+    &.services-section-cnt-title{
+        font-size: 25px;
+    }
+    &.services-section-cnt-desc{
+        font-size: 15px;
+        width: 85vw;
+    }
+    &.menu-img{
+        width: 90%;
+    }
     &.comment-section-img-cont{
         justify-content: flex-start;
         margin-bottom: 10px;
