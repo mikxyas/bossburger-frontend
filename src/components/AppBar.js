@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
   },
   tab: {
     // width:'100%',
-    color:'#111111',
+    color:'white',
     marginTop:'0',
     display:"flex", 
     alignItems:'center',
@@ -73,8 +73,10 @@ function MenuAppBar(props) {
     history.push(`/${newValue}`);
   };
   const handleBrand = (e) => {
-    history.push(`/`);
+    props.ChangeLink('')
     setlink('home')
+    history.push(`/`);
+
   };
   const handleClick = (e) => {
     setOpen(e.currentTarget)
@@ -94,7 +96,9 @@ function MenuAppBar(props) {
         indicatorColor='white'
         >
           
-          <Tab value='' label='Home'  />
+            <img onClick={handleBrand} src='./bosslogo.png' className='brand-pic'/>
+          
+          <Tab value='' label='Home' className='cont-nav' />
           <Tab  className='cont-nav' value='menu' label="Menu"  />
           <Tab  value='order' className='cont-nav' label="Order"  />
           <Tab  value='events' className='cont-nav' label="Events"  />
@@ -114,7 +118,7 @@ function MenuAppBar(props) {
            
               <div className={classes.login}>
                       
-            <Button variant='outlined' startIcon={<AccountCircleIcon/>} aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+            <Button variant='outlined' style={{color:'white'}} startIcon={<AccountCircleIcon/>} aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
               
               {props.user.name}
             </Button>

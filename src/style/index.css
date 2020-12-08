@@ -2,11 +2,14 @@
 @import url("https://fonts.googleapis.com/css?family=Lato:400,700,900&display=swap");
 .appbar-nav {
   z-index: 3;
-  background: white !important;
+  background: #212121d8 !important;
   padding: 0em;
   -webkit-box-shadow: none !important;
           box-shadow: none !important;
-  border-bottom: solid 0.7px rgba(0, 0, 0, 0.2);
+  border-bottom: solid 0.7px rgba(255, 255, 255, 0.2);
+  height: 64px;
+  -webkit-backdrop-filter: saturate(180%) blur(20px) !important;
+          backdrop-filter: saturate(180%) blur(20px) !important;
 }
 
 .content-nav {
@@ -22,12 +25,14 @@
 }
 
 .brand-pic {
-  display: block;
-  background-image: url(./images/bk-big.png);
-  height: 60px;
-  width: 60px;
-  margin-left: 20vw;
-  margin-top: .5em;
+  height: 2em;
+  visibility: hidden;
+  width: 2.6em;
+  -webkit-filter: brightness(0) invert(1);
+          filter: brightness(0) invert(1);
+  margin-top: .35em;
+  margin-left: 0em;
+  cursor: pointer;
 }
 
 .icon-btn {
@@ -76,7 +81,11 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  background: white !important;
+  -webkit-backdrop-filter: saturate(180%) blur(10px);
+          backdrop-filter: saturate(180%) blur(10px);
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+  background: rgba(255, 255, 255, 0.8) !important;
   margin-top: 63px;
   z-index: 2 !important;
 }
@@ -89,7 +98,6 @@ section {
 
 section.hero-section {
   background-color: #111111;
-  height: calc(100vh - 64px);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -102,7 +110,7 @@ section.hero-section {
 }
 
 section.comment-section {
-  background-color: #111111;
+  background-color: #e9e8e8;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -170,7 +178,7 @@ section.services-section {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  padding-bottom: 1em;
+  padding-bottom: 1.5em;
 }
 
 .hero-section-content {
@@ -256,8 +264,15 @@ section.services-section {
   font-size: 35px;
   font-family: Roboto, sans-serif;
   font-weight: 500;
-  color: #f0efef;
-  margin: 1em;
+  color: #2c2b2b;
+}
+
+.comment-section-desc {
+  font-size: 20px;
+  color: #1e1e1e;
+  margin-top: .5em;
+  margin-bottom: 2em;
+  letter-spacing: 1px;
 }
 
 .comment-section-img-cont {
@@ -433,6 +448,38 @@ section.services-section {
   background-position: center;
 }
 
+footer {
+  overflow: hidden;
+  height: 150px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-color: #eaeaee;
+  color: #86868b;
+}
+
+.footer-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.footer-brand {
+  margin: .5em;
+  width: 4em;
+  height: 2.5em;
+}
+
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -444,7 +491,9 @@ section.services-section {
 }
 
 .main-container {
+  overflow: hidden;
   margin-top: 64px;
+  min-height: calc(100vh - 214px);
 }
 
 .bottom-nav {
@@ -622,8 +671,8 @@ a {
       -ms-flex-pack: center;
           justify-content: center;
   padding: 1em;
-  background: -webkit-gradient(linear, left top, right top, from(#111), to(#000));
-  background: linear-gradient(to right, #111, #000);
+  background: -webkit-gradient(linear, left top, right top, from(white), to(whitesmoke));
+  background: linear-gradient(to right, white, whitesmoke);
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
@@ -639,6 +688,9 @@ a {
 }
 
 @media screen and (max-width: 768px) {
+  footer {
+    margin-bottom: 60px;
+  }
   .social-card-cont {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -673,13 +725,11 @@ a {
   .hero-section-content {
     height: 80%;
   }
-  #brand-pic {
-    margin-left: 0;
-    margin-right: 0;
+  .brand-pic {
+    visibility: visible;
   }
   #toolbar Button.cont-nav {
-    visibility: hidden;
-    position: absolute;
+    display: none;
   }
   .bottom-nav {
     visibility: visible;
@@ -706,9 +756,6 @@ a {
   .ad-grid {
     -ms-grid-columns: 1fr;
         grid-template-columns: 1fr;
-  }
-  .menu-tab {
-    margin-top: 74px;
   }
   .menu-icon {
     visibility: visible;
@@ -762,7 +809,7 @@ a {
     height: 150px;
   }
   .comment-section-title {
-    font-size: 20px;
+    font-size: 30px;
   }
   section.hero-section {
     height: calc(100vh - 128px);
@@ -813,7 +860,7 @@ a {
     padding: .6em;
   }
   .main-container {
-    margin-top: 74px;
+    margin-top: 64px;
   }
 }
 /*# sourceMappingURL=index.css.map */

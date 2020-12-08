@@ -1,0 +1,19 @@
+footer{
+    overflow: hidden;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #eaeaee;
+    color: #86868b;
+}
+.footer-list{
+    display:flex;
+
+}
+.footer-brand{
+    margin:.5em;
+    width: 4em;
+    height: 2.5em;
+}

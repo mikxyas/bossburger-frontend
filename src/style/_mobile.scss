@@ -11,6 +11,9 @@
     }   
 }
 @include mediaMd{
+    footer{
+        margin-bottom: 60px;
+    }
     &.social-card-cont{
         flex-direction: column;
     }
@@ -37,15 +40,13 @@
     &.hero-section-content{
         height: 80%;
     }
-    #brand-pic{
-        margin-left: 0;
-        margin-right: 0;
+    .brand-pic{
+        visibility: visible;
     }
     #toolbar{
         Button{
             &.cont-nav{
-                visibility: hidden;
-                position: absolute;
+                display: none;
             }
             
         }
@@ -78,9 +79,9 @@
     &.ad-grid{
         grid-template-columns: 1fr;
     }
-    &.menu-tab{
-        margin-top: 74px;
-    }
+    // &.menu-tab{
+    //     margin-top: 74px;
+    // }
    &.menu-icon{
        visibility: visible;
    }
@@ -129,7 +130,7 @@
         height: 150px;
     }
     &.comment-section-title{
-        font-size: 20px;
+        font-size: 30px;
     }
     section{
         &.hero-section{
@@ -191,6 +192,6 @@
         padding:.6em;
     }
     &.main-container{
-        margin-top: 74px;
+        margin-top: 64px;
     }
 }

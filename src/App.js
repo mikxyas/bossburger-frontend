@@ -6,6 +6,7 @@ import {Provider} from 'react-redux';
 import store from './store';
 import {loadUser} from './actions/auth';
 import {loadLoc} from './actions/locations'
+import Footer from './components/Footer';
 
 class App extends React.Component{
   
@@ -26,7 +27,7 @@ class App extends React.Component{
         <div className='main-container'>
           <Main/>
         </div>
-        <div style={{marginBottom:'5em'}}></div>
+        <Footer/>
       </body>
     </Provider>
   );

@@ -4,6 +4,7 @@
 @import 'section';
 @import 'cards';
 @import 'svgback';
+@import 'footer';
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
 
 * {
@@ -15,7 +16,9 @@
 }
 
 .main-container{
+    overflow: hidden;
     margin-top:64px;
+    min-height: calc(100vh - 214px);
 }
 
 .bottom-nav{
@@ -150,7 +153,7 @@ a {
     align-items:center;
     justify-content:center;
     padding: 1em;
-    background: linear-gradient(to right, #111, #000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, white, whitesmoke); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
 }
 .menu-img{

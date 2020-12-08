@@ -1,12 +1,13 @@
 .appbar-nav{
     z-index:3;
     // flexDirection:'',
-    background:rgb(255,255,255) !important;
+    background:#212121d8 !important;
     padding:0em;
     box-shadow: none !important;
-    border-bottom: solid .7px rgba(0,0,0,0.2);
-    // height:'48px',
-    // backdrop-filter: saturate(180%) blur(20px) !important;
+    border-bottom: solid .7px rgba(255,255,255,0.2);
+    
+    height:64px;
+    backdrop-filter: saturate(180%) blur(20px) !important;
 }
 .content-nav{
     display: flex;
@@ -23,13 +24,14 @@
     }
 }
 .brand-pic{
-    display: block;
-    background-image: url(./images/bk-big.png);
-    height: 60px;
-    width: 60px;
-    margin-left: 20vw;
-    margin-top: .5em;
-    // margin-left: 10em;
+    // display: block;
+    height: 2em;
+    visibility: hidden;
+    width: 2.6em;
+    filter: brightness(0) invert(1);
+    margin-top: .35em;
+    margin-left: 0em;
+    cursor: pointer;
 }
 .icon-btn{
     display: flex;
@@ -58,8 +60,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    // backdrop-filter: saturate(180%) blur(10px);
-    background: rgb(255, 255, 255) !important;
+    backdrop-filter: saturate(180%) blur(10px);
+    box-shadow: none !important;
+    background: rgba(255, 255, 255,0.8) !important;
     margin-top:63px;
     z-index: 2 !important;
  

@@ -83,7 +83,10 @@ class HomePage extends React.Component{
       </section>
       <section className='comment-section'>
         <Typography align='center' variant='h2'>
-          <Box className='comment-section-title'>We are the best. Don't just take our words for it</Box>
+          <Box className='comment-section-title'>We are the best</Box>
+        </Typography>
+        <Typography align='center' variant='h2'>
+          <Box className='comment-section-desc'>Don't just take our words for it</Box>
         </Typography>
         <div className='comment-section-img-cont'>
           <div>
