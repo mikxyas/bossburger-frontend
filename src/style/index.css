@@ -341,6 +341,7 @@ section.services-section {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  padding-top: 1em;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;

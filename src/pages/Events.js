@@ -44,7 +44,7 @@ class Events extends Component {
             {this.props.isAdmin 
             ?<>
             <AddEvent/>
-              <Button onClick={() => this.props.toggleAddEvent()} style={{marginBottom:'1em', marginTop:'1em'}} className='add-event-btn' startIcon={<AddIcon/>} color='primary' variant='contained'>
+              <Button onClick={() => this.props.toggleAddEvent()} style={{marginBottom:'1em'}} className='add-event-btn' startIcon={<AddIcon/>} color='primary' variant='contained'>
               Add Event
             </Button>
             </>
