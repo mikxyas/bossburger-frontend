@@ -6,11 +6,8 @@ export default class MenuFood extends Component {
     render() {
         return (
             <div className='menu-food-cont' >
-                
-                {/* <Image  cloudName='mikiyas'  publicId='full-menu_hsxdi3'  width='80%'  secure="true"/> */}
-
-                <img className='menu-img' src='./menu1.png' /> 
-                <img className='menu-img' src='./menu2.png'/> 
+                <Image className='menu-img' cloudName='mikiyas'  publicId='menu1_ljrbch'  secure="true"/>
+                <Image className='menu-img' cloudName='mikiyas'  publicId='menu2_srlh81'  secure="true"/>
             </div>
         )
     }

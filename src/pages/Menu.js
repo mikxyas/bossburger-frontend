@@ -116,11 +116,11 @@ class Menu extends React.Component {
             textColor="primary"
             onChange={this.handleChange}
           >
-            <Tab icon={<Avatar src='https://www.pngitem.com/pimgs/m/517-5172212_transparent-burger-emoji-iphone-hd-png-download.png'/>} onClick={() => this.FetchBurgers()} label="Burgers"/>
+            <Tab icon={<Avatar src='https://res.cloudinary.com/mikiyas/image/upload/v1607435089/burger-logo_ukn09j.png'/>} onClick={() => this.FetchBurgers()} label="Burgers"/>
             
-            <Tab  icon={<Avatar src='https://cdn.emojidex.com/emoji/seal/ketchup.png?1453371291'/>}  onClick={() => this.FetchExtras()} label="Extras"/>
-            <Tab  icon={<Avatar src='https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/160/apple/81/tropical-drink_1f379.png'/>} onClick={() => this.FetchBeverages()} label="Beverages"/>
-            <Tab  icon={<Avatar src='https://i.pinimg.com/736x/0d/9d/71/0d9d71defc5df17911a035a7341add42.jpg'/>} onClick={() => this.FetchFries()} label="Fries"/>
+            <Tab  icon={<Avatar src='https://res.cloudinary.com/mikiyas/image/upload/v1607435164/ketchup_ouyt62.png'/>}  onClick={() => this.FetchExtras()} label="Extras"/>
+            <Tab  icon={<Avatar src='https://res.cloudinary.com/mikiyas/image/upload/v1607435205/tropical-drink_1f379_k7r2gt.png'/>} onClick={() => this.FetchBeverages()} label="Beverages"/>
+            <Tab  icon={<Avatar src='https://res.cloudinary.com/mikiyas/image/upload/v1607435254/0d9d71defc5df17911a035a7341add42_f93uek.jpg'/>} onClick={() => this.FetchFries()} label="Fries"/>
           </Tabs>
           </AppBar>
         </div>
