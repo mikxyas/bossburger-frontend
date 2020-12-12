@@ -76,7 +76,7 @@ export default function Loading(props) {
           className={buttonClassname}
           onClick={handleButtonClick}
         >
-          {success ? <CheckIcon /> :props.LoaderIcon}
+          {props.load ? <CheckIcon /> :props.LoaderIcon}
         </Fab>
         {loading && <CircularProgress color='primary' size={68} className={classes.fabProgress} />}
       </div>

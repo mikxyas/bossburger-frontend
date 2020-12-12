@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Grid from '@material-ui/core/Grid';
-import { Paper, Button,Container,TextField } from '@material-ui/core';
+import { Paper, Button,Container,TextField, Typography } from '@material-ui/core';
 import { connect } from 'react-redux'
 import {register} from '../actions/auth';
 import PropTypes from 'prop-types';
@@ -42,10 +42,10 @@ class Register extends Component {
             return <Redirect to="/" />;
           }
         return (
-            <Container className='svg-background' style={{display:'flex',alignItems:'center',flexDirection:'column',height:'calc(100vh - 64px)'}}>
-                <Paper elevation={1} square style={{padding:'1.5em', marginTop:'2em', width:'fit-content'}}>
+            <Container className='svg-background' style={{display:'flex',alignItems:'center',flexDirection:'column',justifyContent:'center',height:'calc(100vh - 64px)'}}>
+                <Paper variant='outlined' square style={{padding:'1em', width:'fit-content'}}>                                
                                 <form  onSubmit={this.handleSubmit}>
-                                    <TextField style={{marginBottom:'.4em'}} 
+                                    <TextField style={{marginBottom:'.4em', width:'190px'}} 
                                     type='email' 
                                     error={this.state.emailError}
                                     label="Email"
@@ -54,14 +54,14 @@ class Register extends Component {
                                     value={this.state.email} 
                                     />
                                     <br/>
-                                    <TextField style={{marginBottom:'.4em'}} 
+                                    <TextField style={{marginBottom:'.4em', width:'190px'}} 
                                     label="Name"
                                     value={this.state.name} 
                                     name='name'
                                     onChange={this.handleChange}
                                     />
                                     <br/>
-                                    <TextField style={{marginBottom:'.4em'}} label="Password"
+                                    <TextField style={{marginBottom:'.4em', width:'190px'}} label="Password"
                                      value={this.state.password} 
                                      error={this.state.passwordError}
                                      helperText='Use at least 8 characters'
@@ -78,7 +78,7 @@ class Register extends Component {
                                     //  onBlur={handleBlur}
                                     /> */}
                                     <br/>
-                                    <TextField style={{marginBottom:'2em'}} 
+                                    <TextField style={{marginBottom:'2em', width:'190px'}} 
                                     label="Phone number"
                                     error={this.state.phone_numberError}
                                     value={this.state.phone_number} 
@@ -87,7 +87,7 @@ class Register extends Component {
                                     onChange={this.handleChange}
                                     />
                                     <br/>
-                                    <Button type="submit"  fullWidth variant='contained' color='secondary'>Register</Button>
+                                    <Button type="submit" style={{borderRadius:'20px'}} size='small' fullWidth variant='contained' color='secondary'>Register</Button>
                                 </form>
                     </Paper>
             </Container>

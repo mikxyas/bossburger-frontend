@@ -1,7 +1,7 @@
 import { GET_MENU_ITEMS,MENUITEM_CREATED, MENUITEM_DELETED, GETTING_MENUITEMS, MENUITEMS_FAILED, TOGGLE_ADD_MENUITEM} from '../actions/types.js';
 
 const initialState = {
-    itemsLoading: true,
+    itemsLoaded: false,
     MenuItems: [],
     fetchFailed:false,
     openAddMenu:false,
@@ -42,7 +42,6 @@ export default function(state = initialState, action) {
         case GETTING_MENUITEMS:
             return {
                 ...state,
-                itemsLoading:true
             }
         case MENUITEMS_FAILED:
             return {
@@ -54,7 +53,7 @@ export default function(state = initialState, action) {
             return {
                 ...state,
                 MenuItems:action.payload,
-                itemsLoading: false
+                itemsLoaded: true
             }
         default:
             return state;

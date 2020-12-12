@@ -26,10 +26,9 @@ import UserIcon from '@material-ui/icons/People';
 import { Image, Transformation } from 'cloudinary-react';
 import AddIcon from '@material-ui/icons/Add'
 import InfoIcon from '@material-ui/icons/InfoOutlined';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-
+import Loading from '../components/Loading';
+import FastFoodIcon from '@material-ui/icons/Fastfood'
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCartOutlined'
 
 const useStyles = makeStyles((theme) => ({
   gradient: {
@@ -42,10 +41,10 @@ const useStyles = makeStyles((theme) => ({
 class Menu extends React.Component {
   static propTypes = {
     MenuItems:PropTypes.array.isRequired,
-    itemLoading: PropTypes.bool.isRequired,
     isAuthenticated: PropTypes.bool.isRequired,
     isAdmin: PropTypes.bool.isRequired,
-    user: PropTypes.object.isRequired
+    user: PropTypes.object.isRequired,
+    itemsLoaded: PropTypes.bool.isRequired
   }
     constructor(props){
       super(props);
@@ -125,16 +124,14 @@ class Menu extends React.Component {
           </AppBar>
         </div>
         <div style={{marginBottom:'5em'}}/>
-        {/* {this.state.itemLoading ?
-        <div style={{display:"flex",height:"80vh", alignItems:"center",justifyContent:"center"}}>
-        <Loading LoaderIcon={<FastFoodIcon/>} load={this.state.isLoaded}/> 
-      </div> */}
-      
-          {this.props.isAdmin
-          ?<Button endIcon={<AddIcon/>} onClick={() => this.props.toggleAddMenuItem()} style={{marginTop:'1em', marginLeft:'1em'}} variant='contained' color='primary'>Add Menu Item</Button>
+        
+        {this.props.itemsLoaded 
+        ?<>
+        {this.props.isAdmin
+          ?<Button onClick={() => this.props.toggleAddMenuItem()} style={{marginTop:'1em', marginLeft:'2em', borderRadius:'20px'}} variant='contained' size='small' color='primary'>Add Menu Item</Button>
           :null
           }
-          <Grid  container spacing={2} style={{display:'flex',justifyContent:'center',alignItems:'center',padding:"2em",overflowY:"hidden"}}>
+          <Grid  container spacing={2} jusitfy='center' alignItems='center' style={{padding:"2em",overflowY:"hidden"}}>
             {this.state.SelectedMenuItems.map(item => {
               if(item.rating != null){
                 var rating = 0
@@ -152,7 +149,7 @@ class Menu extends React.Component {
                 }
               }
               return(
-              <Grid item key={item.id} md={3} sm={8} xs={12} >
+              <Grid style={{display:'flex', alignItems:'center', justifyContent:'center', flexDirection:'column'}} item key={item.id} md={4} sm={6} xs={12} >
                 <Card variant='outlined' style={{borderRadius:'5px',width:'300px', marginBottom:'0em'}}>
                   <CardContent>
                   {item.food_type === 'BRG'
@@ -232,16 +229,16 @@ class Menu extends React.Component {
                   
                     {this.props.cart[item.id]
                     ?<>
-                    <Button style={{margin:'auto'}}  onClick={() => this.props.deleteItem(item.id, item.price)}  >Remove From Cart</Button>
+                    <Button style={{margin:'auto'}} color='secondary' size='small' onClick={() => this.props.deleteItem(item.id, item.price)}  >Remove From Cart</Button>
                     </>
                     :<>
                     {this.props.isAuthenticated
                     ?<Link to='/checkout'>
-                      <Button disabled={!item.available}  onClick={() => this.props.addtoCart(item)}  color='primary'>Order</Button>
+                      <Button disabled={!item.available} variant='contained' size='small' style={{borderRadius:'20px'}} onClick={() => this.props.addtoCart(item)}  color='primary'>Order</Button>
                     </Link> 
-                    :  <Button disabled={!item.available} onClick={() => this.props.toggleSignupDialog()} color='primary'>Order</Button>
+                    :  <Button disabled={!item.available} variant='contained' size='small' style={{borderRadius:'20px'}} onClick={() => this.props.toggleSignupDialog()} color='primary'>Order</Button>
                     }
-                    <Button disabled={!item.available}  onClick={() => this.props.addtoCart(item)} color='primary'>Add to Cart</Button>
+                    <Button disabled={!item.available} endIcon={<ShoppingCartIcon/>} size='small'  onClick={() => this.props.addtoCart(item)} color='primary'>Add to Cart</Button>
                     </>
                     }
                   </CardActions>
@@ -259,9 +256,14 @@ class Menu extends React.Component {
               </Grid>
               )})} 
           </Grid>
-         
-        </div>
-          
+          </>
+        :<div style={{display:"flex",height:"60vh", alignItems:"center",justifyContent:"center"}}>
+        <Loading LoaderIcon={<FastFoodIcon/>} load={this.props.itemsLoaded}/> 
+        
+      </div>
+      }
+
+    </div>    
       
     );
   }
@@ -271,7 +273,7 @@ const mapStateToProps = state =>({
   isAdmin:state.auth.isAdmin,
   user:state.auth.user,
   isAuthenticated: state.auth.isAuthenticated,
-  itemsLoading: state.MenuItems.itemsLoading,
+  itemsLoaded: state.MenuItems.itemsLoaded,
   Burgers: state.MenuItems.MenuItems.filter(item => item.food_type == 'BRG'),
   Extras: state.MenuItems.MenuItems.filter(item => item.food_type == 'EXT'),
   Fries: state.MenuItems.MenuItems.filter(item => item.food_type == 'FRI'),

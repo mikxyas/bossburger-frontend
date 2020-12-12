@@ -341,7 +341,7 @@ section.services-section {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  padding-top: 1em;
+  padding-top: 2em;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -837,9 +837,9 @@ a {
   }
   .hero-section-mobile-image {
     display: block;
-    width: 60%;
-    border-radius: 15px;
-    height: 70%;
+    width: 80%;
+    border-radius: 20px;
+    height: 80%;
   }
   .hero-section-content {
     width: 100%;

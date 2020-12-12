@@ -39,15 +39,15 @@ class Events extends Component {
     render() {
         return (
           <>
-          <EventViewer/>
+          {/* <EventViewer/> */}
           <div className='event-page-cont'>
             {this.props.isAdmin 
-            ?<>
+            ?<div style={{width:'100vw', paddingLeft:'3em'}}>
             <AddEvent/>
-              <Button onClick={() => this.props.toggleAddEvent()} style={{marginBottom:'1em'}} className='add-event-btn' startIcon={<AddIcon/>} color='primary' variant='contained'>
+              <Button onClick={() => this.props.toggleAddEvent()} style={{marginBottom:'1em', borderRadius:'20px'}} className='add-event-btn'  color='primary' variant='contained'>
               Add Event
             </Button>
-            </>
+            </div>
             :null  
           }
           <Grid container alignItems='center'  justify='center' spacing={2}>
@@ -60,7 +60,7 @@ class Events extends Component {
                     ?<div className='event-card-admin'>
                          {/* <Button style={{borderRadius:'20px'}} variant='contained' size='small' color='primary'>Edit</Button>  */}
                         {/* <Button endIcon={}  fullWidth size='small' variant='contained' >Delete</Button> */}
-                        <IconButton  onClick={() => this.props.deleteEvent(this.props.events[item])}><DeleteIcon/></IconButton>
+                        <IconButton onClick={() => this.props.deleteEvent(this.props.events[item])}><DeleteIcon style={{color:'#111111'}}/></IconButton>
                     </div>
                     :null
                 }

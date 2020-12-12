@@ -20,6 +20,7 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Drawer from '@material-ui/core/Drawer'
 import CartDrawer from './CartDrawer'
+import { Avatar } from '@material-ui/core';
 
 
 
@@ -118,10 +119,10 @@ function MenuAppBar(props) {
            
               <div className={classes.login}>
                       
-            <Button variant='outlined' style={{color:'white'}} startIcon={<AccountCircleIcon/>} aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+            <Avatar  aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}/>
               
-              {props.user.name}
-            </Button>
+              {/* {props.user.name} */}
+            
             <Menu
               id="simple-menu"
               anchorEl={open}
