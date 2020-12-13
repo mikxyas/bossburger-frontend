@@ -1,29 +1,11 @@
 import React from 'react';
-import {Button, Avatar,Grid,Container,Collapse, Paper,Divider,IconButton, Typography, Box, ButtonGroup} from '@material-ui/core';
+import {Button, Typography, Box} from '@material-ui/core';
 import {Link} from 'react-router-dom'
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import DownIcon from '@material-ui/icons/ArrowDownward';
-import GpsIcon from '@material-ui/icons/LocationOn'
-import UpIcon from '@material-ui/icons/ArrowUpward';
-// import OpenInBrowserIcon from '@material-ui/icons/tab'
-import Section from '../components/Section'
-import Banner from '../components/Banner'
-import AdCard from '../components/AdCard'
-import InstaIcon from '@material-ui/icons/Instagram'
-import FacebookIcon from '@material-ui/icons/Facebook'
-import PhoneIcon from '@material-ui/icons/Phone'
-import OpenInNewIcon from '@material-ui/icons/OpenInNew'
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
 import {loadEvents, viewEvent} from '../actions/events'
 import {connect} from 'react-redux'
-import {Image, Transformation} from 'cloudinary-react'
+import {Image} from 'cloudinary-react'
 import EventViewer from '../components/EventViewer'
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-import Video from 'cloudinary-react/lib/components/Video';
 
 
 class HomePage extends React.Component{
