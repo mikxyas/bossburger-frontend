@@ -90,7 +90,7 @@ class SigninDialog extends  React.Component{
         Sign in
       </Button>
       <Dialog open={this.props.openSigninDialog} onClose={this.handleDialog} TransitionComponent={Transition}>        
-        <div style={{padding:'1em', display:'flex', alignItems:'center', justifyContent:'center', flexDirection:'column'}}>
+        <div style={{padding:'1.5em', display:'flex', alignItems:'center', justifyContent:'center', flexDirection:'column'}}>
 
         {/* <IconButton style={{marginLeft:'auto'}} edge="start" color="inherit" onClick={handleClose} aria-label="close">
               <CloseIcon />
@@ -101,9 +101,9 @@ class SigninDialog extends  React.Component{
               <br/>
               
               <Button style={{marginLeft:'130px', marginBottom:'1.4em',borderRadius:'20px'}} onClick={() => this.handleSubmit()} size='small' variant='contained' color='primary'>Sign In</Button>
-              {/* <Divider style={{marginTop:'.7em', marginBottom:'.3.5'}}  variant='middle'/> */}
+              <Divider style={{marginBottom:'.5em', width:'100%'}}  variant='middle'/>
               
-              <Typography align='center' style={{marginBottom:'.3.5em'}} variant='caption'>Don't have an account?</Typography>
+              <Typography align='center' style={{marginBottom:'.4em'}} variant='caption'>Don't have an account?</Typography>
               {/* <p style={{textAlign:'center'}}>Or</p> */}
               
               <Link  to='/register'>
