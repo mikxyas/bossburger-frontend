@@ -140,12 +140,25 @@ class Menu extends React.Component {
                   return sum += item.rating[userID] 
                 })
               }
+              let ActionBtnStyle = {
+                marginTop:'-.8em'
+              }
               let textStyle = {
                 color:'black'
+              }
+              let priceStyle = {
+                color:'#1e1e1e',
               }
               if(item.available == false){
                 textStyle = {
                   color:'grey'
+                }
+                priceStyle = {
+                  color:'grey',
+                }
+                ActionBtnStyle={
+                  display:'none',
+                  marginTop:'-.8em'
                 }
               }
               return(
@@ -163,8 +176,8 @@ class Menu extends React.Component {
                     <Typography style={textStyle} variant="h5" component="h2">
                           <Box fontSize='25'>{item.name}</Box>
                         </Typography> 
-                        <Typography style={textStyle} variant="h7" color="textPrimary" component="p">
-                          {item.price} Birr
+                        <Typography style={priceStyle} variant="h7" color="textPrimary" component="p">
+                          {item.price} ETB
                         </Typography>
                         {this.props.user == null
                         ?
@@ -214,7 +227,7 @@ class Menu extends React.Component {
                     
                   {item.available
                           ?null
-                          :<div style={{marginLeft:'.5em'}}>
+                          :<div style={{margin:'.5em'}}>
                           <Chip
                             // style={{marginTop:'-1em'}}
                             icon={<InfoIcon />}
@@ -225,7 +238,7 @@ class Menu extends React.Component {
                           </div>
 
                           } 
-                  <CardActions style={{marginTop:'-.8em'}}>
+                  <CardActions style={ActionBtnStyle}>
                   
                     {this.props.cart[item.id]
                     ?<>

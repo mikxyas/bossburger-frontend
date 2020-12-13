@@ -66,19 +66,8 @@ class HomePage extends React.Component{
 
           </Link>
           
-            <Image className='hero-section-mobile-image' cloudName='mikiyas' publicId='c-item2_qewdgb'  secure="true"/>
-
-          <div className='hero-section-grid'>
-            {/* <img src='https://instagram.fadd1-1.fna.fbcdn.net/v/t51.2885-15/e35/c59.0.1122.1122a/s480x480/97237411_248415766235891_5659653975019641466_n.jpg?_nc_ht=instagram.fadd1-1.fna.fbcdn.net&_nc_cat=111&_nc_ohc=idrsKOxco2gAX_YEahg&tp=1&oh=c877491441a7ade3d65bf08f13c6f7fc&oe=5FEC9883' className='hero-section-grid-img-short-2'/> */}
-            <Image  cloudName='mikiyas' className='hero-section-grid-img-short-2' publicId='font2_gg4q96' secure="true"/>
-            {/* <img src='./c-item2.jpg' className='hero-section-grid-img-long'/> */}
-            <Image  cloudName='mikiyas' className='hero-section-grid-img-long' publicId='c-item2_qewdgb'   secure="true"/>
-            {/* <img src='./c-item-3.jpg' className='hero-section-grid-img-short-1'/> */}
-            <Image cloudName='mikiyas' className='hero-section-grid-img-short-1' publicId='hero1-bg_pvqypy' secure="true"> 
-              <Transformation gravity="center" />
-             </Image>
-          
-          </div>
+            <Image className='hero-section-mobile-image' cloudName='mikiyas' publicId='font2_gg4q96'  secure="true"/>
+           
         </div>
       </section>
       <section className='comment-section'>

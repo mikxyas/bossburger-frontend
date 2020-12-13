@@ -100,10 +100,10 @@ class SigninDialog extends  React.Component{
               <TextField style={{width:'190px'}} label="Password" name='password' onChange={this.handleSigninFormChange} type='password'/>
               <br/>
               
-              <Button style={{marginLeft:'130px', marginBottom:'.7em',borderRadius:'20px'}} onClick={() => this.handleSubmit()} size='small' variant='contained' color='primary'>Sign In</Button>
+              <Button style={{marginLeft:'130px', marginBottom:'1.4em',borderRadius:'20px'}} onClick={() => this.handleSubmit()} size='small' variant='contained' color='primary'>Sign In</Button>
               {/* <Divider style={{marginTop:'.7em', marginBottom:'.3.5'}}  variant='middle'/> */}
               
-              <Typography align='center' style={{marginBottom:'.3.5em'}} variant='caption'>Don't have an account? Register.</Typography>
+              <Typography align='center' style={{marginBottom:'.3.5em'}} variant='caption'>Don't have an account?</Typography>
               {/* <p style={{textAlign:'center'}}>Or</p> */}
               
               <Link  to='/register'>
