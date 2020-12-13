@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField  from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
+import Slide from '@material-ui/core/Slide';
 import Divider from '@material-ui/core/Divider'
 import {Link, Redirect} from 'react-router-dom'
 import { connect } from 'react-redux'
