@@ -119,34 +119,3 @@ const mapStateToProps = state => ({
 })
 export default connect(mapStateToProps, {loadEvents, viewEvent})(HomePage);
 
-// Iterate over events 
-{/* <Grid spacing={2} container alignItems='center' justify='center' style={{padding:'1em'}}>
-{Object.keys(this.props.events).map(item => {
-  return(
-  <Grid item md={4} sm={8} xs={12}  key={item}>
-  <Card onClick={() => this.props.viewEvent(item)} className='codepen-card'>
-    <CardActionArea>
-         <img className="codepen-card-image" src="https://instagram.fadd1-1.fna.fbcdn.net/v/t51.2885-15/e35/c0.160.1280.1280a/s320x320/123495909_381318276556811_4479592698820581644_n.jpg?_nc_ht=instagram.fadd1-1.fna.fbcdn.net&_nc_cat=111&_nc_ohc=jO0XwjbeYZkAX8nDqzN&tp=16&oh=22febfb99f65c3e0bad61e8cea9c512a&oe=5FE02BAF" alt=""/> 
-        <Image className='codepen-card-image' cloudName='mikiyas' height='160' width='100%' publicId={this.props.events[item].img}  secure="true"/>
-
-    </CardActionArea>
-    <Typography className='codepen-title'>
-      <Box fontSize={18} fontWeight={600}>
-        {this.props.events[item].title.length > 19
-        ?<>{this.props.events[item].title.substring(0, 19) + '...'}</>
-        :<>{this.props.events[item].title}</>
-        }
-        </Box>
-    </Typography>
-    <Typography className='codepen-desc' variant='caption'>
-      <Box >
-        {this.props.events[item].desc.length > 59
-          ?<>{this.props.events[item].desc.substring(0, 59) + '...'}</>
-          :<>{this.props.events[item].desc}</>
-        }
-      </Box>
-    </Typography>
-  </Card>
-        </Grid>
-)})}
-</Grid> */}
