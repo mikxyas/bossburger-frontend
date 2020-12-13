@@ -22,7 +22,6 @@ import {loadEvents, viewEvent} from '../actions/events'
 import {connect} from 'react-redux'
 import {Image, Transformation} from 'cloudinary-react'
 import EventViewer from '../components/EventViewer'
-import HomePageCarousel from '../components/HomepageCarousel'
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import Video from 'cloudinary-react/lib/components/Video';
 
