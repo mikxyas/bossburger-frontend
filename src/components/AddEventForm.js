@@ -71,7 +71,7 @@ class AddEventForm extends Component {
         return (
             <>
             <div style={{display:'flex',alignItems:'center',flexDirection:'column',justifyContent:'center'}}>
-               <div>
+               <div >
                    <h1>This the form</h1>
                    <TextField
                         name='title'
@@ -124,9 +124,9 @@ class AddEventForm extends Component {
                     </Dropzone>
                     {/* <Previews img={this.state.img} content={this.state.content} desc={this.state.desc} title={this.state.title}/> */}
                     
-                    <br/>
-                    <br/>
-                    <Button variant='contained' onClick={() => this.uploadEvent()}  color='primary'>Add Event</Button>
+                    
+                    
+                    <Button style={{marginBottom:'80px'}} variant='contained' onClick={() => this.uploadEvent()}  color='primary'>Add Event</Button>
                </div>
                </div>
                </>
