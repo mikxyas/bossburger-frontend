@@ -24,6 +24,7 @@ import {addAmountof, decreaseAmountof, deleteItem} from '../actions/cart'
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import {placeOrder} from '../actions/order'
+import {loadUser} from '../actions/auth'
 import {toggleLocationDialog} from '../actions/locations'
 import { Redirect } from 'react-router-dom';
 import LocationDialog from '../components/LocationDialog'
@@ -112,6 +113,7 @@ class Checkout extends Component {
             customer_phone:e.target.value
         })
     }
+    
     render() {
         if(this.props.orderPlaced){
             return <Redirect to='/orders'/>
@@ -222,8 +224,8 @@ class Checkout extends Component {
                 
                 <Divider/>
                 <Paper style={{padding:"1em", marginTop:'1em',width:'350px'}}>
-                    <Typography align='center'>Phone number for us to call</Typography>
-                    <TextField fullWidth onChange={this.handlePhone}  label='Your Phone Number'/>
+                    <Typography  align='center'>Phone number for us to call</Typography>
+                    <TextField fullWidth  onChange={this.handlePhone}  label='Your Phone Number'/>
                 </Paper>
                 <br/>
 
@@ -284,4 +286,4 @@ const mapStateToProps = state =>({
     user: state.auth.user
 })
       
-export default connect(mapStateToProps, {addAmountof, decreaseAmountof, deleteItem, placeOrder, toggleLocationDialog})(Checkout);
+export default connect(mapStateToProps, {addAmountof, decreaseAmountof, deleteItem, placeOrder, toggleLocationDialog, loadUser})(Checkout);

@@ -1,5 +1,5 @@
 import React from 'react'
-import {AppBar, Chip,Button, Box, Toolbar, Avatar} from '@material-ui/core'
+import {AppBar, Chip,Button, Box,  Avatar} from '@material-ui/core'
 import Grid from '@material-ui/core/Grid';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -13,10 +13,8 @@ import AddMenuItem from '../components/AddMenuItem'
 import { Link } from 'react-router-dom';
 import Card from '@material-ui/core/Card';
 import Paper from '@material-ui/core/Paper';
-import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import ReactStars from "react-rating-stars-component";
 import EmptyStar from '@material-ui/icons/StarOutlined';
@@ -54,37 +52,19 @@ class Menu extends React.Component {
         items: [],
         itemToFetch: 'burgers',
         SelectedMenuItems: this.props.Burgers,
+        SelectedMenuType:'BRG',
       }
     }
-    InitialFetch() {
-      this.props.getMenuItems()
-      setTimeout(function(){
-      this.setState({SelectedMenuItems:this.props.Burgers,isLoaded:true})
-        console.log(this.state.SelectedMenuItems)
-      }.bind(this),4000)
-    }
-    FetchBurgers = () => {
-      this.setState({SelectedMenuItems: this.props.Burgers})
-    }
-    FetchFries = () => {
-      this.setState({SelectedMenuItems: this.props.Fries})
-    }
-    FetchExtras = () => {
-      this.setState({SelectedMenuItems: this.props.Extras})
-    }
-    FetchBeverages = () => {
-      this.setState({SelectedMenuItems: this.props.Beverages})
-    }
+   
 
    componentDidMount(){
-      this.InitialFetch()
+     this.props.getMenuItems()
     }
-    handleMenu = (event, newItem) => {
-      this.setState({SelectedMenuItems: this.props.newItem})
-    } 
-    handleChange = (event, newValue) => {
-      this.setState({value: newValue});
-    };
+   
+    handleMenuType = (e,newValue) => {
+      this.setState({SelectedMenuType: newValue})
+      // console.log(newValue)
+    }
     round (value, step) {
       console.log(value)
       step || (step = 1.0);
@@ -110,16 +90,16 @@ class Menu extends React.Component {
 
           <Tabs
             p={{ xs: 2, sm: 3, md: 4 }}
-            value={this.state.value}
+            value={this.state.SelectedMenuType}
             indicatorColor="primary"
             textColor="primary"
-            onChange={this.handleChange}
+            onChange={this.handleMenuType}
           >
-            <Tab icon={<Avatar src='https://res.cloudinary.com/mikiyas/image/upload/v1607435089/burger-logo_ukn09j.png'/>} onClick={() => this.FetchBurgers()} label="Burgers"/>
+            <Tab icon={<Avatar src='https://res.cloudinary.com/mikiyas/image/upload/v1607435089/burger-logo_ukn09j.png'/>} value='BRG' label="Burgers"/>
             
-            <Tab  icon={<Avatar src='https://res.cloudinary.com/mikiyas/image/upload/v1607435164/ketchup_ouyt62.png'/>}  onClick={() => this.FetchExtras()} label="Extras"/>
-            <Tab  icon={<Avatar src='https://res.cloudinary.com/mikiyas/image/upload/v1607435205/tropical-drink_1f379_k7r2gt.png'/>} onClick={() => this.FetchBeverages()} label="Beverages"/>
-            <Tab  icon={<Avatar src='https://res.cloudinary.com/mikiyas/image/upload/v1607435254/0d9d71defc5df17911a035a7341add42_f93uek.jpg'/>} onClick={() => this.FetchFries()} label="Fries"/>
+            <Tab  icon={<Avatar src='https://res.cloudinary.com/mikiyas/image/upload/v1607435164/ketchup_ouyt62.png'/>}  value='EXT' label="Extras"/>
+            <Tab  icon={<Avatar src='https://res.cloudinary.com/mikiyas/image/upload/v1607435205/tropical-drink_1f379_k7r2gt.png'/>} value='BVG' label="Beverages"/>
+            <Tab  icon={<Avatar src='https://res.cloudinary.com/mikiyas/image/upload/v1607435254/0d9d71defc5df17911a035a7341add42_f93uek.jpg'/>} value='FRI' label="Fries"/>
           </Tabs>
           </AppBar>
         </div>
@@ -132,7 +112,7 @@ class Menu extends React.Component {
           :null
           }
           <Grid  container spacing={2} jusitfy='center' alignItems='center' style={{padding:"2em",overflowY:"hidden"}}>
-            {this.state.SelectedMenuItems.map(item => {
+            {this.props.menuItems.filter(item => item.food_type === this.state.SelectedMenuType).map(item => {
               if(item.rating != null){
                 var rating = 0
                 var sum = 0
@@ -179,12 +159,12 @@ class Menu extends React.Component {
                         <Typography style={priceStyle} variant="h7" color="textPrimary" component="p">
                           {item.price} ETB
                         </Typography>
-                        {this.props.user == null
+                        {this.props.user === null
                         ?
                         <div style={{display:'flex',alignItems:'center'}}>
                          <ReactStars
                           count={5}
-                          value={item.rating == null ?0 :this.round(sum/Object.keys(item.rating).length, 0.5)}
+                          value={item.rating === null ?0 :this.round(sum/Object.keys(item.rating).length, 0.5)}
 
                           // onChange={ratingChanged}
                           style={{margin:'auto'}}
@@ -198,7 +178,7 @@ class Menu extends React.Component {
                           //   ?this.handleNewRating(item)
                           //   :this.handleRating(item)
                           // }
-                          activeColor={item.available == true ?"#ffd700": '#9e9e9e'}
+                          activeColor={item.available === true ?"#ffd700": '#9e9e9e'}
                         />
                         <Typography  style={{ color:'rgb(100, 100, 100)',marginLeft:'.3em',fontSize:'13px'}}> {item.rating == null ?<>0</> :<>{Math.round(sum/Object.keys(item.rating).length * 100) / 100 + ' (' + Object.keys(item.rating).length + ')'}</>}</Typography>
 
@@ -207,7 +187,7 @@ class Menu extends React.Component {
                         <div style={{display:'flex', alignItems:'center'}}>
                           <ReactStars
                           count={5}
-                          value={item.rating == null ?0 :this.round(sum/Object.keys(item.rating).length, 0.5)}
+                          value={item.rating === null ?0 :this.round(sum/Object.keys(item.rating).length, 0.5)}
                           // onChange={ratingChanged}
                           style={{margin:'auto'}}
                           size={21}
@@ -216,7 +196,7 @@ class Menu extends React.Component {
                           halfIcon={<HalfStar/>}
                           fullIcon={<FullStar/>}
                           onChange={this.handleRating(item)}
-                          activeColor={item.available == true ?"#ffd700": '#9e9e9e'}
+                          activeColor={item.available === true ?"#ffd700": '#9e9e9e'}
                         /> 
                         <Typography style={{color:'rgb(100, 100, 100)',marginLeft:'.3em',fontSize:'12px'}}> {item.rating == null ?<>0</> :<>{Math.round(sum/Object.keys(item.rating).length * 100) / 100 + ' (' + Object.keys(item.rating).length + ')'}</>}</Typography>
                         
@@ -287,10 +267,7 @@ const mapStateToProps = state =>({
   user:state.auth.user,
   isAuthenticated: state.auth.isAuthenticated,
   itemsLoaded: state.MenuItems.itemsLoaded,
-  Burgers: state.MenuItems.MenuItems.filter(item => item.food_type == 'BRG'),
-  Extras: state.MenuItems.MenuItems.filter(item => item.food_type == 'EXT'),
-  Fries: state.MenuItems.MenuItems.filter(item => item.food_type == 'FRI'),
-  Beverages: state.MenuItems.MenuItems.filter(item => item.food_type == 'BVG'),
+  menuItems: state.MenuItems.MenuItems,
   cart: state.cart.cart
 })
 

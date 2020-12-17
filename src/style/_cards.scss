@@ -1,3 +1,21 @@
+.orders-cont{
+  // background-color: ;
+  min-height: calc(100vh - 120px);
+  padding: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.order-card{
+  width: 320px;
+  margin-bottom: 1em;
+}
+.order-desc{
+  border: rgba(0,0,0,0.3) solid .5px;
+  border-radius: 8px;
+  padding: .5em;
+}
+
 .event-page-cont{
   display: flex;
   padding-top:2em;

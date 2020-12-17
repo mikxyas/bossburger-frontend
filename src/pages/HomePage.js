@@ -89,6 +89,10 @@ class HomePage extends React.Component{
       </div>  
       
       </section>
+{/*       
+      <section className='pricesection'>
+          hello
+        </section> */}
     </>
     
   );
