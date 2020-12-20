@@ -11,6 +11,12 @@
     }   
 }
 @include mediaMd{
+    &.tab-cont{
+        justify-content: flex-start;
+    }
+    &.boss-btn{
+        margin-left: .0em !important;
+    }
     footer{
         margin-bottom: 60px;
     }
@@ -41,9 +47,7 @@
     &.hero-section-content{
         height: 80%;
     }
-    .brand-pic{
-        visibility: visible;
-    }
+   
     #toolbar{
         Button{
             &.cont-nav{
@@ -75,7 +79,9 @@
     }
     &.brand-pic{
         visibility: visible;
-        margin-left: 1em;
+        margin: auto;
+        margin-left: .5em;
+        
     }
     &.ad-grid{
         grid-template-columns: 1fr;

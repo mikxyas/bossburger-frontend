@@ -90,25 +90,26 @@ class SigninDialog extends  React.Component{
         Sign in
       </Button>
       <Dialog open={this.props.openSigninDialog} onClose={this.handleDialog} TransitionComponent={Transition}>        
-        <div style={{padding:'1.5em', display:'flex', alignItems:'center', justifyContent:'center', flexDirection:'column'}}>
+        <div style={{padding:'1.5em', margin:'auto'}}>
 
         {/* <IconButton style={{marginLeft:'auto'}} edge="start" color="inherit" onClick={handleClose} aria-label="close">
               <CloseIcon />
             </IconButton> */}
-              <TextField style={{width:'190px'}} type='email' name='email' onChange={this.handleSigninFormChange} label="Email"/>
-             
-              <TextField style={{width:'190px'}} label="Password" name='password' onChange={this.handleSigninFormChange} type='password'/>
+              <TextField style={{width:'210px'}} type='email' name='email' onChange={this.handleSigninFormChange} label="Email"/>
+             <br/>
+              <TextField style={{width:'210px', marginBottom:'1em'}} label="Password" name='password' onChange={this.handleSigninFormChange} type='password'/>
               <br/>
               
-              <Button style={{marginLeft:'130px', marginBottom:'1.4em',borderRadius:'20px'}} onClick={() => this.handleSubmit()} size='small' variant='contained' color='primary'>Sign In</Button>
-              <Divider style={{marginBottom:'.5em', width:'100%'}}  variant='middle'/>
+              <Button style={{marginLeft:'150px', marginBottom:'1.4em',borderRadius:'20px'}} onClick={() => this.handleSubmit()} size='small' variant='contained' color='primary'>Sign In</Button>
+              <div style={{display:'flex',flexDirection:'column', alignItems:'center', justifyContent:'center', width:'100%'}}>
+                <Divider style={{marginBottom:'.5em', width:'100%'}}  variant='middle'/>
+                <Typography align='center' style={{marginBottom:'.4em'}} variant='caption'>Don't have an account?</Typography>
+                
+                <Link  to='/register'>
+                  <Button onClick={() => this.handleDialog()} size='small' variant='outlined' color='secondary'>Register</Button>
+                </Link>
+              </div>
               
-              <Typography align='center' style={{marginBottom:'.4em'}} variant='caption'>Don't have an account?</Typography>
-              {/* <p style={{textAlign:'center'}}>Or</p> */}
-              
-              <Link  to='/register'>
-                <Button onClick={() => this.handleDialog()} size='small' variant='outlined' color='secondary'>Register</Button>
-              </Link>
         </div>
       </Dialog>
     </div>

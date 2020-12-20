@@ -20,8 +20,8 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Drawer from '@material-ui/core/Drawer'
 import CartDrawer from './CartDrawer'
-import { Avatar } from '@material-ui/core';
-
+import { Avatar, Divider } from '@material-ui/core';
+import DashboardIcon from '@material-ui/icons/Dashboard';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -33,12 +33,12 @@ const useStyles = makeStyles((theme) => ({
     // width:'100%',
     color:'white',
     marginTop:'0',
-    display:"flex", 
-    alignItems:'center',
+   
   },
   toolBar: {
     padding:'0em',
-   margin:'0'
+   margin:'0',
+      
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft:'auto',
     marginRight:'.5em',
     // borderRadius:'20px',
-    width:'fit-content',
+    
     alignItems:'center'
   },
 
@@ -89,12 +89,13 @@ function MenuAppBar(props) {
     <div className={classes.root}>
       <AppBar elevation={2} className='appbar-nav'  position="fixed">
         <Toolbar id='toolbar' className={classes.toolBar}>
-        
+        <div className='tab-cont'>
         <Tabs
         className={classes.tab}
         onChange={handleLinks} 
         value={props.activeLink}
         indicatorColor='white'
+
         >
           
             <img onClick={handleBrand} src='./bosslogo.png' className='brand-pic'/>
@@ -103,9 +104,21 @@ function MenuAppBar(props) {
           <Tab  className='cont-nav' value='menu' label="Menu"  />
           <Tab  value='order' className='cont-nav' label="Order"  />
           <Tab  value='events' className='cont-nav' label="Events"  />
-          <Tab  value='jobs' className='cont-nav' label="Jobs"  />
-          <Tab  value='services' className='cont-nav' label="Services"  />
-          <Tab  value='contact' className='cont-nav' label="Contacts"  />            
+          {props.isAdmin
+          ?
+            <Divider variant='middle' style={{marginLeft:'1em', background:'rgba(255,255,255,0.6)'}}  orientation='vertical' flexItem/>
+          
+          :null
+          }
+          {props.isAdmin
+          ?
+            <Tab  className='boss-btn' value='boss'  label="Dashboard"  />
+          
+          :null
+          }
+          {/* <Tab  value='jobs' className='cont-nav' label="Jobs"  /> */}
+          {/* <Tab  value='services' className='cont-nav' label="Services"  /> */}
+          {/* <Tab  value='contact' className='cont-nav' label="Contacts"  />             */}
             {/* <Button onClick={handleChange} value='menu'  className='cont-nav'>Menu</Button>
             <Button onClick={handleChange} value='order'  className='cont-nav'>Delivery</Button>
             <Button onClick={handleChange} value='events' className='cont-nav'>Events</Button>
@@ -113,6 +126,8 @@ function MenuAppBar(props) {
             <Button onClick={handleChange} value='services' className='cont-nav'>Services</Button>
             <Button onClick={handleChange} value='contact' className='cont-nav'>Contact Us</Button> */}
           </Tabs>
+        </div>
+        
         
             {props.user != null
             ?
@@ -157,6 +172,7 @@ function MenuAppBar(props) {
 
 
 const mapStateToProps = (state) => ({
+  isAdmin: state.auth.isAdmin,
   isAuthenticated: state.auth.isAuthenticated,
   activeLink:state.ui.link,
   user: state.auth.user,

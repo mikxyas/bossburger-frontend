@@ -5,10 +5,16 @@
     padding:0em;
     box-shadow: none !important;
     border-bottom: solid .7px rgba(255,255,255,0.2);
-    
     height:64px;
     backdrop-filter: saturate(180%) blur(20px) !important;
 }
+.tab-cont{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
 .content-nav{
     display: flex;
     width: 100%;

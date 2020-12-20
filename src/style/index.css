@@ -12,6 +12,19 @@
           backdrop-filter: saturate(180%) blur(20px) !important;
 }
 
+.tab-cont {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100%;
+}
+
 .content-nav {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -702,6 +715,14 @@ a {
 }
 
 @media screen and (max-width: 768px) {
+  .tab-cont {
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+  }
+  .boss-btn {
+    margin-left: .0em !important;
+  }
   footer {
     margin-bottom: 60px;
   }
@@ -739,9 +760,6 @@ a {
   .hero-section-content {
     height: 80%;
   }
-  .brand-pic {
-    visibility: visible;
-  }
   #toolbar Button.cont-nav {
     display: none;
   }
@@ -765,7 +783,8 @@ a {
   }
   .brand-pic {
     visibility: visible;
-    margin-left: 1em;
+    margin: auto;
+    margin-left: .5em;
   }
   .ad-grid {
     -ms-grid-columns: 1fr;
