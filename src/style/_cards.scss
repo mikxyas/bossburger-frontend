@@ -6,6 +6,21 @@
   align-items: center;
   justify-content: center;
 }
+.stat-cont{
+  margin-top: 1em;
+  display:flex;
+  align-items: center;
+  justify-content:center;
+  overflow-x: visible; 
+  overflow-y:hidden;
+  width: 100vw;
+  white-space: nowrap;
+
+}
+.stat-card{
+  margin-left: 1em;
+  padding: 1em;
+}
 .order-card{
   width: 320px;
   margin-bottom: 1em;

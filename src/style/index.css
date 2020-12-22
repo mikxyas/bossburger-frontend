@@ -48,6 +48,14 @@
   cursor: pointer;
 }
 
+.hero-logo-pic {
+  height: 4em;
+  width: 4.6em;
+  -webkit-filter: brightness(1);
+          filter: brightness(1);
+  cursor: pointer;
+}
+
 .icon-btn {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -110,8 +118,13 @@ section {
 }
 
 section.hero-section {
-  background-color: #000;
-  height: calc(100vh - 64px);
+  background: url("https://res.cloudinary.com/mikiyas/image/upload/v1607756427/font2_gg4q96.jpg");
+  height: calc(70vh - 64px);
+  background-position: center;
+  background-size: cover;
+  margin-bottom: 0em;
+  background-attachment: fixed;
+  padding: 1em;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -124,7 +137,8 @@ section.hero-section {
 }
 
 section.comment-section {
-  background-color: #fbfbfd;
+  background-color: #111;
+  height: calc(100vh - 64px);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -201,7 +215,15 @@ section.services-section {
 
 .hero-section-content {
   padding: 1em;
-  width: 70%;
+  -webkit-backdrop-filter: saturate(180%) blur(10px);
+          backdrop-filter: saturate(180%) blur(10px);
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  border-radius: 20px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -215,27 +237,28 @@ section.services-section {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  height: 95%;
 }
 
 .hero-section-title {
   font-size: 56px;
   font-family: Roboto, sans-serif;
   font-weight: 500;
-  color: #fbfbfb;
-  margin-bottom: .3em;
+  color: #1f1f1f;
+  margin-bottom: 0em;
   margin-top: .1px;
 }
 
 .hero-section-subtitle {
   font-size: 22px;
-  color: #fbfbfb;
-  margin-bottom: .3em;
+  font-weight: 400;
+  font-family: Roboto, sans-serif;
+  color: #222224;
+  margin-top: 0em;
 }
 
 .hero-section-mobile-image {
   display: block;
-  width: 70%;
+  width: 50%;
   border-radius: 20px;
   height: 70%;
 }
@@ -244,13 +267,13 @@ section.services-section {
   font-size: 56px;
   font-family: Roboto, sans-serif;
   font-weight: 500;
-  color: #2c2b2b;
+  color: #e0e0e0;
   margin-top: .4em;
 }
 
 .comment-section-desc {
   font-size: 20px;
-  color: #1e1e1e;
+  color: #e0e0e0;
   margin-top: .5em;
   margin-bottom: 2em;
   letter-spacing: 1px;
@@ -276,6 +299,7 @@ section.services-section {
 .comment-section-img {
   border-radius: 12px;
   height: auto;
+  opacity: 0.8;
   width: 350px;
   margin-left: 10px;
 }
@@ -330,6 +354,28 @@ section.services-section {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+}
+
+.stat-cont {
+  margin-top: 1em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  overflow-x: visible;
+  overflow-y: hidden;
+  width: 100vw;
+  white-space: nowrap;
+}
+
+.stat-card {
+  margin-left: 1em;
+  padding: 1em;
 }
 
 .order-card {
@@ -715,6 +761,14 @@ a {
 }
 
 @media screen and (max-width: 768px) {
+  .stat-cont {
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+  }
   .tab-cont {
     -webkit-box-pack: start;
         -ms-flex-pack: start;
@@ -756,9 +810,6 @@ a {
   }
   .comment-section-title {
     font-size: 25px;
-  }
-  .hero-section-content {
-    height: 80%;
   }
   #toolbar Button.cont-nav {
     display: none;
@@ -844,8 +895,15 @@ a {
   .comment-section-title {
     font-size: 40px;
   }
+  .comment-section-desc {
+    margin-top: 0em;
+    margin-bottom: 1em;
+  }
+  section.comment-section {
+    height: calc(85vh - 128px);
+  }
   section.hero-section {
-    height: calc(100vh - 128px);
+    height: calc(80vh - 128px);
   }
   .hero-section-mobile-image {
     display: block;
@@ -854,7 +912,13 @@ a {
     height: 80%;
   }
   .hero-section-content {
-    width: 100%;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+    border-radius: 20px;
   }
   .hero-section-grid {
     visibility: hidden;

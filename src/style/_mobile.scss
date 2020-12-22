@@ -11,6 +11,10 @@
     }   
 }
 @include mediaMd{
+    &.stat-cont{
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
     &.tab-cont{
         justify-content: flex-start;
     }
@@ -44,9 +48,7 @@
         font-size: 25px;
 
     }
-    &.hero-section-content{
-        height: 80%;
-    }
+ 
    
     #toolbar{
         Button{
@@ -99,6 +101,7 @@
 
 @include mediaSm{
     section{
+       
         &.contact-section{
             justify-content: flex-start;
         }
@@ -139,9 +142,16 @@
     &.comment-section-title{
         font-size: 40px;
     }
+    &.comment-section-desc{
+        margin-top:0em;
+        margin-bottom: 1em;
+    }
     section{
+        &.comment-section{
+            height: calc(85vh - 128px);
+        }
         &.hero-section{
-            height: calc(100vh - 128px);
+            height: calc(80vh - 128px);
         }
     }
     &.hero-section-mobile-image{
@@ -152,7 +162,11 @@
         height: 80%;
     }
     &.hero-section-content{
-        width: 100%;
+        width: fit-content;
+        height: fit-content;
+        border-radius: 20px;
+        
+        
     }
     &.hero-section-grid{
         // width: 80%;

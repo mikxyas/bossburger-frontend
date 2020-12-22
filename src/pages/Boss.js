@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types'
-import {loadOrdersForAdmin, updateOrder} from '../actions/order'
+import {loadOrdersForAdmin,loadAllOrdersForAdmin, updateOrder} from '../actions/order'
 import {loadAdminLoc} from '../actions/locations'
 import {loadAllUser} from '../actions/auth'
-import {Badge, Button, Chip, Divider, ListItemText, Paper, Typography} from '@material-ui/core'
+import {Badge, Button, Chip, Divider, IconButton, ListItemText, Paper, Typography} from '@material-ui/core'
 import UserIcon from '@material-ui/icons/AccountCircle'
 import {getMenuItems} from '../actions/MenuItems'
 import OpenInNewIcon from '@material-ui/icons/OpenInNew';
@@ -25,6 +25,7 @@ class Boss extends Component {
     static propTypes = {
         isAdmin: PropTypes.bool.isRequired,
         orders: PropTypes.object.isRequired,
+        AllOrders: PropTypes.object.isRequired,
         // AllUsers: PropTypes.object.isRequired,
         // locations: PropTypes.object.isRequired,
         // loadOrdersFromAdmin: PropTypes.func.isRequired,
@@ -113,21 +114,38 @@ class Boss extends Component {
         })
     } 
     }
-    componentDidMount = async() => {
-      try{
-        this.props.loadOrdersForAdmin()
-      }
-      catch(error){
-        console.log(error)
-      }
+    componentDidMount(){
+      this.props.loadAllOrdersForAdmin()
+
+      this.props.loadOrdersForAdmin()
+     
     }
     render() {
         return (
             <>
             {this.props.isAdmin 
-            ?<div style={{display:'flex',padding:'1em', flexDirection:'column',justifyContent:'center', alignItems:'center'}}>
-              {Object.keys(this.props.orders).map(id => (
-                  <Paper key={id} style={{width:'350px',marginBottom:'1em', padding:'1em'}}>
+            
+            //   <div className='stat-cont'>
+            //     <Paper className='stat-card' variant='outlined'>
+            //       <Typography>{Object.keys(this.props.AllOrders).length}</Typography>
+            //     </Paper>
+            //     <Paper className='stat-card' variant='outlined'>
+            //       <h1>Amount of orders delivered</h1>
+            //       <Typography>{Object.keys(this.props.AllOrders).length - Object.keys(this.props.orders).length}</Typography>
+
+            //     </Paper>
+            //     <Paper className='stat-card' variant='outlined'>
+            //       <h1>Money Made</h1>
+            //     </Paper>
+            //   </div>
+            //   <div style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
+            //     <IconButton><DownIcon/></IconButton>
+            //   </div>
+            ?<>
+              <Divider variant='middle'/>
+              <div style={{display:'flex',padding:'1em', flexDirection:'column',justifyContent:'center', alignItems:'center'}}>
+                {Object.keys(this.props.orders).map(id => (
+                  <Paper variant='outlined' key={id} style={{width:'350px',marginBottom:'1em', padding:'1em'}}>
                     <Chip style={{marginLeft:'100px'}} icon={<QueryBuilderIcon/>} label={this.timeSince(this.props.orders[id].time_of_order)}/>
                     <Collapse in={this.state.collapse === id} collapsedHeight={58}>
                       <div style={{display:'flex', marginBottom:'.5em',justifyContent:'space-between', alignItems:'center'}}>
@@ -211,6 +229,8 @@ class Boss extends Component {
               ))
               }
             </div>
+          </>
+
             :<div style={{display:'flex', height:'calc(100vh - 70px)', justifyContent:'center', alignItems:'center'}}>
             <h1 style={{margin:'auto'}}>Sorry you're not the boss</h1>
           </div>
@@ -222,7 +242,8 @@ class Boss extends Component {
 
 const mapStateToProps = state => ({
     isAdmin: state.auth.isAdmin,
-    orders: state.order.AllOrders,
+    orders: state.order.PendingOrders,
+    AllOrders: state.order.AllOrders,
     itemsLoaded: state.MenuItems.itemsLoaded,
 })
-export default connect(mapStateToProps, {loadOrdersForAdmin, updateOrder})(Boss)
+export default connect(mapStateToProps, {loadOrdersForAdmin,loadAllOrdersForAdmin, updateOrder})(Boss)

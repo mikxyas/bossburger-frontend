@@ -1,4 +1,4 @@
-import {PLACE_ORDER,UPDATED_ORDER, ORDER_ERROR, OPEN_SNACKBAR,ORDER_LOADED,LOADED_ADMIN_ORDERS} from './types';
+import {PLACE_ORDER,UPDATED_ORDER,LOADED_ALL_ADMIN_ORDERS, ORDER_ERROR, OPEN_SNACKBAR,ORDER_LOADED,LOADED_ADMIN_ORDERS} from './types';
 import {tokenConfig} from './auth'
 import axios from 'axios'
 // import {convertArrayToObject} from './locations'
@@ -90,6 +90,25 @@ export const loadOrdersForAdmin = () => (dispatch, getState) => {
                 payload: sortedbyId
             });
         })
+        .catch((err) => {
+            // dispatch(returnErrors(err.response.data, err.response.status))
+            console.log("The Error is:" + err)
+            dispatch({
+                type: ORDER_ERROR,
+            })
+        })
+}
+// Load all orders including undelivered ones
+export const loadAllOrdersForAdmin = () => (dispatch, getState) => {
+    axios
+        .get('https://bossburgeraddis.herokuapp.com/api/admin/all-orders', tokenConfig(getState))
+        .then((res) => {
+            const sortedbyId = convertArrayToObject(res.data, 'id')
+            dispatch({
+                type: LOADED_ALL_ADMIN_ORDERS,
+                payload: sortedbyId
+            });
+        }) 
         .catch((err) => {
             // dispatch(returnErrors(err.response.data, err.response.status))
             console.log("The Error is:" + err)

@@ -36,7 +36,7 @@ class HomePage extends React.Component{
       <EventViewer/>
       <section className='hero-section'>
         <div className='hero-section-content'>
-          <Typography align='center' variant='h2'>
+          {/* <Typography align='center' variant='h2'>
             <Box className='hero-section-title'>Boss Burger</Box>
           </Typography>
           <Typography align='center' variant='p'>
@@ -45,10 +45,22 @@ class HomePage extends React.Component{
           <Link to='/order'>
           <Button endIcon={<ChevronRightIcon/>} size='small' style={{margin:'.5em'}} color='secondary'>Try the best</Button>
 
+          </Link> */}
+
+          <img className='hero-logo-pic' src='./bosslogo.png'/>
+          <Typography align='center' variant='h2'>
+            <Box className='hero-section-title' fontWeight={600}>Boss Burger</Box>
+          </Typography>
+          <Typography align='center' variant='p'>
+            <Box className='hero-section-subtitle'>You've had the rest, come try the best!</Box>
+          </Typography>
+          <Link to='/order'>
+          <Button endIcon={<ChevronRightIcon/>} style={{color:'#1e1e1e'}} size='small' >Try the best</Button>
+
           </Link>
+          {/* <Image className='hero-section-mobile-image' cloudName='mikiyas' publicId='c-item2_qewdgb'  secure="true"/> */}
           
-            <Image className='hero-section-mobile-image' cloudName='mikiyas' publicId='font2_gg4q96'  secure="true"/>
-           
+         
         </div>
       </section>
       <section className='comment-section'>

@@ -5,6 +5,7 @@
     padding:0em;
     box-shadow: none !important;
     border-bottom: solid .7px rgba(255,255,255,0.2);
+
     height:64px;
     backdrop-filter: saturate(180%) blur(20px) !important;
 }
@@ -37,6 +38,12 @@
     filter: brightness(0) invert(1);
     margin-top: .35em;
     margin-left: 0em;
+    cursor: pointer;
+}
+.hero-logo-pic{
+    height: 4em;
+    width: 4.6em;
+    filter: brightness(1);
     cursor: pointer;
 }
 .icon-btn{

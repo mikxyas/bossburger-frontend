@@ -3,14 +3,20 @@ section {
     height: calc(100vh - 100px);
     margin-bottom: .4em;
     &.hero-section{
-        background-color: #000;
-        height: calc(100vh - 64px);
+        background: url('https://res.cloudinary.com/mikiyas/image/upload/v1607756427/font2_gg4q96.jpg');
+        height: calc(70vh - 64px);
+        background-position: center;
+        background-size:cover;
+        margin-bottom: 0em;
+        background-attachment: fixed;
+        padding: 1em;
         display: flex;
         align-items: center;
         justify-content: center;
     }
     &.comment-section{
-        background-color: #fbfbfd;  
+        background-color: #111;  
+        height: calc(100vh - 64px);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -47,36 +53,41 @@ section {
     }
    
 }
+
+
 .hero-section-content{
-    // background-color: red;
+    // background-color: red; 
     padding: 1em;
-    width: 70%;
+    backdrop-filter: saturate(180%) blur(10px);
+    width: fit-content;
+        height: fit-content;
+        border-radius: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 95%;
 }
 .hero-section-title{
-    // letter-spacing: 5px;
     font-size: 56px;
     font-family: Roboto, sans-serif;
     font-weight: 500;
-    color: #fbfbfb;
-    margin-bottom: .3em;
+    color: #1f1f1f;
+    margin-bottom: 0em;
     margin-top: .1px;
 
 }
 .hero-section-subtitle{
     font-size: 22px;
-    color: #fbfbfb;
-    margin-bottom: .3em;
+    font-weight: 400;
+    font-family: Roboto, sans-serif;
+    color: #222224;
+    margin-top: 0em;
 }
 
 .hero-section-mobile-image{
     // position: absolute;
     display: block;
-    width: 70%;
+    width: 50%;
     // border: solid 2px white;
     border-radius: 20px;
     height: 70%;
@@ -85,14 +96,14 @@ section {
     font-size: 56px;
     font-family: Roboto, sans-serif;
     font-weight: 500;
-    color: #2c2b2b;
+    color: #e0e0e0;
     margin-top: .4em;
    
 }
 
 .comment-section-desc{
     font-size: 20px;
-    color: #1e1e1e;
+    color: #e0e0e0;
     margin-top:.5em;
     margin-bottom:2em;
     letter-spacing: 1px;
@@ -111,6 +122,8 @@ section {
 .comment-section-img{
     border-radius: 12px;
     height:auto;
+    // filter: saturate(100%) ;
+    opacity: 0.8;
     width:350px;
     margin-left: 10px;
 }
