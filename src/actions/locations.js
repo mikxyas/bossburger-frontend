@@ -7,6 +7,7 @@ import {
     LOCATION_ERROR, 
     LOCATION_CREATED,
     SET_USER_COORDS,
+    TOGGLE_LOCATION_CREATED,
     TOGGLE_USER_LOCATED,
     GET_LOC_INFO
 } from './types'
@@ -165,6 +166,13 @@ export const toggleUserLocated = () => {
 export const toggleLocationDialog = () => {
     return{
           type: TOGGLE_LOCATION_DIALOG
+    }
+
+}
+
+export const toggleLocCreated = () => {
+    return{
+          type: TOGGLE_LOCATION_CREATED
     }
 
 }

@@ -1,16 +1,15 @@
 import {LOCATION_LOADED, 
     TOGGLE_LOCATION_DIALOG,
-    LOADING_LOCATION,
     LOGOUT_SUCCESS, 
-    LOCATION_ERROR, 
     LOCATION_CREATED,
-    LOGIN_SUCCESS,
+    TOGGLE_LOCATION_CREATED,
+
     TOGGLE_USER_LOCATED,
     GET_LOC_INFO,
     SET_USER_COORDS,
     ADMIN_LOCATION_LOADED,
-    DELETE_LOC,
-    SET_DIALOG_STATE} from '../actions/types'
+    DELETE_LOC
+} from '../actions/types'
 
 const initialState = {
     locations:{},
@@ -30,6 +29,18 @@ const initialState = {
 
 export default function (state=initialState, action){
     switch(action.type){
+        case TOGGLE_LOCATION_CREATED:
+            if(state.locCreated === false){
+                return {
+                    ...state,
+                    locCreated:true
+                }
+            }else{
+                return {
+                    ...state,
+                    locCreated:false
+                }
+            }
         case GET_LOC_INFO:
             return {
                 ...state,
@@ -51,7 +62,8 @@ export default function (state=initialState, action){
                 ...state,
                 locLoaded:true,
                 locations:{ ...action.payload},
-                locLength:action.length
+                locLength:action.length,
+                
             }
         case ADMIN_LOCATION_LOADED:
             return {

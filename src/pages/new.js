@@ -47,7 +47,9 @@ class New extends Component {
         this.props.createLoc(locInfo)
     }
         render(){
-            
+            if(this.props.locCreated){
+                return <Redirect to='/locations'/>
+            }
             const positionOfMap = [8.9806,  38.7578]
             return (
                 <>

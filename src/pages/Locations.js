@@ -9,12 +9,10 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid'
 import CheckIcon from '@material-ui/icons/Check'
 import AddIcon from '@material-ui/icons/Add'
-import GpsIcon from '@material-ui/icons/GpsFixed'
-import MoneyIcon from '@material-ui/icons/Money'
 import Chip from '@material-ui/core/Chip';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import {toggleLocationDialog, deleteLoc} from '../actions/locations'
+import {toggleLocationDialog, deleteLoc, toggleLocCreated} from '../actions/locations'
 import LocationDialog from '../components/LocationDialog'
 import DeleteIcon from '@material-ui/icons/Delete'
 import IconButton from '@material-ui/core/IconButton'
@@ -30,6 +28,9 @@ class Locations extends Component {
       }
       
     render() {
+        if(this.props.locCreated){
+            this.props.toggleLocCreated()
+        }
         return (
             <>
             <LocationDialog/>
@@ -46,7 +47,7 @@ class Locations extends Component {
 
                     {Object.keys(this.props.Locations).map((locs, key) => (
                         <Grid style={{marginTop:'1em', display:'flex', justifyContent:'center'}} item lg={3}  xs={12} sm={6} key={key}>
-                            <Card style={{width:'270px'}}>
+                            <Card style={{width:'270px'}} variant='outlined'>
                                 <CardHeader
                                     action={
                                     <IconButton onClick={() => this.props.deleteLoc(locs)} aria-label="settings">
@@ -110,7 +111,8 @@ const mapStateToProps = state => ({
     Locations: state.locations.locations,
     isLoaded: state.locations.locLoaded,
     isAuthenticated: state.auth.isAuthenticated,
-    locLength: state.locations.locLength
+    locLength: state.locations.locLength,
+    locCreated: state.locations.locCreated
 })
 
-export default connect(mapStateToProps, {toggleLocationDialog, deleteLoc})(Locations)
+export default connect(mapStateToProps, {toggleLocationDialog, deleteLoc, toggleLocCreated})(Locations)
