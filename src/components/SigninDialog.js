@@ -87,7 +87,7 @@ class SigninDialog extends  React.Component{
   return (
     <div>
       <Button variant="outlined" color="inherit" onClick={() => this.handleDialog()}>
-        Sign in
+        Signin
       </Button>
       <Dialog open={this.props.openSigninDialog} onClose={this.handleDialog} TransitionComponent={Transition}>        
         <div style={{padding:'1.5em', margin:'auto'}}>

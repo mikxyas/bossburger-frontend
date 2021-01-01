@@ -5,6 +5,9 @@ import {LOCATION_LOADED,
     LOCATION_ERROR, 
     LOCATION_CREATED,
     LOGIN_SUCCESS,
+    TOGGLE_USER_LOCATED,
+    GET_LOC_INFO,
+    SET_USER_COORDS,
     ADMIN_LOCATION_LOADED,
     DELETE_LOC,
     SET_DIALOG_STATE} from '../actions/types'
@@ -15,10 +18,34 @@ const initialState = {
     locLoaded:false,
     openLocationDialog: false,
     locLength:0,
+    UserLatitude:'',
+    UserLongitude:'',
+    UserLocated:false,
+    locInfoFetched:false,
+    locDistance:0,
+    locCreated:false,
+    locPrice:0,
+    locRoute:[]
 }
 
 export default function (state=initialState, action){
     switch(action.type){
+        case GET_LOC_INFO:
+            return {
+                ...state,
+                locPrice:action.price,
+                locDistance: action.distance,
+                locRoute: action.route,
+                locInfoFetched: true,
+            }
+        case SET_USER_COORDS:
+            return {
+                ...state,
+                UserLatitude:action.lat,
+                UserLongitude: action.long,
+                UserLocated:true,
+            }
+
         case LOCATION_LOADED:
             return {
                 ...state,
@@ -40,7 +67,7 @@ export default function (state=initialState, action){
                 ...action.payload
                 },
                 locLength: state.locLength +1,
-                openLocationDialog:false
+                locCreated:true,
             }
         case TOGGLE_LOCATION_DIALOG:
             if(state.openLocationDialog === false){
@@ -54,6 +81,18 @@ export default function (state=initialState, action){
                     openLocationDialog:false
                 }
             }
+            case TOGGLE_USER_LOCATED:
+                if(state.UserLocated === false){
+                    return {
+                        ...state,
+                        UserLocated:true
+                    }
+                }else{
+                    return {
+                        ...state,
+                        UserLocated:false
+                    }
+                }
         case LOGOUT_SUCCESS:
             return {
                 ...state,

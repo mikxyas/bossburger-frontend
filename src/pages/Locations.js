@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import Card from '@material-ui/core/Card';
+import {Link} from 'react-router-dom';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
+import CardHeader from '@material-ui/core/CardHeader';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid'
@@ -14,7 +16,8 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import {toggleLocationDialog, deleteLoc} from '../actions/locations'
 import LocationDialog from '../components/LocationDialog'
-
+import DeleteIcon from '@material-ui/icons/Delete'
+import IconButton from '@material-ui/core/IconButton'
 
 class Locations extends Component {
     static propTypes = {
@@ -36,37 +39,37 @@ class Locations extends Component {
                 {this.props.locLength > 0
                 ?<Grid container spacing={3} justify='center'>
                     <Grid item sm={12}>
-                        <Button onClick={()=> this.props.toggleLocationDialog()} variant='contained' endIcon color='primary'>Add Location<AddIcon/></Button>
+                        <Link to='/new/locations/'>
+                            <Button variant='contained' endIcon color='primary'>Add Location<AddIcon/></Button>
+                        </Link>
                     </Grid>
 
                     {Object.keys(this.props.Locations).map((locs, key) => (
                         <Grid style={{marginTop:'1em', display:'flex', justifyContent:'center'}} item lg={3}  xs={12} sm={6} key={key}>
                             <Card style={{width:'270px'}}>
-                                <CardContent>
-                                    <Typography color="textSecondary" gutterBottom>
-                                    {this.props.Locations[locs].neighborhood}
-                                    </Typography>
-                                    <Typography variant="h5" component="h2">
-                                    {this.props.Locations[locs].locName}
-                                    </Typography>
-                                    {/* <Typography className={classes.pos} color="textSecondary">
-                                    
-                                    </Typography> */}
-                                    <Typography variant="body2" component="p">
-                                    {this.props.Locations[locs].locDesc}
-                                    <br />
+                                <CardHeader
+                                    action={
+                                    <IconButton onClick={() => this.props.deleteLoc(locs)} aria-label="settings">
+                                        <DeleteIcon/>
+                                    </IconButton>
+                                    }
+                                    title={this.props.Locations[locs].locName}
+
+                                    subheader={this.props.Locations[locs].neighborhood}
+                                />
+                                <CardContent style={{marginTop:'-1.5em'}}>  
+                                    <Typography variant="body2" color="textSecondary" component="p">
+                                        {this.props.Locations[locs].locDesc}   
                                     </Typography>
                                     <Chip
-                                        style={{marginTop:'.7em'}}
+                                        style={{marginTop:'1em'}}
                                         // icon={<MoneyIcon/>}
-                                        label={this.props.Locations[locs].locDistance + ' Km | ' + this.props.Locations[locs].locPrice + ' ETB'}
-                                        size='small'                            
+                                        label={this.props.Locations[locs].locDistance + ' Km | ' + this.props.Locations[locs].locPrice + ' ETB'} 
+                                        variant='outlined'
+                                        color='secondary'                           
                                     />
                                 </CardContent>
-                                <CardActions>
-                                    {/* <Button variant='outlined' size="small">Update</Button> */}
-                                    <Button style={{marginLeft:'auto'}} variant='contained' onClick={() => this.props.deleteLoc(locs)} size="small" color='secondary'>Delete</Button>
-                                </CardActions>
+                                
                             </Card>
         
                         </Grid>
@@ -86,7 +89,9 @@ class Locations extends Component {
                     </Typography>
                 </CardContent>
                 <CardActions>
-                    <Button onClick={()=> this.props.toggleLocationDialog()} fullWidth variant='contained' color='primary'>Create Now</Button>
+                    <Link style={{width:'100%'}} to='/new/locations'>
+                        <Button fullWidth variant='contained' color='primary'>Create Now</Button>
+                    </Link>
                 </CardActions>
             </Card>
                 }

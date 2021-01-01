@@ -28,6 +28,7 @@ import {loadUser} from '../actions/auth'
 import {toggleLocationDialog} from '../actions/locations'
 import { Redirect } from 'react-router-dom';
 import LocationDialog from '../components/LocationDialog'
+import {Link} from 'react-router-dom';
 
 
 class Checkout extends Component {
@@ -213,7 +214,9 @@ class Checkout extends Component {
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button onClick={()=> this.props.toggleLocationDialog()} fullWidth variant='contained' color='primary'>Create Now</Button>
+                <Link style={{width:'100%'}} to='/new/locations'>
+                    <Button fullWidth variant='contained' color='primary'>Create Now</Button>
+                </Link>
             </CardActions>
         </Card>
     }

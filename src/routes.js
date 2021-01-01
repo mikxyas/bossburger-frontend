@@ -5,6 +5,7 @@ import HomePage from './pages/HomePage'
 import Events from './pages/Events'
 import Menu from './pages/Menu'
 import Locations from './pages/Locations'
+import New from './pages/new'
 import Contact from './pages/Contact';
 import Register from './pages/Register'
 import Checkout from './pages/Checkout'
@@ -22,6 +23,7 @@ const Main = () => {
       <Route exact path='/order' component={Menu}></Route>
       <Route exact path='/contact' component={Contact}></Route>
       <Route exact path='/locations' component={Locations}></Route>
+      <Route exact path='/new/locations' component={New}></Route>
       <Route exact path='/register' component={Register}></Route>
       <Route exact path='/checkout' component={Checkout}></Route>
       <Route exact path='/orders' component={Orders}></Route>

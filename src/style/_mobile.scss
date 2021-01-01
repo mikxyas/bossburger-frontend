@@ -100,6 +100,25 @@
 }
 
 @include mediaSm{
+    &.loc-submit-btn{
+        width: 90vw;
+        margin-top: 1.5em;
+    }
+    &.loc-submit-btn Button{
+        width: 100%;
+    }
+    &.add-loc-header-cont{
+        width: 90vw;
+    }
+    &.add-loc-form-cont{
+        width: 90vw;
+    }
+    &.add-loc-form{
+        width: 100%;
+    }
+    &.map-cont{
+        width: 90vw;
+    }
     section{
        
         &.contact-section{
