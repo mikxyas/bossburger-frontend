@@ -52,7 +52,7 @@ class Checkout extends Component {
         super(props)
         this.state = {
             collapse:true,
-            activeListItem:'',
+            activeListItem:null,
             customer_phone:'',
             order_type:'DVY',
             loc_price:0,
@@ -72,7 +72,8 @@ class Checkout extends Component {
             order_type:this.state.order_type,
             time_delivered: new Date(),
             Food_price: this.props.TotalPrice,
-            delivery_price:this.state.loc_price
+            delivery_price:this.state.loc_price,
+            extras: {...this.props.Extras},
         }
         this.props.placeOrder(order)
         console.log(order)
@@ -105,7 +106,7 @@ class Checkout extends Component {
         if(e.target.value === 'PCK'){
             this.setState({
                 delivery_price:0,
-                activeListItem:34
+                activeListItem:'79'
             })
         }
     } 
@@ -245,7 +246,17 @@ class Checkout extends Component {
                             src={this.props.cart[item].img}
                         />
                         </ListItemAvatar> */}
-                        <ListItemText primary={this.props.cart[item].name} secondary={this.props.cart[item].price * this.props.Amount[item] + 'ETB' +' | Amount: '+this.props.Amount[item]}/>
+                        <ListItemText  primary={<><>{this.props.cart[item].name}</> 
+                        <>{this.props.Extras[item] != undefined
+                                ?<> + {this.props.menuItems.filter(ext => ext.id === this.props.Extras[item])[0].name}</>
+                                :null
+                        }</></>} 
+                        secondary={<><>{this.props.cart[item].price * this.props.Amount[item] + 'ETB'}</> 
+                        <>{this.props.Extras[item] != undefined
+                                ?<> + {this.props.menuItems.filter(ext => ext.id === this.props.Extras[item])[0].price + ' | Amount ' + this.props.Amount[item]}</>
+                                :null
+                    }</> </>} />
+                        {/* <ListItemText primary={this.props.cart[item].name} secondary={this.props.cart[item].price * this.props.Amount[item] + 'ETB' +' | Amount: '+this.props.Amount[item]}/> */}
                         <ListItemSecondaryAction>
                         {this.props.Amount[item] === 1
                             ?<IconButton onClick={() => this.props.deleteItem(item, this.props.cart[item].price)}><RemoveCartIcon/></IconButton>
@@ -286,7 +297,9 @@ const mapStateToProps = state =>({
     TotalPrice: state.cart.TotalPrice,
     locLength: state.locations.locLength,
     orderPlaced: state.order.orderPlaced,
-    user: state.auth.user
+    user: state.auth.user,
+    Extras: state.cart.Extras,
+    menuItems: state.MenuItems.MenuItems
 })
       
 export default connect(mapStateToProps, {addAmountof, decreaseAmountof, deleteItem, placeOrder, toggleLocationDialog, loadUser})(Checkout);

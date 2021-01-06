@@ -91,7 +91,17 @@ class CartDrawer extends React.Component {
                     <Image cloudName='mikiyas' height='69' width='69'  publicId={this.props.cart[item].img} secure="true"/>
                         
                         </ListItemAvatar>
-                        <ListItemText  primary={this.props.cart[item].name} secondary={this.props.cart[item].price * this.props.Amount[item] + 'ETB' + ' | Amount ' + this.props.Amount[item]} />
+                        <ListItemText  primary={<><>{this.props.cart[item].name}</> 
+                        <>{this.props.Extras[item] != undefined
+                                ?<> With {this.props.menuItems.filter(ext => ext.id === this.props.Extras[item])[0].name}</>
+                                :null
+                    }</></>} 
+                        secondary={<><>{this.props.cart[item].price * this.props.Amount[item] + 'ETB'}</> 
+                        <>{this.props.Extras[item] != undefined
+                                ?<> + {this.props.menuItems.filter(ext => ext.id === this.props.Extras[item])[0].price + ' | Amount ' + this.props.Amount[item]}</>
+                                :null
+                    }</> </>} />
+                        
                         <ListItemSecondaryAction>
                         {this.props.Amount[item] === 1
                             ?<IconButton onClick={() => this.props.deleteItem(item, this.props.cart[item].price)}><RemoveCartIcon/></IconButton>
@@ -128,7 +138,9 @@ class CartDrawer extends React.Component {
 const mapStateToProps = state =>({
     cart: state.cart.cart,
     Amount: state.cart.Amount,
-    isAuthenticated: state.auth.isAuthenticated
+    isAuthenticated: state.auth.isAuthenticated,
+    Extras: state.cart.Extras,
+    menuItems: state.MenuItems.MenuItems
 })
       
 export default connect(mapStateToProps, {deleteItem, addAmountof, toggleSignupDialog,decreaseAmountof})(CartDrawer);

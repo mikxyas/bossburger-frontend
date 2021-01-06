@@ -1,10 +1,11 @@
-import {ADD_TO_CART,DELETE_CART_ITEM,PLACE_ORDER,ADD_AMOUNT,DECREASE_AMOUNT, RECEIVE_ITEMS} from '../actions/types';
+import {ADD_TO_CART,REMOVED_EXTRA,ADDED_EXTRA,DELETE_CART_ITEM,PLACE_ORDER,ADD_AMOUNT,DECREASE_AMOUNT, RECEIVE_ITEMS} from '../actions/types';
 
 const initialValue = {
     cart:{},
     AddedToCart:false,
     Amount:{},
     TotalPrice:0,
+    Extras:{status:'null'}
 }
 
 export default function (state = initialValue, action){
@@ -15,7 +16,17 @@ export default function (state = initialValue, action){
                 cart:{},
                 Amount:{},
                 TotalPrice:0,
-                AddedToCart:false
+                AddedToCart:false,
+            }
+        case ADDED_EXTRA:
+            return{
+                ...state,
+                Extras:{
+                    ...state.Extras,
+                    status:'active',
+                    [action.Bid]:action.Eid
+                },
+                TotalPrice: state.TotalPrice + action.price
             }
         case ADD_TO_CART:
             return {
@@ -47,6 +58,25 @@ export default function (state = initialValue, action){
                 },
                 TotalPrice: state.TotalPrice - action.price
             }
+        case REMOVED_EXTRA:
+            delete state.Extras[action.id]
+            
+            if(Object.keys(state.Extras).length === 1){
+                return{
+                    ...state,
+                    Extras:{
+                        status:'null'
+                    }
+                }
+            }else{
+            return{
+                ...state,
+                Extras:{
+                    ...state.Extras
+                }
+            }
+        }
+            
         case ADD_AMOUNT:
             return{
                 ...state,

@@ -1,5 +1,5 @@
 import React from 'react'
-import {AppBar, Chip,Button, Box,  Avatar} from '@material-ui/core'
+import {AppBar, Chip,Button, Box,  Avatar, Collapse} from '@material-ui/core'
 import Grid from '@material-ui/core/Grid';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -20,13 +20,22 @@ import ReactStars from "react-rating-stars-component";
 import EmptyStar from '@material-ui/icons/StarOutlined';
 import FullStar from '@material-ui/icons/Grade';
 import HalfStar from '@material-ui/icons/StarHalf';
-import UserIcon from '@material-ui/icons/People';
+import ChevronDownIcon from '@material-ui/icons/ArrowDownward'
+import UpIcon from '@material-ui/icons/ArrowUpward'
 import { Image, Transformation } from 'cloudinary-react';
-import AddIcon from '@material-ui/icons/Add'
 import InfoIcon from '@material-ui/icons/InfoOutlined';
 import Loading from '../components/Loading';
 import FastFoodIcon from '@material-ui/icons/Fastfood'
+import RemoveIcon from '@material-ui/icons/Close'
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCartOutlined'
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import Radio from '@material-ui/core/Radio'
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import StarBorder from '@material-ui/icons/StarBorder';
+import {addExtra, removeExtra} from '../actions/cart'
 
 const useStyles = makeStyles((theme) => ({
   gradient: {
@@ -53,10 +62,44 @@ class Menu extends React.Component {
         itemToFetch: 'burgers',
         SelectedMenuItems: this.props.Burgers,
         SelectedMenuType:'BRG',
+        expandExtras:null,
+        selectedExtras:{}
       }
     }
-   
-
+  
+    handleExSelection = (Bid, Eid, price) => {
+      this.props.addExtra(Bid, Eid, price)
+      this.setState({
+        selectedExtras:{
+          ...this.state.selectedExtras,
+          [Bid]:Eid
+        },
+        expandExtras:null
+      })
+    }
+    handleRemoveExtra = (id, price) => {
+      this.props.removeExtra(id, price)
+      delete this.state.selectedExtras[id]
+      this.setState({
+        selectedExtras:{
+          ...this.state.selectedExtras
+        }
+      })
+      console.log(this.state.selectedExtras)
+    }
+    handleExCollapse = (id) => {
+      if(id != this.state.expandExtras){
+        this.setState({
+          expandExtras:id
+        })
+      }
+      else{
+        this.setState({
+          expandExtras:null
+        })
+      }
+    }
+  
    componentDidMount(){
      this.props.getMenuItems()
     }
@@ -66,10 +109,10 @@ class Menu extends React.Component {
       // console.log(newValue)
     }
     round (value, step) {
-      console.log(value)
+      // console.log(value)
       step || (step = 1.0);
       var inv = 1.0 / step;
-      console.log(Math.round(value * inv) / inv) 
+      // console.log(Math.round(value * inv) / inv) 
       return Math.round(value * inv) / inv;
   }
     handleRating = item => (newRating) => {
@@ -85,7 +128,7 @@ class Menu extends React.Component {
     return (
       <div style={{overflow:"hidden"}}>
         <AddMenuItem/>
-        <div style={{display:"flex",alignItems:"center", justifyContent:"center"}}>
+        {/* <div style={{display:"flex",alignItems:"center", justifyContent:"center"}}>
           <AppBar className='menu-tab'  elevation={1} position='fixed'>
 
           <Tabs
@@ -102,8 +145,8 @@ class Menu extends React.Component {
             <Tab  icon={<Avatar src='https://res.cloudinary.com/mikiyas/image/upload/v1607435254/0d9d71defc5df17911a035a7341add42_f93uek.jpg'/>} value='FRI' label="Fries"/>
           </Tabs>
           </AppBar>
-        </div>
-        <div style={{marginBottom:'5em'}}/>
+        </div> */}
+        <div style={{marginBottom:'1em'}}/>
         
         {this.props.itemsLoaded 
         ?<>
@@ -111,8 +154,8 @@ class Menu extends React.Component {
           ?<Button onClick={() => this.props.toggleAddMenuItem()} style={{marginTop:'1em', marginLeft:'2em', borderRadius:'20px'}} variant='contained' size='small' color='primary'>Add Menu Item</Button>
           :null
           }
-          <Grid  container spacing={2} jusitfy='center' alignItems='center' style={{padding:"2em",overflowY:"hidden"}}>
-            {this.props.menuItems.filter(item => item.food_type === this.state.SelectedMenuType).map(item => {
+          <Grid container spacing={2} jusitfy='center' alignItems='center' style={{padding:"2em",overflowY:"hidden"}}>
+            {this.props.menuItems.filter(item => item.food_type != "EXT").map(item => {
               if(item.rating != null){
                 var rating = 0
                 var sum = 0
@@ -156,8 +199,25 @@ class Menu extends React.Component {
                     <Typography style={textStyle} variant="h5" component="h2">
                           <Box fontSize='25'>{item.name}</Box>
                         </Typography> 
+                        {this.state.selectedExtras[item.id] != undefined
+                                ? <Chip
+                                style={{margin:'.3em'}}
+                                clickable
+                                deleteIcon={<RemoveIcon/>}
+                                onClick={() => this.handleRemoveExtra(item.id, this.props.menuItems.filter(ext => ext.id === this.state.selectedExtras[item.id])[0].price)}
+                                onDelete={() => this.handleRemoveExtra(item.id, this.props.menuItems.filter(ext => ext.id === this.state.selectedExtras[item.id])[0].price)}
+                                variant='outlined'
+                                color='secondary'
+                                label={"With " + this.props.menuItems.filter(ext => ext.id === this.state.selectedExtras[item.id])[0].name}
+                              />
+                                // <Typography>With {}</Typography>
+                                :null
+                              }
                         <Typography style={priceStyle} variant="h7" color="textPrimary" component="p">
-                          {item.price} ETB
+                          {item.price}Birr  {this.state.selectedExtras[item.id] != undefined
+                                ?<> + {this.props.menuItems.filter(ext => ext.id === this.state.selectedExtras[item.id])[0].price}</>
+                                :null
+                              }
                         </Typography>
                         {this.props.user === null
                         ?
@@ -225,16 +285,54 @@ class Menu extends React.Component {
                     <Button style={{margin:'auto'}} color='secondary' size='small' onClick={() => this.props.deleteItem(item.id, item.price)}  >Remove From Cart</Button>
                     </>
                     :<>
-                    {this.props.isAuthenticated
+                    {item.food_type === 'BRG'
+                      ? <Button disabled={!item.available} onClick={() => this.handleExCollapse(item.id)} variant='contained' endIcon={this.state.expandExtras === item.id ?<UpIcon/> :<ChevronDownIcon/>} size='small' style={{borderRadius:'20px'}} color='primary'>Extras</Button>
+                      :null
+                    }
+
+                    {/* {this.props.isAuthenticated
                     ?<Link to='/checkout'>
                       <Button disabled={!item.available} variant='contained' size='small' style={{borderRadius:'20px'}} onClick={() => this.props.addtoCart(item)}  color='primary'>Order</Button>
                     </Link> 
                     :  <Button disabled={!item.available} variant='contained' size='small' style={{borderRadius:'20px'}} onClick={() => this.props.toggleSignupDialog()} color='primary'>Order</Button>
-                    }
+                    } */}
                     <Button disabled={!item.available} endIcon={<ShoppingCartIcon/>} size='small'  onClick={() => this.props.addtoCart(item)} color='primary'>Add to Cart</Button>
                     </>
                     }
                   </CardActions>
+                  {item.food_type === 'BRG'
+                      ?
+                      <> 
+                      <Collapse  in={this.state.expandExtras === item.id}>
+                        <List style={{height:'200px', overflow:'auto'}}>
+                          {this.props.menuItems.filter(item => item.food_type === 'EXT').map(Extra => (
+                            <ListItem key={Extra.id} onClick={() => this.handleExSelection(item.id, Extra.id,Extra.price)} button >
+                              {/* <ListItemIcon>
+                                <StarBorder />
+                              </ListItemIcon> */}
+                              <ListItemText primary={Extra.name} secondary={Extra.price + 'Birr'}/>
+                              <ListItemSecondaryAction >
+                                {/* <IconButton onClick={() => this.props.deleteItem(this.props.cart[item].id)}><CloseIcon/></IconButton> */}
+                                <Radio
+                                    onClick={() => this.handleExSelection(item.id, Extra.id)}
+                                    checked = {this.state.selectedExtras[item.id] === Extra.id}
+                                    name="Extra"
+                                    color='primary'
+                                />
+                                </ListItemSecondaryAction>
+                              {/* <StarBorder /> */}
+                              
+                            </ListItem>
+                            
+                            ))
+                          }
+
+                      </List>
+                    </Collapse>
+                     
+                    </> 
+                      :null
+                    }
                 </Card>
                 {this.props.isAdmin
                     ?<Paper variant='outlined' style={{width:'300px', display:'flex',padding:'.5em',justifyContent:'space-between', borderTop:'none'}}>
@@ -271,4 +369,4 @@ const mapStateToProps = state =>({
   cart: state.cart.cart
 })
 
-export default connect(mapStateToProps, { getMenuItems, rateItem,makeAvailable,makeunAvailable, addtoCart, deleteMenuItem,toggleAddMenuItem,toggleSignupDialog,deleteItem })(Menu);
+export default connect(mapStateToProps, { getMenuItems, rateItem,makeAvailable,makeunAvailable, removeExtra,addtoCart, deleteMenuItem,toggleAddMenuItem,toggleSignupDialog,addExtra,deleteItem })(Menu);
