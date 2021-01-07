@@ -296,7 +296,7 @@ class Menu extends React.Component {
                     </Link> 
                     :  <Button disabled={!item.available} variant='contained' size='small' style={{borderRadius:'20px'}} onClick={() => this.props.toggleSignupDialog()} color='primary'>Order</Button>
                     } */}
-                    <Button disabled={!item.available} endIcon={<ShoppingCartIcon/>} size='small'  onClick={() => this.props.addtoCart(item)} color='primary'>Add to Cart</Button>
+                    <Button disabled={!item.available} endIcon={<ShoppingCartIcon/>} size='small'  onClick={() => this.props.addtoCart(item)} color='secondary'>Add to Cart</Button>
                     </>
                     }
                   </CardActions>

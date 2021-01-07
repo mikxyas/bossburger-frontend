@@ -32,7 +32,7 @@ class Boss extends Component {
         // loadAdminLoc: PropTypes.func.isRequired,
         // loadAllUser: PropTypes.func.isRequired,
         // getMenuItems: PropTypes.func.isRequired,
-        // MenuItems: PropTypes.array.isRequired
+        menuItems: PropTypes.array.isRequired
     }
     parseDate(input) {
       var parts = input.match(/(\d+)/g);
@@ -116,7 +116,7 @@ class Boss extends Component {
     }
     componentDidMount(){
       this.props.loadAllOrdersForAdmin()
-
+      this.props.getMenuItems()
       this.props.loadOrdersForAdmin()
      
     }
@@ -210,7 +210,14 @@ class Boss extends Component {
                       <div style={{display:'flex', marginTop:'.5em',marginBottom:'.5em',justifyContent:'center',flexDirection:'column', alignItems:'center'}}>
                       {Object.keys(this.props.orders[id].order).map(item => (
                           <>
-                          <Typography variant='subtitle2' style={{alignSelf:'start',display:'flex',justifyContent:'space-between',width:'100%'}}>{this.props.orders[id].order[item].name} <span>{  ' X '+this.props.orders[id].quantities[this.props.orders[id].order[item].id]}</span></Typography>
+                          <Typography variant='subtitle2' style={{alignSelf:'start',display:'flex',justifyContent:'space-between',width:'100%'}}>
+                            <>{this.props.orders[id].order[item].name}</> <>{this.props.orders[id].extras[this.props.orders[id].order[item].id] !== undefined
+                            // get the extra's name by filtering menu items
+                            ?<> + {this.props.menuItems.filter(mItem => mItem.id === this.props.orders[id].extras[this.props.orders[id].order[item].id])[0].name}</>
+                            :null
+                          }</> <span>{  ' X '+this.props.orders[id].quantities[this.props.orders[id].order[item].id]}</span>
+                            </Typography>
+                          
                           </>
                         ))}
                         <Divider style={{margin:'.5em'}}/>
@@ -245,5 +252,6 @@ const mapStateToProps = state => ({
     orders: state.order.PendingOrders,
     AllOrders: state.order.AllOrders,
     itemsLoaded: state.MenuItems.itemsLoaded,
+    menuItems: state.MenuItems.MenuItems
 })
-export default connect(mapStateToProps, {loadOrdersForAdmin,loadAllOrdersForAdmin, updateOrder})(Boss)
+export default connect(mapStateToProps, {loadOrdersForAdmin,loadAllOrdersForAdmin, updateOrder, getMenuItems})(Boss)

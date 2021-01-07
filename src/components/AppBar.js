@@ -94,8 +94,8 @@ function MenuAppBar(props) {
         className={classes.tab}
         onChange={handleLinks} 
         value={props.activeLink}
-        indicatorColor='white'
-
+        indicatorColor='secondary'
+        textColor='primary'
         >
           
             <img onClick={handleBrand} src='./bosslogo.png' className='brand-pic'/>
@@ -106,7 +106,7 @@ function MenuAppBar(props) {
           <Tab  value='events' className='cont-nav' label="Events"  />
           {props.isAdmin
           ?
-            <Divider variant='middle' style={{marginLeft:'1em', background:'rgba(255,255,255,0.6)'}}  orientation='vertical' flexItem/>
+            <Divider variant='middle' style={{marginLeft:'1em', background:'rgba(0,0,0,0.6)'}}  orientation='vertical' flexItem/>
           
           :null
           }
@@ -134,7 +134,7 @@ function MenuAppBar(props) {
            
               <div className={classes.login}>
                       
-            <Avatar  aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}/>
+            <Avatar aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}/>
               
               {/* {props.user.name} */}
             

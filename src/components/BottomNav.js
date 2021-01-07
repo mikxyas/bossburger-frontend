@@ -16,7 +16,7 @@ import {ChangeLink} from '../actions/ui'
 const useStyles = makeStyles({
   root: {
     width: "100%",
-    background:'rgba(230,230,230,0.9)',
+    background:'white',
     height:'64px'
   },
 });

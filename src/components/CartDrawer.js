@@ -63,7 +63,7 @@ class CartDrawer extends React.Component {
             <React.Fragment >
             <IconButton  onClick={this.OpenDrawer}>
                 <Badge badgeContent={Object.keys(this.props.cart).length} color="secondary">
-                <ShoppingCartIcon style={{color:'#e9e8e8'}}/>
+                <ShoppingCartIcon />
                 </Badge>
                 </IconButton>
             <Drawer anchor='bottom' open={this.state.openDrawer} onClose={this.CloseDrawer}>

@@ -1,10 +1,10 @@
 .appbar-nav{
     z-index:3;
     // flexDirection:'',
-    background:rgba(0,0,0,0.8) !important;
+    background:rgba(255,255,255,1) !important;
     padding:0em;
     box-shadow: none !important;
-    // border-bottom: solid .7px rgba(255,255,255,0.2);
+    border-bottom: solid .7px rgba(0,0,0,0.2) !important;
 
     height:64px;
     backdrop-filter: saturate(180%) blur(20px) !important;
@@ -35,7 +35,7 @@
     height: 2em;
     visibility: hidden;
     width: 2.6em;
-    filter: brightness(0) invert(1);
+    filter: brightness(1) invert(0);
     margin-top: .35em;
     margin-left: 0em;
     cursor: pointer;
@@ -64,7 +64,7 @@
     // left: 0;
     display: flex;
     // flex-direction:column;
-    align-items: center;
+    align-items: center ;
     justify-content: space-between !important;
     visibility: hidden;
 }

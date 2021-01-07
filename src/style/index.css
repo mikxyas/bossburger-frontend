@@ -2,10 +2,11 @@
 @import url("https://fonts.googleapis.com/css?family=Lato:400,700,900&display=swap");
 .appbar-nav {
   z-index: 3;
-  background: rgba(0, 0, 0, 0.8) !important;
+  background: white !important;
   padding: 0em;
   -webkit-box-shadow: none !important;
           box-shadow: none !important;
+  border-bottom: solid 0.7px rgba(0, 0, 0, 0.2) !important;
   height: 64px;
   -webkit-backdrop-filter: saturate(180%) blur(20px) !important;
           backdrop-filter: saturate(180%) blur(20px) !important;
@@ -40,8 +41,8 @@
   height: 2em;
   visibility: hidden;
   width: 2.6em;
-  -webkit-filter: brightness(0) invert(1);
-          filter: brightness(0) invert(1);
+  -webkit-filter: brightness(1) invert(0);
+          filter: brightness(1) invert(0);
   margin-top: .35em;
   margin-left: 0em;
   cursor: pointer;
@@ -117,10 +118,10 @@ section {
 }
 
 section.hero-section {
-  background: url("https://res.cloudinary.com/mikiyas/image/upload/v1607756427/font2_gg4q96.jpg");
-  height: calc(70vh - 64px);
+  overflow: hidden;
+  height: calc(100vh - 64px);
   background-position: center;
-  background-size: cover;
+  background-size: 40px 40px;
   margin-bottom: 0em;
   background-attachment: fixed;
   padding: 1em;
@@ -130,13 +131,25 @@ section.hero-section {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+section.secondary-section {
+  height: 50vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  padding: 2em;
 }
 
 section.comment-section {
-  background-color: #111;
+  background-color: rgba(255, 255, 255, 0.877);
   height: calc(100vh - 64px);
   display: -webkit-box;
   display: -ms-flexbox;
@@ -213,9 +226,8 @@ section.services-section {
 }
 
 .hero-section-content {
+  z-index: 2;
   padding: 1em;
-  -webkit-backdrop-filter: saturate(180%) blur(10px);
-          backdrop-filter: saturate(180%) blur(10px);
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
@@ -236,6 +248,10 @@ section.services-section {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+}
+
+.hero-svg {
+  height: 60vh;
 }
 
 .hero-section-title {
@@ -262,17 +278,53 @@ section.services-section {
   height: 70%;
 }
 
+.secondary-section-title {
+  font-size: 56px !important;
+  font-weight: 100 !important;
+}
+
+.secondary-section-desc {
+  font-size: 22px;
+  color: red;
+}
+
+.delivery-svg {
+  height: 35vh;
+  width: 35vw;
+}
+
+.location-distance {
+  font-weight: 100 !important;
+  font-size: 30px !important;
+}
+
+.location-price {
+  font-size: 14px !important;
+}
+
+.location-list-cont {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 45%;
+}
+
 .comment-section-title {
   font-size: 56px;
   font-family: Roboto, sans-serif;
   font-weight: 500;
-  color: #e0e0e0;
+  color: #252525;
   margin-top: .4em;
 }
 
 .comment-section-desc {
   font-size: 20px;
-  color: #e0e0e0;
+  color: #2e2e2e;
   margin-top: .5em;
   margin-bottom: 2em;
   letter-spacing: 1px;
@@ -838,6 +890,53 @@ a {
 }
 
 @media screen and (max-width: 768px) {
+  section.hero-section {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  section.secondary-section {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+  }
+  .hero-logo-pic {
+    margin-bottom: .3em;
+  }
+  .hero-section-content {
+    padding: 2em !important;
+    background: rgba(255, 255, 255, 0.5);
+    position: absolute;
+  }
+  .hero-svg {
+    height: 100vh;
+    width: 150%;
+  }
+  .secondary-section-title {
+    font-size: 35px !important;
+  }
+  .secondary-section-desc {
+    font-size: 20px !important;
+  }
+  .delivery-svg {
+    height: 30vh;
+    width: 70vw;
+    margin-bottom: 1em;
+  }
+  .location-list-cont {
+    width: 120%;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: stretch;
+        -ms-flex-align: stretch;
+            align-items: stretch;
+  }
   .stat-cont {
     -webkit-box-pack: start;
         -ms-flex-pack: start;
@@ -927,6 +1026,9 @@ a {
 }
 
 @media screen and (max-width: 500px) {
+  .location-distance {
+    font-size: 17px !important;
+  }
   .loc-submit-btn {
     width: 90vw;
     margin-top: 1.5em;
@@ -999,13 +1101,19 @@ a {
     height: calc(85vh - 128px);
   }
   section.hero-section {
-    height: calc(80vh - 128px);
+    height: calc(100vh - 128px);
   }
   .hero-section-mobile-image {
     display: block;
     width: 80%;
     border-radius: 20px;
     height: 80%;
+  }
+  .secondary-section-title {
+    font-size: 30px !important;
+  }
+  .secondary-section-desc {
+    font-size: 14px !important;
   }
   .hero-section-content {
     width: -webkit-fit-content;

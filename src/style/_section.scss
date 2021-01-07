@@ -3,19 +3,27 @@ section {
     height: calc(100vh - 100px);
     margin-bottom: .4em;
     &.hero-section{
-        background: url('https://res.cloudinary.com/mikiyas/image/upload/v1607756427/font2_gg4q96.jpg');
-        height: calc(70vh - 64px);
+        overflow: hidden;
+        // background: url('');
+        height: calc(100vh - 64px);
         background-position: center;
-        background-size:cover;
+        background-size:40px 40px;
         margin-bottom: 0em;
         background-attachment: fixed;
         padding: 1em;
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: space-around;
+    }
+    &.secondary-section{
+        height: 50vh;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        padding: 2em;
     }
     &.comment-section{
-        background-color: #111;  
+        background-color: rgba(255, 255, 255, 0.877);  
         height: calc(100vh - 64px);
         display: flex;
         align-items: center;
@@ -56,9 +64,10 @@ section {
 
 
 .hero-section-content{
+    z-index: 2;
     // background-color: red; 
     padding: 1em;
-    backdrop-filter: saturate(180%) blur(10px);
+    // backdrop-filter: saturate(180%) blur(10px);
     // background-color: rgba(255,255,255,0.2);
     width: fit-content;
         height: fit-content;
@@ -67,6 +76,10 @@ section {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+.hero-svg{
+    
+    height: 60vh;
 }
 .hero-section-title{
     font-size: 56px;
@@ -93,18 +106,43 @@ section {
     border-radius: 20px;
     height: 70%;
 }
+.secondary-section-title{
+    font-size: 56px !important;
+    font-weight: 100 !important;
+}
+.secondary-section-desc{
+    font-size: 22px;
+    color: red;
+}
+.delivery-svg{
+    height: 35vh;
+    width: 35vw;
+}
+.location-distance{
+    font-weight: 100 !important;
+    font-size: 30px !important;
+}
+.location-price{
+    font-size: 14px !important;
+}
+.location-list-cont{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 45%;
+}
 .comment-section-title{
     font-size: 56px;
     font-family: Roboto, sans-serif;
     font-weight: 500;
-    color: #e0e0e0;
+    color: #252525;
     margin-top: .4em;
    
 }
 
 .comment-section-desc{
     font-size: 20px;
-    color: #e0e0e0;
+    color: #2e2e2e;
     margin-top:.5em;
     margin-bottom:2em;
     letter-spacing: 1px;
