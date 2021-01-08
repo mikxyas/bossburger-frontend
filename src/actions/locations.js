@@ -82,6 +82,7 @@ export const GetLocData = (lat, lng) => (dispatch) => {
             RouteCoords.forEach(Array => AllRouteCoords.push([Array[1], Array[0]]));
             const LocDistance = round(res.data.features[0].properties.summary.distance / 1000, 1)
             let Locprice = 0
+            let distanceExceeded = false
             if(LocDistance <= 3 && LocDistance > 0){
                 Locprice = 40
             }
@@ -97,11 +98,15 @@ export const GetLocData = (lat, lng) => (dispatch) => {
             if(LocDistance <= 15 && LocDistance > 12){
                 Locprice = 150
             }
+            if(LocDistance > 15){
+                distanceExceeded = true
+            }
             dispatch({
                 type: GET_LOC_INFO,
                 price: Locprice,
                 distance: LocDistance,
-                route: AllRouteCoords
+                route: AllRouteCoords,
+                distanceExceeded: distanceExceeded
             })
         })
 }

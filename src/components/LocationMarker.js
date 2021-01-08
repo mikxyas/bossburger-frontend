@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import {toggleUserLocated, SetCoords, GetLocData} from '../actions/locations'
 import { Button, Paper, Typography } from '@material-ui/core'
 
-const limeOptions = { color: 'red' }
+const limeOptions = { color: '#f25c05' }
 
 delete L.Icon.Default.prototype._getIconUrl;
 
@@ -71,14 +71,21 @@ function LocationMarker(props) {
                 :null
 
                 }
-            
-            {LocationConfirmed === true
+            {props.locDisExceeded & LocationConfirmed === true
+              ?<><Typography>Sorry we only delivery in a 15km radius. You are currently {props.locDistance} kms away</Typography>
+                <Button onClick={() => setLocConf(false)}>Change location</Button>
+              </>
+              :<>
+              {LocationConfirmed === true
             ?<Paper style={{width:'200px', height:'fit-content', padding:'.5em'}}>
               <Typography variant='h5'>{props.neighbourhood}</Typography>
               <Typography  variant='subtitle1'>{props.locDistance + 'km | ' + props.locPrice + 'Birr'}</Typography>
             </Paper>
             :null
           }
+              </>
+            }
+            
 
             {LocationConfirmed === false
                 ?<>
@@ -101,6 +108,7 @@ const mapStateToProps = (state) => ({
     locDistance: state.locations.locDistance,
     locRoute: state.locations.locRoute,
     locInfoFetched: state.locations.locInfoFetched,
-    locCreated: state.locations.locCreated
+    locCreated: state.locations.locCreated,
+    locDisExceeded: state.locations.locDisExceeded
   })
 export default connect(mapStateToProps, {toggleUserLocated, SetCoords, GetLocData})(LocationMarker)

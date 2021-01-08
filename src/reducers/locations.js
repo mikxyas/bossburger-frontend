@@ -24,7 +24,8 @@ const initialState = {
     locDistance:0,
     locCreated:false,
     locPrice:0,
-    locRoute:[]
+    locRoute:[],
+    locDisExceeded:false,
 }
 
 export default function (state=initialState, action){
@@ -48,6 +49,7 @@ export default function (state=initialState, action){
                 locDistance: action.distance,
                 locRoute: action.route,
                 locInfoFetched: true,
+                locDisExceeded: action.distanceExceeded
             }
         case SET_USER_COORDS:
             return {

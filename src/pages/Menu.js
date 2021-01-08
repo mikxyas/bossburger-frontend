@@ -155,7 +155,7 @@ class Menu extends React.Component {
           :null
           }
           <Grid container spacing={2} jusitfy='center' alignItems='center' style={{padding:"2em",overflowY:"hidden"}}>
-            {this.props.menuItems.filter(item => item.food_type != "EXT").map(item => {
+            {this.props.menuItems.sort((item1, item2) => (item2.price - item1.price)).filter(item => item.food_type != "EXT").map(item => {
               if(item.rating != null){
                 var rating = 0
                 var sum = 0
@@ -219,6 +219,7 @@ class Menu extends React.Component {
                                 :null
                               }
                         </Typography>
+                        
                         {this.props.user === null
                         ?
                         <div style={{display:'flex',alignItems:'center'}}>
@@ -261,6 +262,10 @@ class Menu extends React.Component {
                         <Typography style={{color:'rgb(100, 100, 100)',marginLeft:'.3em',fontSize:'12px'}}> {item.rating == null ?<>0</> :<>{Math.round(sum/Object.keys(item.rating).length * 100) / 100 + ' (' + Object.keys(item.rating).length + ')'}</>}</Typography>
                         
                         </div>
+                        }
+                        {item.food_type === 'BRG' 
+                          ?<Typography variant='caption'>{item.desc}</Typography>
+                          :null
                         }
                     {/* </Paper>  */}
                     </CardContent>

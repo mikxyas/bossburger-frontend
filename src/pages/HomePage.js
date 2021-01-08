@@ -137,8 +137,33 @@ class HomePage extends React.Component{
              <Box className='secondary-section-desc'>*we only delivery in a 15km radius.</Box> 
         </Typography> */}
         
-      </section>
-
+       </section>
+       
+        {/* <section className='secondary-section'>
+          <div style={{display:'flex', alignItems:'center', flexDirection:'column'}}>
+            <img className='delivery-svg' src="./reviews-hero.svg" alt="Burger"/>
+            <Typography variant='h3' className='secondary-section-title'>Reviews</Typography>
+          </div>
+          <div className='comment-section-img-cont'>
+          <div>
+            <Image className='comment-section-img' cloudName='mikiyas' publicId='rating-2_ou1gd5'  secure="true"/>
+          </div>
+          <div>
+            <Image className='comment-section-img' cloudName='mikiyas' publicId='rating-5_ke5gub'  secure="true"/>
+          </div>
+        
+          
+        </div>
+       
+      <div className='comment-section-img-cont'>
+      <div>
+            <Image className='comment-section-img' cloudName='mikiyas' publicId='rating-6_vzzj8j'  secure="true"/>
+          </div>
+          <div>
+            <Image className='comment-section-img' cloudName='mikiyas' publicId='rating-3_zn8v5l'  secure="true"/>
+          </div>
+      </div>  
+        </section>  */}
       {/* <section className='comment-section'>
         <Typography align='center' variant='h2'>
           <Box className='comment-section-title'>We are the best</Box>
