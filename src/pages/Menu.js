@@ -1,5 +1,5 @@
 import React from 'react'
-import {AppBar, Chip,Button, Box,  Avatar, Collapse} from '@material-ui/core'
+import {AppBar, Tooltip,Chip,Button, Box,  Avatar, Collapse} from '@material-ui/core'
 import Grid from '@material-ui/core/Grid';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -226,11 +226,12 @@ class Menu extends React.Component {
                          <ReactStars
                           count={5}
                           value={item.rating === null ?0 :this.round(sum/Object.keys(item.rating).length, 0.5)}
-
+                          isHalf={true}
                           // onChange={ratingChanged}
                           style={{margin:'auto'}}
                           size={21}
                           // isHalf={true}
+                          
                           emptyIcon={<EmptyStar/>}
                           halfIcon={<HalfStar/>}
                           fullIcon={<FullStar/>}
@@ -239,7 +240,7 @@ class Menu extends React.Component {
                           //   ?this.handleNewRating(item)
                           //   :this.handleRating(item)
                           // }
-                          activeColor={item.available === true ?"#ffd700": '#9e9e9e'}
+                          activeColor={item.available === true ?"#f78b27b6": '#9e9e9e'}
                         />
                         <Typography  style={{ color:'rgb(100, 100, 100)',marginLeft:'.3em',fontSize:'13px'}}> {item.rating == null ?<>0</> :<>{Math.round(sum/Object.keys(item.rating).length * 100) / 100 + ' (' + Object.keys(item.rating).length + ')'}</>}</Typography>
 
@@ -257,7 +258,7 @@ class Menu extends React.Component {
                           halfIcon={<HalfStar/>}
                           fullIcon={<FullStar/>}
                           onChange={this.handleRating(item)}
-                          activeColor={item.available === true ?"#ffd700": '#9e9e9e'}
+                          activeColor={item.available === true ?"#f78b27b6": '#9e9e9e'}
                         /> 
                         <Typography style={{color:'rgb(100, 100, 100)',marginLeft:'.3em',fontSize:'12px'}}> {item.rating == null ?<>0</> :<>{Math.round(sum/Object.keys(item.rating).length * 100) / 100 + ' (' + Object.keys(item.rating).length + ')'}</>}</Typography>
                         
@@ -294,14 +295,12 @@ class Menu extends React.Component {
                       ? <Button disabled={!item.available} onClick={() => this.handleExCollapse(item.id)} variant='contained' endIcon={this.state.expandExtras === item.id ?<UpIcon/> :<ChevronDownIcon/>} size='small' style={{borderRadius:'20px'}} color='primary'>Extras</Button>
                       :null
                     }
-
-                    {/* {this.props.isAuthenticated
-                    ?<Link to='/checkout'>
-                      <Button disabled={!item.available} variant='contained' size='small' style={{borderRadius:'20px'}} onClick={() => this.props.addtoCart(item)}  color='primary'>Order</Button>
-                    </Link> 
-                    :  <Button disabled={!item.available} variant='contained' size='small' style={{borderRadius:'20px'}} onClick={() => this.props.toggleSignupDialog()} color='primary'>Order</Button>
-                    } */}
-                    <Button disabled={!item.available} endIcon={<ShoppingCartIcon/>} size='small'  onClick={() => this.props.addtoCart(item)} color='secondary'>Add to Cart</Button>
+                    {this.props.isAuthenticated
+                      ?<Button disabled={!item.available} endIcon={<ShoppingCartIcon/>} size='small'  onClick={() => this.props.addtoCart(item)} color='secondary'>Add to Cart</Button>
+                      :<Tooltip title="Please SignIn before you add to cart" arrow>
+                          <Button onClick={() => this.props.toggleSignupDialog()} endIcon={<ShoppingCartIcon/>} size='small' color='secondary'>Add to Cart</Button>
+                      </Tooltip>
+                    }
                     </>
                     }
                   </CardActions>

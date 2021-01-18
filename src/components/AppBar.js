@@ -103,6 +103,7 @@ function MenuAppBar(props) {
           <Tab value='' label='Home' className='cont-nav' />
           <Tab  className='cont-nav' value='menu' label="Menu"  />
           <Tab  value='order' className='cont-nav' label="Order"  />
+          <Tab  value='gallery' className='cont-nav' label="Gallery"  />
           <Tab  value='events' className='cont-nav' label="Events"  />
           {props.isAdmin
           ?
@@ -155,14 +156,18 @@ function MenuAppBar(props) {
             </Menu>
               </div>
             :
-            
             <div className={classes.login}>
               <SigninDialog/>
             </div>
             }
-            <div style={{marginRight:'.5em'}}>
+            {props.isAuthenticated
+              ?<div style={{marginRight:'.5em'}}>
               <CartDrawer/>
             </div>
+            :null
+
+            }
+            
         </Toolbar>
 
       </AppBar>

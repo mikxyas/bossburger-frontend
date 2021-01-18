@@ -14,6 +14,7 @@ import Boss from './pages/Boss';
 import JobOffers from './pages/JobOffers';
 import MenuFood from './pages/MenuFood';
 import Services from './pages/Services'
+import Gallery from './pages/Gallery';
 
 const Main = () => {
     return(
@@ -31,6 +32,7 @@ const Main = () => {
       <Route exact path='/jobs' component={JobOffers}></Route>
       <Route exact path='/menu' component={MenuFood}></Route>
       <Route exact path='/services' component={Services}></Route>
+      <Route exact path='/gallery' component={Gallery}></Route>
     </Switch>
     )  
 }

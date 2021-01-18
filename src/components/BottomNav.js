@@ -10,6 +10,7 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 import FastfoodIcon from '@material-ui/icons/Fastfood';
 import MenuBookIcon from '@material-ui/icons/MenuBook';
 import BtmNavMoreBtn from './BtmNavMoreBtn'
+import GalleryIcon from '@material-ui/icons/PhotoLibrary'
 import {connect} from 'react-redux'
 import {ChangeLink} from '../actions/ui'
 
@@ -38,9 +39,11 @@ const useStyles = makeStyles({
         <BottomNavigationAction label={<span style={{fontSize:'18px'}}>Menu</span>} value="menu" icon={<MenuBookIcon />} />
         <BottomNavigationAction  label={<span style={{fontSize:'18px'}}>Order</span>} value="order" icon={<FastfoodIcon fontSize='medium'/>} />
         {/* <BottomNavigationAction label={<span style={{fontSize:'18px'}}>Offers</span>} value="offers" icon={<LocalOfferIcon fontSize='medium'/>} /> */}
+        <BottomNavigationAction label={<span style={{fontSize:'18px'}}>Gallery</span>} value="gallery" icon={<GalleryIcon fontSize='medium'/>} />
         <BottomNavigationAction label={<span style={{fontSize:'18px'}}>Events</span>} value="events" icon={<EventIcon fontSize='medium'/>} />
+        
         {/* <BottomNavigationAction label={<span style={{fontSize:'18px'}}>More</span>} value="giveaways" icon={<MoreIcon fontSize='medium'/>} /> */}
-        <BtmNavMoreBtn/>
+        {/* <BtmNavMoreBtn/> */}
         {/* <BottomNavigationAction label="More" value="giveaways" icon={<MoreVertIcon />} /> */}
     </BottomNavigation>
   );

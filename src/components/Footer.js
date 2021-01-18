@@ -20,9 +20,6 @@ function Footer(props){
         return (
             <footer>
                 <ButtonGroup style={{margin:'.5em'}} variant="text" color="inherit" size='small'>
-                    <Button onClick={handleLinks} value='menu'>Menu</Button>
-                    <Button onClick={handleLinks} value='order'>Order</Button>
-                    <Button onClick={handleLinks} value='events'>Events</Button>
                     <Button onClick={handleLinks} value='jobs'>Jobs</Button>
                     <Button onClick={handleLinks} value='services'>Services</Button>
                     <Button onClick={handleLinks} value='contact'>Contacts</Button>

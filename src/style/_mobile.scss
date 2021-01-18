@@ -10,10 +10,42 @@
         }
     }   
 }
+
+@keyframes BackgroundGradient {
+    0% {background-size: 100%;}
+    100% {background-size: 140%;}
+    // 100% {background-position: 75% 100%;}
+  }
 @include mediaMd{
+    &.hero-rest-desc{
+        background-color: #3f3e43a4;
+        color: whitesmoke;
+        padding: .5em;
+        line-height: 1.3em !important;
+        border-radius: 15px;
+        font-weight: 400 !important;
+    }
+    .hero-rest-link{
+        color:rgba(255,255,255,0.7);
+    }
+    .hero-desc-card{
+        margin-top: 2em;
+        background-image: url('https://res.cloudinary.com/mikiyas/image/upload/v1606364891/c-item-3_i2lzp6.jpg');
+        border-radius: 10px !important;
+        animation: BackgroundGradient 2s ease-in-out none;
+        background-position:  40% 55%; 
+        background-size: 140%;
+    }
+    .hero-desc-card-list-item{
+        background:rgba(236, 231, 231, 0.8) !important;
+        border-radius: 20px !important;
+        margin-top: .7em !important;
+
+    }
     section{
         &.hero-section{
-            flex-direction: column;  
+            height: fit-content;
+            
         }
         &.secondary-section{
             flex-direction: column;
@@ -22,18 +54,20 @@
     }
     &.hero-logo-pic{
         margin-bottom: .3em;
+        width: 90%;
     }
     &.hero-section-content{
-        padding: 2em !important;
-        
-        // background: linear-gradient(to top, #ebe2dcb6, #eeccadb2); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-        background: rgba(white, 0.5);
-        position: absolute;
+        padding: 1.5em !important;
+        // background: linear-gradient(to bottom, #ffffffb7, #f26405b9); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        // background: rgba(#111, 0.2);
+        // position: absolute;
 
     }
     &.hero-svg{
         height: 100vh;
         width: 150%;
+        align-self: flex-start;
+        display: none;
     }
     &.secondary-section-title{
         font-size: 35px !important;
@@ -123,7 +157,7 @@
     }
     &.brand-pic{
         visibility: visible;
-        margin: auto;
+        // margin: auto !important;
         margin-left: .5em;
         
     }
@@ -170,7 +204,7 @@
             justify-content: flex-start;
         }
         &.job-section{
-            justify-content: flex-start;
+            justify-content: center;
         }
     }
     &.contact-section-title{
@@ -214,9 +248,7 @@
         &.comment-section{
             height: calc(85vh - 128px);
         }
-        &.hero-section{
-            height: calc(100vh - 128px);
-        }
+   
     }
     &.hero-section-mobile-image{
         display: block;

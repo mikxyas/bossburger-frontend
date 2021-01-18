@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Typography, Divider,Box, ListItemSecondaryAction} from '@material-ui/core';
+import {Button,Card, Typography, Divider,Box, ListItemSecondaryAction, Paper, CardContent} from '@material-ui/core';
 import {Link} from 'react-router-dom'
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import {loadEvents, viewEvent} from '../actions/events'
@@ -11,6 +11,10 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import GpsIcon from '@material-ui/icons/LocationOn'
+import OpenInNewIcon from '@material-ui/icons/OpenInNew'
+import AccessTimeIcon from '@material-ui/icons/AccessTime';
+import MotorcycleIcon from '@material-ui/icons/Motorcycle';
+import ExploreIcon from '@material-ui/icons/Explore';
 
 class HomePage extends React.Component{
   constructor(props){
@@ -51,24 +55,53 @@ class HomePage extends React.Component{
 
           </Link> */}
 
-          <img className='hero-logo-pic' src='./bosslogo.png'/>
-          <Typography align='center' variant='h2'>
+          <img className='hero-logo-pic' src='./logo.jpg'/>
+          <Card className='hero-desc-card' >
+            <CardContent>
+            {/* <Box className='hero-section-title' fontWeight={600}>Boss Burger</Box> */}
+              <List>
+              <ListItem className='hero-desc-card-list-item' button>
+        <ListItemIcon>
+          <AccessTimeIcon/>
+        </ListItemIcon>
+        <ListItemText primary="Open" secondary='24/7' />
+      </ListItem>
+      <ListItem className='hero-desc-card-list-item' button>
+        <ListItemIcon>
+          <MotorcycleIcon/>
+        </ListItemIcon>
+        <ListItemText primary="Delivery Hours" secondary='10AM - 11AM'/>
+      </ListItem>
+      <a href='https://www.google.com/maps/place/BOSS+BURGER/@8.9975857,38.7849062,15z/data=!4m2!3m1!1s0x0:0x1717740e78fc081d?sa=X&ved=2ahUKEwjisrqJ-4zuAhWCqHEKHQMhBLwQ_BIwFXoECCIQBQ' style={{color:'inherit'}} target='__blank__'  >
+
+      <ListItem className='hero-desc-card-list-item' button>
+        <ListItemIcon>
+          <ExploreIcon/>
+        </ListItemIcon>
+        <ListItemText primary="Bole, near Sheger House" secondary='Click to see in map'/>
+      </ListItem>
+      </a>
+              </List>
+            </CardContent>
+          </Card>
+          {/* <Typography align='center' variant='h2'>
             <Box className='hero-section-title' fontWeight={600}>Boss Burger</Box>
-          </Typography>
-          <Typography className='hero-section-subtitle' align='center' variant='p'>
+          </Typography> */}
+          {/* <Typography className='hero-section-subtitle' align='center' variant='p'>
             <Box >You've had the rest. Come try the best!</Box>
-            {/* <Box color='#f25c05'>Come try the best!</Box> */}
+          </Typography> */}
+          {/* <Typography align='center' className='hero-rest-desc'  variant='subtitle1'>
+            A Burger joint in Addis dedicated to customer's satisfaction. Found in <a href='https://www.google.com/maps/place/BOSS+BURGER/@8.9975857,38.7849062,15z/data=!4m2!3m1!1s0x0:0x1717740e78fc081d?sa=X&ved=2ahUKEwjisrqJ-4zuAhWCqHEKHQMhBLwQ_BIwFXoECCIQBQ' target='__blank__' className='hero-rest-link' >Bole, Behind Sheger House </a>
+          </Typography> */}
+          {/* <Link to='/order'>
+          <Button endIcon={<ChevronRightIcon/>} style={{color:'#1e1e1e'}} size='small' >Try the best</Button>
 
-          </Typography>
-          <Link to='/order'>
-          {/* <Button endIcon={<ChevronRightIcon/>} style={{color:'#1e1e1e'}} size='small' >Try the best</Button> */}
-
-          </Link>
+          </Link> */}
           {/* <Image className='hero-section-mobile-image' cloudName='mikiyas' publicId='c-item2_qewdgb'  secure="true"/> */}
           
          
         </div>
-      <img className='hero-svg' src="./outdoor-hero.svg" alt="Burger"/>
+      <img className='hero-svg' src="./landing-hero.svg" alt="Burger"/>
 
       </section>
 
@@ -90,7 +123,7 @@ class HomePage extends React.Component{
         </div>
         <List className='location-list-cont' >
         <div>
-          <ListItem button>
+          <ListItem  button>
           <ListItemIcon>
             <GpsIcon className='location-distance'/>
           </ListItemIcon>
@@ -138,7 +171,7 @@ class HomePage extends React.Component{
         </Typography> */}
         
        </section>
-       
+
         {/* <section className='secondary-section'>
           <div style={{display:'flex', alignItems:'center', flexDirection:'column'}}>
             <img className='delivery-svg' src="./reviews-hero.svg" alt="Burger"/>

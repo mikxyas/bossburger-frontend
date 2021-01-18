@@ -86,7 +86,7 @@ class SigninDialog extends  React.Component{
   render(){
   return (
     <div>
-      <Button variant="outlined"  onClick={() => this.handleDialog()}>
+      <Button variant='outlined' color='primary'  onClick={() => this.handleDialog()}>
         Signin
       </Button>
       <Dialog open={this.props.openSigninDialog} onClose={this.handleDialog} TransitionComponent={Transition}>        
