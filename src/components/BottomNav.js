@@ -40,7 +40,6 @@ const useStyles = makeStyles({
 
   return (
     <>
-    
     <CartDrawer/>
     <BottomNavigation  showLabels color='secondary' value={props.activeLink} onChange={handleChange} className={classes.root}>
         <BottomNavigationAction label={<span style={{fontSize:'18px'}}>Menu</span>} value="menu" icon={<MenuBookIcon />} />

@@ -25,7 +25,7 @@ import {addAmountof, decreaseAmountof, deleteItem} from '../actions/cart'
 import {toggleSignupDialog} from '../actions/auth';
 import {Image} from 'cloudinary-react'
 import Fab from '@material-ui/core/Fab'
-
+import FastfoodIcon from '@material-ui/icons/Fastfood';
 class CartDrawer extends React.Component {
     static propTypes = {
         cart:PropTypes.object,
@@ -79,19 +79,26 @@ class CartDrawer extends React.Component {
                 <ShoppingCartIcon />
                 </Badge>
                 </IconButton> */}
-            <Drawer anchor='bottom' open={this.state.openDrawer} onClose={this.CloseDrawer}>
+            <Drawer anchor='bottom' style={{zIndex:'99999'}} open={this.state.openDrawer} onClose={this.CloseDrawer}>
             <div
-                style={{width:'auto', marginBottom:'56px'}}
+                style={{width:'auto'}}
                 role="presentation"
                 // onClick={}
                 // onKeyDown={}
                 >
                     { Object.keys(this.props.cart).length == 0
-                    ? <>
-                    <p style={{textAlign:'center',marginTop:'.3em', fontSize:'20px'}}>Your cart is empty</p>
+                    ? <div style={{display:'flex',alignItems:'center', justifyContent:'center', width:'100%', flexDirection:'column'}}>
+                    <IconButton>
+                        <FastfoodIcon color='primary'/>
+                    </IconButton>
+
+                    <Typography style={{marginBottom:'1em'}} variant='body1'>
+                        Your Cart is Empty
+                    </Typography>
+                    {/* <p style={{textAlign:'center',marginTop:'.3em', fontSize:'20px'}}></p> */}
                     {/* <br/> */}
-                    <p style={{textAlign:'center',marginTop:'.3em', fontSize:'20px'}}>Any item that you add to your cart will appear here</p>
-                    </>
+                    {/* <p style={{textAlign:'center',marginTop:'.3em', fontSize:'20px'}}>Any item that you add to your cart will appear here</p> */}
+                    </div>
                     : <List>
                     {Object.keys(this.props.cart).map((item, key) => (
                     <>
