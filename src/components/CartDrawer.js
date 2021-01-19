@@ -24,7 +24,7 @@ import RemoveCartIcon from '@material-ui/icons/RemoveShoppingCart'
 import {addAmountof, decreaseAmountof, deleteItem} from '../actions/cart'
 import {toggleSignupDialog} from '../actions/auth';
 import {Image} from 'cloudinary-react'
-
+import Fab from '@material-ui/core/Fab'
 
 class CartDrawer extends React.Component {
     static propTypes = {
@@ -61,11 +61,24 @@ class CartDrawer extends React.Component {
         return (
 
             <React.Fragment >
-            <IconButton  onClick={this.OpenDrawer}>
+                {this.props.isMobile
+                    ?<Fab style={{margin:'.5em'}} onClick={this.OpenDrawer} color="secondary" aria-label="edit">
+                        <Badge badgeContent={Object.keys(this.props.cart).length} color="primary">
+                            <ShoppingCartIcon />
+                        </Badge>
+                    </Fab>
+                    :<IconButton  onClick={this.OpenDrawer}>
+                        <Badge badgeContent={Object.keys(this.props.cart).length} color="secondary">
+                            <ShoppingCartIcon />
+                        </Badge>
+                    </IconButton>
+                }
+            
+            {/* <IconButton  onClick={this.OpenDrawer}>
                 <Badge badgeContent={Object.keys(this.props.cart).length} color="secondary">
                 <ShoppingCartIcon />
                 </Badge>
-                </IconButton>
+                </IconButton> */}
             <Drawer anchor='bottom' open={this.state.openDrawer} onClose={this.CloseDrawer}>
             <div
                 style={{width:'auto', marginBottom:'56px'}}
@@ -140,7 +153,8 @@ const mapStateToProps = state =>({
     Amount: state.cart.Amount,
     isAuthenticated: state.auth.isAuthenticated,
     Extras: state.cart.Extras,
-    menuItems: state.MenuItems.MenuItems
+    menuItems: state.MenuItems.MenuItems,
+    isMobile: state.ui.mobile
 })
       
 export default connect(mapStateToProps, {deleteItem, addAmountof, toggleSignupDialog,decreaseAmountof})(CartDrawer);

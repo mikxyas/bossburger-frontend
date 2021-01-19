@@ -78,10 +78,14 @@
     &.delivery-svg{
         height: 30vh;
         width: 70vw;
-        margin-bottom: 1em;
-
+        margin-bottom: 0em;
     }
-   
+    &.loc-dist-svg{
+        height: 27vh;
+        width: 57vw;
+        margin-top: -2em;
+        margin-bottom: 1em;
+    }
     &.location-list-cont{
         width: 120%;
         justify-content: center;
@@ -176,6 +180,11 @@
 }
 
 @include mediaSm{
+    &.loc-dist-svg{
+        height: 30vh;
+        width: 60vw;
+        margin-top: -5em;
+    }
     &.location-distance{
         font-size: 17px !important;
     }

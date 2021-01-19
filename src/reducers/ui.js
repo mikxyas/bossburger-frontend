@@ -1,7 +1,8 @@
-import {CHANGED_LINK} from '../actions/types'
+import {CHANGED_LINK, UPDATE_USER_DEVICE} from '../actions/types'
 
 const initialValue = {
-    link: ''
+    link: '',
+    mobile:null,
 }
 
 export default function (state = initialValue, action){
@@ -9,6 +10,10 @@ export default function (state = initialValue, action){
         case CHANGED_LINK:
             return{
                 link:action.payload
+            }
+        case UPDATE_USER_DEVICE:
+            return{
+                mobile:action.payload
             }
         default:
             return state

@@ -8,7 +8,7 @@ import store from './store';
 import {loadUser} from './actions/auth';
 import {loadLoc} from './actions/locations'
 import Footer from './components/Footer';
-import { green, orange } from '@material-ui/core/colors';
+import {UpdateDevice} from './actions/ui'
 
 const outerTheme = createMuiTheme({
   palette: {
@@ -26,7 +26,15 @@ class App extends React.Component{
     store.dispatch(loadUser())
     store.dispatch(loadLoc())
     // store.dispatch(showSuccessSnackbar("Success!"));
-
+    if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+      // true for mobile device
+      store.dispatch(UpdateDevice(true))
+      
+    }else{
+      // false for not mobile device
+      store.dispatch(UpdateDevice(false))
+      
+    }
   }
   render(){  
   return (

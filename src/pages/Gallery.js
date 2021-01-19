@@ -6,7 +6,7 @@ export default class Gallery extends Component {
         return (
             <div style={{display:'flex', marginTop:'.3em',alignItems:'center', justifyContent:'center'}}>
                 <GridList cellHeight={160} style={{width:'80vw', height:'450'}} cols={4}>
-                        <GridListTile cols={4} rows={3}>
+                        <GridListTile cols={4} rows={2}>
                             <img src='https://res.cloudinary.com/mikiyas/image/upload/v1607755032/hero1-bg_pvqypy.jpg' alt='bossburger' />
                             <GridListTileBar
                                 title='Like what you see?'
@@ -25,12 +25,12 @@ export default class Gallery extends Component {
                         <GridListTile cols={2} rows={2}>
                             <img  src='https://res.cloudinary.com/mikiyas/image/upload/v1606364891/c-item-3_i2lzp6.jpg' alt='bossburger' />
                         </GridListTile>
-                        <GridListTile cols={4} rows={2}>
-                            <img src='https://res.cloudinary.com/mikiyas/image/upload/v1606569033/97237411_248415766235891_5659653975019641466_n_sxwi4c.jpg' alt='bossburger' />
+                        <GridListTile cols={2} rows={2.5}>
+                            <img  src='https://res.cloudinary.com/mikiyas/image/upload/v1606569033/97237411_248415766235891_5659653975019641466_n_sxwi4c.jpg' alt='bossburger' />
                            
                         </GridListTile>
                         
-                        <GridListTile cols={4} rows={2}>
+                        <GridListTile cols={2} rows={2.5}>
                             <img  src='https://res.cloudinary.com/mikiyas/image/upload/v1606364886/c-item2_qewdgb.jpg' alt='bossburger' />
                         </GridListTile>
                         <GridListTile cols={2} rows={2}>

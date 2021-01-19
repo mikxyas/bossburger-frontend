@@ -9,10 +9,14 @@ import EventIcon from '@material-ui/icons/Event';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import FastfoodIcon from '@material-ui/icons/Fastfood';
 import MenuBookIcon from '@material-ui/icons/MenuBook';
+import Fab from '@material-ui/core/Fab'
+import CartIcon from '@material-ui/icons/ShoppingCart'
 import BtmNavMoreBtn from './BtmNavMoreBtn'
 import GalleryIcon from '@material-ui/icons/PhotoLibrary'
 import {connect} from 'react-redux'
 import {ChangeLink} from '../actions/ui'
+import CartDrawer from './CartDrawer'
+
 
 const useStyles = makeStyles({
   root: {
@@ -35,6 +39,9 @@ const useStyles = makeStyles({
   };
 
   return (
+    <>
+    
+    <CartDrawer/>
     <BottomNavigation  showLabels color='secondary' value={props.activeLink} onChange={handleChange} className={classes.root}>
         <BottomNavigationAction label={<span style={{fontSize:'18px'}}>Menu</span>} value="menu" icon={<MenuBookIcon />} />
         <BottomNavigationAction  label={<span style={{fontSize:'18px'}}>Order</span>} value="order" icon={<FastfoodIcon fontSize='medium'/>} />
@@ -46,6 +53,7 @@ const useStyles = makeStyles({
         {/* <BtmNavMoreBtn/> */}
         {/* <BottomNavigationAction label="More" value="giveaways" icon={<MoreVertIcon />} /> */}
     </BottomNavigation>
+    </>
   );
 }
 

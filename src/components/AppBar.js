@@ -160,13 +160,20 @@ function MenuAppBar(props) {
               <SigninDialog/>
             </div>
             }
-            {props.isAuthenticated
+            {!props.isMobile
+              ?
+              <>
+              {props.isAuthenticated
               ?<div style={{marginRight:'.5em'}}>
               <CartDrawer/>
             </div>
             :null
 
             }
+              </>
+              :null
+            }
+            
             
         </Toolbar>
 
@@ -182,7 +189,8 @@ const mapStateToProps = (state) => ({
   activeLink:state.ui.link,
   user: state.auth.user,
   isLoading: state.auth.isLoading,
-  cart: state.cart.cart
+  cart: state.cart.cart,
+  isMobile: state.ui.mobile
 });
 
 export default connect(mapStateToProps, {logout, ChangeLink})(MenuAppBar);

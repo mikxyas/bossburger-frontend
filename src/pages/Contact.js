@@ -49,7 +49,7 @@ export default class Contact extends Component {
                             avatar={<PhoneIcon/>}
                             
                             title='Phone number'
-                            subheader='0911212212'
+                            subheader='0902424848'
                             />
                         </CardActionArea>
                     </Card>

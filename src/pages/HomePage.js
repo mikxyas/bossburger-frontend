@@ -39,6 +39,7 @@ class HomePage extends React.Component{
     this.props.loadEvents()
   }
   render(){
+    
   return (
     <>
       <EventViewer/>
@@ -106,19 +107,24 @@ class HomePage extends React.Component{
       </section>
 
       <section className='secondary-section'>
-        <div>
+        <div style={{display:'flex', justifyContent:'center', alignItems:'center', flexDirection:'column'}}>
+        <Typography className='secondary-section-desc' align='center' variant='p'>
+        <Box fontSize={15}>We only delivery in a 15km radius.</Box>
+        </Typography>
         <Typography className='secondary-section-title' align='center' variant='h3'>
             You order. We deliver
         </Typography>
-        <Typography className='secondary-section-desc' align='center' variant='p'>
-        <Box >*we only delivery in a 15km radius.</Box>
-        </Typography>
+        <Link to='/order'>
+        <Button endIcon={<ChevronRightIcon/>} color='secondary'> Order Now</Button>
+
+        </Link>
+
         </div>
         <img className='delivery-svg' src="./delivery-hero.svg" alt="Burger"/>
       </section>
       <section className='secondary-section'>
         <div style={{display:'flex', alignItems:'center', flexDirection:'column'}}>
-        <img className='delivery-svg' src="./map-hero.svg" alt="Burger"/>
+        <img className='loc-dist-svg' src="./map-hero.svg" alt="Burger"/>
         <Typography variant='h3' className='secondary-section-title'>Delivery Pricing</Typography>
         </div>
         <List className='location-list-cont' >
@@ -165,80 +171,10 @@ class HomePage extends React.Component{
       </ListItem>
       </div>
           </List>
-        {/* <Typography align='center' variant='h2'>
-            <Box className='secondary-section-desc'>0-3km = 40birr</Box>
-             <Box className='secondary-section-desc'>*we only delivery in a 15km radius.</Box> 
-        </Typography> */}
+        
         
        </section>
 
-        {/* <section className='secondary-section'>
-          <div style={{display:'flex', alignItems:'center', flexDirection:'column'}}>
-            <img className='delivery-svg' src="./reviews-hero.svg" alt="Burger"/>
-            <Typography variant='h3' className='secondary-section-title'>Reviews</Typography>
-          </div>
-          <div className='comment-section-img-cont'>
-          <div>
-            <Image className='comment-section-img' cloudName='mikiyas' publicId='rating-2_ou1gd5'  secure="true"/>
-          </div>
-          <div>
-            <Image className='comment-section-img' cloudName='mikiyas' publicId='rating-5_ke5gub'  secure="true"/>
-          </div>
-        
-          
-        </div>
-       
-      <div className='comment-section-img-cont'>
-      <div>
-            <Image className='comment-section-img' cloudName='mikiyas' publicId='rating-6_vzzj8j'  secure="true"/>
-          </div>
-          <div>
-            <Image className='comment-section-img' cloudName='mikiyas' publicId='rating-3_zn8v5l'  secure="true"/>
-          </div>
-      </div>  
-        </section>  */}
-      {/* <section className='comment-section'>
-        <Typography align='center' variant='h2'>
-          <Box className='comment-section-title'>We are the best</Box>
-        </Typography>
-        <Typography align='center' variant='h2'>
-          <Box className='comment-section-desc'>Don't just take our words for it</Box>
-        </Typography>
-        <div className='comment-section-img-cont'>
-          <div>
-            <Image className='comment-section-img' cloudName='mikiyas' publicId='rating-2_ou1gd5'  secure="true"/>
-          </div>
-          <div>
-            <Image className='comment-section-img' cloudName='mikiyas' publicId='rating-5_ke5gub'  secure="true"/>
-          </div>
-          <div>
-            <Image className='comment-section-img' cloudName='mikiyas' publicId='rating-4_hme45j'  secure="true"/>
-          </div>
-           <Grid md={4} sm={8} xs={12}  item>
-          <Image className='comment-section-img' cloudName='mikiyas' publicId='rating-3_zn8v5l'  secure="true"/>
-          </Grid>
-          <Grid md={4} sm={8} xs={12}  item>
-            <Image className='comment-section-img' cloudName='mikiyas' publicId='rating-6_vzzj8j'  secure="true"/>
-          </Grid> 
-        </div>
-       
-      <div className='comment-section-img-cont'>
-      <div>
-            <Image className='comment-section-img' cloudName='mikiyas' publicId='rating-6_vzzj8j'  secure="true"/>
-          </div>
-          <div>
-            <Image className='comment-section-img' cloudName='mikiyas' publicId='rating-3_zn8v5l'  secure="true"/>
-          </div>
-          <div>
-            <Image className='comment-section-img' cloudName='mikiyas' publicId='rating-7_mgcfkq'  secure="true"/>
-          </div>
-      </div>  
-      
-      </section> */}
-{/*       
-      <section className='pricesection'>
-          hello
-        </section> */}
     </>
     
   );
