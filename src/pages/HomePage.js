@@ -64,13 +64,13 @@ class HomePage extends React.Component{
         <ListItemIcon>
           <AccessTimeIcon/>
         </ListItemIcon>
-        <ListItemText primary="Open" secondary='24/7' />
+        <ListItemText primary="Open" secondary='Mon - Sun | 11:00AM - 9:00PM' />
       </ListItem>
       <ListItem className='hero-desc-card-list-item' button>
         <ListItemIcon>
           <MotorcycleIcon/>
         </ListItemIcon>
-        <ListItemText primary="Delivery Hours" secondary='10AM - 11AM'/>
+        <ListItemText primary="Delivery Hours" secondary='12AM - 8:00PM'/>
       </ListItem>
       <a href='https://www.google.com/maps/place/BOSS+BURGER/@8.9975857,38.7849062,15z/data=!4m2!3m1!1s0x0:0x1717740e78fc081d?sa=X&ved=2ahUKEwjisrqJ-4zuAhWCqHEKHQMhBLwQ_BIwFXoECCIQBQ' style={{color:'inherit'}} target='__blank__'  >
 
