@@ -4,12 +4,13 @@ section {
     margin-bottom: .4em;
     &.hero-section{
         overflow: hidden;
-        // background: url('');
+        // background: url('https://res.cloudinary.com/mikiyas/image/upload/v1611155385/Untitled_7_morsm0.jpg');
         height: calc(100vh - 64px);
         background-position: center;
-        background-size:40px 40px;
+        background-size:cover;
         margin-bottom: 0em;
-        background-attachment: fixed;
+        margin-top:0em;
+        // background-attachment: fixed;
         padding: 1em;
         display: flex;
         align-items: flex-start;

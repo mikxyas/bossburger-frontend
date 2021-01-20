@@ -15,7 +15,8 @@ import OpenInNewIcon from '@material-ui/icons/OpenInNew'
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import MotorcycleIcon from '@material-ui/icons/Motorcycle';
 import ExploreIcon from '@material-ui/icons/Explore';
-
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
 class HomePage extends React.Component{
   constructor(props){
     super(props);
@@ -102,9 +103,44 @@ class HomePage extends React.Component{
           
          
         </div>
-      <img className='hero-svg' src="./landing-hero.svg" alt="Burger"/>
+      {/* <img className='hero-svg' src="./landing-hero.svg" alt="Burger"/> */}
 
       </section>
+      {/* <div style={{flexWrap:'wrap', display:'flex', justifyContent:'space-around', overflow:'hidden',}}>
+      <GridList style={{flexWrap:'nowrap', transform:'translateZ(0)'}} cols={4}>
+          <GridListTile>
+            <img src='https://res.cloudinary.com/mikiyas/image/upload/v1607756427/font2_gg4q96.jpg' alt='Burger' />
+             <GridListTileBar
+              title={tile.title}
+              classes={{
+                root: classes.titleBar,
+                title: classes.title,
+              }}
+              actionIcon={
+                <IconButton aria-label={`star ${tile.title}`}>
+                  <StarBorderIcon className={classes.title} />
+                </IconButton>
+              }
+            /> 
+          </GridListTile>
+          <GridListTile>
+          <img src='https://res.cloudinary.com/mikiyas/image/upload/v1607756427/font2_gg4q96.jpg' alt='Burger' />
+
+          </GridListTile>
+          <GridListTile>
+          <img src='https://res.cloudinary.com/mikiyas/image/upload/v1607756427/font2_gg4q96.jpg' alt='Burger' />
+
+          </GridListTile>
+          <GridListTile>
+          <img src='https://res.cloudinary.com/mikiyas/image/upload/v1607756427/font2_gg4q96.jpg' alt='Burger' />
+
+          </GridListTile>
+          <GridListTile>
+          <img src='https://res.cloudinary.com/mikiyas/image/upload/v1607756427/font2_gg4q96.jpg' alt='Burger' />
+
+          </GridListTile>
+      </GridList>
+      </div> */}
 
       <section className='secondary-section'>
         <div style={{display:'flex', justifyContent:'center', alignItems:'center', flexDirection:'column'}}>

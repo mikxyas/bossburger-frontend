@@ -125,9 +125,9 @@ section.hero-section {
   overflow: hidden;
   height: calc(100vh - 64px);
   background-position: center;
-  background-size: 40px 40px;
+  background-size: cover;
   margin-bottom: 0em;
-  background-attachment: fixed;
+  margin-top: 0em;
   padding: 1em;
   display: -webkit-box;
   display: -ms-flexbox;
