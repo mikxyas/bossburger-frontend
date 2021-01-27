@@ -8,13 +8,12 @@ import { Link, Redirect } from 'react-router-dom';
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
-function Register(props) {
+function AccountInfo(props) {
     const formik = useFormik({
         initialValues: {
-          name: "",
-          email: "",
-          password:"",
-          phone_no:'',
+          name: props.user.name,
+          email: props.user.email,
+          phone_no:props.user.phone_number,
         },
         validationSchema: Yup.object({
             name: Yup.string()
@@ -24,11 +23,6 @@ function Register(props) {
             email: Yup.string()
                 .email("Invalid email format")
                 .required("Required!"),
-            password: Yup.string()
-                .min(7, "Minimum 7 Characters")
-                .max(20, 'Maximum 20 Characters')
-                .required("Required!"),
-
             phone_no: Yup.number()
                 // .min(10, "Min correct phone number. Eg: 0902424848")
                 .typeError("That doesn't look like a phone number")
@@ -36,35 +30,22 @@ function Register(props) {
                 .integer("A phone number can't include a decimal point")
                 .required("Required!"),
 
-        }),
-        onSubmit: values => {
-            props.register(JSON.stringify(values, null, 2));  
-          }
+        })
       });
-      if(props.isAuthenticated){
-        return (<Redirect to={props.prevLink}/>)
-    }
         return (
             <Container style={{display:'flex',paddingTop:'3em', alignItems:'center', flexDirection:'column'}}>
                 <Typography variant='h4'>
-                    <Box className='form-header' fontWeight={500}>Signup to get Started</Box>
+                    <Box className='form-header' fontWeight={500}>Update your account</Box>
                 </Typography>
-                <Divider color='primary' style={{width:'50%', margin:'1em'}}/>
-                <Typography variant='caption'>
-                    Already have an account?
-                </Typography>
-                <Link to='/signin'>
-                    <Button color='secondary'>SignIn</Button>
-                </Link>
+              
                 <Divider color='primary' style={{width:'50%', margin:'1em'}}/>
 
                <div className='form-cont'>
                    <TextField id='name' error={formik.touched.name && Boolean(formik.errors.name)} helperText={formik.touched.name ?formik.errors.name : ''} color='secondary' onChange={formik.handleChange} onBlur={formik.handleBlur} className='normal-form' type='text' name='name' value={formik.values.name} variant='outlined' label='Name'/>
                    <TextField id='email' error={formik.touched.email && Boolean(formik.errors.email)}  helperText={formik.touched.email ?formik.errors.email :''} color='secondary' onChange={formik.handleChange} onBlur={formik.handleBlur}  className='normal-form' type='email' value={formik.values.email} variant='outlined' name='email' label='Email'/>
-                   <TextField id='password' error={formik.touched.password && Boolean(formik.errors.password)}  helperText={formik.touched.password ?formik.errors.password :''} color='secondary' onChange={formik.handleChange} onBlur={formik.handleBlur}  className='normal-form' type='password' value={formik.values.password} variant='outlined' name='password' label='Password'/>
                    <TextField id='phone_no' error={formik.touched.phone_no && Boolean(formik.errors.phone_no)}  helperText={formik.touched.phone_no ?formik.errors.phone_no :''} color='secondary' onChange={formik.handleChange} onBlur={formik.handleBlur}  className='normal-form' type='number' value={formik.values.phone_no} variant='outlined' name='phone_no' label='Phone number'/>
                </div>
-                <Button onClick={formik.handleSubmit} disabled={!formik.dirty || !formik.isValid} color='secondary' variant='contained' type='submit' style={{borderRadius:'20px', width:'200px'}} size='large'>SignUp</Button>
+                <Button  color='secondary' variant='contained' style={{borderRadius:'20px', width:'200px'}} size='large'>Update Profile</Button>
                 
             </Container>
         )
@@ -72,9 +53,9 @@ function Register(props) {
 
 const mapStateToProps = (state) => ({
     isAuthenticated: state.auth.isAuthenticated,
-    prevLink: state.ui.prevLink
-});
-export default connect(mapStateToProps, { register })(Register);
+    user: state.auth.user
+  });
+export default connect(mapStateToProps, { register })(AccountInfo);
 
 // <Paper variant='outlined' square style={{padding:'1em', width:'fit-content'}}>                                
 // <form  onSubmit={this.handleSubmit}>

@@ -44,23 +44,19 @@ class HomePage extends React.Component{
   return (
     <>
       <EventViewer/>
+      
       <section className='hero-section'>
-        <div className='hero-section-content'>
-          {/* <Typography align='center' variant='h2'>
-            <Box className='hero-section-title'>Boss Burger</Box>
-          </Typography>
-          <Typography align='center' variant='p'>
-            <Box className='hero-section-subtitle'>You've had the rest, come try the best!</Box>
-          </Typography>
-          <Link to='/order'>
-          <Button endIcon={<ChevronRightIcon/>} size='small' style={{margin:'.5em'}} color='secondary'>Try the best</Button>
+      {/* <img style={{alignSelf:'flex-start'}} className='hero-svg' src="./chef-hero.svg" alt="Burger"/> */}
 
-          </Link> */}
+        <div className='hero-section-content'>
+        
 
           <img className='hero-logo-pic' src='./logo.jpg'/>
+          {/* <Paper variant='outlined' style={{borderRadius:'0px',padding:'.2em',border:'none',width:'100%',background:'#ED1C24', display:'flex', alignItems:'center', justifyContent:'center'}}>
+        <Box fontWeight={700} fontSize={19} color='white' fontStyle='italic'>You've had the rest, come try the best</Box>
+      </Paper> */}
           <Card className='hero-desc-card' >
             <CardContent>
-            {/* <Box className='hero-section-title' fontWeight={600}>Boss Burger</Box> */}
               <List>
               <ListItem className='hero-desc-card-list-item' button>
         <ListItemIcon>
@@ -103,7 +99,7 @@ class HomePage extends React.Component{
           
          
         </div>
-      {/* <img className='hero-svg' src="./landing-hero.svg" alt="Burger"/> */}
+      {/* <img className='hero-svg' src="./outdoor-hero.svg" alt="Burger"/> */}
 
       </section>
       {/* <div style={{flexWrap:'wrap', display:'flex', justifyContent:'space-around', overflow:'hidden',}}>

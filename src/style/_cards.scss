@@ -187,3 +187,26 @@
 .marker-tooltip{
   pointer-events: visible !important;
 }
+.account-card{
+  // background-color: #3f3e43 !important;
+  border-radius: 10px !important;
+  width: 400px;
+  height: fit-content;
+}
+.account-card-cont{
+  height: 70vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.account-list-item{
+  // background:rgba(#f25c05, 0.6) !important;
+  border: solid .7px rgba(0,0,0,.09) !important;
+  border-radius: 17px !important;
+  margin-top: .7em !important;
+}
+.account-list-item:hover{
+  background-color: rgba(#d98555,0.07) !important;
+}

@@ -28,14 +28,14 @@
     .hero-rest-link{
         color:rgba(255,255,255,0.7);
     }
-    .hero-desc-card{
-        margin-top: 2em;
-        background-image: url('https://res.cloudinary.com/mikiyas/image/upload/v1606364891/c-item-3_i2lzp6.jpg');
-        border-radius: 10px !important;
-        animation: BackgroundGradient 2s ease-in-out none;
-        background-position:  40% 55%; 
-        background-size: 140%;
-    }
+    // .hero-desc-card{
+    //     margin-top: 2em;
+    //     background-image: url('https://res.cloudinary.com/mikiyas/image/upload/v1606364891/c-item-3_i2lzp6.jpg');
+    //     border-radius: 10px !important;
+    //     animation: BackgroundGradient 2s ease-in-out none;
+    //     background-position:  40% 55%; 
+    //     background-size: 140%;
+    // }
     .hero-desc-card-list-item{
         background:rgba(236, 231, 231, 0.8) !important;
         border-radius: 20px !important;
@@ -44,8 +44,7 @@
     }
     section{
         &.hero-section{
-            height: fit-content;
-            
+            height: calc(100vh - 64px);
         }
         &.secondary-section{
             flex-direction: column;
@@ -180,6 +179,13 @@
 }
 
 @include mediaSm{
+    &.account-card{
+        padding: 0em;
+        width: 350px;
+    }
+    &.normal-form{
+        width: 300px;
+    }
     &.loc-dist-svg{
         height: 30vh;
         width: 60vw;

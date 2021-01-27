@@ -4,16 +4,16 @@ section {
     margin-bottom: .4em;
     &.hero-section{
         overflow: hidden;
-        // background: url('https://res.cloudinary.com/mikiyas/image/upload/v1611155385/Untitled_7_morsm0.jpg');
+        background: url('https://res.cloudinary.com/mikiyas/image/upload/v1611481231/james-sutton-JdFXBzf9gnA-unsplash_1_wvuyl8.jpg');
         height: calc(100vh - 64px);
         background-position: center;
         background-size:cover;
         margin-bottom: 0em;
         margin-top:0em;
-        // background-attachment: fixed;
+        background-attachment: fixed;
         padding: 1em;
         display: flex;
-        align-items: flex-start;
+        align-items: center;
         justify-content: space-around;
     }
     &.secondary-section{
@@ -74,11 +74,28 @@ section {
     justify-content: center;
 }
 
+// .hero-desc-card{
+//     width: 325px;
+//     background-color: rgba(white,0.8) !important;
+
+// }
 .hero-desc-card{
     width: 325px;
-    background-color: rgba(white,0.8) !important;
+    margin-top: 2em;
+    // background-image: url('https://res.cloudinary.com/mikiyas/image/upload/v1606364891/c-item-3_i2lzp6.jpg');
+    background-color: rgba(#3f3e43, 0.55) !important;
+    border-radius: 20px !important;
+    // animation: BackgroundGradient 2s ease-in-out none;
+    // background-position:  40% 55%; 
+    // background-size: 140%;
 }
 
+.hero-desc-card-list-item{
+    background:rgba(236, 231, 231, 0.8) !important;
+    border-radius: 20px !important;
+    margin-top: .7em !important;
+
+}
 .hero-rest-desc{
     font-weight:200;
     margin-top:.4em !important;
@@ -95,7 +112,7 @@ section {
 }
 .hero-logo-pic{
     margin-top: -1em;
-    width: 100%;
+    width: 80%;
     height: 100%;
 }
 .hero-section-title{

@@ -3,7 +3,7 @@ import {AppBar, Tooltip,Chip,Button, Box,  Avatar, Collapse} from '@material-ui/
 import Grid from '@material-ui/core/Grid';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import {toggleSignupDialog} from '../actions/auth'
+import {register, toggleSignupDialog} from '../actions/auth'
 import {getMenuItems, rateItem,makeAvailable,makeunAvailable,toggleAddMenuItem, deleteMenuItem} from '../actions/MenuItems';
 import {addtoCart, deleteItem} from '../actions/cart'
 import { makeStyles, useTheme } from '@material-ui/core/styles';
@@ -36,6 +36,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import StarBorder from '@material-ui/icons/StarBorder';
 import {addExtra, removeExtra} from '../actions/cart'
+import {ChangeLinkToFrom} from '../actions/ui'
 
 const useStyles = makeStyles((theme) => ({
   gradient: {
@@ -298,7 +299,10 @@ class Menu extends React.Component {
                     {this.props.isAuthenticated
                       ?<Button disabled={!item.available} endIcon={<ShoppingCartIcon/>} size='small'  onClick={() => this.props.addtoCart(item)} color='secondary'>Add to Cart</Button>
                       :<Tooltip title="Please SignIn before you add to cart" arrow>
-                          <Button onClick={() => this.props.toggleSignupDialog()} endIcon={<ShoppingCartIcon/>} size='small' color='secondary'>Add to Cart</Button>
+                          <Link to='/register'>
+                            <Button onClick={() => this.props.ChangeLinkToFrom('register', 'order')} endIcon={<ShoppingCartIcon/>} size='small' color='secondary'>Add to Cart</Button>
+                          
+                          </Link>
                       </Tooltip>
                     }
                     </>
@@ -373,4 +377,4 @@ const mapStateToProps = state =>({
   cart: state.cart.cart
 })
 
-export default connect(mapStateToProps, { getMenuItems, rateItem,makeAvailable,makeunAvailable, removeExtra,addtoCart, deleteMenuItem,toggleAddMenuItem,toggleSignupDialog,addExtra,deleteItem })(Menu);
+export default connect(mapStateToProps, { getMenuItems, rateItem,makeAvailable,makeunAvailable, removeExtra,addtoCart, deleteMenuItem,toggleAddMenuItem,toggleSignupDialog,addExtra,deleteItem,ChangeLinkToFrom })(Menu);

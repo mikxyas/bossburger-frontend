@@ -12,7 +12,7 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import IconButton from '@material-ui/core/IconButton';
 import {logout} from '../actions/auth';
-import {ChangeLink} from '../actions/ui'
+import {ChangeLink, ChangeLinkToFrom} from '../actions/ui'
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 
@@ -134,12 +134,13 @@ function MenuAppBar(props) {
             ?
            
               <div className={classes.login}>
-                      
-            <Avatar aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}/>
+              <Link to='/account'>
+                <Avatar aria-controls="simple-menu" aria-haspopup="true"/>
+              </Link>    
               
               {/* {props.user.name} */}
             
-            <Menu
+            {/* <Menu
               id="simple-menu"
               anchorEl={open}
               keepMounted
@@ -153,11 +154,13 @@ function MenuAppBar(props) {
                 <MenuItem onClick={handleClose}>Locations</MenuItem>
               </Link>
               <MenuItem onClick={() => props.logout()}>Logout</MenuItem>
-            </Menu>
+            </Menu> */}
               </div>
             :
             <div className={classes.login}>
-              <SigninDialog/>
+              <Link to='/register'>
+                <Button onClick={props.ChangeLinkToFrom('register', props.Clink)} variant='contained' color='secondary'  style={{borderRadius:'20px'}}>Signup</Button>
+              </Link>
             </div>
             }
             {!props.isMobile
@@ -190,7 +193,8 @@ const mapStateToProps = (state) => ({
   user: state.auth.user,
   isLoading: state.auth.isLoading,
   cart: state.cart.cart,
-  isMobile: state.ui.mobile
+  isMobile: state.ui.mobile,
+  Clink: state.ui.link
 });
 
-export default connect(mapStateToProps, {logout, ChangeLink})(MenuAppBar);
+export default connect(mapStateToProps, {logout,ChangeLinkToFrom, ChangeLink})(MenuAppBar);

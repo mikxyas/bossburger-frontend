@@ -1,4 +1,4 @@
-import { Box, Button, Paper, TextField, Typography } from '@material-ui/core'
+import { Box, Button, Paper, Divider,TextField, Typography } from '@material-ui/core'
 import React, { Component,useState } from 'react'
 import "leaflet/dist/leaflet.css";
 import {MapContainer, Circle,TileLayer,useMapEvents,Tooltip, Popup,Marker} from 'react-leaflet'
@@ -8,6 +8,8 @@ import {connect} from 'react-redux';
 import {toggleUserLocated, SetCoords, createLoc} from '../actions/locations'
 import LocationMarker from '../components/LocationMarker'
 import {Redirect} from 'react-router-dom'
+import { useFormik } from "formik";
+import * as Yup from "yup";
 
 delete L.Icon.Default.prototype._getIconUrl;
 
@@ -19,95 +21,114 @@ L.Icon.Default.mergeOptions({
 
 
 
-class New extends Component {
-    constructor(props){
-        super(props)
-        this.state = {
-            LocationName:'',
-            Neighbourhood:'',
-            LocationDescription:'',
-        }
-        this.handleChange = this.handleChange.bind(this)
-    }
-    handleChange = (e) => {
-        this.setState({
-            [e.currentTarget.name]:e.currentTarget.value
-        })
-    }
-    SubmitLoc = () => {
-        const locInfo = {
-            neighborhood: this.state.Neighbourhood,
-            latitude: this.props.latitude,
-            longitude: this.props.longitude,
-            locDistance: parseInt(this.props.distance),
-            locPrice:this.props.price,
-            locName: this.state.LocationName,
-            locDesc: this.state.LocationDescription
-        }
-        this.props.createLoc(locInfo)
-    }
-        render(){
-            if(this.props.locCreated){
-                return <Redirect to='/locations'/>
-            }
-            const positionOfMap = [8.9806,  38.7578]
-            return (
-                <>
-                <div className='add-loc-cont'>
-                    <div className='add-loc-header-cont'>
-                        <Typography variant='h4'>
-                            <Box fontWeight={600} className='add-loc-header'>Add Location</Box>
-                        </Typography>
-                    </div>
-                    <div className='add-loc-form-cont'>
-                        <TextField onChange={this.handleChange} name='LocationName' label='Location Name' className='add-loc-form' variant='outlined' />
-                        <br/>
-                        <br/>
-                        <TextField onChange={this.handleChange} name='Neighbourhood'   className='add-loc-form' variant='outlined' label='Neighbourhood'/>
-                        <br/>
-                        <br/>
-                        <TextField onChange={this.handleChange} name='LocationDescription'  multiline rows={3} className='add-loc-form' variant='outlined' label='Location Description'/>
-                    </div>
-                {/* <Button onClick={this.GetLocation}>Gimme location</Button> */}
-                <div className='map-cont'>
-                {!this.props.UserLocated
-                ?<Typography  className='map-overlay'>
-                <Box color='#e0e0e0'>Click anywhere on the map</Box>
-            </Typography>
-                :null
+function New(props){
 
-                }
-                <MapContainer  className="add-loc-map" center={positionOfMap} zoom={20} scrollWheelZoom={true}>                
-                    <TileLayer
-                    zIndex={2}
-                    attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                    />
-                    <LocationMarker neighbourhood={this.state.Neighbourhood}/>
+    const formik = useFormik({
+        initialValues: {
+            neighborhood: '',
+            latitude: 0,
+            longitude: 0,
+            locDistance: '',
+            locPrice:0,
+            locName: '',
+            locDesc: ''
+        },
+        
+        validationSchema: Yup.object({
+            locName: Yup.string()
+                .min(3, "Minimum 3 Characters")
+                .required("Required!")
+                .max(250, 'Maximum 250 Characters'),
+            neighborhood: Yup.string()
+                .min(3, "Minimum 3 Characters")
+                .required("Required!")
+                .max(250, 'Maximum 250 Characters'),
+            locDesc: Yup.string()
+                .min(10, "Minimum 10 Characters")
+                .max(250, 'Maximum 250 Characters')
+                .required("Required!"),
+        }),
+        onSubmit: values => {
+            values.latitude = props.latitude
+            values.longitude = props.longitude
+            values.locPrice = props.price
+            values.locDistance = parseInt(props.distance)
+            alert(JSON.stringify(values, null, 2));  
+          }
+      });
+    // if(props.locCreated){
+    //     return <Redirect to='/locations'/>
+    // }
+    const positionOfMap = [8.9806,  38.7578]
+    return (
+        <>
+            <div className='add-loc-cont'>
+                <Typography align='center' variant='h5'>
+                    <Box className='form-header' fontWeight={500}>Tell us about your location</Box>
+                </Typography>
+                <Divider color='primary' style={{width:'50%', margin:'1em'}}/>
+                <div className='form-cont'>
+                    <TextField error={formik.touched.locName && Boolean(formik.errors.locName)}  helperText={formik.touched.locName ?formik.errors.locName :''} onChange={formik.handleChange} onBlur={formik.handleBlur} name='locName' label='Location Name' type='text' className='normal-form' variant='outlined' />
+                    <TextField onChange={formik.handleChange} name='neighborhood'  type='text' error={formik.touched.neighborhood && Boolean(formik.errors.neighborhood)}  helperText={formik.touched.neighborhood ?formik.errors.neighborhood :''} onBlur={formik.handleBlur} className='normal-form' variant='outlined' label='Neighbourhood'/>
+                    <TextField onChange={formik.handleChange} name='locDesc' type='text' error={formik.touched.locDesc && Boolean(formik.errors.locDesc)}  helperText={formik.touched.locDesc ?formik.errors.locDesc :''} onBlur={formik.handleBlur}  multiline rows={3} className='normal-form' variant='outlined' label='Location Description'/>
+                </div>
+                {/* <Button onClick={this.GetLocation}>Gimme location</Button> */}
+                <Divider color='primary' style={{width:'50%', margin:'1em'}}/>
+                <Typography align='center' variant='h5'>
+                    <Box className='form-header' fontWeight={500}>Send us your location on a map</Box>
+                </Typography>
+                <Divider color='primary' style={{width:'50%', margin:'1em'}}/>
+                <div className='map-cont'>
+                    {!props.UserLocated
+                    ?<Typography  className='map-overlay'>
+                        <Box color='#e0e0e0'>Click anywhere on the map</Box>
+                    </Typography>
+                    :null
+                    }
+                    <MapContainer  className="add-loc-map" center={positionOfMap} zoom={20} scrollWheelZoom={true}>                
+                        <TileLayer
+                        zIndex={2}
+                        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                        />
+                        <LocationMarker neighbourhood={formik.values.neighborhood}/>
     {/*                
                     <Marker position={position}>
                     <Popup>
                         A pretty CSS3 popup. <br /> Easily customizable.
                     </Popup>
                     </Marker> */}
-                </MapContainer>
+                    </MapContainer>
                 </div>
-                <div  className='loc-submit-btn'>
-                    <Button  color='primary' onClick={() => this.SubmitLoc()} variant='contained'>Create Location</Button>
+                <div style={{width:'100%', display:'flex', alignItems:'center', justifyContent:'center', marginTop:'1em'}}>
+                    <Button disabled={!formik.dirty || !formik.isValid || !props.locInfoFetched} color='secondary' variant='contained' style={{borderRadius:'20px', width:'200px'}} size='large' onClick={formik.handleSubmit} variant='contained'>Create Location</Button>
                 </div>
                 </div>
                 
-                </>
-            )
-      }
-    }
+            </>
+        )
+}
 
 const mapStateToProps = (state) => ({
-  UserLocated: state.locations.UserLocated,
-  latitude: state.locations.UserLatitude,
-  longitude: state.locations.UserLongitude,
-  distance: state.locations.locDistance,
-  price: state.locations.locPrice,
-  locCreated: state.locations.locCreated
+    locInfoFetched:state.locations.locInfoFetched,
+    UserLocated: state.locations.UserLocated,
+    latitude: state.locations.UserLatitude,
+    longitude: state.locations.UserLongitude,
+    distance: state.locations.locDistance,
+    price: state.locations.locPrice,
+    locCreated: state.locations.locCreated
 })
 export default connect(mapStateToProps,{toggleUserLocated, SetCoords, createLoc})(New)
+
+// SubmitLoc = () => {
+//     const locInfo = {
+//         neighborhood: this.state.Neighbourhood,
+//         latitude: this.props.latitude,
+//         longitude: this.props.longitude,
+//         locDistance: parseInt(this.props.distance),
+//         locPrice:this.props.price,
+//         locName: this.state.LocationName,
+//         locDesc: this.state.LocationDescription
+//     }
+//     this.props.createLoc(locInfo)
+// }

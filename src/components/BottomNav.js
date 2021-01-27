@@ -21,8 +21,9 @@ import CartDrawer from './CartDrawer'
 const useStyles = makeStyles({
   root: {
     width: "100%",
-    background:'white',
-    height:'64px'
+    height:'64px',
+    background:'#f5ede8',
+
   },
 });
 

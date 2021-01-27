@@ -15,6 +15,9 @@ import JobOffers from './pages/JobOffers';
 import MenuFood from './pages/MenuFood';
 import Services from './pages/Services'
 import Gallery from './pages/Gallery';
+import SignIn from './pages/Signin'
+import Account from './pages/Account';
+import AccountInfo from './pages/AccountInfo'
 
 const Main = () => {
     return(
@@ -33,6 +36,9 @@ const Main = () => {
       <Route exact path='/menu' component={MenuFood}></Route>
       <Route exact path='/services' component={Services}></Route>
       <Route exact path='/gallery' component={Gallery}></Route>
+      <Route exact path='/signin' component={SignIn}></Route>
+      <Route exact path='/account' component={Account}></Route>
+      <Route exact path='/account/info' component={AccountInfo}></Route>
     </Switch>
     )  
 }

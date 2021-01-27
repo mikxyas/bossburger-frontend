@@ -56,7 +56,7 @@ class Navbar extends Component {
           if (message.non_field_errors) this.setState({message:message.non_field_errors.join() }) 
           if (message.username) this.setState({message: `Username: ${message.username.join()}`});
           if (message.password) this.setState({message: `Password Error: ${message.password.join()}`});
-        
+          if (message.detail) this.setState({message: `Error: ${message.detail}`})
         }
     
         // if (message !== prevProps.message) {
@@ -70,9 +70,10 @@ class Navbar extends Component {
             <>
             <Snackbar
                     anchorOrigin={{
-                    vertical: 'bottom',
-                    horizontal: 'left',
+                    vertical: 'top',
+                    horizontal: 'right',
                     }}
+                    color='primary'
                     style={{zIndex:'999999999'}}
                     open={this.props.openSnackbar}
                     autoHideDuration={4000}

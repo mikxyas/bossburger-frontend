@@ -11,7 +11,9 @@ import {LOGIN_SUCCESS,
         ALL_USERS_LOADED,
         REGISTER_SUCCESS} from './types';
 import axios from 'axios'
-import {convertArrayToObject} from './locations'
+import {convertArrayToObject, loadLoc} from './locations'
+import store from '../store';
+
 
 export const loadAllUser = () => (dispatch, getState) => {
     axios
@@ -43,10 +45,13 @@ export const loadUser = () => (dispatch, getState) => {
                 type: USER_LOADED,
                 payload: res.data
             });
+            store.dispatch(loadLoc())
+            
+            
         })
         .catch((err) => {
             // dispatch(returnErrors(err.response.data, err.response.status))
-            console.log(err)
+            // console.log(err)
             dispatch({
                 type: AUTH_ERROR,
             })
@@ -55,15 +60,14 @@ export const loadUser = () => (dispatch, getState) => {
     
 }
 
-export const register = ({email, name, password, phone_number}) => (dispatch) => {
+export const register = (info) => (dispatch) => {
     const config = {
         headers: {
             'Content-Type': 'application/json',
         },
     };
-    const body = JSON.stringify({email, name, password, phone_number});
     axios
-        .post('https://bossburgeraddis.herokuapp.com/api/auth/register', body, config)
+        .post('https://bossburgeraddis.herokuapp.com/api/auth/register', info, config)
         .then((res) => {
             dispatch({
                 type: REGISTER_SUCCESS,
@@ -82,26 +86,25 @@ export const register = ({email, name, password, phone_number}) => (dispatch) =>
         });
 };
 
-export const login = ({email, password}) => (dispatch) => {
+export const login = (info) => (dispatch) => {
     const config = {
         headers: {
             'Content-Type': 'application/json',
         },
     };
-    const body = JSON.stringify({email,password});
     axios
-        .post('https://bossburgeraddis.herokuapp.com/api/auth/login', body, config)
+        .post('https://bossburgeraddis.herokuapp.com/api/auth/login', info, config)
         .then((res) => {
             dispatch({
                 type: LOGIN_SUCCESS,
                 payload: res.data
             });
-            window.location.reload()
+            // window.location.reload()
         })
         .catch((err) => {
+            const error = err.response.data
             console.log(err.response.data)
             
-            const error = err.response.data
             dispatch({
                 type:OPEN_SNACKBAR,
                 payload:error
