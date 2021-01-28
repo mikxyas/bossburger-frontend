@@ -37,6 +37,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import StarBorder from '@material-ui/icons/StarBorder';
 import {addExtra, removeExtra} from '../actions/cart'
 import {ChangeLinkToFrom} from '../actions/ui'
+import ConfDialog from '../components/ConfDialog'
 
 const useStyles = makeStyles((theme) => ({
   gradient: {
@@ -64,10 +65,19 @@ class Menu extends React.Component {
         SelectedMenuItems: this.props.Burgers,
         SelectedMenuType:'BRG',
         expandExtras:null,
-        selectedExtras:{}
+        selectedExtras:{},
+        openDialog:false,
+        ItemToDelete:''
       }
     }
-  
+    handleDialog = (item) => {
+      this.setState({locToDelete:item})
+      if(this.state.openDialog === false){
+          this.setState({openDialog:true})
+      }else{
+          this.setState({openDialog:false, locToDelete:''})
+      }
+  } 
     handleExSelection = (Bid, Eid, price) => {
       this.props.addExtra(Bid, Eid, price)
       this.setState({
@@ -125,10 +135,16 @@ class Menu extends React.Component {
       this.props.rateItem(item)
       // console.log(Object.keys(item.rating).length)
     }
+    deleteMenuItemAndClose = () => {
+      this.props.deleteMenuItem(this.state.ItemToDelete)
+      this.setState({openDialog:false})
+    }
     render(){
     return (
       <div style={{overflow:"hidden"}}>
         <AddMenuItem/>
+        <ConfDialog Open={this.state.openDialog} ActionFunc={() => this.deleteMenuItemAndClose()} DialogFunc={() => this.handleDialog()} dialogHeader='Delete Menu item' dialogContent={"Are you sure you want to delete the Menu Item ?"}/>
+
         {/* <div style={{display:"flex",alignItems:"center", justifyContent:"center"}}>
           <AppBar className='menu-tab'  elevation={1} position='fixed'>
 
@@ -348,7 +364,7 @@ class Menu extends React.Component {
                         ?<Button size='small' variant='outlined' onClick={() => this.props.makeunAvailable(item)} >Make Unavailable</Button>
                         :<Button size='small' variant='outlined' onClick={() => this.props.makeAvailable(item)}>Make Available</Button>
                         }
-                        <Button onClick={() => this.props.deleteMenuItem(item)} variant='outlined' size='small'  color='secondary'>Delete</Button>
+                        <Button onClick={() => this.handleDialog(item)} variant='outlined' size='small'  color='secondary'>Delete</Button>
                     </Paper>
                     :null
                 }

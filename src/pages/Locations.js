@@ -16,6 +16,7 @@ import {toggleLocationDialog, deleteLoc, toggleLocCreated} from '../actions/loca
 import LocationDialog from '../components/LocationDialog'
 import DeleteIcon from '@material-ui/icons/Delete'
 import IconButton from '@material-ui/core/IconButton'
+import ConfDialog from '../components/ConfDialog'
 
 class Locations extends Component {
     static propTypes = {
@@ -26,14 +27,35 @@ class Locations extends Component {
         toggleLocationDialog: PropTypes.func.isRequired,
         deleteLoc: PropTypes.func.isRequired,
       }
-      
+      constructor(props){
+        super(props);
+        this.state={
+            openDialog:false,
+            locToDelete:''
+        }
+    }
+    handleDialog = (loc) => {
+        this.setState({locToDelete:loc})
+        if(this.state.openDialog === false){
+            this.setState({openDialog:true})
+        }else{
+            this.setState({openDialog:false, locToDelete:''})
+        }
+    } 
+    deleteLocAndClose = () => {
+        this.props.deleteLoc(this.state.locToDelete)
+        this.setState({
+            openDialog:false
+        })
+    }
     render() {
         if(this.props.locCreated){
             this.props.toggleLocCreated()
         }
         return (
             <>
-            <LocationDialog/>
+            {/* <LocationDialog/> */}
+            <ConfDialog Open={this.state.openDialog} ActionFunc={() => this.deleteLocAndClose()} DialogFunc={() => this.handleDialog()} dialogHeader='Delete location' dialogContent={"Are you sure you want to delete the location ?"}/>
             {this.props.isAuthenticated 
                 ?<div style={{padding:'1em', display:'flex', justifyContent:'center'}}>
                 
@@ -50,7 +72,7 @@ class Locations extends Component {
                             <Card style={{width:'270px'}} variant='outlined'>
                                 <CardHeader
                                     action={
-                                    <IconButton onClick={() => this.props.deleteLoc(locs)} aria-label="settings">
+                                    <IconButton onClick={() => this.handleDialog(locs)} aria-label="settings">
                                         <DeleteIcon/>
                                     </IconButton>
                                     }

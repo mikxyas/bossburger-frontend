@@ -12,14 +12,29 @@ import AccountIcon from '@material-ui/icons/AccountCircle'
 import ChevronRightIcon from '@material-ui/icons/ChevronRight'
 import {connect} from 'react-redux'
 import {logout} from '../actions/auth'
+import ConfDialog from '../components/ConfDialog'
 
 class Account extends Component {
+    constructor(props){
+        super(props);
+        this.state={
+            openDialog:false
+        }
+    }
+    handleDialog = () => {
+        if(this.state.openDialog === false){
+            this.setState({openDialog:true})
+        }else{
+            this.setState({openDialog:false})
+        }
+    }
     render() {
         if(!this.props.isAuthenticated){
             return <Redirect to='/register'/>
         }
         return (
             <div className='account-card-cont'>
+                <ConfDialog Open={this.state.openDialog} ActionFunc={() => this.props.logout()} DialogFunc={() => this.handleDialog()} dialogHeader='Sign Out' dialogContent='Are you sure you want to sign out?'/>
                 <Card elevation={2} className='account-card'>
                 <CardContent>
                    
@@ -64,16 +79,12 @@ class Account extends Component {
                                 </ListItemSecondaryAction>
                             </ListItem>
                         </Link>
-                        
-      <a href='https://www.google.com/maps/place/BOSS+BURGER/@8.9975857,38.7849062,15z/data=!4m2!3m1!1s0x0:0x1717740e78fc081d?sa=X&ved=2ahUKEwjisrqJ-4zuAhWCqHEKHQMhBLwQ_BIwFXoECCIQBQ' style={{color:'inherit'}} target='__blank__'  >
-
-      <ListItem onClick={() => this.props.logout()} className='account-list-item' button>
+      <ListItem onClick={() => this.handleDialog()} className='account-list-item' button>
         <ListItemIcon >
           <SignOutIcon/>
         </ListItemIcon>
         <ListItemText primary={<Typography variant='h6'><Box fontWeight={300}>Sign out</Box></Typography>} />
       </ListItem>
-      </a>
               </List>
                     </CardContent>
                 </Card>

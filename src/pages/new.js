@@ -53,13 +53,13 @@ function New(props){
             values.longitude = props.longitude
             values.locPrice = props.price
             values.locDistance = parseInt(props.distance)
-            alert(JSON.stringify(values, null, 2));  
+            props.createLoc(JSON.stringify(values, null, 2));  
           }
       });
-    // if(props.locCreated){
-    //     return <Redirect to='/locations'/>
-    // }
     const positionOfMap = [8.9806,  38.7578]
+    if(props.locCreated){
+        return <Redirect to='/locations'/>
+    }
     return (
         <>
             <div className='add-loc-cont'>
