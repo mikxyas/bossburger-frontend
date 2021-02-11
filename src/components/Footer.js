@@ -29,7 +29,7 @@ function Footer(props){
                     <Button href='https://www.facebook.com/bossburgeraddis251/' target='__blank__' startIcon={<FacebookIcon/>}>Facebook</Button>
                     <Button startIcon={<PhoneIcon/>}>0902424848</Button>
                 </ButtonGroup>
-                <Typography align='center' style={{display:'flex', alignItems:'center'}} variant='subtitle1'>Website developed by <Button href='https://lunabite.com' target='__blank__' endIcon={<OpenInNew/>} variant='text' color='inherit'>lunabite</Button></Typography>
+                <Typography align='center' style={{display:'flex', alignItems:'center'}} variant='subtitle1'>Website developed by <Button href='https://t.me/mikiyas_tg' target='__blank__' endIcon={<OpenInNew/>} variant='text' color='inherit'>lunabite</Button></Typography>
                 <Typography align='center' variant='caption'>Boss Burger inc Copyright © 2020. All rights reserved</Typography>
                 
                 {/* <img src='./bblogo.png' className='footer-brand'/> */}
