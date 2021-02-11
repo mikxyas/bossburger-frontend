@@ -1,14 +1,11 @@
 import React from 'react'
-import {AppBar, Tooltip,Chip,Button, Box,  Avatar, Collapse} from '@material-ui/core'
+import {Tooltip,Chip,Button, Box, Collapse} from '@material-ui/core'
 import Grid from '@material-ui/core/Grid';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import {register, toggleSignupDialog} from '../actions/auth'
 import {getMenuItems, rateItem,makeAvailable,makeunAvailable,toggleAddMenuItem, deleteMenuItem} from '../actions/MenuItems';
 import {addtoCart, deleteItem} from '../actions/cart'
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
 import AddMenuItem from '../components/AddMenuItem'
 import { Link } from 'react-router-dom';
 import Card from '@material-ui/core/Card';
@@ -38,14 +35,9 @@ import StarBorder from '@material-ui/icons/StarBorder';
 import {addExtra, removeExtra} from '../actions/cart'
 import {ChangeLinkToFrom} from '../actions/ui'
 import ConfDialog from '../components/ConfDialog'
+import OrderTypeDialog from '../components/OrderTypeDialog';
+import OrderAppbar from '../components/OrderAppbar'
 
-const useStyles = makeStyles((theme) => ({
-  gradient: {
-    background: 'linear-gradient(45deg, #3f1313 15%, #bb0404 90%)'
-
-  },
-  
-}))
 
 class Menu extends React.Component {
   static propTypes = {
@@ -111,9 +103,9 @@ class Menu extends React.Component {
       }
     }
   
-   componentDidMount(){
-     this.props.getMenuItems()
-    }
+  //  componentDidMount(){
+  //    this.props.getMenuItems()
+  //   }
    
     handleMenuType = (e,newValue) => {
       this.setState({SelectedMenuType: newValue})
@@ -143,8 +135,14 @@ class Menu extends React.Component {
     return (
       <div style={{overflow:"hidden"}}>
         <AddMenuItem/>
+        {this.props.isAuthenticated
+         ?<> <OrderTypeDialog/>
+        <OrderAppbar/></>
+        :null
+        }
+        
         <ConfDialog Open={this.state.openDialog} ActionFunc={() => this.deleteMenuItemAndClose()} DialogFunc={() => this.handleDialog()} dialogHeader='Delete Menu item' dialogContent={"Are you sure you want to delete the Menu Item ?"}/>
-
+       
         {/* <div style={{display:"flex",alignItems:"center", justifyContent:"center"}}>
           <AppBar className='menu-tab'  elevation={1} position='fixed'>
 

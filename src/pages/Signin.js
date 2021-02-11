@@ -28,7 +28,7 @@ function Signin(props) {
             props.login(JSON.stringify(values, null, 2));  
           }
       });
-      if(props.isAuthenticated){
+      if(props.isAuthenticated && props.token !== null){
         return (<Redirect to={props.prevLink}/>)
     }
         return (
@@ -55,6 +55,7 @@ function Signin(props) {
 }
 
 const mapStateToProps = (state) => ({
+    token: state.auth.token,
     isAuthenticated: state.auth.isAuthenticated,
     prevLink: state.ui.prevLink
 })

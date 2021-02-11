@@ -14,7 +14,7 @@ function Register(props) {
           name: "",
           email: "",
           password:"",
-          phone_no:'',
+          phone_number:'',
         },
         validationSchema: Yup.object({
             name: Yup.string()
@@ -29,7 +29,7 @@ function Register(props) {
                 .max(20, 'Maximum 20 Characters')
                 .required("Required!"),
 
-            phone_no: Yup.number()
+            phone_number: Yup.number()
                 // .min(10, "Min correct phone number. Eg: 0902424848")
                 .typeError("That doesn't look like a phone number")
                 // .max(12, "Enter correct phone number. Eg: 0902424848")
@@ -42,7 +42,7 @@ function Register(props) {
           }
       });
       if(props.isAuthenticated){
-        return (<Redirect to={props.prevLink}/>)
+        return (<Redirect to='/signin'/>)
     }
         return (
             <Container style={{display:'flex',paddingTop:'3em', alignItems:'center', flexDirection:'column'}}>
@@ -62,7 +62,7 @@ function Register(props) {
                    <TextField id='name' error={formik.touched.name && Boolean(formik.errors.name)} helperText={formik.touched.name ?formik.errors.name : ''} color='secondary' onChange={formik.handleChange} onBlur={formik.handleBlur} className='normal-form' type='text' name='name' value={formik.values.name} variant='outlined' label='Name'/>
                    <TextField id='email' error={formik.touched.email && Boolean(formik.errors.email)}  helperText={formik.touched.email ?formik.errors.email :''} color='secondary' onChange={formik.handleChange} onBlur={formik.handleBlur}  className='normal-form' type='email' value={formik.values.email} variant='outlined' name='email' label='Email'/>
                    <TextField id='password' error={formik.touched.password && Boolean(formik.errors.password)}  helperText={formik.touched.password ?formik.errors.password :''} color='secondary' onChange={formik.handleChange} onBlur={formik.handleBlur}  className='normal-form' type='password' value={formik.values.password} variant='outlined' name='password' label='Password'/>
-                   <TextField id='phone_no' error={formik.touched.phone_no && Boolean(formik.errors.phone_no)}  helperText={formik.touched.phone_no ?formik.errors.phone_no :''} color='secondary' onChange={formik.handleChange} onBlur={formik.handleBlur}  className='normal-form' type='number' value={formik.values.phone_no} variant='outlined' name='phone_no' label='Phone number'/>
+                   <TextField id='phone_number' error={formik.touched.phone_number && Boolean(formik.errors.phone_number)}  helperText={formik.touched.phone_number ?formik.errors.phone_number :''} color='secondary' onChange={formik.handleChange} onBlur={formik.handleBlur}  className='normal-form' type='number' value={formik.values.phone_number} variant='outlined' name='phone_number' label='Phone number'/>
                </div>
                 <Button onClick={formik.handleSubmit} disabled={!formik.dirty || !formik.isValid} color='secondary' variant='contained' type='submit' style={{borderRadius:'20px', width:'200px'}} size='large'>SignUp</Button>
                 

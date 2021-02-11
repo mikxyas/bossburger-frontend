@@ -9,9 +9,11 @@ import {LOGIN_SUCCESS,
         REGISTER_FAIL,
         OPEN_SNACKBAR,
         ALL_USERS_LOADED,
-        REGISTER_SUCCESS} from './types';
+        REGISTER_SUCCESS,
+        UPDATED_USER_PROFILE} from './types';
 import axios from 'axios'
 import {convertArrayToObject, loadLoc} from './locations'
+import {getMenuItems} from './MenuItems'
 import store from '../store';
 
 
@@ -39,17 +41,20 @@ export const loadUser = () => (dispatch, getState) => {
     dispatch({type: USER_LOADING});
 
     axios
-        .get('https://bossburgeraddis.herokuapp.com/api/auth/user', tokenConfig(getState))
+        .get('https://bossburgeraddis.herokuapp.com/api/auth/user/', tokenConfig(getState))
         .then((res) => {
             dispatch({
                 type: USER_LOADED,
                 payload: res.data
             });
             store.dispatch(loadLoc())
+            store.dispatch(getMenuItems())
             
             
         })
         .catch((err) => {
+            store.dispatch(getMenuItems())
+
             // dispatch(returnErrors(err.response.data, err.response.status))
             // console.log(err)
             dispatch({
@@ -67,14 +72,21 @@ export const register = (info) => (dispatch) => {
         },
     };
     axios
-        .post('https://bossburgeraddis.herokuapp.com/api/auth/register', info, config)
+        .post('https://bossburgeraddis.herokuapp.com/api/auth/register/', info, config)
         .then((res) => {
             dispatch({
                 type: REGISTER_SUCCESS,
                 payload: res.data
             });
+            dispatch({
+                type:OPEN_SNACKBAR,
+                payload:{message: "Registered Successfully! Please Sign in"}
+            })
+            // window.location.reload()
+
         })
         .catch((err) => {
+            console.log(err.response.data)
             // dispatch(returnErrors(err.response.data, err.response.status));
             dispatch({
                 type: REGISTER_FAIL
@@ -93,13 +105,14 @@ export const login = (info) => (dispatch) => {
         },
     };
     axios
-        .post('https://bossburgeraddis.herokuapp.com/api/auth/login', info, config)
+        .post('https://bossburgeraddis.herokuapp.com/api/auth/login/', info, config)
         .then((res) => {
             dispatch({
                 type: LOGIN_SUCCESS,
                 payload: res.data
-            });
-            // window.location.reload()
+            })
+            // store.dispatch()
+            window.location.reload()
         })
         .catch((err) => {
             const error = err.response.data
@@ -161,3 +174,44 @@ export const logout = () => (dispatch, getState) => {
         payload:dialogState
     }
   }
+
+export const UpdateAccountInfo = (info) => (dispatch, getState) => {
+    axios
+      .put('https://bossburgeraddis.herokuapp.com/api/auth/user/', info, tokenConfig(getState))
+      .then((res) => {
+        dispatch({
+          type: UPDATED_USER_PROFILE,
+          payload: res.data,
+        });
+        dispatch({
+            type:OPEN_SNACKBAR,
+            payload:{message: "Profile Updated"}
+        })
+      })
+      .catch((err) => {
+          console.log(err)
+        // dispatch(returnErrors(err.response.data, err.response.status));
+      });
+}
+
+//   export const updateUserPrimaryLoc = (primaryLocId) => (dispatch) => {
+//     axios
+//     .put(`https://bossburgeraddis.herokuapp.com/api/auth/users/${order.id}/`, body, tokenConfig(getState))
+//     .then((res) => {
+//         dispatch({
+//             type: UPDATED_ORDER,
+//             payload: order.id,
+//         });
+//         dispatch({
+//             type: OPEN_SNACKBAR,
+//             payload: {message:'Order Set to delivered'}
+//         })
+//     })
+//         .catch((err) => {
+//         console.log(err.response.data)
+//         // dispatch(returnErrors(err.response.data, err.response.status));
+//         dispatch({
+//             type: ORDER_ERROR
+//         });
+//     });
+//   }

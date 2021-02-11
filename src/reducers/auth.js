@@ -9,9 +9,10 @@ import {
     REGISTER_FAIL,
     TOGGLE_SIGNIN_DIALOG,
     SET_DIALOG_STATE,
-    ALL_USERS_LOADED
+    ALL_USERS_LOADED,
+    UPDATED_USER_PROFILE,
+    UPDATE_ORDER_INFO
   } from '../actions/types';
-  
 
 const initialState = {
     token: localStorage.getItem('token'),
@@ -26,6 +27,16 @@ const initialState = {
 
 export default function (state=initialState, action) {
     switch(action.type) {
+        case UPDATE_ORDER_INFO:
+            return{
+                ...state,
+                user: action.payload
+            }
+        case UPDATED_USER_PROFILE:
+            return{
+                ...state,
+                user: action.payload
+            }
         case ALL_USERS_LOADED:
             return{
                 ...state,
@@ -48,13 +59,14 @@ export default function (state=initialState, action) {
             }
         case LOGIN_SUCCESS:
         case REGISTER_SUCCESS:
-            localStorage.setItem('token', action.payload.token);
+            localStorage.setItem('token', action.payload.key);
             return {
                 ...state,
                 user: action.payload,
                 isAuthenticated:true,
                 isLoading:false
             };
+        
         case AUTH_ERROR:
         case LOGIN_FAIL:
         case LOGOUT_SUCCESS:

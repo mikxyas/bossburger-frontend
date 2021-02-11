@@ -5,7 +5,8 @@ const initialValue = {
     AddedToCart:false,
     Amount:{},
     TotalPrice:0,
-    Extras:{status:'null'}
+    Extras:{status:'null'},
+    order_type:'DVY'
 }
 
 export default function (state = initialValue, action){

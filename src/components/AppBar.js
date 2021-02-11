@@ -94,8 +94,8 @@ function MenuAppBar(props) {
         className={classes.tab}
         onChange={handleLinks} 
         value={props.activeLink}
-        indicatorColor='secondary'
-        textColor='primary'
+        indicatorColor='none'
+        textColor='secondary'
         >
           
             <img onClick={handleBrand} src='./bosslogo.png' className='brand-pic'/>

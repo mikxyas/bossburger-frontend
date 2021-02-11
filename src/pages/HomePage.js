@@ -51,7 +51,7 @@ class HomePage extends React.Component{
         <div className='hero-section-content'>
         
 
-          <img className='hero-logo-pic' src='./logo.jpg'/>
+          {/* <img className='hero-logo-pic' src='./logo.jpg'/> */}
           {/* <Paper variant='outlined' style={{borderRadius:'0px',padding:'.2em',border:'none',width:'100%',background:'#ED1C24', display:'flex', alignItems:'center', justifyContent:'center'}}>
         <Box fontWeight={700} fontSize={19} color='white' fontStyle='italic'>You've had the rest, come try the best</Box>
       </Paper> */}

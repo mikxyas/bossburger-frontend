@@ -17,6 +17,9 @@
     // 100% {background-position: 75% 100%;}
   }
 @include mediaMd{
+    &.checkout-item{
+        width: 100%;
+    }
     &.hero-rest-desc{
         background-color: #3f3e43a4;
         color: whitesmoke;

@@ -715,10 +715,6 @@ section.services-section {
   background-color: rgba(217, 133, 85, 0.07) !important;
 }
 
-.dialog {
-  background-color: rgba(217, 133, 85, 0.3) !important;
-}
-
 .dialog-header {
   margin: .6em !important;
   margin-bottom: 0em !important;
@@ -726,6 +722,93 @@ section.services-section {
 
 .normal-button {
   border-radius: 20px !important;
+}
+
+.dialog-loc-container {
+  margin: .5em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.dialog-time-cont {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  margin-top: .4em;
+  margin-left: auto;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  overflow: auto;
+}
+
+.dialog-time-chip {
+  margin: .3em !important;
+}
+
+.dialog-loc {
+  width: 80% !important;
+}
+
+.checkout-cont {
+  padding: .5em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.checkout-item {
+  width: 50%;
+  padding: .5em;
+}
+
+.checkout-item-header {
+  font-size: 25px !important;
+  font-weight: 400 !important;
+  margin-bottom: .1em !important;
+}
+
+.checkout-loc-card {
+  padding: 0em !important;
+  margin: 0em  !important;
+}
+
+.desc-table-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 100%;
+}
+
+.checkout-loc-card-cont {
+  margin: 1em;
 }
 
 .svg-background {
@@ -1013,6 +1096,9 @@ a {
 }
 
 @media screen and (max-width: 768px) {
+  .checkout-item {
+    width: 100%;
+  }
   .hero-rest-desc {
     background-color: #3f3e43a4;
     color: whitesmoke;

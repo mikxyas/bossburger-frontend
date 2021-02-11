@@ -1,4 +1,4 @@
-import {PLACE_ORDER,UPDATED_ORDER,LOADED_ALL_ADMIN_ORDERS, ORDER_ERROR, OPEN_SNACKBAR,ORDER_LOADED,LOADED_ADMIN_ORDERS} from './types';
+import {PLACE_ORDER,UPDATE_ORDER_INFO,TOGGLE_ORDER_TYPE_DIALOG,UPDATED_ORDER,LOADED_ALL_ADMIN_ORDERS, ORDER_ERROR, OPEN_SNACKBAR,ORDER_LOADED,LOADED_ADMIN_ORDERS} from './types';
 import {tokenConfig} from './auth'
 import axios from 'axios'
 // import {convertArrayToObject} from './locations'
@@ -80,6 +80,25 @@ export const loadOrders = () => (dispatch, getState) => {
         })
 }
 
+export const UpdateOrderInfo = (info) => (dispatch, getState) => {
+    axios
+      .put('https://bossburgeraddis.herokuapp.com/api/auth/user/', info, tokenConfig(getState))
+      .then((res) => {
+        dispatch({
+          type: UPDATE_ORDER_INFO,
+          payload: res.data,
+        });
+        dispatch({
+            type:OPEN_SNACKBAR,
+            payload:{message: "Order type changed"}
+        })
+      })
+      .catch((err) => {
+          console.log(err)
+        // dispatch(returnErrors(err.response.data, err.response.status));
+      });
+}
+
 export const loadOrdersForAdmin = () => (dispatch, getState) => {
     axios
         .get('https://bossburgeraddis.herokuapp.com/api/admin/orders', tokenConfig(getState))
@@ -116,4 +135,9 @@ export const loadAllOrdersForAdmin = () => (dispatch, getState) => {
                 type: ORDER_ERROR,
             })
         })
+}
+export const toggleOrderTypeDialog = () => (dispatch) => {
+    dispatch({
+        type:TOGGLE_ORDER_TYPE_DIALOG
+    })
 }

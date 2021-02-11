@@ -227,7 +227,9 @@ class Boss extends Component {
                         <Divider style={{margin:'.5em'}}/>
                         {this.props.orders[id].order_type === 'DVY'
                           ?<Typography variant='subtitle2' style={{alignSelf:'flex-start',  display:'flex', justifyContent:'space-between', width:'100%'}}><span>Order Type</span> Delivery</Typography>
-                          :<Typography variant='subtitle2' style={{alignSelf:'flex-start',  display:'flex', justifyContent:'space-between', width:'100%'}}><span>Order Type</span> Pickup</Typography>
+                          :<><Typography variant='subtitle2' style={{alignSelf:'flex-start',  display:'flex', justifyContent:'space-between', width:'100%'}}><span>Order Type</span> Pickup</Typography>
+                              <Typography variant='subtitle2' style={{alignSelf:'flex-start',  display:'flex', justifyContent:'space-between', width:'100%'}}><span>Pick Up Time</span> {new Date(this.props.orders[id].pickup_time).toLocaleTimeString()}</Typography>
+                          </>
                           }
                       </div>
                     </Paper>
