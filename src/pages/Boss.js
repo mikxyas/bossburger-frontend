@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types'
-import {loadOrdersForAdmin,loadAllOrdersForAdmin, updateOrder} from '../actions/order'
+import {loadOrdersForAdmin,loadAllOrdersForAdmin, updateOrder, deleteOrder} from '../actions/order'
 import {loadAdminLoc} from '../actions/locations'
 import {loadAllUser} from '../actions/auth'
 import {Badge, Button, Chip, Divider, IconButton, ListItemText, Paper, Typography} from '@material-ui/core'
@@ -12,6 +12,7 @@ import QueryBuilderIcon from '@material-ui/icons/QueryBuilder';
 import Collapse from '@material-ui/core/Collapse'
 import DownIcon from '@material-ui/icons/ArrowDropDown'
 import UpIcon from '@material-ui/icons/ArrowDropUp'
+import ConfDialog from '../components/ConfDialog'
 
 
 class Boss extends Component {
@@ -19,7 +20,9 @@ class Boss extends Component {
     super(props);
     this.state={
       collapse: null,
-      LocCollapse: null
+      LocCollapse: null,
+      openDialog:false,
+      orderToDelete:''
     }
   }
     static propTypes = {
@@ -114,6 +117,19 @@ class Boss extends Component {
         })
     } 
     }
+    handleDialog = (item) => {
+      this.setState({orderToDelete:item})
+      if(this.state.openDialog === false){
+          this.setState({openDialog:true})
+      }else{
+          this.setState({openDialog:false, orderToDelete:''})
+      }
+  }
+  deleteOrderAndClose = () => {
+    this.props.deleteOrder(this.state.orderToDelete)
+    this.setState({openDialog:false})
+    // window.location.reload()
+  }
     componentDidMount(){
       this.props.loadAllOrdersForAdmin()
       this.props.getMenuItems()
@@ -123,6 +139,7 @@ class Boss extends Component {
     render() {
         return (
             <>
+            <ConfDialog Open={this.state.openDialog} ActionFunc={() => this.deleteOrderAndClose()} DialogFunc={() => this.handleDialog()} dialogHeader='Delete Order' dialogContent={"Are you sure you want to discard this order ?"}/>
             {this.props.isAdmin 
             
             //   <div className='stat-cont'>
@@ -233,7 +250,9 @@ class Boss extends Component {
                           }
                       </div>
                     </Paper>
-                   <Button onClick={() => this.props.updateOrder(this.props.orders[id])} fullWidth color='primary' variant='contained'>Set as delivered</Button>
+                   <Button onClick={() => this.props.updateOrder(this.props.orders[id])}  color='secondary' variant='contained'>Set as delivered</Button>
+                   {/* <Divider orienta flexItem /> */}
+                   <Button onClick={() => this.handleDialog(id)}  color='primary' style={{marginLeft:'.5em'}} variant='contained'>Discard Order</Button>
                   </Paper>
               ))
               }
@@ -256,4 +275,4 @@ const mapStateToProps = state => ({
     itemsLoaded: state.MenuItems.itemsLoaded,
     menuItems: state.MenuItems.MenuItems
 })
-export default connect(mapStateToProps, {loadOrdersForAdmin,loadAllOrdersForAdmin, updateOrder, getMenuItems})(Boss)
+export default connect(mapStateToProps, {loadOrdersForAdmin,loadAllOrdersForAdmin,deleteOrder, updateOrder, getMenuItems})(Boss)

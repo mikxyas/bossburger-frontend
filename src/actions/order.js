@@ -1,4 +1,4 @@
-import {PLACE_ORDER,UPDATE_ORDER_INFO,TOGGLE_ORDER_TYPE_DIALOG,UPDATED_ORDER,LOADED_ALL_ADMIN_ORDERS, ORDER_ERROR, OPEN_SNACKBAR,ORDER_LOADED,LOADED_ADMIN_ORDERS} from './types';
+import {PLACE_ORDER,DELETE_ORDER,UPDATE_ORDER_INFO,TOGGLE_ORDER_TYPE_DIALOG,UPDATED_ORDER,LOADED_ALL_ADMIN_ORDERS, ORDER_ERROR, OPEN_SNACKBAR,ORDER_LOADED,LOADED_ADMIN_ORDERS} from './types';
 import {tokenConfig} from './auth'
 import axios from 'axios'
 // import {convertArrayToObject} from './locations'
@@ -59,7 +59,26 @@ export const updateOrder = (order) => (dispatch,getState) =>{
             });
         });
 }
-
+export const deleteOrder = (order) => (dispatch,getState) =>{
+    axios
+        .delete(`https://bossburgeraddis.herokuapp.com/api/admin/orders/${order}/`, tokenConfig(getState))
+        .then((res) => {
+            dispatch({
+                type: DELETE_ORDER,
+                payload: order,
+            });
+            dispatch({
+                type: OPEN_SNACKBAR,
+                payload: {message:'Order Discarded'}
+            })
+        })
+            .catch((err) => {
+                console.log(err.response.data)
+            dispatch({
+                type: ORDER_ERROR
+            });
+        });
+}
 
 export const loadOrders = () => (dispatch, getState) => {
     axios
