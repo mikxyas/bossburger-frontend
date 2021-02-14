@@ -16,12 +16,15 @@ class OrderAppbar extends Component {
                         <Typography variant="h6" >
                             <Box fontSize={17}>Order type: {this.props.orderType}</Box>
                         </Typography>
-                        <Divider orientation='vertical' style={{margin:'.5em', background:'#d98555b2'}} flexItem/>
                         {this.props.locLoaded && this.props.orderType !== 'Pickup' && this.props.selectedLocId !== 0
                         ?
+                        <>
+                        <Divider orientation='vertical' style={{margin:'.5em', background:'#d98555b2'}} flexItem/>
+
                         <Typography variant="h6" >
                             <Box fontSize={17}>Location: {this.props.locations[this.props.selectedLocId].locName}</Box>
                         </Typography>
+                        </>
                         :null
                         }
                         <Button onClick={() => this.props.toggleOrderTypeDialog()} style={{marginLeft:'auto'}} color='secondary' variant={this.props.mobile ?'text' :'contained'} size={this.props.mobile ?'small' :'medium'}>

@@ -81,7 +81,7 @@ section {
 // }
 .hero-desc-card{
     width: 325px;
-    margin-top: 2em;
+    margin-top: -2em;
     // background-image: url('https://res.cloudinary.com/mikiyas/image/upload/v1606364891/c-item-3_i2lzp6.jpg');
     background-color: rgba(#3f3e43, 0.55) !important;
     border-radius: 20px !important;
@@ -94,8 +94,9 @@ section {
     background:rgba(236, 231, 231, 0.8) !important;
     border-radius: 20px !important;
     margin-top: .7em !important;
-
 }
+
+
 .hero-rest-desc{
     font-weight:200;
     margin-top:.4em !important;
@@ -112,8 +113,10 @@ section {
 }
 .hero-logo-pic{
     margin-top: -1em;
-    width: 80%;
-    height: 100%;
+    width: 80% ;
+    // filter: saturate(130%);
+    background-color: rgba(255,255,255,.01);
+    height: 100% ;
 }
 .hero-section-title{
     font-size: 56px;

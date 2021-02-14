@@ -200,17 +200,17 @@ class Checkout extends Component {
                             </CardActionArea>
                             <Collapse in={this.state.showLocDesc} collapsedHeight={0}>
                                 <CardContent>
-                                    <Typography className='desc-table-item'>
-                                    <span>Neighbourhood</span> {this.props.locations[this.props.usersSelectedLoc].neighborhood}
+                                    <Typography variant='subtitle2' className='desc-table-item'>
+                                        <span>Neighbourhood</span> {this.props.locations[this.props.usersSelectedLoc].neighborhood}
                                     </Typography>
-                                    <Typography className='desc-table-item'>
-                                    <span style={{marginRight:'2em'}}>Description</span> {this.props.locations[this.props.usersSelectedLoc].locDesc}
+                                    <Typography variant='subtitle2' className='desc-table-item'>
+                                        <span>Distance</span> {this.props.locations[this.props.usersSelectedLoc].locDistance + ' Km'}
                                     </Typography>
-                                    <Typography className='desc-table-item'>
-                                    <span>Distance</span> {this.props.locations[this.props.usersSelectedLoc].locDistance + ' Km'}
+                                    <Typography variant='subtitle2' className='desc-table-item'>
+                                        <span>Price</span> {this.props.locations[this.props.usersSelectedLoc].locPrice + ' Birr'}
                                     </Typography>
-                                    <Typography className='desc-table-item'>
-                                    <span>Price</span> {this.props.locations[this.props.usersSelectedLoc].locPrice + ' Birr'}
+                                    <Typography variant='subtitle2' className='desc-table-item'>
+                                        <span style={{marginRight:'2em'}}>Description</span> {this.props.locations[this.props.usersSelectedLoc].locDesc}
                                     </Typography>
                                 </CardContent>
                             </Collapse>
@@ -293,7 +293,7 @@ class Checkout extends Component {
                         
                     </div> 
                     
-                    <Button  color='secondary' variant='contained' style={{borderRadius:'20px', width:'200px'}} onClick={() => this.SubmitOrder()} size='large'>Place Order</Button>
+                    <Button  color='secondary' variant='contained' disabled={this.props.user.prevOrdType === 'Pickup' && this.state.selectedPickupTime === ''} style={{borderRadius:'20px', width:'200px'}} onClick={() => this.SubmitOrder()} size='large'>Place Order</Button>
                               
                 </div>
             </>

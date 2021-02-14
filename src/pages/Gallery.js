@@ -25,29 +25,29 @@ class Gallery extends Component {
                             />
                         </GridListTile>
                         <GridListTile cols={this.props.isMobile ?4 : 2} rows={2}>
-                            <img src='https://res.cloudinary.com/mikiyas/image/upload/v1607756427/font2_gg4q96.jpg' alt='bossburger' />
+                            <img src='https://res.cloudinary.com/mikiyas/image/upload/v1607756427/font2_gg4q96.jpg' alt='Boss Burger' />
                             
                         </GridListTile>
                         <GridListTile cols={this.props.isMobile ?4 : 2} rows={2}>
-                            <img  src='https://res.cloudinary.com/mikiyas/image/upload/v1606364882/c-item7_oj36b9.jpg' alt='bossburger' />
+                            <img  src='https://res.cloudinary.com/mikiyas/image/upload/v1606364882/c-item7_oj36b9.jpg' alt='Boss Burger' />
                             
                         </GridListTile>
                         <GridListTile cols={this.props.isMobile ?4 : 2}  rows={2}>
-                            <img  src='https://res.cloudinary.com/mikiyas/image/upload/v1606364891/c-item-3_i2lzp6.jpg' alt='bossburger' />
+                            <img  src='https://res.cloudinary.com/mikiyas/image/upload/v1606364891/c-item-3_i2lzp6.jpg' alt='Boss Burger' />
                         </GridListTile>
                         <GridListTile cols={this.props.isMobile ?4 : 2} rows={this.props.mobile ? 2 : 2.5}>
-                            <img  src='https://res.cloudinary.com/mikiyas/image/upload/v1606569033/97237411_248415766235891_5659653975019641466_n_sxwi4c.jpg' alt='bossburger' />
+                            <img  src='https://res.cloudinary.com/mikiyas/image/upload/v1606569033/97237411_248415766235891_5659653975019641466_n_sxwi4c.jpg' alt='Boss Burger' />
                            
                         </GridListTile>
                         
                         <GridListTile cols={this.props.isMobile ?4 : 2} rows={this.props.mobile ? 2 : 2.5}>
-                            <img  src='https://res.cloudinary.com/mikiyas/image/upload/v1606364886/c-item2_qewdgb.jpg' alt='bossburger' />
+                            <img  src='https://res.cloudinary.com/mikiyas/image/upload/v1606364886/c-item2_qewdgb.jpg' alt='Boss Burger' />
                         </GridListTile>
                         <GridListTile cols={this.props.isMobile ?4 : 2} rows={2}>
-                            <img  src='https://res.cloudinary.com/mikiyas/image/upload/v1611043845/137362158_792180124842020_2700611164695898017_n_p0hdca.jpg' alt='bossburger' />
+                            <img  src='https://res.cloudinary.com/mikiyas/image/upload/v1611043845/137362158_792180124842020_2700611164695898017_n_p0hdca.jpg' alt='Boss Burger' />
                         </GridListTile>
                         <GridListTile cols={this.props.isMobile ?4 : 2} rows={2}>
-                            <img  src=' https://res.cloudinary.com/mikiyas/image/upload/v1606364889/c-item5_jsif5a.jpg' alt='bossburger' />
+                            <img  src=' https://res.cloudinary.com/mikiyas/image/upload/v1606364889/c-item5_jsif5a.jpg' alt='Boss Burger' />
                         </GridListTile>
                        
                         

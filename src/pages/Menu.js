@@ -205,8 +205,8 @@ class Menu extends React.Component {
                   <CardContent>
                   {item.food_type === 'BRG'
                       ?<div style={{display:"flex", justifyContent:'center'}}>{item.available === true
-                        ?<Image loading="lazy" cloudName='mikiyas' height='178' width='178' publicId={item.img} secure="true"/>
-                        :<Image loading="lazy" cloudName='mikiyas' height='178' width='178' publicId={item.img} secure="true"><Transformation effect="grayscale" /></Image>
+                        ?<Image loading="lazy" cloudName='mikiyas' height='178' width='178' alt={item.name} publicId={item.img} secure="true"/>
+                        :<Image loading="lazy" cloudName='mikiyas' height='178' width='178' alt={item.name} publicId={item.img} secure="true"><Transformation effect="grayscale" /></Image>
                       }</div>
                     :null
                   }

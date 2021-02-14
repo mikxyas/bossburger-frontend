@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Card from '@material-ui/core/Card';
 import {Link} from 'react-router-dom';
 import CardActions from '@material-ui/core/CardActions';
+import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardHeader from '@material-ui/core/CardHeader';
 import Button from '@material-ui/core/Button';
@@ -61,14 +62,28 @@ class Locations extends Component {
                 
                 {this.props.locLength > 0
                 ?<Grid container spacing={3} justify='center'>
-                    <Grid item sm={12}>
-                        <Link to='/new/locations/'>
-                            <Button variant='contained' endIcon color='primary'>Add Location<AddIcon/></Button>
-                        </Link>
-                    </Grid>
+                   
+                   <Grid style={{display:'flex', justifyContent:'center'}} item sm={12} lg={12}  xs={12}>
+                        <Card color='secondary' style={{width:'270px'}} variant='outlined'>
+                        <Link style={{color:'inherit'}} to='/new/locations/'>
+                            <CardActionArea color='secondary'>
+                                    <CardHeader
+                                        action={
+                                                <IconButton color='secondary' aria-label="settings">
+                                                    <AddIcon/>
+                                                </IconButton>
 
+                                        }
+                                        title='Add Location'
+                                        subheader='Add a brand new location'
+                                    />  
+                            </CardActionArea>
+                        </Link>
+
+                        </Card>
+                    </Grid>
                     {Object.keys(this.props.Locations).map((locs, key) => (
-                        <Grid style={{marginTop:'1em', display:'flex', justifyContent:'center'}} item lg={3}  xs={12} sm={6} key={key}>
+                        <Grid style={{display:'flex', justifyContent:'center'}} item lg={3}  xs={12} sm={6} key={key}>
                             <Card style={{width:'270px'}} variant='outlined'>
                                 <CardHeader
                                     action={
@@ -80,23 +95,26 @@ class Locations extends Component {
 
                                     subheader={this.props.Locations[locs].neighborhood}
                                 />
-                                <CardContent style={{marginTop:'-1.5em'}}>  
-                                    <Typography variant="body2" color="textSecondary" component="p">
-                                        {this.props.Locations[locs].locDesc}   
+                                <CardContent>  
+                                    <Typography variant='subtitle2' className='desc-table-item'>
+                                        <span>Neighbourhood</span> {this.props.Locations[locs].neighborhood}
                                     </Typography>
-                                    <Chip
-                                        style={{marginTop:'1em'}}
-                                        // icon={<MoneyIcon/>}
-                                        label={this.props.Locations[locs].locDistance + ' Km | ' + this.props.Locations[locs].locPrice + ' ETB'} 
-                                        variant='outlined'
-                                        color='secondary'                           
-                                    />
+                                    <Typography variant='subtitle2'  className='desc-table-item'>
+                                        <span>Distance</span> {this.props.Locations[locs].locDistance + ' Km'}
+                                    </Typography>
+                                    <Typography variant='subtitle2'  className='desc-table-item'>
+                                        <span>Price</span> {this.props.Locations[locs].locPrice + ' Birr'}
+                                    </Typography>
+                                    <Typography variant='subtitle2'  className='desc-table-item'>
+                                        <span style={{marginRight:'2em'}}>Description</span> {this.props.Locations[locs].locDesc}
+                                    </Typography>
                                 </CardContent>
                                 
                             </Card>
         
                         </Grid>
                     ))}
+                     
                     </Grid>
                 :<Card style={{width:'300px'}}>
                 <CardContent>

@@ -248,7 +248,7 @@ section.services-section {
 
 .hero-desc-card {
   width: 325px;
-  margin-top: 2em;
+  margin-top: -2em;
   background-color: rgba(63, 62, 67, 0.55) !important;
   border-radius: 20px !important;
 }
@@ -280,6 +280,7 @@ section.services-section {
 .hero-logo-pic {
   margin-top: -1em;
   width: 80%;
+  background-color: rgba(255, 255, 255, 0.01);
   height: 100%;
 }
 
@@ -1117,6 +1118,9 @@ a {
   }
   section.hero-section {
     height: calc(100vh - 64px);
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
   }
   section.secondary-section {
     -webkit-box-orient: vertical;

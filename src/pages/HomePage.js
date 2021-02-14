@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button,Card, Typography, Divider,Box, ListItemSecondaryAction, Paper, CardContent} from '@material-ui/core';
+import {Button,Card, Typography, Divider,Box, ListItemSecondaryAction, Paper, CardContent, CardHeader} from '@material-ui/core';
 import {Link} from 'react-router-dom'
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import {loadEvents, viewEvent} from '../actions/events'
@@ -49,12 +49,14 @@ class HomePage extends React.Component{
       {/* <img style={{alignSelf:'flex-start'}} className='hero-svg' src="./chef-hero.svg" alt="Burger"/> */}
 
         <div className='hero-section-content'>
-        
-
           {/* <img className='hero-logo-pic' src='./logo.jpg'/> */}
+          
+          <Image className='hero-logo-pic' cloudName='mikiyas' alt='Boss Burger Logo'  publicId='output-onlinepngtools_yxjl1u.png'  secure="true"/>
+
           {/* <Paper variant='outlined' style={{borderRadius:'0px',padding:'.2em',border:'none',width:'100%',background:'#ED1C24', display:'flex', alignItems:'center', justifyContent:'center'}}>
         <Box fontWeight={700} fontSize={19} color='white' fontStyle='italic'>You've had the rest, come try the best</Box>
       </Paper> */}
+        
           <Card className='hero-desc-card' >
             <CardContent>
               <List>
@@ -152,11 +154,11 @@ class HomePage extends React.Component{
         </Link>
 
         </div>
-        <img className='delivery-svg' src="./delivery-hero.svg" alt="Burger"/>
+        <img className='delivery-svg' src="./delivery-hero.svg" alt="Boss Burger Delivery"/>
       </section>
       <section className='secondary-section'>
         <div style={{display:'flex', alignItems:'center', flexDirection:'column'}}>
-        <img className='loc-dist-svg' src="./map-hero.svg" alt="Burger"/>
+        <img className='loc-dist-svg' src="./map-hero.svg" alt="Boss Burger Delivery Pricing"/>
         <Typography variant='h3' className='secondary-section-title'>Delivery Pricing</Typography>
         </div>
         <List className='location-list-cont' >

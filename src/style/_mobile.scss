@@ -48,6 +48,7 @@
     section{
         &.hero-section{
             height: calc(100vh - 64px);
+            align-items: flex-start;
         }
         &.secondary-section{
             flex-direction: column;

@@ -117,7 +117,36 @@ class Orders extends Component {
                             </Paper>
                                 <Typography align='center'>Your order will be on its way once we call you to comfirm your order</Typography>
                             </>
-                            :<Typography align='center'>You ordered a pickup. We will be expecting you.</Typography>
+                            :<>
+                            <Typography align='center'>You ordered a pickup. We will be expecting you.</Typography>
+                            <Paper variant='outlined' style={{padding:'0.5em', margin:'0.5em'}}>
+                                <div style={{display:'flex', marginTop:'.5em',marginBottom:'.5em',justifyContent:'center',flexDirection:'column', alignItems:'center'}}>
+                                {Object.keys(this.props.orders[id].order).map(item => (
+                                    <>
+                                    {/* <Typography variant='subtitle2' style={{alignSelf:'start',display:'flex',justifyContent:'space-between',width:'100%'}}>{this.props.orders[id].order[item].name} <span>{  ' X '+this.props.orders[id].quantities[this.props.orders[id].order[item].id]}</span></Typography> */}
+                                    <Typography variant='subtitle2' style={{alignSelf:'start',display:'flex',justifyContent:'space-between',width:'100%'}}>
+                                        <>{this.props.orders[id].order[item].name}</> <>{this.props.orders[id].extras[this.props.orders[id].order[item].id] !== undefined
+                                        // get the extra's name by filtering menu items
+                                        ?<> + {this.props.menuItems.filter(mItem => mItem.id === this.props.orders[id].extras[this.props.orders[id].order[item].id])[0].name}</>
+                                        :null
+                                    }</> <span>{  ' X '+this.props.orders[id].quantities[this.props.orders[id].order[item].id]}</span>
+                                    </Typography>
+                                    </>
+                                ))}
+                                <Divider style={{margin:'.5em'}}/>
+                                <Typography variant='subtitle2' style={{alignSelf:'flex-start', display:'flex', justifyContent:'space-between', width:'100%'}}><span>Food Price</span> {this.props.orders[id].Food_price}</Typography>
+                                <Typography variant='subtitle2' style={{alignSelf:'flex-start', display:'flex', justifyContent:'space-between', width:'100%'}}><span>Delivery Price</span> {this.props.orders[id].delivery_price}</Typography>
+                                <Typography variant='subtitle2' style={{alignSelf:'flex-start',  display:'flex', justifyContent:'space-between', width:'100%'}}><span>Total Price</span> {this.props.orders[id].delivery_price + this.props.orders[id].Food_price}</Typography>
+                                <Divider style={{margin:'.5em'}}/>
+                                {this.props.orders[id].order_type === 'DVY'
+                                    ?<Typography variant='subtitle2' style={{alignSelf:'flex-start',  display:'flex', justifyContent:'space-between', width:'100%'}}><span>Order Type</span> Delivery</Typography>
+                                    :<Typography variant='subtitle2' style={{alignSelf:'flex-start',  display:'flex', justifyContent:'space-between', width:'100%'}}><span>Order Type</span> Pickup</Typography>
+                                    }
+                                </div>
+                            </Paper>
+                                {/* <Typography align='center'></Typography> */}
+
+                            </>
                             }
                         </CardContent>
                     </Card>
@@ -157,7 +186,8 @@ class Orders extends Component {
 const mapStateToProps = state => ({
     orders: state.order.orders,
     locations:state.locations.locations,
-    orderPlaced: state.order.orderPlaced
+    orderPlaced: state.order.orderPlaced,
+    menuItems: state.MenuItems.MenuItems
 })
 export default connect(mapStateToProps, {loadOrders})(Orders)
 
