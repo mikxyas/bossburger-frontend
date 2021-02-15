@@ -92,6 +92,7 @@
       -ms-flex-pack: justify !important;
           justify-content: space-between !important;
   visibility: hidden;
+  z-index: 99 !important;
 }
 
 .menu-tab {
@@ -497,12 +498,13 @@ section.services-section {
 
 .event-card {
   height: 320px;
+  margin-top: 2em;
+  margin-bottom: 2em;
   -webkit-transition: .4s;
   transition: .4s;
   width: 320px;
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center center;
   border-radius: .6em;
   position: relative;
   z-index: 0;
@@ -513,8 +515,6 @@ section.services-section {
   width: 320px;
   border-radius: .6em;
   background: rgba(0, 0, 0, 0.12);
-  background: -webkit-gradient(linear, left bottom, left top, from(rgba(0, 0, 0, 0.8)), color-stop(rgba(0, 0, 0, 0)), to(rgba(255, 255, 255, 0.3)));
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0), rgba(255, 255, 255, 0.3));
   opacity: .8;
   -webkit-transition: all 350ms ease-out 0s;
   transition: all 350ms ease-out 0s;
@@ -535,12 +535,12 @@ section.services-section {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  z-index: 2;
 }
 
 .event-card .event-card-overlay .event-card-title {
   padding: .2em;
   margin-top: auto;
+  width: 320px !important;
   background-color: rgba(0, 0, 0, 0.4);
   -webkit-backdrop-filter: saturate(160%) blur(2px);
           backdrop-filter: saturate(160%) blur(2px);
@@ -810,6 +810,43 @@ section.services-section {
 
 .checkout-loc-card-cont {
   margin: 1em;
+}
+
+.menu-header {
+  background-color: #fff !important;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin: auto !important;
+  margin-top: -.65em !important;
+  -webkit-box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.8) !important;
+          box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.8) !important;
+}
+
+.menu-header-divider {
+  background-color: #f25c05 !important;
+  margin-top: 3em !important;
+  width: 100%;
+}
+
+.normal-btn {
+  margin-top: 1em !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  z-index: 9999999999999999999999999999999 !important;
+}
+
+.card-dialog {
+  z-index: 999 !important;
+  height: calc(100vh - 65px);
+  margin-top: auto;
+}
+
+.fab-cart-cont {
+  pointer-events: none !important;
 }
 
 .svg-background {

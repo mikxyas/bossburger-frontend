@@ -54,8 +54,8 @@ function AddEvent(props) {
 
   return (
     <div>
-      <Dialog fullScreen open={props.openAddMenu} onClose={props.toggleAddMenuItem} TransitionComponent={Transition}>
-        <AppBar className='event-header' position='relative'>
+      <Dialog className='card-dialog' fullScreen open={props.openAddMenu} onClose={props.toggleAddMenuItem} TransitionComponent={Transition}>
+        <AppBar color='primary' position='relative'>
           <Toolbar className={classes.toolbar}>
             <Typography  variant="h5" className='event-header-title'>
                 <Box color='white' fontWeight={600}>Add Menu Item</Box>

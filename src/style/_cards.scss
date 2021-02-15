@@ -41,21 +41,23 @@
 
 .event-card{
   height: 320px;
+  margin-top: 2em;
+  margin-bottom: 2em;
   transition: .4s;
   // background-color: red;
   width: 320px;
   background-size: cover;
 	background-repeat: no-repeat;
-  background-position: center center;
+  // background-position: center ;
   border-radius: .6em;
   position: relative;
   z-index: 0;
     .event-card-img{
       height: 320px;
-      width: 320px;
+      width: 320px ;
       border-radius: .6em;
       background: rgba(black, .12);
-      background: linear-gradient(to top, rgba(black, .8), rgba(black, 0), rgba(white, .3));
+      // background: linear-gradient(to top, rgba(black, .8), rgba(black, 0), rgba(white, .3));
       opacity: .8;
       transition: all 350ms ease-out 0s;
       position: absolute;
@@ -73,10 +75,10 @@
       font-size: 40px;
       color: #e0e0e0;
       display: flex;
-      z-index: 2;
       .event-card-title{
         padding: .2em;
         margin-top: auto;
+        width: 320px !important;
         background-color: rgba(black, .4);
         backdrop-filter: saturate(160%) blur(2px);
         border-radius: 0px 0px 10px 10px;
@@ -278,6 +280,42 @@
 .checkout-loc-card-cont{
   margin:1em;
 }
+.menu-header{
+  // margin: .5em !important;
+  background-color: #fff !important;
+  width: fit-content;
+  height: fit-content;
+  margin:auto !important;
+  margin-top: -.65em !important;
+  box-shadow: 0px 0px 10px rgba(255,255,255,0.8) !important;
+}
+
+.menu-header-divider{
+  background-color: #f25c05 !important;
+  margin-top: 3em !important;
+  // position: absolute;
+  width: 100%;
+  // margin-left: 20% !important;
+}
+.normal-btn{
+  margin-top: 1em !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  z-index: 9999999999999999999999999999999 !important;
+  // margin:auto !important;
+}
+.card-dialog{
+  z-index: 999 !important;
+  height: calc(100vh - 65px);
+  margin-top: auto;
+}
+.fab-cart-cont{
+  pointer-events: none !important;
+  // background-color: red;
+  // width: 100%;
+
+}
+
 // .checkout-item-cart-cont{
 //   background-color: #ffffff65 !important;
 // }

@@ -12,6 +12,7 @@ import EventViewer from '../components/EventViewer'
 import AddEvent from '../components/AddEvent'
 import {Image} from 'cloudinary-react'
 
+
 class Events extends Component {
   constructor(props){
     super(props);
@@ -42,11 +43,23 @@ class Events extends Component {
           {/* <EventViewer/> */}
           <div className='event-page-cont'>
             {this.props.isAdmin 
-            ?<div style={{width:'100vw', paddingLeft:'3em'}}>
+            ?<div >
             <AddEvent/>
-              <Button onClick={() => this.props.toggleAddEvent()} style={{marginBottom:'1em', borderRadius:'20px'}} className='add-event-btn'  color='primary' variant='contained'>
-              Add Event
-            </Button>
+            <div style={{display:'flex', alignItems:'center', justifyContent:'center',width:'100%', marginTop:'.5em'}}>
+                <Card color='secondary' style={{width:'270px'}} variant='outlined'>
+                  <CardActionArea onClick={() => this.props.toggleAddEvent()} color='secondary'>
+                    <CardHeader
+                      action={
+                        <IconButton color='secondary' aria-label="settings">
+                          <AddIcon/>
+                        </IconButton>
+                      }
+                      title='Add an event'
+                      subheader='Add a new event or offer'
+                    />  
+                    </CardActionArea>
+                              </Card>
+              </div>
             </div>
             :null  
           }

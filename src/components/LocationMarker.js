@@ -3,7 +3,9 @@ import {useMapEvents,Tooltip,Polyline,Marker} from 'react-leaflet'
 import L from 'leaflet';
 import {connect} from 'react-redux';
 import {toggleUserLocated, SetCoords, GetLocData} from '../actions/locations'
-import { Button, Paper, Typography } from '@material-ui/core'
+import { Button,IconButton, Paper, Typography } from '@material-ui/core'
+import CheckBoxIcon from '@material-ui/icons/CheckBox';
+
 
 const limeOptions = { color: '#f25c05' }
 
@@ -65,20 +67,20 @@ function LocationMarker(props) {
                 {LocationConfirmed === null
                 ? <>
                 <Typography>Are you here?</Typography>
-                <Button variant='contained' onClick={() => SaveUserPosition()} size='small'>Yes</Button>
-                <Button variant='contained' onClick={() => setLocConf(false)} size='small'>No I'm not</Button>
+                <Button color='secondary'  variant='contained' onClick={() => SaveUserPosition()} size='small'>Yes</Button>
+                <Button color='primary' style={{marignLeft:'2em'}} variant='contained' onClick={() => setLocConf(false)} size='small'>No</Button>
                 </>
                 :null
 
                 }
             {props.locDisExceeded & LocationConfirmed === true
-              ?<><Typography>Sorry we only delivery in a 15km radius. You are currently {props.locDistance} kms away</Typography>
-                <Button onClick={() => setLocConf(false)}>Change location</Button>
-              </>
+              ?<div style={{display:'flex', justifyContent:'center',alignItems:'center',flexDirection:'column', width:'100%'}}><Typography align='center' variant='subtitle2'>Sorry we only delivery in a 15km radius.<br/> You are currently {props.locDistance} kms away</Typography>
+                <Button style={{marginTop:'1em'}} variant='outlined' color='secondary'  onClick={() => setLocConf(false)}>Change location</Button>
+              </div>
               :<>
               {LocationConfirmed === true
-            ?<Paper style={{width:'200px', height:'fit-content', padding:'.5em'}}>
-              <Typography variant='h5'>{props.neighbourhood}</Typography>
+            ?<Paper variant='outlined' style={{width:'200px', height:'fit-content', padding:'.5em'}}>
+              <Typography className='desc-table-item' variant='h5'><span>{props.neighbourhood}</span><CheckBoxIcon color='secondary'/></Typography>
               <Typography  variant='subtitle1'>{props.locDistance + 'km | ' + props.locPrice + 'Birr'}</Typography>
             </Paper>
             :null
@@ -90,7 +92,7 @@ function LocationMarker(props) {
             {LocationConfirmed === false
                 ?<>
                     <Typography>Drag marker to your position</Typography>
-                    <Button variant='contained' fullWidth onClick={() => SaveUserPosition()} size='small'>I am Here</Button>
+                    <Button variant='outlined' style={{marignTop:'.5em'}} color='secondary' onClick={() => SaveUserPosition()} size='small' fullWidth>I am Here</Button>
                 </>
                 :null
             }
