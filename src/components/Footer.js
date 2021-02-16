@@ -3,7 +3,7 @@ import PhoneIcon from '@material-ui/icons/Phone';
 import FacebookIcon from '@material-ui/icons/Facebook'
 import InstaIcon from '@material-ui/icons/Instagram'
 import OpenInNew from '@material-ui/icons/OpenInNew'
-import { Typography, Button,ButtonGroup } from '@material-ui/core';
+import { Typography, Button,ButtonGroup,Divider } from '@material-ui/core';
 import { useHistory } from 'react-router-dom'
 import { connect } from 'react-redux';
 import {ChangeLink} from '../actions/ui'
@@ -29,7 +29,10 @@ function Footer(props){
                     <Button href='https://www.facebook.com/bossburgeraddis251/' target='__blank__' startIcon={<FacebookIcon/>}>Facebook</Button>
                     <Button startIcon={<PhoneIcon/>}>0902424848</Button>
                 </ButtonGroup>
-                <Typography align='center' style={{display:'flex', alignItems:'center'}} variant='subtitle1'>Website developed by <Button href='https://t.me/mikiyas_tg' target='__blank__' endIcon={<OpenInNew/>} variant='text' color='inherit'>lunabite</Button></Typography>
+                <Divider style={{width:'30%', background:'rgba(255,255,255,0.5)',margin:'.3em'}} variant='middle'/>
+                <Typography align='center' variant='subtitle1'>Website developed by <br/><Button href='https://t.me/mikiyas_tg' target='__blank__' endIcon={<OpenInNew/>} variant='contained' color='secondary' style={{zIndex:'999', marginBottom:'.3em',opacity:'.8'}}>lunabite</Button></Typography>
+                <Divider style={{width:'30%', background:'rgba(255,255,255,0.5)',margin:'.3em'}} variant='middle'/>
+                
                 <Typography align='center' variant='caption'>Boss Burger inc Copyright © {new Date().getFullYear()}. All rights reserved</Typography>
                 
                 {/* <img src='./bblogo.png' className='footer-brand'/> */}
