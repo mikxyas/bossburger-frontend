@@ -42,7 +42,7 @@ const useStyles = makeStyles({
         <BottomNavigationAction  label={<span style={{fontSize:'18px'}}>Order</span>} value="order" icon={<FastfoodIcon />} />
         {/* <BottomNavigationAction label={<span style={{fontSize:'18px'}}>Offers</span>} value="offers" icon={<LocalOfferIcon fontSize='medium'/>} /> */}
         <BottomNavigationAction label={<span style={{fontSize:'18px'}}>Gallery</span>} value="gallery" icon={<GalleryIcon />} />
-        <BottomNavigationAction label={<span style={{fontSize:'18px'}}>Events</span>} value="events" icon={<EventIcon />} />
+        <BottomNavigationAction label={<span style={{fontSize:'18px'}}>Offers</span>} value="events" icon={<EventIcon />} />
         
         {/* <BottomNavigationAction label={<span style={{fontSize:'18px'}}>More</span>} value="giveaways" icon={<MoreIcon fontSize='medium'/>} /> */}
         {/* <BtmNavMoreBtn/> */}

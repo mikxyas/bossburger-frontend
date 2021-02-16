@@ -95,7 +95,7 @@ function MenuAppBar(props) {
           <Tab  className='cont-nav' value='menu' label="Menu"  />
           <Tab  value='order' className='cont-nav' label="Order"  />
           <Tab  value='gallery' className='cont-nav' label="Gallery"  />
-          <Tab  value='events' className='cont-nav' label="Events"  />
+          <Tab  value='events' className='cont-nav' label="Offers"  />
           {props.isAdmin
           ?
             <Divider variant='middle' style={{marginLeft:'1em', background:'rgba(0,0,0,0.6)'}}  orientation='vertical' flexItem/>
