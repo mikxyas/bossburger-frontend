@@ -202,10 +202,7 @@ class HomePage extends React.Component{
       </ListItem>
       </div>
           </List>
-        
-        
        </section>
-
     </>
     
   );
