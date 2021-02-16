@@ -41,7 +41,7 @@ import Divider from '@material-ui/core/Divider'
 import AddIcon from '@material-ui/icons/Add'
 import IconButton from '@material-ui/core/IconButton'
 
-
+ 
 class Menu extends React.Component {
   static propTypes = {
     menuItems:PropTypes.array.isRequired,

@@ -5,7 +5,6 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import {Provider} from 'react-redux';
 import store from './store';
 import {loadUser} from './actions/auth';
-import {loadLoc} from './actions/locations'
 import Footer from './components/Footer';
 import {UpdateDevice} from './actions/ui'
 import LoadPage from './components/LoadPage'
@@ -36,8 +35,9 @@ class App extends React.Component{
   render(){ 
 
   return (
+    <body>
     <Provider store={store}>
-      <body>
+      
       <ThemeProvider theme={outerTheme}>
         <Navbar/>
         <div className='bottom-nav'>
@@ -46,8 +46,9 @@ class App extends React.Component{
         <LoadPage/>
         <Footer/>
         </ThemeProvider>
-      </body>
+      
     </Provider>
+    </body>
   );
 }
 }

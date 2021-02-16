@@ -11,12 +11,9 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import GpsIcon from '@material-ui/icons/LocationOn'
-import OpenInNewIcon from '@material-ui/icons/OpenInNew'
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import MotorcycleIcon from '@material-ui/icons/Motorcycle';
 import ExploreIcon from '@material-ui/icons/Explore';
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
 class HomePage extends React.Component{
   constructor(props){
     super(props);

@@ -1,7 +1,5 @@
-import { Paper,Typography,Box,Divider, ListItemIcon,ListItemText, ListItem, Button } from '@material-ui/core'
+import { Typography,Box } from '@material-ui/core'
 import React, { Component } from 'react'
-import EmailIcon from '@material-ui/icons/Email'
-import PhoneIcon from '@material-ui/icons/Phone'
 
 export default class JobOffers extends Component {
     render() {

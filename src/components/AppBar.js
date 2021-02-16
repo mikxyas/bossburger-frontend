@@ -5,23 +5,14 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom'
 import { useHistory } from 'react-router-dom'
-import SigninDialog from './SigninDialog';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import IconButton from '@material-ui/core/IconButton';
 import {logout} from '../actions/auth';
 import {ChangeLink, ChangeLinkToFrom} from '../actions/ui'
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import Drawer from '@material-ui/core/Drawer'
 import CartDrawer from './CartDrawer'
 import { Avatar, Divider } from '@material-ui/core';
-import DashboardIcon from '@material-ui/icons/Dashboard';
 
 
 const useStyles = makeStyles((theme) => ({

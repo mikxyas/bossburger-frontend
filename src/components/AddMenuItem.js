@@ -1,13 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
-import Paper from '@material-ui/core/Paper';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListItem from '@material-ui/core/ListItem';
-import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
-import AppBar from '@material-ui/core/AppBar';
+import AppBar from '@material-ui/core/AppBar'; 
 import Box from '@material-ui/core/Box';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -17,7 +11,6 @@ import Slide from '@material-ui/core/Slide';
 import {connect} from 'react-redux'; 
 import AddMenuItemForm from './AddMenuItemForm'
 import {toggleAddMenuItem} from '../actions/MenuItems'
-import UploadImage from './UploadImage'
 
 const useStyles = makeStyles((theme) => ({
   appBar: {

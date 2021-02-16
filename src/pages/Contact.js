@@ -1,4 +1,4 @@
-import { Paper,CardActions,IconButton, CardContent, Button,CardHeader,Typography,Box,Divider, ListItemIcon,ListItemText, ListItem, Card, CardActionArea } from '@material-ui/core'
+import {IconButton,CardHeader,Typography,Box, Card, CardActionArea } from '@material-ui/core'
 import React, { Component } from 'react'
 import EmailIcon from '@material-ui/icons/Email'
 import PhoneIcon from '@material-ui/icons/Phone'
