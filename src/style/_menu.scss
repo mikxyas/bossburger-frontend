@@ -31,13 +31,10 @@
     }
 }
 .brand-pic{
-    // display: block;
-    height: 2em;
+    height: auto;
     visibility: hidden;
-    width: 2.6em;
-    filter: brightness(1) invert(0);
-    margin-top: .35em;
-    margin-left: 0em;
+    width: 6.5em;
+    margin:.5em;
     cursor: pointer;
 }
 .hero-logo-pic{

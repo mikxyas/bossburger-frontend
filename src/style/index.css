@@ -36,13 +36,10 @@
 }
 
 .brand-pic {
-  height: 2em;
+  height: auto;
   visibility: hidden;
-  width: 2.6em;
-  -webkit-filter: brightness(1) invert(0);
-          filter: brightness(1) invert(0);
-  margin-top: .35em;
-  margin-left: 0em;
+  width: 6.5em;
+  margin: .5em;
   cursor: pointer;
 }
 
@@ -1281,7 +1278,6 @@ a {
   }
   .brand-pic {
     visibility: visible;
-    margin-left: .5em;
   }
   .ad-grid {
     -ms-grid-columns: 1fr;

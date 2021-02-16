@@ -98,7 +98,7 @@ function MenuAppBar(props) {
         textColor='secondary'
         >
           
-            <img onClick={handleBrand} src='./bosslogo.png' className='brand-pic'/>
+            <img onClick={handleBrand} src='https://res.cloudinary.com/mikiyas/image/upload/v1613451672/output-onlinepngtools_2_on4agn.png' className='brand-pic'/>
           
           <Tab value='' label='Home' className='cont-nav' />
           <Tab  className='cont-nav' value='menu' label="Menu"  />
