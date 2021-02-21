@@ -51,7 +51,7 @@ export const addEvent = (event) => (dispatch,getState) =>{
                 type: EVENT_ERR
             });
         });
-        console.log(body.post_pic)
+        // console.log(body.post_pic)
 
 }
 

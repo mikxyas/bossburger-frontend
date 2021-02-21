@@ -1,4 +1,4 @@
-import { Paper, Typography,Card,Divider,Grid, Button, Badge, CardContent,Collapse } from '@material-ui/core';
+import { Paper, Typography,Card,Divider,Grid, Button, Badge, CardContent,Collapse,CardHeader,IconButton } from '@material-ui/core';
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import {loadOrders} from '../actions/order';
@@ -6,6 +6,7 @@ import PropTypes from 'prop-types'
 import DoneIcon from '@material-ui/icons/CheckCircle';
 import DownIcon from '@material-ui/icons/ArrowDropDown'
 import UpIcon from '@material-ui/icons/ArrowDropUp'
+import InfoIcon from '@material-ui/icons/Info';
 
 
 class Orders extends Component {
@@ -53,8 +54,8 @@ class Orders extends Component {
         return (
             
             <div className='orders-cont'>
-                
-                <Grid justify='center' align='center' container spacing={2} >
+                {Object.keys(this.props.orders).length > 0
+                    ? <Grid justify='center' align='center' container spacing={2} >
                     {Object.keys(this.props.orders).map(id => (
                     this.props.orders[id].delivered == false
                     ?
@@ -155,6 +156,17 @@ class Orders extends Component {
                 ))}
                 </Grid>
                 
+               
+                :<CardHeader
+                      avatar={
+                        <IconButton color='primary' aria-label="settings">
+                          <InfoIcon />
+                        </IconButton>
+                      }
+                      title='No orders placed'
+                      subheader='You have not placed any orders yet.'
+                    /> 
+                    }
             
             {/* <div style={{display:'flex', height:'calc(100vh - 70px)', width:'100%',flexDirection:'column', padding:'.5em',alignItems:'center'}}>
                     {Object.keys(this.props.orders).map(id => (

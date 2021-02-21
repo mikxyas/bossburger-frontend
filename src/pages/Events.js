@@ -11,7 +11,7 @@ import PropTypes from 'prop-types'
 import EventViewer from '../components/EventViewer'
 import AddEvent from '../components/AddEvent'
 import {Image} from 'cloudinary-react'
-
+import InfoIcon from '@material-ui/icons/Info';
 
 class Events extends Component {
   constructor(props){
@@ -35,7 +35,7 @@ class Events extends Component {
   }
   static propTypes = {
     isAdmin: PropTypes.bool.isRequired,
-    events: PropTypes.array.isRequired
+    // events: PropTypes.object.isRequired
   }
     render() {
         return (
@@ -63,7 +63,8 @@ class Events extends Component {
             </div>
             :null  
           }
-          <Grid container alignItems='center'  justify='center' spacing={2}>
+          {Object.keys(this.props.events).length > 0
+            ?<Grid container alignItems='center'  justify='center' spacing={2}>
             {Object.keys(this.props.events).map(item => {
               return(
               <Grid style={{display:'flex', alignItems:'center', justifyContent:'center'}} item key={item} md={4} sm={8} xs={12}>
@@ -112,6 +113,21 @@ class Events extends Component {
               </Grid>
           )})}
           </Grid>
+          :<div style={{display:'flex',height:'60vh', alignItems:'center', justifyContent:'center'}}>
+            <CardHeader
+                      avatar={
+                        <IconButton color='primary' aria-label="settings">
+                          <InfoIcon />
+                        </IconButton>
+                      }
+                      title='No offers'
+                      subheader='Sorry we dont have any offers right now'
+                    /> 
+            
+          </div>
+
+          }
+          
 
           </div>
         </>
