@@ -30,7 +30,7 @@ function Footer(props){
                     <Button startIcon={<PhoneIcon/>}>0902424848</Button>
                 </ButtonGroup>
                 {/* <Divider style={{width:'30%', background:'rgba(255,255,255,0.5)',margin:'.3em'}} variant='middle'/> */}
-                <Typography align='center' variant='subtitle1'>Website developed by <br/><Button className='umami--click--lunabite-button' href='https://t.me/mikiyas_tg' target='__blank__' endIcon={<OpenInNew/>} variant='contained' color='secondary' style={{zIndex:'999', marginBottom:'.3em',opacity:'.9'}}>lunabite</Button></Typography>
+                <Typography align='center' variant='subtitle1'>Website developed by <br/><Button className='umami--click--lunabite-button' href='https://mikiyas.com' target='__blank__' endIcon={<OpenInNew/>} variant='contained' color='secondary' style={{zIndex:'999', marginBottom:'.3em',opacity:'.9'}}>Mikiyas</Button></Typography>
                 {/* <Divider style={{width:'30%', background:'rgba(255,255,255,0.5)',margin:'.3em'}} variant='middle'/> */}
                 
                 <Typography align='center' variant='caption'>Boss Burger inc Copyright © {new Date().getFullYear()}. All rights reserved</Typography>
